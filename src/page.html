@@ -177,7 +177,10 @@ var T = {
     billsTitle: '지폐 색깔로 구분하기', billsDesc: '0이 많아 헷갈리니 색으로 먼저 기억하세요.',
     billsWarn: '20,000동(파랑)과 500,000동(청록)은 색이 비슷해요. 거스름돈을 받을 때 0의 개수를 꼭 세어 보세요.',
     numbersTitle: '가격 읽는 숫자', numbersDesc: '숫자를 누르면 발음을 들려줘요.',
-    slangTitle: '가격표 읽는 요령', slangDesc: '현지에서 자주 보는 표기와 구어 표현이에요.',
+    slangTitle: '돈 부르는 말', slangDesc: '시장·택시에서는 숫자 대신 이렇게 말하기도 해요. 누르면 발음을 들려줘요.',
+    spokenLabel: '말로 부르는 단위', writtenLabel: '가격표 표기', exLabel: '예:', secUnits: '돈 부르는 말',
+    region_all: '전국', region_south: '남부', region_north: '북부',
+    veNote: '1 vé는 동이 아니라 미화 100달러(USD)를 뜻해요. 헷갈리지 않게 조심하세요.',
 
     swTitle: '고수 빼기 스위치', swDesc: '필요한 요청만 켜면 주문 문장을 만들어 줘요.',
     north: '북부 (하노이)', south: '남부 (호치민)', regionLabel: '지역 표현',
@@ -265,7 +268,10 @@ var T = {
     billsTitle: 'Tell the notes apart', billsDesc: 'Every note has lots of zeros, so learn them by color.',
     billsWarn: 'The 20,000 (blue) and 500,000 (teal) notes look alike. Count the zeros when you get change.',
     numbersTitle: 'Numbers for prices', numbersDesc: 'Tap a number to hear it.',
-    slangTitle: 'Reading price tags', slangDesc: 'Notation and slang you will see and hear.',
+    slangTitle: 'Money slang', slangDesc: 'At markets and in taxis people often say amounts like this. Tap to hear it.',
+    spokenLabel: 'Spoken units', writtenLabel: 'On price tags', exLabel: 'e.g.', secUnits: 'Money slang',
+    region_all: 'Nationwide', region_south: 'South', region_north: 'North',
+    veNote: '1 vé means 100 US dollars, not dong. Do not mix them up.',
 
     swTitle: 'No-cilantro switch', swDesc: 'Switch on what you need and get a ready-to-show order note.',
     north: 'North (Hanoi)', south: 'South (HCMC)', regionLabel: 'Regional words',
@@ -396,11 +402,17 @@ var BIGNUMS = [
   { n: '100,000', vi: 'một trăm nghìn', pr: '못 짬 응인' },
   { n: '1,000,000', vi: 'một triệu', pr: '못 찌에우' }
 ];
-var SLANG = [
+var WRITTEN = [
   { k: '50.000đ', ko: '50,000동. 베트남은 마침표(.)로 천 단위를 끊어요.', en: '50,000 VND. Vietnam uses a period as the thousands separator.' },
-  { k: '50K', ko: '50,000동. K는 nghìn(천)이라는 뜻이에요.', en: '50,000 VND. K stands for nghìn (thousand).' },
-  { k: '1 lít', ko: '100,000동을 가리키는 구어 표현이에요.', en: 'Slang for 100,000 VND.' },
-  { k: '1 củ', ko: '1,000,000동(백만 동)을 가리키는 구어 표현이에요.', en: 'Slang for 1,000,000 VND.' }
+  { k: '50K', ko: '50,000동. K는 nghìn(천)이라는 뜻이에요.', en: '50,000 VND. K stands for nghìn (thousand).' }
+];
+/* spoken money units (slang); values checked against Vietnamese explainer articles, Oct 2026 */
+var MONEY_UNITS = [
+  { u: '1 xị', say: 'một xị', pr: '못 씨', v: 10000, region: 'south', ex: '5 xị', exV: 50000, k: '만원 1만 10k' },
+  { u: '1 lít', say: 'một lít', pr: '못 릿', v: 100000, region: 'all', ex: '2 lít', exV: 200000, k: '10만 십만 100k' },
+  { u: '1 lốp', say: 'một lốp', pr: '못 롭', v: 100000, region: 'all', ex: '5 lốp', exV: 500000, k: '10만 십만 100k' },
+  { u: '1 chai', say: 'một chai', pr: '못 짜이', v: 1000000, region: 'south', ex: '3 chai', exV: 3000000, k: '100만 백만 million' },
+  { u: '1 củ', say: 'một củ', pr: '못 꾸', v: 1000000, region: 'north', ex: '3 củ', exV: 3000000, k: '100만 백만 million' }
 ];
 
 var SWITCHES = [
@@ -496,7 +508,7 @@ var MISSIONS = [
 var CALL_CENTER = '+82-2-3210-0404';
 
 var TAB_KEYS = {
-  calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 exchange rate money dong won number price calculator',
+  calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address'
 };
@@ -600,6 +612,20 @@ function wordChip(w) {
   return '<button type="button" data-action="speak" data-text="' + esc(w.say || w.vi) + '" class="flex items-baseline gap-1.5 px-2.5 py-1.5 bg-background-50 rounded-lg border border-background-200 hover:border-accent-500/40 cursor-pointer text-left transition-colors">' +
     '<span class="vi text-sm font-bold text-accent-400">' + esc(w.vi) + '</span>' +
     '<span class="text-[11px] text-foreground-500">' + esc(state.lang === 'en' ? w.en : w.ko) + (state.lang === 'ko' ? ' <span class="text-foreground-400">[' + esc(w.pr) + ']</span>' : '') + '</span></button>';
+}
+
+var REGION_CLS = {
+  all: 'bg-background-200/70 text-foreground-600 border-background-300',
+  south: 'bg-secondary-500/10 text-secondary-300 border-secondary-500/30',
+  north: 'bg-primary-500/10 text-primary-300 border-primary-500/30'
+};
+function unitRow(m) {
+  return '<button type="button" data-action="speak" data-text="' + esc(m.say) + '" class="w-full flex items-center gap-3 p-3 bg-background-50 rounded-xl border border-background-200 hover:border-accent-500/40 text-left cursor-pointer transition-colors">' +
+    '<span class="vi text-base font-extrabold text-accent-400 w-[4.5rem] flex-shrink-0">' + esc(m.u) + '</span>' +
+    '<span class="flex-1 min-w-0"><span class="block text-sm font-bold text-foreground-950 tabular">' + fmt(m.v) + t('unitV') + '</span>' +
+    '<span class="block text-[11px] text-foreground-500">' + (state.lang === 'ko' ? '[' + esc(m.pr) + '] · ' : '') + '<span class="whitespace-nowrap">' + esc(t('exLabel')) + ' ' + esc(m.ex) + ' = ' + fmt(m.exV) + t('unitV') + '</span></span></span>' +
+    '<span class="flex flex-col items-end gap-1 flex-shrink-0"><span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border ' + REGION_CLS[m.region] + '">' + esc(t('region_' + m.region)) + '</span>' +
+    '<span class="text-[11px] text-foreground-400 tabular" data-bill-krw="' + m.v + '">≈ ' + fmt(m.v * effRate() / 1000) + t('unitK') + '</span></span></button>';
 }
 
 /* ================= views ================= */
@@ -765,13 +791,18 @@ function viewCalc() {
       '<span class="text-sm font-extrabold text-foreground-950 tabular">' + x.n + '</span><span class="text-right min-w-0"><span class="vi block text-xs font-semibold text-accent-400">' + x.vi + '</span>' +
       '<span class="block text-[10px] text-foreground-400">' + (state.lang === 'ko' ? esc(x.pr) + (x.alt ? ' · ' + esc(x.alt) : '') : (x.altEn ? esc(x.altEn) : '')) + '</span></span></button>';
   }).join('');
-  var slang = SLANG.map(function (s) {
-    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200"><p class="vi text-base font-extrabold text-accent-400">' + esc(s.k) + '</p><p class="text-xs text-foreground-500 mt-1 leading-relaxed">' + esc(L(s)) + '</p></div>';
+  var written = WRITTEN.map(function (w) {
+    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 min-w-0"><p class="vi text-base font-extrabold text-accent-400">' + esc(w.k) + '</p><p class="text-xs text-foreground-500 mt-1 leading-relaxed">' + esc(L(w)) + '</p></div>';
   }).join('');
+  var slangCard = '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🗣️', 'accent', t('slangTitle'), t('slangDesc')) +
+    '<p class="text-xs font-bold text-foreground-400">' + esc(t('spokenLabel')) + '</p><div class="space-y-2">' + MONEY_UNITS.map(unitRow).join('') + '</div>' +
+    '<p class="text-[11px] text-foreground-500 flex items-start gap-1.5"><i class="ri-information-line text-accent-400 mt-px"></i><span>' + esc(t('veNote')) + '</span></p>' +
+    '<p class="text-xs font-bold text-foreground-400 pt-1">' + esc(t('writtenLabel')) + '</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + written + '</div></div>';
 
   return '<section class="space-y-6">' +
     '<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">' +
-    '<div class="lg:col-span-3 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4 min-w-0">' +
+    '<div class="lg:col-span-3 space-y-6 min-w-0">' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
     cardHead('🧮', 'secondary', t('calcTitle'), t('calcDesc')) +
     seg('calc-dir', [{ v: 'v2k', label: 'VND → KRW' }, { v: 'k2v', label: 'KRW → VND' }], c.dir) +
     '<div class="relative"><label for="calc-input" class="sr-only">' + esc(t('amountLabel')) + '</label>' +
@@ -787,6 +818,8 @@ function viewCalc() {
     '<p id="calc-exact" class="text-2xl font-extrabold text-foreground-950 mt-1 tabular break-words">' + esc(o.exact) + '</p></div></div>' +
     '<p class="text-xs text-foreground-500 flex items-start gap-1.5"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span id="calc-note-text">' + esc(o.note) + '</span></p>' +
     '</div>' +
+    slangCard +
+    '</div>' +
     '<div class="lg:col-span-2 space-y-6 min-w-0">' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     cardHead('💱', 'accent', t('rateTitle'), t('rateDesc')) +
@@ -800,12 +833,9 @@ function viewCalc() {
     '<div class="grid grid-cols-3 gap-2">' + bills + '</div>' +
     '<p class="text-xs text-foreground-900 p-3 bg-primary-500/10 border border-primary-500/20 rounded-xl flex items-start gap-2"><i class="ri-error-warning-line text-primary-400 text-base mt-px"></i><span>' + esc(t('billsWarn')) + '</span></p></div>' +
     '</div></div>' +
-    '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🔢', 'secondary', t('numbersTitle'), t('numbersDesc')) +
-    '<div class="grid grid-cols-4 sm:grid-cols-6 gap-2">' + nums + '</div><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + bigs + '</div></div>' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🏷️', 'accent', t('slangTitle'), t('slangDesc')) +
-    '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + slang + '</div></div>' +
-    '</div></section>';
+    '<div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2">' + nums + '</div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">' + bigs + '</div></div>' +
+    '</section>';
 }
 
 function orderSentence() {
@@ -933,17 +963,20 @@ function viewEmergency() {
 }
 
 function searchView(q) {
-  var nq = norm(q);
-  var hit = function (fields) { return norm(fields.join(' ')).indexOf(nq) >= 0; };
+  var accented = /[\u0300-\u036f]/.test(q.normalize('NFD')) || /đ/i.test(q);
+  var prep = accented ? function (x) { return String(x || '').toLowerCase().normalize('NFC').replace(/\s+/g, ' ').trim(); } : norm;
+  var nq = prep(q);
+  var hit = function (fields) { return prep(fields.join(' ')).indexOf(nq) >= 0; };
   var ph = PHRASES.filter(function (p) { return hit([p.ko[0], p.ko[1], p.en, p.vi[0], p.vi[1], p.pr[0], p.pr[1], p.k, p.note ? p.note.ko + ' ' + p.note.en : '']); });
   var ds = DISHES.filter(function (d) { return hit([d.vi, d.ko, d.en, d.pr, d.k, d.d.ko, d.d.en]); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
+  var us = MONEY_UNITS.filter(function (m) { return hit([m.u, m.say, m.pr, m.k]); });
   var tabs = Object.keys(TAB_KEYS).filter(function (k) {
-    var words = norm(TAB_KEYS[k]).split(' ');
-    return words.some(function (w) { return w && (w.indexOf(nq) >= 0 || (nq.length >= 2 && nq.indexOf(w) >= 0)); });
+    var words = prep(TAB_KEYS[k]).split(' ');
+    return words.some(function (w) { return w && (w.indexOf(nq) >= 0 || (nq.length >= 2 && w.length >= (/^[a-z]+$/.test(w) ? 3 : 1) && nq.indexOf(w) >= 0)); });
   });
-  var total = ph.length + ds.length + ws.length;
+  var total = ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
@@ -958,6 +991,7 @@ function searchView(q) {
   if (ph.length) html += box('💬', t('secPhrases'), ph.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>');
   if (ds.length) html += box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>');
   if (ws.length) html += box('📖', t('secWords'), ws.length, '<div class="flex flex-wrap gap-2">' + ws.map(wordChip).join('') + '</div>');
+  if (us.length) html += box('🗣️', t('secUnits'), us.length, '<div class="space-y-2">' + us.map(unitRow).join('') + '</div>');
   if (!total && !tabs.length) {
     html += '<div class="bg-background-100 p-8 rounded-2xl border border-background-200 text-center space-y-3"><p class="text-3xl" aria-hidden="true">🔍</p><p class="font-heading font-bold text-foreground-950">' + esc(t('noResults')) + '</p><p class="text-xs text-foreground-400">' + esc(t('tryThese')) + '</p>' +
       '<div class="flex flex-wrap justify-center gap-2">' + t('sugg').map(function (s) { return chip('suggest', s, s, false); }).join('') + '</div></div>';
