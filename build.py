@@ -28,6 +28,10 @@ BUILD = ROOT / "build"
 
 HEAD_META = """<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#100D0C">
 <meta name="keywords" content="베트남 여행, 베트남 회화, 베트남 동 환율 계산기, 베트남 음식 메뉴판, 베트남 에티켓">
 <meta property="og:type" content="website">
 <meta property="og:title" content="베트남 여행 스마트 가이드 | 회화·환율·메뉴판·에티켓">
