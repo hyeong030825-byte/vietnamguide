@@ -216,8 +216,13 @@ var T = {
     sugg: ['고수', '얼음', '계산', '택시', '쌀국수'],
 
     bmTitle: '북마크 모아보기', bmEmpty: '아직 북마크가 없어요', bmEmptyDesc: '회화·메뉴 카드의 북마크 버튼을 누르면 여기에 모여요.',
-    deckAll: '전체 회화', deckBm: '북마크만', tapFlip: '탭해서 뒤집기', prev: '이전', next: '다음', shuffle: '섞기',
-    deckEmpty: '북마크한 회화가 없어요. 전체 회화로 연습해 보세요.', flipCard: '카드 뒤집기'
+    deckAll: '전체 회화', deckAgain: '다시 보기', deckBm: '북마크', tapFlip: '탭해서 뒤집기', prev: '이전', next: '다음', shuffle: '섞기',
+    deckEmpty: '북마크한 회화가 없어요. 전체 회화로 연습해 보세요.', flipCard: '카드 뒤집기',
+    markAgain: '다시 볼래요', markKnown: '외웠어요', statKnown: '외운 카드', statAgain: '다시 볼 카드', hideKnown: '외운 카드 빼기',
+    allKnown: '이 목록의 카드를 모두 외웠어요!', showKnown: '외운 카드도 보기',
+    againEmpty: "다시 볼 카드가 없어요. 카드를 보다가 '다시 볼래요'를 누르면 여기에 모여요.",
+    resetMarks: '기록 초기화', resetConfirm: '한 번 더 누르면 외운 기록이 모두 지워져요', resetDone: '외운 기록을 초기화했어요',
+    keysHint: '키보드: ← → 이동 · 스페이스 뒤집기 · 1 다시 볼래요 · 2 외웠어요'
   },
   en: {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
@@ -299,8 +304,13 @@ var T = {
     sugg: ['cilantro', 'ice', 'bill', 'taxi', 'pho'],
 
     bmTitle: 'Bookmarks', bmEmpty: 'No bookmarks yet', bmEmptyDesc: 'Tap the bookmark button on a phrase or dish to collect it here.',
-    deckAll: 'All phrases', deckBm: 'Bookmarks', tapFlip: 'Tap to flip', prev: 'Back', next: 'Next', shuffle: 'Shuffle',
-    deckEmpty: 'No bookmarked phrases yet. Practice with all phrases.', flipCard: 'Flip card'
+    deckAll: 'All phrases', deckAgain: 'Review', deckBm: 'Bookmarks', tapFlip: 'Tap to flip', prev: 'Back', next: 'Next', shuffle: 'Shuffle',
+    deckEmpty: 'No bookmarked phrases yet. Practice with all phrases.', flipCard: 'Flip card',
+    markAgain: 'Review again', markKnown: 'Got it', statKnown: 'Memorized', statAgain: 'To review', hideKnown: 'Hide memorized',
+    allKnown: 'You have memorized every card here!', showKnown: 'Show memorized cards',
+    againEmpty: "No cards to review yet. Tap 'Review again' on a card to collect it here.",
+    resetMarks: 'Reset progress', resetConfirm: 'Tap again to clear all progress', resetDone: 'Progress cleared',
+    keysHint: 'Keys: ← → move · Space flip · 1 review again · 2 got it'
   }
 };
 
@@ -506,7 +516,11 @@ var state = {
   calc: { dir: 'v2k', amount: 150000, manual: Number(store.get('rateManual', 0)) > 0 ? Number(store.get('rateManual', 0)) : null, live: null, status: 'loading' },
   food: { cat: 'all', region: store.get('region', 'north') === 'south' ? 'south' : 'north', sw: store.get('sw', { cilantro: true, ice: false, sugar: false, spicy: false, msg: false, peanut: false }) },
   notes: store.get('notes', { name: '', addr: '', memo: '' }),
-  deck: { idx: 0, flipped: false, source: 'all', order: null }
+  deck: {
+    cur: null, flipped: false, source: 'all', order: null, resetArmed: false,
+    hideKnown: store.get('deckHideKnown', true) !== false,
+    marks: (function () { var m = store.get('deckMarks', {}); return m && typeof m === 'object' && !Array.isArray(m) ? m : {}; })()
+  }
 };
 if (!Array.isArray(state.bookmarks)) state.bookmarks = ['p:nocilantro'];
 
@@ -1063,7 +1077,7 @@ function openModal(type, data) {
   modal = { type: type, data: data || {}, ret: document.activeElement };
   renderModal();
   document.documentElement.style.overflow = 'hidden';
-  setTimeout(function () { var f = $('#modal-root [data-autofocus]'); if (f) f.focus(); }, 40);
+  setTimeout(function () { var f = $('#modal-root [data-autofocus-main]') || $('#modal-root [data-autofocus]'); if (f) f.focus(); }, 40);
 }
 function closeModal() {
   if (!modal) return;
@@ -1096,39 +1110,94 @@ function bmModal() {
   return shell(modalHeader('ri-bookmark-fill', t('bmTitle'), 'm-title', ' <span class="text-xs text-foreground-400 tabular">' + state.bookmarks.length + '</span>') +
     '<div class="overflow-y-auto custom-scrollbar p-4 space-y-2">' + body + '</div>', 'm-title');
 }
+/* phrases in the chosen source (all / to review / bookmarked), before hiding memorized cards */
+function deckRaw() {
+  var src = state.deck.source, marks = state.deck.marks;
+  return PHRASES.filter(function (p) {
+    if (src === 'bm') return isBm('p:' + p.id);
+    if (src === 'again') return marks[p.id] === 'again';
+    return true;
+  });
+}
 function deckItems() {
-  var base = state.deck.source === 'bm' ? PHRASES.filter(function (p) { return isBm('p:' + p.id); }) : PHRASES.slice();
-  if (state.deck.order && state.deck.order.length === base.length) return state.deck.order.map(function (i) { return base[i]; });
-  return base;
+  var d = state.deck, list = deckRaw();
+  if (d.hideKnown && d.source !== 'again') list = list.filter(function (p) { return d.marks[p.id] !== 'known'; });
+  if (d.order) {
+    var pos = {}; d.order.forEach(function (id, i) { pos[id] = i; });
+    list = list.slice().sort(function (a, b) { var x = pos[a.id], y = pos[b.id]; return (x == null ? 1e9 : x) - (y == null ? 1e9 : y); });
+  }
+  return list;
+}
+function deckIndex(items) { for (var i = 0; i < items.length; i++) if (items[i].id === state.deck.cur) return i; return -1; }
+function deckStats() {
+  var k = 0, a = 0, m = state.deck.marks;
+  PHRASES.forEach(function (p) { if (m[p.id] === 'known') k++; else if (m[p.id] === 'again') a++; });
+  return { known: k, again: a, total: PHRASES.length };
+}
+function deckPill(action, value, label, primary) {
+  return '<button type="button" data-action="' + action + '"' + (value ? ' data-value="' + value + '"' : '') + ' class="px-4 py-2 rounded-full text-xs font-bold cursor-pointer transition-colors ' +
+    (primary ? 'bg-accent-500 hover:bg-accent-400 text-background-50' : 'bg-background-50 hover:bg-background-200 border border-background-200 text-foreground-900') + '">' + esc(label) + '</button>';
 }
 function deckModal() {
-  var items = deckItems(), d = state.deck;
-  var src = seg('deck-src', [{ v: 'all', label: t('deckAll') }, { v: 'bm', label: t('deckBm') }], d.source);
+  var d = state.deck, items = deckItems(), st = deckStats();
+  var bmCount = PHRASES.filter(function (p) { return isBm('p:' + p.id); }).length;
+  var src = seg('deck-src', [
+    { v: 'all', label: t('deckAll') },
+    { v: 'again', label: t('deckAgain') + ' ' + st.again },
+    { v: 'bm', label: t('deckBm') + ' ' + bmCount }
+  ], d.source);
+  var pctKnown = Math.round(st.known / st.total * 100);
+  var stats = '<div class="flex flex-wrap items-center gap-x-4 gap-y-3 text-xs">' +
+    '<div class="w-full sm:w-auto sm:flex-1 sm:min-w-[180px]"><div class="flex items-center justify-between gap-3 tabular">' +
+    '<span class="flex items-center gap-1 font-bold text-secondary-400 whitespace-nowrap"><i class="ri-check-line"></i>' + esc(t('statKnown')) + ' ' + st.known + ' / ' + st.total + '</span>' +
+    '<span class="flex items-center gap-1 font-semibold text-accent-400 whitespace-nowrap"><i class="ri-loop-left-line"></i>' + esc(t('statAgain')) + ' ' + st.again + '</span></div>' +
+    '<div class="h-1.5 mt-1.5 rounded-full bg-background-200 overflow-hidden"><div class="h-full bg-secondary-500 rounded-full transition-all" style="width:' + pctKnown + '%"></div></div></div>' +
+    (d.source !== 'again' ? '<button type="button" data-action="deck-hide" role="switch" aria-checked="' + d.hideKnown + '" class="flex items-center gap-2 font-semibold text-foreground-500 hover:text-foreground-900 cursor-pointer whitespace-nowrap"><span class="switch' + (d.hideKnown ? ' on' : '') + '"></span>' + esc(t('hideKnown')) + '</button>' : '') +
+    '</div>';
+  var resetBtn = '<button type="button" data-action="deck-reset" class="text-[11px] font-semibold cursor-pointer underline-offset-2 hover:underline ' +
+    (d.resetArmed ? 'text-primary-300' : 'text-foreground-400 hover:text-foreground-900') + '">' + esc(t(d.resetArmed ? 'resetConfirm' : 'resetMarks')) + '</button>';
   var body;
   if (!items.length) {
-    body = '<div class="text-center py-10 space-y-3"><p class="text-3xl" aria-hidden="true">🗂️</p><p class="text-sm text-foreground-500">' + esc(t('deckEmpty')) + '</p><button type="button" data-action="deck-src" data-value="all" class="px-4 py-2 rounded-full bg-accent-500 text-background-50 text-xs font-bold cursor-pointer">' + esc(t('deckAll')) + '</button></div>';
+    var msg, btns = '';
+    if (deckRaw().length) {
+      msg = '🎉 ' + t('allKnown');
+      btns = (st.again ? deckPill('deck-src', 'again', t('deckAgain') + ' ' + st.again, true) : '') + deckPill('deck-hide', '', t('showKnown'), !st.again);
+    } else if (d.source === 'again') { msg = t('againEmpty'); btns = deckPill('deck-src', 'all', t('deckAll'), true); }
+    else { msg = t('deckEmpty'); btns = deckPill('deck-src', 'all', t('deckAll'), true); }
+    body = '<div class="text-center py-10 space-y-4"><p class="text-sm text-foreground-500 leading-relaxed">' + esc(msg) + '</p>' +
+      '<div class="flex flex-wrap justify-center gap-2">' + btns + '</div>' + (st.known || st.again ? '<div>' + resetBtn + '</div>' : '') + '</div>';
   } else {
-    if (d.idx >= items.length) d.idx = 0;
-    var p = items[d.idx], i = ti(), cat = null;
+    var idx = deckIndex(items); if (idx < 0) { idx = 0; d.cur = items[0].id; }
+    var p = items[idx], i = ti(), cat = null, mark = d.marks[p.id];
     for (var c = 0; c < CATS.length; c++) if (CATS[c].id === p.cat) cat = CATS[c];
-    var pct = Math.round((d.idx + 1) / items.length * 100);
-    body = '<div class="flex items-center justify-between text-xs text-foreground-400 tabular"><span>' + (d.idx + 1) + ' / ' + items.length + '</span><span>' + cat.emoji + ' ' + esc(t('cat_' + p.cat)) + '</span></div>' +
-      '<div class="h-1 rounded-full bg-background-200 overflow-hidden"><div class="h-full bg-accent-500 rounded-full" style="width:' + pct + '%"></div></div>' +
-      '<div id="deck-flip" data-action="card-flip" role="button" tabindex="0" aria-label="' + esc(t('flipCard')) + '" class="flip h-64 sm:h-72 cursor-pointer select-none' + (d.flipped ? ' is-flipped' : '') + '"><div class="flip-inner">' +
-      '<div class="flip-face rounded-2xl bg-gradient-to-br from-primary-500/20 via-background-50 to-background-50 border border-primary-500/30 flex flex-col items-center justify-center p-6 text-center">' +
+    var badge = mark === 'known'
+      ? '<span class="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-secondary-500/15 text-secondary-300 border border-secondary-500/30"><i class="ri-check-line"></i>' + esc(t('statKnown')) + '</span>'
+      : mark === 'again'
+        ? '<span class="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-accent-500/15 text-accent-300 border border-accent-500/30"><i class="ri-loop-left-line"></i>' + esc(t('statAgain')) + '</span>'
+        : '';
+    var navBtn = 'p-1 rounded-md hover:bg-background-200 hover:text-foreground-950 cursor-pointer transition-colors';
+    body = '<div class="flex items-center justify-between gap-2 text-xs text-foreground-400 tabular">' +
+      '<div class="flex items-center gap-1">' +
+      '<button type="button" data-action="card-prev" aria-label="' + esc(t('prev')) + '" class="' + navBtn + '"><i class="ri-arrow-left-s-line text-lg"></i></button>' +
+      '<span class="min-w-[3.5rem] text-center">' + (idx + 1) + ' / ' + items.length + '</span>' +
+      '<button type="button" data-action="card-next" aria-label="' + esc(t('next')) + '" class="' + navBtn + '"><i class="ri-arrow-right-s-line text-lg"></i></button></div>' +
+      '<div class="flex items-center gap-2 min-w-0"><span class="truncate">' + cat.emoji + ' ' + esc(t('cat_' + p.cat)) + '</span>' +
+      '<button type="button" data-action="card-shuffle" class="flex items-center gap-1 px-2 py-1 rounded-md hover:bg-background-200 hover:text-foreground-950 cursor-pointer transition-colors whitespace-nowrap"><i class="ri-shuffle-line"></i>' + esc(t('shuffle')) + '</button></div></div>' +
+      '<div id="deck-flip" data-action="card-flip" data-autofocus-main role="button" tabindex="0" aria-label="' + esc(t('flipCard')) + '" class="flip h-64 sm:h-72 cursor-pointer select-none' + (d.flipped ? ' is-flipped' : '') + '"><div class="flip-inner">' +
+      '<div class="flip-face rounded-2xl bg-gradient-to-br from-primary-500/20 via-background-50 to-background-50 border border-primary-500/30 flex flex-col items-center justify-center p-6 text-center">' + badge +
       '<p class="text-2xl sm:text-3xl font-extrabold text-foreground-950 break-words">' + esc(pMeaning(p)) + '</p>' +
       '<p class="text-xs text-foreground-400 mt-6 flex items-center gap-1"><i class="ri-loop-left-line"></i>' + esc(t('tapFlip')) + '</p></div>' +
-      '<div class="flip-face flip-back rounded-2xl bg-gradient-to-br from-accent-500/20 via-background-50 to-background-50 border border-accent-500/30 flex flex-col items-center justify-center p-6 text-center">' +
+      '<div class="flip-face flip-back rounded-2xl bg-gradient-to-br from-accent-500/20 via-background-50 to-background-50 border border-accent-500/30 flex flex-col items-center justify-center p-6 text-center">' + badge +
       '<p class="vi text-2xl sm:text-3xl font-bold text-accent-400 break-words">' + esc(p.vi[i]) + '</p>' +
       (state.lang === 'ko' ? '<p class="text-sm text-foreground-500 mt-2">[' + esc(p.pr[i]) + ']</p>' : '') +
       '<div class="mt-5">' + speakBtn(p.vi[i]) + '</div></div>' +
       '</div></div>' +
-      '<div class="grid grid-cols-3 gap-2">' +
-      '<button type="button" data-action="card-prev" class="flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl bg-background-50 hover:bg-background-200 border border-background-200 text-sm font-semibold text-foreground-900 cursor-pointer transition-colors"><i class="ri-arrow-left-s-line text-lg"></i>' + esc(t('prev')) + '</button>' +
-      '<button type="button" data-action="card-shuffle" class="flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl bg-background-50 hover:bg-background-200 border border-background-200 text-sm font-semibold text-foreground-900 cursor-pointer transition-colors"><i class="ri-shuffle-line text-base"></i>' + esc(t('shuffle')) + '</button>' +
-      '<button type="button" data-action="card-next" class="flex items-center justify-center gap-1 px-3 py-2.5 rounded-xl bg-accent-500 hover:bg-accent-400 text-sm font-bold text-background-50 cursor-pointer transition-colors">' + esc(t('next')) + '<i class="ri-arrow-right-s-line text-lg"></i></button></div>';
+      '<div class="grid grid-cols-2 gap-2">' +
+      '<button type="button" data-action="card-mark" data-value="again" class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-sm font-bold text-accent-400 cursor-pointer transition-colors"><i class="ri-loop-left-line text-base"></i>' + esc(t('markAgain')) + '</button>' +
+      '<button type="button" data-action="card-mark" data-value="known" class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-secondary-500 hover:bg-secondary-400 text-sm font-bold text-background-50 cursor-pointer transition-colors"><i class="ri-check-line text-base"></i>' + esc(t('markKnown')) + '</button></div>' +
+      '<div class="flex items-center justify-between gap-3"><p class="hidden sm:block text-[11px] text-foreground-400">' + esc(t('keysHint')) + '</p><div class="ml-auto">' + resetBtn + '</div></div>';
   }
-  return shell(modalHeader('ri-stack-line', t('deck'), 'm-title') + '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + src + body + '</div>', 'm-title');
+  return shell(modalHeader('ri-stack-line', t('deck'), 'm-title') + '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + src + stats + body + '</div>', 'm-title');
 }
 function bigModal() {
   var b = modal.data;
@@ -1146,12 +1215,32 @@ function bigModal() {
 function renderModal() {
   var root = $('#modal-root');
   if (!modal) { root.innerHTML = ''; return; }
+  var hadFocus = root.contains(document.activeElement);
   root.innerHTML = modal.type === 'bm' ? bmModal() : modal.type === 'deck' ? deckModal() : bigModal();
   hydrate(root);
+  if (hadFocus) { var f = root.querySelector('[data-autofocus-main]') || root.querySelector('[data-autofocus]'); if (f) f.focus({ preventScroll: true }); }
 }
 function deckMove(step) {
-  var n = deckItems().length; if (!n) return;
-  state.deck.idx = (state.deck.idx + step + n) % n; state.deck.flipped = false; renderModal();
+  var items = deckItems(), n = items.length; if (!n) return;
+  var i = deckIndex(items); if (i < 0) i = 0;
+  state.deck.cur = items[(i + step + n) % n].id; state.deck.flipped = false; state.deck.resetArmed = false; renderModal();
+}
+function deckMark(kind) {
+  var d = state.deck, items = deckItems(), n = items.length; if (!n) return;
+  var i = deckIndex(items); if (i < 0) i = 0;
+  var p = items[i], next = n > 1 ? items[(i + 1) % n] : null;
+  d.marks[p.id] = kind; store.set('deckMarks', d.marks);
+  var after = deckItems();
+  var stays = next && after.some(function (x) { return x.id === next.id; });
+  d.cur = stays ? next.id : (after.length ? after[Math.min(i, after.length - 1)].id : null);
+  d.flipped = false; d.resetArmed = false; renderModal();
+}
+function deckReset() {
+  var d = state.deck;
+  if (!d.resetArmed) { d.resetArmed = true; renderModal(); return; }
+  d.marks = {}; store.set('deckMarks', d.marks);
+  d.resetArmed = false; d.cur = null; d.order = null; d.flipped = false;
+  renderModal(); toast(t('resetDone'), 'ri-refresh-line');
 }
 function deckFlip() {
   var f = $('#deck-flip'); if (!f) return;
@@ -1170,7 +1259,7 @@ document.addEventListener('click', function (e) {
     case 'lang': state.lang = v; store.set('lang', v); applyStatic(); renderMain(); if (modal) renderModal(); drawHeroSoon(); break;
     case 'tab': setTab(v); break;
     case 'goto-tab': setTab(v); break;
-    case 'deck': state.deck.idx = 0; state.deck.flipped = false; openModal('deck'); break;
+    case 'deck': state.deck.cur = null; state.deck.flipped = false; state.deck.resetArmed = false; openModal('deck'); break;
     case 'bookmarks': openModal('bm'); break;
     case 'close-modal': closeModal(); break;
     case 'speak': e.stopPropagation(); speak(el.getAttribute('data-text'), el); break;
@@ -1196,11 +1285,14 @@ document.addEventListener('click', function (e) {
     case 'card-flip': deckFlip(); break;
     case 'card-prev': deckMove(-1); break;
     case 'card-next': deckMove(1); break;
+    case 'card-mark': deckMark(v); break;
     case 'card-shuffle':
-      var n = deckItems().length, order = []; for (var i = 0; i < n; i++) order.push(i);
-      for (var j = n - 1; j > 0; j--) { var k = Math.floor(Math.random() * (j + 1)); var tmp = order[j]; order[j] = order[k]; order[k] = tmp; }
-      state.deck.order = null; var base = deckItems(); state.deck.order = base.length === n ? order : null; state.deck.idx = 0; state.deck.flipped = false; renderModal(); break;
-    case 'deck-src': state.deck.source = v; state.deck.order = null; state.deck.idx = 0; state.deck.flipped = false; renderModal(); break;
+      var ids = deckItems().map(function (x) { return x.id; });
+      for (var j = ids.length - 1; j > 0; j--) { var k = Math.floor(Math.random() * (j + 1)); var tmp = ids[j]; ids[j] = ids[k]; ids[k] = tmp; }
+      state.deck.order = ids; state.deck.cur = ids[0] || null; state.deck.flipped = false; renderModal(); break;
+    case 'deck-src': state.deck.source = v; state.deck.order = null; state.deck.cur = null; state.deck.flipped = false; state.deck.resetArmed = false; renderModal(); break;
+    case 'deck-hide': state.deck.hideKnown = !state.deck.hideKnown; store.set('deckHideKnown', state.deck.hideKnown); state.deck.resetArmed = false; renderModal(); break;
+    case 'deck-reset': deckReset(); break;
   }
 });
 
@@ -1228,7 +1320,9 @@ document.addEventListener('keydown', function (e) {
   if (modal.type === 'deck') {
     if (e.key === 'ArrowRight') { e.preventDefault(); deckMove(1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); deckMove(-1); }
-    else if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.id === 'deck-flip') { e.preventDefault(); deckFlip(); }
+    else if (e.key === '1') { e.preventDefault(); deckMark('again'); }
+    else if (e.key === '2') { e.preventDefault(); deckMark('known'); }
+    else if ((e.key === ' ' || e.key === 'Enter') && !(e.target && e.target.closest && e.target.closest('button, a, input, textarea'))) { e.preventDefault(); deckFlip(); }
   }
 });
 
