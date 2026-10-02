@@ -1,0 +1,97 @@
+/* Layout: sticky glass header + tab nav, lantern-night hero, single max-w-5xl content column, maroon footer, phone tab bar.
+   Palette: lacquer black ground (bg), warm ivory text (fg), flag red (pr), star gold (ac), jade (se). */
+:root {
+  color-scheme: dark;
+  /* background — lacquer black, 50 is the page; 950 is the deepest shade used for image veils */
+  --bg-50: 16 13 12;   --bg-100: 26 21 19;  --bg-200: 42 34 31;  --bg-300: 59 49 44;
+  --bg-400: 87 74 67;  --bg-500: 116 101 92; --bg-600: 148 133 121; --bg-700: 179 165 152;
+  --bg-800: 210 198 186; --bg-900: 235 227 218; --bg-950: 5 4 3;
+  /* foreground — warm ivory; higher = brighter */
+  --fg-50: 31 27 24;   --fg-100: 51 45 41;  --fg-200: 79 70 64;  --fg-300: 110 99 91;
+  --fg-400: 142 130 120; --fg-500: 160 147 138; --fg-600: 180 167 154; --fg-700: 199 187 174;
+  --fg-800: 220 209 197; --fg-900: 238 230 220; --fg-950: 251 247 241;
+  /* primary — Vietnamese flag red */
+  --pr-50: 255 241 240; --pr-100: 255 224 221; --pr-200: 255 194 188; --pr-300: 255 150 140;
+  --pr-400: 248 100 90; --pr-500: 232 50 42;  --pr-600: 200 35 28;  --pr-700: 162 27 22;
+  --pr-800: 126 23 19; --pr-900: 86 18 16;   --pr-950: 43 10 8;
+  /* secondary — jade */
+  --se-50: 236 253 246; --se-100: 210 249 233; --se-200: 167 240 213; --se-300: 110 224 187;
+  --se-400: 56 201 157; --se-500: 23 171 130; --se-600: 13 138 106; --se-700: 14 110 87;
+  --se-800: 16 88 71;  --se-900: 16 72 59;  --se-950: 5 41 33;
+  /* accent — star gold */
+  --ac-50: 255 251 235; --ac-100: 255 243 198; --ac-200: 255 229 138; --ac-300: 252 210 90;
+  --ac-400: 244 190 62; --ac-500: 226 165 33; --ac-600: 188 131 20; --ac-700: 148 99 19;
+  --ac-800: 119 79 21; --ac-900: 95 63 20;  --ac-950: 53 33 7;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- plain CSS below is never purged ---- */
+html { font-size: 16px; }
+body {
+  background: rgb(var(--bg-50));
+  color: rgb(var(--fg-900));
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3 { text-wrap: balance; }
+button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid rgb(var(--ac-400)); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible { outline: none; }
+::selection { background: rgb(var(--ac-500) / .35); color: rgb(var(--fg-950)); }
+
+.glass-effect {
+  background-color: rgb(var(--bg-50) / .78);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  backdrop-filter: blur(14px) saturate(150%);
+}
+.custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgb(var(--bg-300)) transparent; }
+.custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgb(var(--bg-300)); border-radius: 999px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* icon fonts are replaced by inline SVG; the <i> box keeps behaving like a glyph */
+i[class^="ri-"], i[class*=" ri-"], i[class^="fa-"], i[class*=" fa-"] {
+  font-style: normal; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
+}
+i > svg.ico { display: block; width: 1em; height: 1em; fill: currentColor; flex-shrink: 0; overflow: visible; }
+i > svg.ico.fa { width: auto; }
+
+.safe-top { top: env(safe-area-inset-top, 0px); }
+.safe-bottom-pad { padding-bottom: calc(.5rem + env(safe-area-inset-bottom, 0px)); }
+.toast-stack { top: calc(1.25rem + env(safe-area-inset-top, 0px)); }
+
+.vi { font-family: "Be Vietnam Pro", system-ui, sans-serif; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* flashcard flip */
+.flip { perspective: 1200px; }
+.flip-inner { position: relative; height: 100%; transition: transform .5s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
+.flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { position: absolute; inset: 0; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+
+/* toggle switch */
+.switch { position: relative; display: inline-block; width: 2.75rem; height: 1.5rem; border-radius: 999px; background: rgb(var(--bg-300)); transition: background .2s; flex-shrink: 0; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 1.125rem; height: 1.125rem; border-radius: 999px; background: rgb(var(--fg-600)); transition: transform .2s, background .2s; }
+.switch.on { background: rgb(var(--se-500)); }
+.switch.on::after { transform: translateX(1.25rem); background: rgb(var(--fg-950)); }
+
+.speaking { animation: pulse-ring 1s ease-out infinite; }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgb(var(--ac-400) / .45); } 100% { box-shadow: 0 0 0 10px rgb(var(--ac-400) / 0); } }
+
+.bill { position: relative; overflow: hidden; }
+.bill::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgb(255 255 255 / .06) 0 2px, transparent 2px 7px); pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow, .animate-float, .animate-pulse, .speaking { animation: none !important; }
+  .flip-inner { transition: none; }
+}

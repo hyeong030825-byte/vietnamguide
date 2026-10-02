@@ -1,0 +1,9 @@
+# Netlify 설정: 빌드 없이 site 폴더를 그대로 공개합니다.
+[build]
+  publish = "site"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
