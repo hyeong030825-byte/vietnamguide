@@ -1,9 +1,4 @@
-# Netlify 설정: 빌드 없이 site 폴더를 그대로 공개합니다.
+# Netlify 설정 (예전 호스팅): 빌드 없이 site 폴더를 그대로 공개합니다.
+# 보안 헤더는 site/_headers 에 있습니다 (Cloudflare Pages와 Netlify 모두 읽어요).
 [build]
   publish = "site"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"

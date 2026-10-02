@@ -6,20 +6,25 @@
 
 | 경로 | 내용 |
 | --- | --- |
-| `site/index.html` | 실제로 공개되는 파일. Netlify가 이 폴더를 그대로 올립니다. |
+| `site/index.html` | 실제로 공개되는 파일. Cloudflare Pages가 `site` 폴더를 그대로 올립니다. |
 | `site/favicon.*`, `site/*.png` | 사이트 아이콘(브라우저 탭·홈 화면). `tools/make_icons.py`로 다시 만들 수 있어요. |
 | `src/page.html` | 화면 구조, 문구, 회화·메뉴 데이터, 동작 스크립트 (수정은 주로 여기서) |
 | `src/input.css` | 색상과 공통 스타일 |
 | `src/icons.json` | 페이지에 쓰인 아이콘 모음 (빌드할 때 자동 갱신) |
 | `build.py` | `src`를 합쳐 `site/index.html`을 만드는 스크립트 |
-| `netlify.toml` | Netlify 설정 (site 폴더를 공개) |
+| `site/_headers` | 보안 헤더 설정 (Cloudflare Pages·Netlify 공통) |
+| `netlify.toml` | 예전 호스팅(Netlify) 설정 |
 | `site/google*.html` | 구글 서치 콘솔 소유 확인 파일. 지우면 소유 확인이 풀려요. |
 | `site/sitemap.xml`, `site/robots.txt` | 검색엔진용 파일 (빌드할 때 자동 생성). 도메인을 바꾸면 `build.py`의 `SITE_URL`을 고치세요. |
+
+## 호스팅
+
+Cloudflare Pages가 이 저장소의 `main` 브랜치를 자동으로 배포합니다. 설정: 빌드 명령 없음, 출력 폴더 `site`.
 
 ## 수정하는 방법
 
 **Claude에게 요청하기 (권장)**
-Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용을 말하면, Claude가 고친 뒤 저장소에 올리고 Netlify가 1~2분 안에 사이트를 자동으로 업데이트합니다.
+Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용을 말하면, Claude가 고친 뒤 저장소에 올리고 Cloudflare Pages가 1~2분 안에 사이트를 자동으로 업데이트합니다.
 
 **GitHub에서 직접 고치기**
 `site/index.html`을 GitHub 웹 편집기로 열어 글자를 바꾸고 커밋해도 바로 반영됩니다. 다만 다음에 Claude가 빌드할 때 덮어쓰지 않도록, 직접 고친 내용이 있다면 요청할 때 함께 알려 주세요.
