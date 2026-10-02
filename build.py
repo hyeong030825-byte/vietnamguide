@@ -10,12 +10,15 @@ src/page.html   화면 구조·문구·데이터·스크립트. 수정은 대부
 src/input.css   색상 토큰과 공통 스타일
 src/icons.json  페이지에 쓰인 아이콘 SVG 캐시 (빌드할 때 자동 갱신)
 """
+import datetime
 import json
 import pathlib
 import re
 import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent
+# 공개 주소. 도메인을 사서 연결하면 여기만 바꾸고 다시 빌드하세요.
+SITE_URL = "https://vietnamguides.netlify.app"
 SRC = ROOT / "src" / "page.html"
 CSS_IN = ROOT / "src" / "input.css"
 ICON_CACHE = ROOT / "src" / "icons.json"
@@ -27,6 +30,8 @@ SITE = ROOT / "site"
 BUILD = ROOT / "build"
 
 HEAD_META = """<meta charset="UTF-8">
+<link rel="canonical" href="__SITE_URL__/">
+<meta property="og:url" content="__SITE_URL__/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -140,9 +145,18 @@ def main():
     cut = page.index('<div id="root">')
     head_part = page[:cut].replace("<title>베트남 여행 스마트 가이드</title>",
                                    "<title>베트남 여행 스마트 가이드 | 회화·환율·메뉴판·에티켓</title>")
-    site = ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n" + HEAD_META + head_part +
+    site = ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n" + HEAD_META.replace("__SITE_URL__", SITE_URL) + head_part +
             "</head>\n<body>\n" + page[cut:] + "\n</body>\n</html>\n")
     (SITE / "index.html").write_text(site, encoding="utf-8")
+
+    # Search engines: sitemap + robots
+    today = datetime.date.today().isoformat()
+    (SITE / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f'  <url>\n    <loc>{SITE_URL}/</loc>\n    <lastmod>{today}</lastmod>\n  </url>\n'
+        '</urlset>\n', encoding="utf-8")
+    (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
 
     print(f"site/index.html {len(site.encode()) / 1024:.1f} KB · icons {len(icons)}" +
           (f" · MISSING ICONS: {missing}" if missing else ""))

@@ -13,6 +13,7 @@
 | `src/icons.json` | 페이지에 쓰인 아이콘 모음 (빌드할 때 자동 갱신) |
 | `build.py` | `src`를 합쳐 `site/index.html`을 만드는 스크립트 |
 | `netlify.toml` | Netlify 설정 (site 폴더를 공개) |
+| `site/sitemap.xml`, `site/robots.txt` | 검색엔진용 파일 (빌드할 때 자동 생성). 도메인을 바꾸면 `build.py`의 `SITE_URL`을 고치세요. |
 
 ## 수정하는 방법
 
