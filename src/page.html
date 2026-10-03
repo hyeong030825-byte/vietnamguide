@@ -455,7 +455,7 @@ var DISHES = [
   { id: 'banhxeo', cat: 'rice', vi: 'Bánh xèo', ko: '반쎄오 (베트남식 부침개)', en: 'Sizzling crêpe', pr: '반 쎄오', herb: 1, k: '부침개 전 pancake crepe',
     d: { ko: '쌀가루 반죽에 새우·돼지고기·숙주를 넣어 바삭하게 부친 뒤 채소와 라이스페이퍼에 싸 먹어요.', en: 'Crispy rice-flour crêpe with shrimp, pork and bean sprouts, wrapped in greens and rice paper.' }, tag: { ko: '쌈 싸 먹기', en: 'Wrap & dip' } },
   { id: 'comga', cat: 'rice', vi: 'Cơm gà', ko: '껌가 (닭고기 덮밥)', en: 'Chicken rice', pr: '껌 가', herb: 1, k: '닭 밥 덮밥 chicken rice',
-    d: { ko: '닭 육수로 지은 노란 밥에 찢은 닭고기와 허브를 올려요. 호이안식이 특히 유명해요.', en: 'Golden rice cooked in chicken stock, topped with shredded chicken and herbs. The Hội An version is famous.' }, tag: { ko: '호이안', en: 'Hội An' } },
+    d: { ko: '닭고기를 올린 덮밥이에요. 호이안식은 닭 육수로 지은 노란 밥에 찢은 닭고기를, 남부에서는 바삭한 닭다리(cơm gà xối mỡ)를 올려 먹어요.', en: 'Chicken over rice. Hội An style uses golden rice cooked in chicken stock with shredded chicken; in the south it comes with a crispy chicken leg (cơm gà xối mỡ).' }, tag: { ko: '지역마다 달라요', en: 'Varies by region' } },
   { id: 'goicuon', cat: 'snack', vi: 'Gỏi cuốn', ko: '고이꾸온 (월남쌈)', en: 'Fresh spring rolls', pr: '고이 꾸온', herb: 1, k: '월남쌈 스프링롤 spring roll fresh',
     d: { ko: '새우, 돼지고기, 쌀국수, 채소를 라이스페이퍼로 말아 땅콩 소스에 찍어 먹어요.', en: 'Shrimp, pork, noodles and herbs rolled in rice paper, with peanut dipping sauce.' }, tag: { ko: '땅콩 소스', en: 'Peanut sauce' } },
   { id: 'chagio', cat: 'snack', vi: 'Chả giò · Nem rán', ko: '짜조 · 냄잔 (튀긴 스프링롤)', en: 'Fried spring rolls', pr: '짜 조 · 냄 잔', k: '스프링롤 튀김 spring roll fried',
@@ -475,6 +475,10 @@ var DISHES = [
   { id: 'bia', cat: 'drink', vi: 'Bia', ko: '맥주', en: 'Beer', pr: '비어', k: '맥주 건배 beer cheers',
     d: { ko: "얼음을 넣어 마시는 게 보통이에요. 건배는 'Một, hai, ba, dô!'(못, 하이, 바, 요!)", en: "Usually served over ice. Toast with 'Một, hai, ba, dô!' (one, two, three, cheers!)" }, tag: { ko: '건배', en: 'Cheers' } }
 ];
+
+/* dishes with a photo in img/food/<id>.webp (made by tools/make_food_photos.py) */
+var DISH_PHOTOS = { phobo: 1, phoga: 1, buncha: 1, bunbohue: 1, miquang: 1, caolau: 1, comtam: 1, banhxeo: 1, comga: 1,
+  goicuon: 1, chagio: 1, banhmi: 1, caphesuada: 1, caphetrung: 1, caphemuoi: 1, sinhtobo: 1, nuocmia: 1, bia: 1 };
 
 var WORDS = [
   { g: 'meat', items: [
@@ -607,7 +611,12 @@ function phraseCard(p) {
 }
 
 function dishCard(d) {
-  return '<article class="p-4 bg-background-50 rounded-xl border border-background-200 flex flex-col gap-2">' +
+  var name = state.lang === 'en' ? d.en : d.ko;
+  var photo = DISH_PHOTOS[d.id]
+    ? '<div class="aspect-[4/3] bg-background-200 overflow-hidden"><img src="img/food/' + d.id + '.webp" alt="' + esc(d.vi + ' (' + name + ')') + '" width="640" height="480" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>'
+    : '';
+  return '<article class="bg-background-50 rounded-xl border border-background-200 overflow-hidden flex flex-col">' + photo +
+    '<div class="p-4 flex flex-col gap-2 flex-1">' +
     '<div class="flex items-start justify-between gap-2"><div class="min-w-0">' +
     '<p class="vi text-lg font-bold text-accent-400 leading-tight">' + esc(d.vi) + '</p>' +
     '<p class="text-xs text-foreground-500 mt-0.5">' + esc(state.lang === 'en' ? d.en : d.ko) + (state.lang === 'ko' ? ' · [' + esc(d.pr) + ']' : '') + '</p>' +
@@ -617,7 +626,7 @@ function dishCard(d) {
     '<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-background-200/70 text-foreground-600 border border-background-300">' + esc(L(d.tag)) + '</span>' +
     (d.herb ? '<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-secondary-500/10 text-secondary-400 border border-secondary-500/30">🌿 ' + esc(t('herb')) + '</span>' : '') +
     '<button type="button" data-action="speak" data-text="' + esc(d.vi.split(' · ')[0]) + '" aria-label="' + esc(t('listen') + ' ' + d.vi) + '" class="ml-auto p-1.5 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors"><i class="ri-volume-up-line text-sm"></i></button>' +
-    '</div></article>';
+    '</div></div></article>';
 }
 
 function wordChip(w) {

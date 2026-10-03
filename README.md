@@ -8,6 +8,7 @@
 | --- | --- |
 | `site/index.html` | 실제로 공개되는 파일. Cloudflare Pages가 `site` 폴더를 그대로 올립니다. |
 | `site/favicon.*`, `site/*.png` | 사이트 아이콘(브라우저 탭·홈 화면). `tools/make_icons.py`로 다시 만들 수 있어요. |
+| `site/img/food/*.webp` | 메뉴판 사진 (640×480). 원본에서 `tools/make_food_photos.py`로 만들어요. 메뉴 id와 파일 이름이 같아야 해요. |
 | `src/page.html` | 화면 구조, 문구, 회화·메뉴 데이터, 동작 스크립트 (수정은 주로 여기서) |
 | `src/input.css` | 색상과 공통 스타일 |
 | `src/icons.json` | 페이지에 쓰인 아이콘 모음 (빌드할 때 자동 갱신) |
