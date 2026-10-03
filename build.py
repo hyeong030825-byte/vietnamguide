@@ -18,7 +18,7 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent
 # 공개 주소. 도메인을 사서 연결하면 여기만 바꾸고 다시 빌드하세요.
-SITE_URL = "https://vietnamguides.netlify.app"
+SITE_URL = "https://vietnamguide.pages.dev"
 SRC = ROOT / "src" / "page.html"
 CSS_IN = ROOT / "src" / "input.css"
 ICON_CACHE = ROOT / "src" / "icons.json"

@@ -2,3 +2,10 @@
 # 보안 헤더는 site/_headers 에 있습니다 (Cloudflare Pages와 Netlify 모두 읽어요).
 [build]
   publish = "site"
+
+# 사이트를 Cloudflare Pages로 옮겼습니다. 옛 Netlify 주소로 들어오면 새 주소로 보냅니다.
+[[redirects]]
+  from = "/*"
+  to = "https://vietnamguide.pages.dev/:splat"
+  status = 301
+  force = true

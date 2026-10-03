@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vietnamguides.netlify.app/sitemap.xml
+Sitemap: https://vietnamguide.pages.dev/sitemap.xml

@@ -19,7 +19,10 @@
 
 ## 호스팅
 
-Cloudflare Pages가 이 저장소의 `main` 브랜치를 자동으로 배포합니다. 설정: 빌드 명령 없음, 출력 폴더 `site`.
+공개 주소: https://vietnamguide.pages.dev
+
+Cloudflare Pages(프로젝트 이름 `vietnamguide`)가 이 저장소의 `main` 브랜치를 자동으로 배포합니다. 설정: 빌드 명령 없음, 출력 폴더 `site`.
+예전 주소 https://vietnamguides.netlify.app 은 `netlify.toml`의 설정으로 새 주소로 넘어갑니다 (Netlify가 다시 배포될 때 적용).
 
 ## 수정하는 방법
 
@@ -48,5 +51,7 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - Source of truth is `src/page.html` + `src/input.css`. Run `python3 build.py` after every change, then commit both `src/` and `site/index.html`.
 - Before building, check whether `site/index.html` was edited by hand on GitHub (compare it with a fresh build of the current `src`); port any manual edits into `src/page.html` first so they are not overwritten.
 - Tailwind v3.4.17 standalone CLI is downloaded to `bin/` on first build (git-ignored). Icons come from react-icons (Remix) / Font Awesome Free when available, else from `src/icons.json`; a new icon name that is in neither source is reported as MISSING.
+- Hosting: Cloudflare Pages project `vietnamguide` (https://vietnamguide.pages.dev), output dir `site`, no build command. Netlify (vietnamguides.netlify.app) is retired; its netlify.toml only 301-redirects to the new URL. Netlify free credits ran out in Oct 2026, so avoid relying on it.
+- Google Search Console / Naver: use the HTML meta-tag method (put tags in `HEAD_META` in build.py). Cloudflare Pages 308-redirects `/x.html` to `/x`, so file-based verification can fail.
 - The Claude page version is written to `build/claude-page.html` (git-ignored). Claude page: https://claude.ai/artifact/CTnwBVkGrjGXhuVpcU2zB3 — publish it with the Artifact tool; it reads the live rate from its db doc `rates/krw_vnd`, refreshed by the scheduled task "베트남 가이드 환율 갱신".
 - Original culture & etiquette copy comes from the owner's earlier Readdy site; keep its Korean text unchanged unless asked.
