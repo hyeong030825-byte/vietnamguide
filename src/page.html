@@ -1,5 +1,5 @@
 <title>베트남 여행 스마트 가이드</title>
-<meta name="description" content="베트남 여행 필수 회화, 동 환율 계산기, 음식 메뉴판 해독, 팁·사원 예절, 대사관 긴급 연락처까지 한 번에. 현지에서 바로 쓰는 실전 가이드.">
+<meta name="description" content="베트남 여행 필수 회화, 동 환율 계산기, 음식 메뉴판 해독, 팁·사원 예절, 입국 규정과 준비물 체크리스트, 대사관 긴급 연락처까지 한 번에. 현지에서 바로 쓰는 실전 가이드.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
@@ -39,6 +39,7 @@
       <button type="button" data-action="tab" data-value="food" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-restaurant-2-line text-base"></i><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
       <button type="button" data-action="tab" data-value="culture" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-ancient-gate-line text-base"></i><span data-i18n="tab_culture">문화 &amp; 에티켓</span></button>
       <button type="button" data-action="tab" data-value="emergency" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-shield-star-line text-base"></i><span data-i18n="tab_emergency">긴급 &amp; 노트</span></button>
+      <button type="button" data-action="tab" data-value="prep" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-suitcase-line text-base"></i><span data-i18n="tab_prep">여행 준비</span></button>
     </div>
   </nav>
 </div>
@@ -84,6 +85,7 @@
   <button type="button" data-action="tab" data-value="food" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-restaurant-2-line text-lg"></i><span data-i18n="mtab_food">음식</span></button>
   <button type="button" data-action="tab" data-value="culture" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-ancient-gate-line text-lg"></i><span data-i18n="mtab_culture">문화</span></button>
   <button type="button" data-action="tab" data-value="emergency" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-shield-star-line text-lg"></i><span data-i18n="mtab_emergency">긴급</span></button>
+  <button type="button" data-action="tab" data-value="prep" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-suitcase-line text-lg"></i><span data-i18n="mtab_prep">준비</span></button>
 </nav>
 
 </div>
@@ -137,8 +139,20 @@ var T = {
     brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
     siteLang: '사이트 언어', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
-    tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트',
-    mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급',
+    tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트', tab_prep: '여행 준비',
+    mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급', mtab_prep: '준비',
+    prep_entryTitle: '출국 전 꼭 확인할 입국 규정', prep_entryDesc: '공항에서 막히지 않으려면 이것부터 확인하세요.',
+    prep_source: '출처: 외교부 해외안전여행, 베트남 대사관·중앙은행 안내 등 (2026년 10월 확인). 규정은 바뀔 수 있으니 출발 전에 한 번 더 확인하세요.',
+    prep_banTitle: '가져가면 안 되는 것 & 면세 한도', prep_banDesc: '모르고 가져갔다가 벌금을 내는 경우가 많아요.',
+    prep_fine: '개인이 사용하다 걸리면 벌금 300만~500만 동(약 {a}~{b})이에요.',
+    prep_lifeTitle: '현지 생활 기본 정보', prep_lifeDesc: '도착하자마자 필요한 것들이에요.', prep_open: '탭 열기',
+    prep_weatherTitle: '지역별 날씨 & 옷차림', prep_weatherDesc: '베트남은 남북으로 길어서 지역마다 날씨가 달라요.',
+    prep_weatherNote: '날씨는 해마다 조금씩 달라요. 출발 전에 일기예보를 꼭 확인하세요.', region_central: '중부',
+    prep_checkTitle: '준비물 체크리스트', prep_checkDesc: '챙긴 건 눌러서 체크하세요. 이 기기 브라우저에 저장돼요.',
+    prep_progress: '{n} / {total}개 챙겼어요', prep_done: '준비 끝! 즐거운 여행 되세요', prep_reset: '체크 초기화',
+    prep_resetConfirm: '한 번 더 누르면 체크가 모두 지워져요', prep_resetDone: '체크를 모두 지웠어요',
+    prep_addrTip: '숙소 주소는 긴급 & 노트 탭에 베트남어로 저장해 두면 택시 기사님께 바로 보여줄 수 있어요.', prep_goNotes: '긴급 & 노트로 가기',
+    pg_docs: '서류', pg_money: '돈', pg_tech: '통신 · 전자기기', pg_health: '건강', pg_clothes: '옷', pg_etc: '기타',
     heroAlt: '베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트',
     heroBadge: '🇻🇳 현지에서 바로 쓰는 단 한 권의 가이드',
     heroTitle: '말은 통하게, 계산은 신속하게, 여행은 안전하게!',
@@ -237,8 +251,20 @@ var T = {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
     siteLang: 'Site language', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
-    tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes',
-    mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS',
+    tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes', tab_prep: 'Trip Prep',
+    mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS', mtab_prep: 'Prep',
+    prep_entryTitle: 'Entry rules to check before you fly', prep_entryDesc: 'Check these first so nothing stops you at the airport.',
+    prep_source: 'Sources: Korean MOFA Safe Travel, Vietnamese embassy and central bank guidance (checked Oct 2026). Rules can change, so check again before you leave.',
+    prep_banTitle: "What not to bring & duty-free limits", prep_banDesc: 'Travelers often get fined for things they did not know about.',
+    prep_fine: 'Individuals caught using them face fines of VND 3–5 million (about {a}–{b}).',
+    prep_lifeTitle: 'Everyday basics', prep_lifeDesc: 'What you need the moment you land.', prep_open: 'Open tab',
+    prep_weatherTitle: 'Weather & what to wear by region', prep_weatherDesc: 'Vietnam is long from north to south, so the weather differs a lot by region.',
+    prep_weatherNote: 'Weather varies from year to year. Check the forecast before you go.', region_central: 'Central',
+    prep_checkTitle: 'Packing checklist', prep_checkDesc: 'Tap items as you pack. Saved in this browser.',
+    prep_progress: '{n} of {total} packed', prep_done: 'All packed! Have a great trip', prep_reset: 'Clear checks',
+    prep_resetConfirm: 'Tap again to clear all checks', prep_resetDone: 'All checks cleared',
+    prep_addrTip: 'Save your hotel address in Vietnamese on the Emergency & Notes tab so you can show it to taxi drivers.', prep_goNotes: 'Go to Emergency & Notes',
+    pg_docs: 'Documents', pg_money: 'Money', pg_tech: 'Phone & gadgets', pg_health: 'Health', pg_clothes: 'Clothing', pg_etc: 'Other',
     heroAlt: 'Stylized night illustration of a Vietnamese lantern festival',
     heroBadge: '🇻🇳 The one guide you will actually use on the ground',
     heroTitle: 'Speak with ease, count in a flash, travel safely!',
@@ -526,14 +552,92 @@ var MISSIONS = [
 ];
 var CALL_CENTER = '+82-2-3210-0404';
 
+/* ================= trip prep (facts checked Oct 2026) ================= */
+var PREP_ENTRY = [
+  { ic: 'ri-passport-line', t: { ko: '무비자 45일', en: '45 days visa-free' },
+    d: { ko: '한국 일반 여권은 비자 없이 45일까지 머물 수 있어요. 더 오래 있으려면 출발 전에 전자비자(e-visa, 최대 90일)를 받아야 해요.', en: 'South Korean passport holders can stay up to 45 days without a visa. For longer stays, get an e-visa (up to 90 days) before you leave.' } },
+  { ic: 'ri-calendar-check-line', t: { ko: '여권 유효기간 6개월 이상', en: 'Passport valid 6+ months' },
+    d: { ko: '입국하는 날 기준으로 여권 유효기간이 6개월 이상 남아 있어야 해요.', en: 'Your passport must be valid for at least 6 months from the day you arrive.' } },
+  { ic: 'ri-flight-takeoff-line', t: { ko: '베트남에서 나가는 항공권', en: 'Onward flight ticket' },
+    d: { ko: '관광으로 무비자 입국할 때는 베트남을 떠나는 항공권 예약이 있어야 해요. 입국 심사나 탑승 수속 때 보여 달라고 할 수 있어요.', en: 'Visa-free tourists need a booked flight out of Vietnam. Immigration or the airline may ask to see it.' } },
+  { ic: 'ri-parent-line', t: { ko: '만 14세 미만 아이와 함께라면', en: 'Traveling with children under 14' },
+    d: { ko: '부모와 함께 가도 영문 가족관계증명서를 챙기세요. 부모 없이 다른 보호자와 가면 부모 동의서(영문 번역·공증)도 필요해요.', en: 'Bring an English family relationship certificate even when traveling with parents. Children traveling without their parents also need a notarized parental consent letter in English.' } },
+  { ic: 'ri-money-dollar-circle-line', t: { ko: '현금 세관 신고', en: 'Declaring cash' },
+    d: { ko: '외화 5,000달러 또는 1,500만 동이 넘는 현금을 가지고 들어가면 세관에 신고해야 해요.', en: 'Declare cash above USD 5,000 (or equivalent) or VND 15,000,000 at customs.' } }
+];
+var PREP_BAN = [
+  { ic: 'ri-forbid-2-line', t: { ko: '전자담배·가열담배 금지', en: 'No e-cigarettes or heated tobacco' }, fine: [3000000, 5000000],
+    d: { ko: '2025년부터 전자담배와 가열담배(아이코스 등)의 사용·판매·수입이 모두 금지됐어요. 가져가지 마세요.', en: 'Since 2025 Vietnam has banned the use, sale and import of e-cigarettes and heated tobacco such as IQOS. Leave them at home.' } },
+  { ic: 'ri-battery-charge-line', t: { ko: '보조배터리는 기내에만', en: 'Power banks in carry-on only' },
+    d: { ko: '보조배터리는 부치는 짐에 넣으면 안 되고, 기내에 들고 타야 해요.', en: 'Power banks must go in your carry-on, never in checked luggage.' } },
+  { ic: 'ri-goblet-line', t: { ko: '면세 한도 (술·담배)', en: 'Duty-free allowance' },
+    d: { ko: '22도가 넘는 술은 1.5L(22도 미만은 2L, 맥주는 3L), 담배는 200개비까지 면세로 가지고 들어갈 수 있어요.', en: '1.5 L of liquor over 22% (or 2 L under 22%, or 3 L of beer) and 200 cigarettes are duty-free.' } }
+];
+var PREP_LIFE = [
+  { ic: 'ri-time-line', t: { ko: '시차 −2시간', en: '2 hours behind Korea' },
+    d: { ko: '한국보다 2시간 느려요. 한국이 오후 3시면 베트남은 오후 1시예요.', en: '3 PM in Seoul is 1 PM in Vietnam.' } },
+  { ic: 'ri-plug-line', t: { ko: '전기 220V', en: '220 V power' },
+    d: { ko: '한국 충전기를 그대로 써요. 대부분 콘센트에 한국 플러그가 꽂히지만, 멀티 어댑터 하나 챙기면 안심이에요.', en: 'Korean chargers work as they are. Most sockets take Korean plugs, but a travel adapter is a safe bet.' } },
+  { ic: 'ri-drop-line', t: { ko: '물은 생수로', en: 'Drink bottled water' },
+    d: { ko: '수돗물은 마시지 말고 생수를 사 드세요. 양치할 때도 생수를 쓰면 더 안전해요.', en: 'Do not drink tap water. Using bottled water to brush your teeth is safer too.' } },
+  { ic: 'ri-sim-card-2-line', t: { ko: '유심 · eSIM', en: 'SIM or eSIM' },
+    d: { ko: 'eSIM을 미리 사 두거나 공항에서 유심을 사면 돼요. Viettel·Vinaphone·Mobifone이 대표 통신사예요.', en: 'Buy an eSIM in advance or a SIM card at the airport. Viettel, Vinaphone and Mobifone are the main carriers.' } },
+  { ic: 'ri-exchange-dollar-line', t: { ko: '환전', en: 'Changing money' }, link: 'calc',
+    d: { ko: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요. 지폐 구분은 동 계산기 탭에서 확인하세요.', en: 'Most travelers bring US dollars and change them locally, or withdraw dong from ATMs with a travel card. See the Dong Calculator tab to tell the notes apart.' } },
+  { ic: 'ri-smartphone-line', t: { ko: '미리 깔아 둘 앱', en: 'Apps to install' },
+    d: { ko: 'Grab(택시·오토바이·배달), Xanh SM(전기 택시), 구글 지도, 번역 앱(파파고 등)을 출발 전에 깔아 두세요.', en: 'Install Grab (rides and delivery), Xanh SM (electric taxis), Google Maps and a translator app before you go.' } }
+];
+var PREP_WEATHER = [
+  { r: 'north', city: { ko: '하노이 · 하롱베이 · 사파', en: 'Hanoi · Ha Long Bay · Sa Pa' }, rows: [
+    { k: 'rain', ko: '5~9월: 덥고 습하며 비가 자주 와요', en: 'May–Sep: hot, humid and rainy' },
+    { k: 'sun', ko: '10~11월, 3~4월: 선선해서 여행하기 좋아요', en: 'Oct–Nov, Mar–Apr: mild and pleasant' },
+    { k: 'cold', ko: '12~2월: 10도대로 쌀쌀해요. 겉옷이 꼭 필요해요', en: 'Dec–Feb: chilly, around 10–19 °C. Bring a jacket' } ] },
+  { r: 'central', city: { ko: '다낭 · 호이안 · 후에', en: 'Da Nang · Hội An · Huế' }, rows: [
+    { k: 'sun', ko: '2~8월: 건기라 맑고 더워요', en: 'Feb–Aug: dry season, sunny and hot' },
+    { k: 'rain', ko: '9~12월: 우기예요. 특히 10~11월엔 폭우와 태풍이 잦아요', en: 'Sep–Dec: rainy season, with heavy rain and typhoons mostly in Oct–Nov' } ] },
+  { r: 'south', city: { ko: '호치민 · 푸꾸옥', en: 'Ho Chi Minh City · Phú Quốc' }, rows: [
+    { k: 'sun', ko: '12~4월: 건기라 맑고 더워요', en: 'Dec–Apr: dry season, sunny and hot' },
+    { k: 'rain', ko: '5~11월: 우기예요. 오후에 짧고 굵은 소나기가 와요', en: 'May–Nov: rainy season, with short, heavy afternoon showers' } ] }
+];
+var PREP_CHECK = [
+  { g: 'docs', items: [
+    { id: 'passport', ko: '여권 (유효기간 6개월 이상)', en: 'Passport (valid 6+ months)' },
+    { id: 'flight', ko: '왕복 항공권 예약 확인', en: 'Return flight booking' },
+    { id: 'hotel', ko: '숙소 예약 확인서', en: 'Hotel booking confirmation' },
+    { id: 'insurance', ko: '여행자보험', en: 'Travel insurance' },
+    { id: 'kids', ko: '아이 동반 시 영문 가족관계증명서', en: 'Kids: English family certificate' } ] },
+  { g: 'money', items: [
+    { id: 'card', ko: '해외 결제 카드 (2장 이상)', en: 'Cards for overseas use (2+)' },
+    { id: 'cash', ko: '현금 (달러 또는 동)', en: 'Cash (USD or VND)' } ] },
+  { g: 'tech', items: [
+    { id: 'esim', ko: 'eSIM 또는 유심', en: 'eSIM or SIM card' },
+    { id: 'apps', ko: 'Grab · 지도 · 번역 앱 설치', en: 'Grab, maps and translator apps' },
+    { id: 'powerbank', ko: '보조배터리 (기내 반입)', en: 'Power bank (carry-on)' },
+    { id: 'adapter', ko: '충전기 · 멀티 어댑터', en: 'Chargers and travel adapter' } ] },
+  { g: 'health', items: [
+    { id: 'meds', ko: '상비약 (지사제 · 해열진통제 · 소화제)', en: 'Medicine (anti-diarrhea, painkillers, digestives)' },
+    { id: 'mosquito', ko: '모기 기피제', en: 'Mosquito repellent' },
+    { id: 'sun', ko: '선크림 · 모자 · 선글라스', en: 'Sunscreen, hat, sunglasses' } ] },
+  { g: 'clothes', items: [
+    { id: 'layer', ko: '얇은 겉옷 (에어컨 · 북부 겨울)', en: 'Light jacket (A/C, northern winter)' },
+    { id: 'temple', ko: '사원 방문용 긴 바지 · 스카프', en: 'Long pants and a scarf for temples' },
+    { id: 'rain', ko: '우산 · 우비 (우기)', en: 'Umbrella or poncho (rainy season)' },
+    { id: 'sandals', ko: '슬리퍼 · 샌들', en: 'Sandals' } ] },
+  { g: 'etc', items: [
+    { id: 'tissue', ko: '물티슈 · 휴지', en: 'Wet wipes and tissues' },
+    { id: 'zip', ko: '지퍼백 (젖은 옷 · 서류)', en: 'Zip bags (wet clothes, papers)' } ] }
+];
+var PREP_ITEMS = []; PREP_CHECK.forEach(function (g) { g.items.forEach(function (it) { PREP_ITEMS.push(it.id); }); });
+
 var TAB_KEYS = {
   calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
-  emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address'
+  emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address',
+  prep: '여행 준비 준비물 체크리스트 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
 };
 
 /* ================= state ================= */
-var TABS = ['phrases', 'calc', 'food', 'culture', 'emergency'];
+var TABS = ['phrases', 'calc', 'food', 'culture', 'emergency', 'prep'];
 var hashTab = (location.hash || '').replace('#', '');
 var savedTab = store.get('tab', 'phrases');
 var state = {
@@ -547,6 +651,7 @@ var state = {
   calc: { dir: 'v2k', amount: 150000, manual: Number(store.get('rateManual', 0)) > 0 ? Number(store.get('rateManual', 0)) : null, live: null, status: 'loading' },
   food: { cat: 'all', region: store.get('region', 'north') === 'south' ? 'south' : 'north', sw: store.get('sw', { cilantro: true, ice: false, sugar: false, spicy: false, msg: false, peanut: false }) },
   notes: store.get('notes', { name: '', addr: '', memo: '' }),
+  prep: { checks: (function () { var c = store.get('prepChecks', {}); return c && typeof c === 'object' && !Array.isArray(c) ? c : {}; })(), resetArmed: false },
   deck: {
     cur: null, flipped: false, source: 'all', order: null, resetArmed: false,
     hideKnown: store.get('deckHideKnown', true) !== false,
@@ -643,6 +748,7 @@ function wordChip(w) {
 var REGION_CLS = {
   all: 'bg-background-200/70 text-foreground-600 border-background-300',
   south: 'bg-secondary-500/10 text-secondary-300 border-secondary-500/30',
+  central: 'bg-accent-500/10 text-accent-300 border-accent-500/30',
   north: 'bg-primary-500/10 text-primary-300 border-primary-500/30'
 };
 function unitRow(m) {
@@ -822,6 +928,7 @@ function updateCalc() {
   var o = calcNumbers();
   var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
   set('calc-steps', o.steps); set('calc-quick', o.quick); set('calc-exact', o.exact); set('calc-note-text', o.note); set('calc-rate-line', o.rateLine); set('calc-exact-label', exactLabel());
+  $$('[data-krw]').forEach(function (el) { el.textContent = fmt(Number(el.getAttribute('data-krw')) * effRate() / 1000) + t('unitK'); });
   $$('[data-bill-krw]').forEach(function (el) { el.textContent = '≈ ' + fmt(Number(el.getAttribute('data-bill-krw')) * effRate() / 1000) + t('unitK'); });
 }
 function viewCalc() {
@@ -980,6 +1087,74 @@ function numRow(label, num) {
     '<a href="tel:' + num.replace(/-/g, '') + '" class="font-bold text-foreground-950 tabular select-all hover:text-accent-400 transition-colors">' + num + '</a>' +
     '<button type="button" data-action="copy" data-text="' + num + '" aria-label="' + esc(t('copy') + ' ' + num) + '" class="ml-auto p-1.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors"><i class="ri-file-copy-line"></i></button></div>';
 }
+function prepItem(it) {
+  var on = !!state.prep.checks[it.id];
+  return '<button type="button" data-action="prep-check" data-value="' + it.id + '" role="checkbox" aria-checked="' + on + '" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left text-sm cursor-pointer transition-colors ' +
+    (on ? 'bg-secondary-500/10 border-secondary-500/40 text-foreground-500' : 'bg-background-50 border-background-200 text-foreground-900 hover:border-background-400') + '">' +
+    '<i class="' + (on ? 'ri-checkbox-fill text-secondary-400' : 'ri-checkbox-blank-line text-foreground-400') + ' text-xl"></i><span class="min-w-0' + (on ? ' line-through decoration-foreground-400/60' : '') + '">' + esc(L(it)) + '</span></button>';
+}
+function prepProgressHtml() {
+  var total = PREP_ITEMS.length, n = PREP_ITEMS.filter(function (id) { return state.prep.checks[id]; }).length;
+  var done = n === total, pct = Math.round(n / total * 100);
+  return '<div class="flex items-center justify-between gap-3 text-xs tabular"><span class="font-bold ' + (done ? 'text-secondary-400' : 'text-foreground-900') + '">' + (done ? '🎉 ' + esc(t('prep_done')) : esc(tf('prep_progress', { n: n, total: total }))) + '</span>' +
+    (n ? '<button type="button" data-action="prep-reset" class="text-[11px] font-semibold cursor-pointer underline-offset-2 hover:underline ' + (state.prep.resetArmed ? 'text-primary-300' : 'text-foreground-400 hover:text-foreground-900') + '">' + esc(t(state.prep.resetArmed ? 'prep_resetConfirm' : 'prep_reset')) + '</button>' : '') + '</div>' +
+    '<div class="h-1.5 mt-1.5 rounded-full bg-background-200 overflow-hidden"><div class="h-full bg-secondary-500 rounded-full transition-all" style="width:' + pct + '%"></div></div>';
+}
+function viewPrep() {
+  var krw = function (v) { return '<span data-krw="' + v + '" class="tabular">' + fmt(v * effRate() / 1000) + t('unitK') + '</span>'; };
+  var row = function (x, tone) {
+    var desc = esc(L(x.d));
+    if (x.fine) desc += ' ' + esc(t('prep_fine')).replace('{a}', krw(x.fine[0])).replace('{b}', krw(x.fine[1]));
+    return '<li class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200">' +
+      '<span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ' + tone + '"><i class="' + x.ic + ' text-lg"></i></span>' +
+      '<div class="min-w-0"><p class="text-sm font-bold text-foreground-950">' + esc(L(x.t)) + '</p><p class="text-xs text-foreground-500 leading-relaxed mt-0.5">' + desc + '</p></div></li>';
+  };
+  var life = PREP_LIFE.map(function (x) {
+    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-1.5 min-w-0">' +
+      '<p class="flex items-center gap-2 text-sm font-bold text-foreground-950"><i class="' + x.ic + ' text-lg text-secondary-400"></i>' + esc(L(x.t)) + '</p>' +
+      '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(x.d)) + '</p>' +
+      (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="flex items-center gap-1 text-[11px] font-bold text-accent-400 hover:text-accent-300 cursor-pointer">' + esc(t('tab_' + x.link)) + ' ' + esc(t('prep_open')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+      '</div>';
+  }).join('');
+  var wIcon = { rain: 'ri-showers-line text-secondary-400', sun: 'ri-sun-line text-accent-400', cold: 'ri-temp-cold-line text-primary-300' };
+  var weather = PREP_WEATHER.map(function (w) {
+    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-2 min-w-0">' +
+      '<p class="flex flex-wrap items-center gap-2"><span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ' + REGION_CLS[w.r] + '">' + esc(t('region_' + w.r)) + '</span>' +
+      '<span class="text-xs font-semibold text-foreground-900">' + esc(L(w.city)) + '</span></p>' +
+      '<ul class="space-y-1.5">' + w.rows.map(function (r) {
+        return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="' + wIcon[r.k] + ' text-base mt-px"></i><span>' + esc(L(r)) + '</span></li>';
+      }).join('') + '</ul></div>';
+  }).join('');
+  var groups = PREP_CHECK.map(function (g) {
+    return '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('pg_' + g.g)) + '</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + g.items.map(prepItem).join('') + '</div></div>';
+  }).join('');
+
+  return '<section class="space-y-6">' +
+    '<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">' +
+    '<div class="lg:col-span-3 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
+    cardHead('🛂', 'accent', t('prep_entryTitle'), t('prep_entryDesc')) +
+    '<ul class="space-y-2">' + PREP_ENTRY.map(function (x) { return row(x, 'bg-accent-500/10 text-accent-400'); }).join('') + '</ul>' +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('prep_source')) + '</p></div>' +
+    '<div class="lg:col-span-2 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
+    cardHead('🚭', 'primary', t('prep_banTitle'), t('prep_banDesc')) +
+    '<ul class="space-y-2">' + PREP_BAN.map(function (x) { return row(x, 'bg-primary-500/10 text-primary-400'); }).join('') + '</ul></div>' +
+    '</div>' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    cardHead('🧭', 'secondary', t('prep_lifeTitle'), t('prep_lifeDesc')) +
+    '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">' + life + '</div></div>' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    cardHead('🌦️', 'accent', t('prep_weatherTitle'), t('prep_weatherDesc')) +
+    '<div class="grid grid-cols-1 md:grid-cols-3 gap-2">' + weather + '</div>' +
+    '<p class="text-[11px] text-foreground-400">' + esc(t('prep_weatherNote')) + '</p></div>' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
+    cardHead('✅', 'secondary', t('prep_checkTitle'), t('prep_checkDesc')) +
+    '<div id="prep-progress">' + prepProgressHtml() + '</div>' +
+    groups +
+    '<div class="p-3 rounded-xl bg-accent-500/10 border border-accent-500/30 flex flex-col sm:flex-row sm:items-center gap-2 text-xs">' +
+    '<p class="flex-1 text-foreground-900 leading-relaxed flex items-start gap-1.5"><i class="ri-taxi-line text-accent-400 text-base"></i><span>' + esc(t('prep_addrTip')) + '</span></p>' +
+    '<button type="button" data-action="goto-tab" data-value="emergency" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent-500 hover:bg-accent-400 text-background-50 font-bold cursor-pointer transition-colors whitespace-nowrap self-start sm:self-auto">' + esc(t('prep_goNotes')) + '<i class="ri-arrow-right-line"></i></button></div>' +
+    '</div></section>';
+}
 function viewEmergency() {
   var tiles = [{ n: '113', e: '🚓', k: 'police' }, { n: '114', e: '🚒', k: 'fire' }, { n: '115', e: '🚑', k: 'ambulance' }].map(function (x) {
     return '<div class="p-4 rounded-2xl bg-primary-500/10 border border-primary-500/25 flex items-center gap-3"><span class="text-3xl" aria-hidden="true">' + x.e + '</span>' +
@@ -1040,7 +1215,7 @@ function searchView(q) {
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
-  var tabIcon = { calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line' };
+  var tabIcon = { calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line', prep: 'ri-suitcase-line' };
   var html = '<section class="space-y-6"><div class="flex flex-wrap items-center justify-between gap-3"><p class="text-sm text-foreground-500">' + esc(tf('results', { q: q, n: total })) + '</p>' +
     '<button type="button" data-action="clear-search" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-background-100 hover:bg-background-200 border border-background-200 text-xs font-semibold text-foreground-500 hover:text-foreground-900 cursor-pointer transition-colors"><i class="ri-close-line"></i>' + esc(t('clearSearch')) + '</button></div>';
   if (tabs.length) {
@@ -1092,6 +1267,7 @@ function renderMain() {
   else if (state.tab === 'food') html = viewFood();
   else if (state.tab === 'culture') html = viewCulture();
   else if (state.tab === 'emergency') html = viewEmergency();
+  else if (state.tab === 'prep') html = viewPrep();
   else html = viewPhrases();
   main.innerHTML = html;
   hydrate(main);
@@ -1392,6 +1568,22 @@ document.addEventListener('click', function (e) {
     case 'deck-src': state.deck.source = v; state.deck.order = null; state.deck.cur = null; state.deck.flipped = false; state.deck.resetArmed = false; renderModal(); break;
     case 'deck-hide': state.deck.hideKnown = !state.deck.hideKnown; store.set('deckHideKnown', state.deck.hideKnown); state.deck.resetArmed = false; renderModal(); break;
     case 'deck-reset': deckReset(); break;
+    case 'prep-check':
+      state.prep.checks[v] = !state.prep.checks[v];
+      if (!state.prep.checks[v]) delete state.prep.checks[v];
+      state.prep.resetArmed = false; store.set('prepChecks', state.prep.checks);
+      var it = null; PREP_CHECK.forEach(function (g) { g.items.forEach(function (x) { if (x.id === v) it = x; }); });
+      if (it) {
+        var wrap = document.createElement('div'); wrap.innerHTML = prepItem(it); hydrate(wrap);
+        var nb = wrap.firstChild, wasFocused = document.activeElement === el;
+        el.parentNode.replaceChild(nb, el); if (wasFocused) nb.focus({ preventScroll: true });
+      }
+      var pp = $('#prep-progress'); if (pp) { pp.innerHTML = prepProgressHtml(); hydrate(pp); }
+      break;
+    case 'prep-reset':
+      if (!state.prep.resetArmed) { state.prep.resetArmed = true; var pp2 = $('#prep-progress'); if (pp2) pp2.innerHTML = prepProgressHtml(); break; }
+      state.prep.checks = {}; state.prep.resetArmed = false; store.set('prepChecks', {}); renderMain(); toast(t('prep_resetDone'), 'ri-refresh-line');
+      break;
   }
 });
 
