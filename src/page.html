@@ -22,11 +22,8 @@
         </span>
       </button>
       <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-        <div class="flex items-center gap-0.5 rounded-full bg-background-200/80 border border-background-300 p-0.5" data-i18n-title="toneTitle" title="말투 전환 (존댓말 / 반말)">
-          <button type="button" data-action="tone" data-value="polite" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer bg-primary-500 text-background-50" data-i18n="polite">존댓말</button>
-          <button type="button" data-action="tone" data-value="casual" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer text-foreground-500 hover:text-foreground-900" data-i18n="casual">반말</button>
-        </div>
-        <div class="flex items-center gap-0.5 rounded-full bg-background-200/80 border border-background-300 p-0.5 max-[359px]:hidden">
+        <div class="flex items-center gap-0.5 rounded-full bg-background-200/80 border border-background-300 p-0.5" role="group" data-i18n-title="siteLang" data-i18n-aria="siteLang" title="사이트 언어" aria-label="사이트 언어">
+          <i class="ri-global-line text-sm text-foreground-400 ml-1.5 mr-0.5 hidden sm:inline-flex"></i>
           <button type="button" data-action="lang" data-value="ko" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer bg-accent-500 text-background-50">한국어</button>
           <button type="button" data-action="lang" data-value="en" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer text-foreground-500 hover:text-foreground-900"><span class="sm:hidden">EN</span><span class="hidden sm:inline">English</span></button>
         </div>
@@ -138,7 +135,7 @@ function hydrate(root) {
 var T = {
   ko: {
     brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
-    toneTitle: '말투 전환 (존댓말 / 반말)', polite: '존댓말', casual: '반말',
+    siteLang: '사이트 언어', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트',
     mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급',
@@ -156,8 +153,11 @@ var T = {
     close: '닫기', remove: '삭제',
 
     phrasesTitle: '상황별 실전 회화',
-    phrasesDesc_polite: '🔊를 누르면 베트남어 발음이 나와요. 지금은 나를 em으로 낮추는 존댓말 표현이에요.',
-    phrasesDesc_casual: '🔊를 누르면 베트남어 발음이 나와요. 지금은 tôi를 쓰는 반말 표현이에요.',
+    phrasesDesc: '🔊를 누르면 베트남어 발음이 나와요.',
+    vtLabel: '베트남어 말투', vtHelp: '아래 베트남어 문장을 존댓말로 볼지 반말로 볼지 골라요. 한국어 설명은 바뀌지 않아요.',
+    vtToast_polite: '베트남어 문장을 존댓말(em)로 바꿨어요', vtToast_casual: '베트남어 문장을 반말(tôi)로 바꿨어요',
+    vtFeel: '반말 느낌',
+    pnWhy: '베트남어는 말끝 대신 ‘나’와 ‘상대’를 부르는 말로 높임을 나타내요. 그래서 존댓말에는 em, 반말에는 tôi를 써요.',
     slow: '천천히 듣기', all: '전체',
     cat_greet: '기본 표현', cat_food: '식당 & 카페', cat_shop: '쇼핑 & 흥정', cat_move: '교통 & 이동', cat_stay: '숙소', cat_help: '긴급 상황',
     tonesTitle: '성조 6개 맛보기', tonesDesc: '같은 ma도 성조에 따라 뜻이 달라져요. 눌러서 들어 보세요.',
@@ -235,7 +235,7 @@ var T = {
   },
   en: {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
-    toneTitle: 'Speech style (formal / casual)', polite: 'Formal', casual: 'Casual',
+    siteLang: 'Site language', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes',
     mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS',
@@ -253,8 +253,11 @@ var T = {
     close: 'Close', remove: 'Remove',
 
     phrasesTitle: 'Phrases by situation',
-    phrasesDesc_polite: 'Tap 🔊 to hear the Vietnamese. Showing polite forms with em.',
-    phrasesDesc_casual: 'Tap 🔊 to hear the Vietnamese. Showing casual forms with tôi.',
+    phrasesDesc: 'Tap 🔊 to hear the Vietnamese.',
+    vtLabel: 'Vietnamese tone', vtHelp: 'Choose formal or casual wording for the Vietnamese phrases below. The rest of the site stays the same.',
+    vtToast_polite: 'Vietnamese phrases now use formal em', vtToast_casual: 'Vietnamese phrases now use casual tôi',
+    vtFeel: 'casual feel',
+    pnWhy: 'Vietnamese shows respect through the words for “I” and “you”, not verb endings. That is why formal uses em and casual uses tôi.',
     slow: 'Slow audio', all: 'All',
     cat_greet: 'Basics', cat_food: 'Eating out', cat_shop: 'Shopping', cat_move: 'Getting around', cat_stay: 'Hotel', cat_help: 'Emergencies',
     tonesTitle: 'Six tones in one syllable', tonesDesc: 'The same “ma” changes meaning with each tone. Tap to listen.',
@@ -556,7 +559,9 @@ var t = function (k) { var v = T[state.lang][k]; return v == null ? (T.ko[k] == 
 var tf = function (k, o) { return t(k).replace(/\{(\w+)\}/g, function (_, x) { return o[x]; }); };
 var L = function (o) { return o ? (o[state.lang] != null ? o[state.lang] : o.ko) : ''; };
 var ti = function () { return state.tone === 'polite' ? 0 : 1; };
-var pMeaning = function (p) { return state.lang === 'en' ? p.en : p.ko[ti()]; };
+var pMeaning = function (p) { return state.lang === 'en' ? p.en : p.ko[0]; };
+/* casual mode: how the Vietnamese sounds, in casual Korean (e.g. 고마워) */
+var casualFeel = function (p) { return state.tone === 'casual' && state.lang === 'ko' && p.ko[1] && p.ko[1] !== p.ko[0] ? ' · ' + t('vtFeel') + ' “' + p.ko[1] + '”' : ''; };
 var isBm = function (id) { return state.bookmarks.indexOf(id) >= 0; };
 var phraseById = function (id) { for (var i = 0; i < PHRASES.length; i++) if (PHRASES[i].id === id) return PHRASES[i]; return null; };
 var dishById = function (id) { for (var i = 0; i < DISHES.length; i++) if (DISHES[i].id === id) return DISHES[i]; return null; };
@@ -605,7 +610,7 @@ function phraseCard(p) {
     '<p class="text-[11px] font-semibold text-foreground-400">' + cat.emoji + ' ' + esc(t('cat_' + p.cat)) + '</p>' +
     '<p class="text-sm font-bold text-foreground-950 mt-0.5">' + esc(pMeaning(p)) + '</p></div>' + bmBtn('p:' + p.id) + '</div>' +
     '<p class="vi text-lg font-semibold text-accent-400 leading-snug break-words">' + esc(vi) + '</p>' +
-    (state.lang === 'ko' ? '<p class="text-xs text-foreground-500">[' + esc(p.pr[i]) + ']</p>' : '') +
+    (state.lang === 'ko' ? '<p class="text-xs text-foreground-500">[' + esc(p.pr[i]) + ']' + esc(casualFeel(p)) + '</p>' : '') +
     (p.note ? '<p class="text-[11px] text-secondary-400 flex items-start gap-1"><i class="ri-information-line mt-px"></i><span>' + esc(L(p.note)) + '</span></p>' : '') +
     '<div class="flex flex-wrap items-center gap-2 pt-1 mt-auto">' + speakBtn(vi) + copyBtn(vi) + '</div></article>';
 }
@@ -650,23 +655,35 @@ function unitRow(m) {
 }
 
 /* ================= views ================= */
-function pronounBox() {
+/* compact "베트남어 말투" control, shown next to other Vietnamese sentences */
+function toneSeg() {
+  return '<div class="flex flex-wrap items-center gap-2" role="group" aria-label="' + esc(t('vtLabel')) + '">' +
+    '<span class="text-[11px] font-bold text-foreground-400 whitespace-nowrap">' + esc(t('vtLabel')) + '</span>' +
+    seg('tone', [{ v: 'polite', label: t('polite') + ' · em' }, { v: 'casual', label: t('casual') + ' · tôi' }], state.tone) +
+    '</div>';
+}
+/* the em / tôi explanation doubles as the picker on the phrases tab */
+function toneBox() {
   var pol = state.tone === 'polite', ko = state.lang === 'ko';
-  var col = function (on, tag, tagCls, word, pr, desc, exVi, exMean) {
-    return '<div class="p-3 rounded-xl border min-w-0 ' + (on ? 'bg-accent-500/10 border-accent-500/40' : 'bg-background-50 border-background-200') + '">' +
-      '<p class="flex items-center gap-2"><span class="px-1.5 py-0.5 rounded text-[10px] font-bold ' + tagCls + '">' + esc(tag) + '</span>' +
+  var opt = function (val, on, tag, tagCls, word, pr, desc, exVi, exMean) {
+    return '<div role="radio" tabindex="0" aria-checked="' + on + '" data-action="tone" data-value="' + val + '" class="p-3 rounded-xl border min-w-0 cursor-pointer transition-colors ' +
+      (on ? 'bg-accent-500/10 border-accent-500/60' : 'bg-background-50 border-background-200 hover:border-background-400') + '">' +
+      '<p class="flex items-center gap-2"><i class="' + (on ? 'ri-checkbox-circle-fill text-accent-400' : 'ri-checkbox-blank-circle-line text-foreground-400') + ' text-lg"></i>' +
+      '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold ' + tagCls + '">' + esc(tag) + '</span>' +
       '<span class="vi text-base font-extrabold text-accent-400">' + word + '</span>' + (ko ? '<span class="text-[11px] text-foreground-400">[' + pr + ']</span>' : '') +
       (on ? '<span class="ml-auto text-[10px] font-bold text-accent-400 whitespace-nowrap">' + esc(t('pnNow')) + '</span>' : '') + '</p>' +
       '<p class="text-[11px] text-foreground-500 mt-1.5 leading-relaxed">' + esc(desc) + '</p>' +
       '<button type="button" data-action="speak" data-text="' + esc(exVi) + '" class="mt-2 flex flex-wrap items-center gap-x-1.5 text-left text-[11px] cursor-pointer text-foreground-400 hover:text-foreground-900 transition-colors">' +
       '<i class="ri-volume-up-line text-primary-300"></i><span class="vi font-semibold text-accent-300">' + esc(exVi) + '</span><span>' + esc(exMean) + '</span></button></div>';
   };
-  return '<div class="space-y-2">' +
-    '<p class="text-xs font-bold text-foreground-900 flex items-start gap-1.5 leading-relaxed"><i class="ri-information-line text-accent-400 mt-0.5"></i><span>' + esc(t('pnTitle')) + '</span></p>' +
-    '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' +
-    col(pol, t('polite'), 'bg-primary-500 text-background-50', 'em', '앰', t('pnEm'), 'Em cảm ơn chị.', t('pnEmEx')) +
-    col(!pol, t('casual'), 'bg-background-300 text-foreground-950', 'tôi', '또이', t('pnToi'), 'Tôi là người Hàn Quốc.', t('pnToiEx')) +
+  return '<div class="space-y-2 p-3 sm:p-4 rounded-2xl bg-background-50/60 border border-background-200">' +
+    '<div><p class="text-sm font-bold text-foreground-950 flex items-center gap-1.5"><i class="ri-translate-2 text-accent-400"></i>' + esc(t('vtLabel')) + '</p>' +
+    '<p class="text-[11px] text-foreground-500 mt-0.5 leading-relaxed">' + esc(t('vtHelp')) + '</p></div>' +
+    '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label="' + esc(t('vtLabel')) + '">' +
+    opt('polite', pol, t('polite'), 'bg-primary-500 text-background-50', 'em', '앰', t('pnEm'), 'Em cảm ơn chị.', t('pnEmEx')) +
+    opt('casual', !pol, t('casual'), 'bg-background-300 text-foreground-950', 'tôi', '또이', t('pnToi'), 'Tôi là người Hàn Quốc.', t('pnToiEx')) +
     '</div>' +
+    '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-information-line text-accent-400 mt-px"></i><span>' + esc(t('pnWhy')) + '</span></p>' +
     '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-error-warning-line text-primary-400 mt-px"></i><span>' + esc(t('pnWarn')) + '</span></p>' +
     '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + esc(t('aTip')) + '</span></p>' +
     '</div>';
@@ -684,10 +701,10 @@ function viewPhrases() {
   }).join('');
   return '<section class="space-y-6">' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
-    cardHead('💬', 'primary', t('phrasesTitle'), t('phrasesDesc_' + state.tone), '<div class="hidden sm:block">' + slowBtn + '</div>') +
+    cardHead('💬', 'primary', t('phrasesTitle'), t('phrasesDesc'), '<div class="hidden sm:block">' + slowBtn + '</div>') +
+    toneBox() +
     '<div class="sm:hidden">' + slowBtn + '</div>' +
     '<div class="flex gap-2 overflow-x-auto custom-scrollbar pb-1 -mx-1 px-1">' + chips + '</div>' +
-    pronounBox() +
     '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + list.map(phraseCard).join('') + '</div></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
     cardHead('🎵', 'accent', t('tonesTitle'), t('tonesDesc')) +
@@ -889,12 +906,12 @@ function orderSentence() {
   var meaning;
   if (state.lang === 'en') {
     var e = on.map(function (s) { return s.ep; }).join(', ');
-    meaning = polite ? 'Please: ' + e + '. Thank you!' : cap(e) + ', thanks!';
+    meaning = 'Please: ' + e + '. Thank you!';
   } else {
     var parts = on.map(function (s) { return s.kp; }), last = parts.pop(), end;
-    if (/빼고$/.test(last)) end = last.replace(/빼고$/, polite ? '빼 주세요.' : '빼 줘.');
-    else end = last + (polite ? ' 해 주세요.' : ' 해 줘.');
-    meaning = (parts.length ? parts.join(', ') + ', ' : '') + end + (polite ? ' 감사합니다!' : ' 고마워!');
+    if (/빼고$/.test(last)) end = last.replace(/빼고$/, '빼 주세요.');
+    else end = last + ' 해 주세요.';
+    meaning = (parts.length ? parts.join(', ') + ', ' : '') + end + ' 감사합니다!';
   }
   return { vi: vi, meaning: meaning };
 }
@@ -926,7 +943,8 @@ function viewFood() {
     '<div class="grid grid-cols-1 lg:grid-cols-5 gap-4">' +
     '<div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-2 content-start">' + sws + '</div>' +
     '<div class="lg:col-span-2 p-4 rounded-2xl bg-gradient-to-br from-accent-500/15 to-primary-500/10 border border-accent-500/30 space-y-2 min-w-0">' +
-    '<p class="text-[11px] font-bold text-accent-400 flex items-center gap-1.5"><i class="ri-eye-line"></i>' + esc(t('showStaff')) + '</p>' + order + '</div>' +
+    '<p class="text-[11px] font-bold text-accent-400 flex items-center gap-1.5"><i class="ri-eye-line"></i>' + esc(t('showStaff')) + '</p>' + order +
+    '<div class="pt-2 mt-1 border-t border-accent-500/20">' + toneSeg() + '</div></div>' +
     '</div></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
     cardHead('🍜', 'primary', t('menuTitle'), t('menuDesc')) +
@@ -994,7 +1012,7 @@ function viewEmergency() {
     '<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">' + missions + '</div>' +
     '<p class="text-[11px] text-foreground-400">' + esc(t('embassySource')) + ' <a href="https://0404.go.kr/ntnSafetyInfo/86/detail" target="_blank" rel="noopener noreferrer" class="underline hover:text-foreground-900">0404.go.kr</a></p></div>' +
     '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🆘', 'primary', t('emPhrasesTitle'), t('emPhrasesDesc')) + '<div class="space-y-2">' + help + '</div></div>' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🆘', 'primary', t('emPhrasesTitle'), t('emPhrasesDesc')) + toneSeg() + '<div class="space-y-2">' + help + '</div></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' + cardHead('📝', 'accent', t('notesTitle'), t('notesDesc')) +
     '<div class="space-y-2"><label for="note-name" class="block text-xs font-bold text-foreground-400">' + esc(t('hotelName')) + '</label><input id="note-name" type="text" autocomplete="off" value="' + esc(n.name) + '" placeholder="' + esc(t('hotelNamePh')) + '" class="' + inputCls + '">' +
     '<label for="note-addr" class="block text-xs font-bold text-foreground-400 pt-1">' + esc(t('hotelAddr')) + '</label><input id="note-addr" type="text" autocomplete="off" value="' + esc(n.addr) + '" placeholder="' + esc(t('hotelAddrPh')) + '" class="vi ' + inputCls + '">' +
@@ -1030,7 +1048,7 @@ function searchView(q) {
       return '<button type="button" data-action="goto-tab" data-value="' + k + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><i class="' + tabIcon[k] + ' text-base"></i>' + esc(t('tab_' + k)) + ' <span class="text-xs font-semibold text-foreground-500">' + esc(t('goTab')) + '</span><i class="ri-arrow-right-line"></i></button>';
     }).join('') + '</div>';
   }
-  if (ph.length) html += box('💬', t('secPhrases'), ph.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>');
+  if (ph.length) html += box('💬', t('secPhrases'), ph.length, toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>');
   if (ds.length) html += box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>');
   if (ws.length) html += box('📖', t('secWords'), ws.length, '<div class="flex flex-wrap gap-2">' + ws.map(wordChip).join('') + '</div>');
   if (us.length) html += box('🗣️', t('secUnits'), us.length, '<div class="space-y-2">' + us.map(unitRow).join('') + '</div>');
@@ -1058,7 +1076,6 @@ function applyStatic() {
   $$('[data-i18n-title]').forEach(function (el) { el.title = t(el.getAttribute('data-i18n-title')); });
   $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-i18n-ph')); });
   $$('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
-  $$('[data-action="tone"]').forEach(function (b) { var on = b.getAttribute('data-value') === state.tone; b.className = CLS.pill + ' ' + (on ? CLS.toneOn : CLS.pillOff); b.setAttribute('aria-pressed', on); });
   $$('[data-action="lang"]').forEach(function (b) { var on = b.getAttribute('data-value') === state.lang; b.className = CLS.pill + ' ' + (on ? CLS.langOn : CLS.pillOff); b.setAttribute('aria-pressed', on); });
   $$('.tab-d').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.tab + ' ' + (on ? CLS.tabOn : CLS.tabOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   $$('.tab-m').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.mtab + ' ' + (on ? CLS.mOn : CLS.mOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
@@ -1265,7 +1282,7 @@ function deckModal() {
       '<p class="text-xs text-foreground-400 mt-6 flex items-center gap-1"><i class="ri-loop-left-line"></i>' + esc(t('tapFlip')) + '</p></div>' +
       '<div class="flip-face flip-back rounded-2xl bg-gradient-to-br from-accent-500/20 via-background-50 to-background-50 border border-accent-500/30 flex flex-col items-center justify-center p-6 text-center">' + badge +
       '<p class="vi text-2xl sm:text-3xl font-bold text-accent-400 break-words">' + esc(p.vi[i]) + '</p>' +
-      (state.lang === 'ko' ? '<p class="text-sm text-foreground-500 mt-2">[' + esc(p.pr[i]) + ']</p>' : '') +
+      (state.lang === 'ko' ? '<p class="text-sm text-foreground-500 mt-2">[' + esc(p.pr[i]) + ']</p>' + (casualFeel(p) ? '<p class="text-xs text-foreground-400 mt-1">' + esc(casualFeel(p).replace(/^ · /, '')) + '</p>' : '') : '') +
       '<div class="mt-5">' + speakBtn(p.vi[i]) + '</div></div>' +
       '</div></div>' +
       '<div class="grid grid-cols-2 gap-2">' +
@@ -1273,7 +1290,7 @@ function deckModal() {
       '<button type="button" data-action="card-mark" data-value="known" class="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-secondary-500 hover:bg-secondary-400 text-sm font-bold text-background-50 cursor-pointer transition-colors"><i class="ri-check-line text-base"></i>' + esc(t('markKnown')) + '</button></div>' +
       '<div class="flex items-center justify-between gap-3"><p class="hidden sm:block text-[11px] text-foreground-400">' + esc(t('keysHint')) + '</p><div class="ml-auto">' + resetBtn + '</div></div>';
   }
-  return shell(modalHeader('ri-stack-line', t('deck'), 'm-title') + '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + src + stats + body + '</div>', 'm-title');
+  return shell(modalHeader('ri-stack-line', t('deck'), 'm-title') + '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + src + toneSeg() + stats + body + '</div>', 'm-title');
 }
 function bigModal() {
   var b = modal.data;
@@ -1331,7 +1348,13 @@ document.addEventListener('click', function (e) {
     case 'home':
       state.query = ''; $('#search').value = ''; updateSearchClear(); setTab('phrases');
       window.scrollTo({ top: 0, behavior: reduceMotion() ? 'auto' : 'smooth' }); break;
-    case 'tone': state.tone = v; store.set('tone', v); applyStatic(); renderMain(); if (modal) renderModal(); break;
+    case 'tone':
+      if (state.tone === v) break;
+      var inModal = !!(modal && el.closest('#modal-root')), hadFocus = document.activeElement === el;
+      state.tone = v; store.set('tone', v); renderMain(); if (modal) renderModal();
+      toast(t('vtToast_' + v), 'ri-translate-2');
+      if (hadFocus) { var nf = $((inModal ? '#modal-root' : '#main') + ' [data-action="tone"][data-value="' + v + '"]'); if (nf) nf.focus({ preventScroll: true }); }
+      break;
     case 'lang': state.lang = v; store.set('lang', v); applyStatic(); renderMain(); if (modal) renderModal(); drawHeroSoon(); break;
     case 'tab': setTab(v); break;
     case 'goto-tab': setTab(v); break;
@@ -1390,6 +1413,7 @@ document.addEventListener('input', function (e) {
   }
 });
 document.addEventListener('keydown', function (e) {
+  if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.hasAttribute('data-action')) { e.preventDefault(); e.target.click(); return; }
   if (e.target && e.target.id === 'search' && e.key === 'Escape' && state.query) { state.query = ''; e.target.value = ''; updateSearchClear(); applyStatic(); renderMain(); return; }
   if (!modal) return;
   if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
