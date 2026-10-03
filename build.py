@@ -31,6 +31,7 @@ BUILD = ROOT / "build"
 
 HEAD_META = """<meta charset="UTF-8">
 <link rel="canonical" href="__SITE_URL__/">
+<meta name="google-site-verification" content="eFjrRy1QDJ2rNgtwGZyg4DaRtowQSRaqH0nd9Dwhxqw" />
 <meta property="og:url" content="__SITE_URL__/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
