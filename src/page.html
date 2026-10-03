@@ -1,5 +1,5 @@
 <title>베트남 여행 스마트 가이드</title>
-<meta name="description" content="베트남 여행 필수 회화, 동 환율 계산기, 음식 메뉴판 해독, 팁·사원 예절, 입국 규정과 준비물 체크리스트, 대사관 긴급 연락처까지 한 번에. 현지에서 바로 쓰는 실전 가이드.">
+<meta name="description" content="다낭·호이안 문화체험(소원배, 바구니배, 쿠킹 클래스, 도자기 마을)부터 베트남 여행 필수 회화, 동 환율 계산기, 음식 메뉴판 해독, 팁·사원 예절, 입국 규정과 준비물 체크리스트, 대사관 긴급 연락처까지 한 번에. 현지에서 바로 쓰는 실전 가이드.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
@@ -34,6 +34,7 @@
   </header>
   <nav class="hidden md:block glass-effect border-b border-background-200">
     <div class="w-full px-4 flex justify-center gap-3 overflow-x-auto custom-scrollbar py-2">
+      <button type="button" data-action="tab" data-value="exp" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-compass-3-line text-base"></i><span data-i18n="tab_exp">문화체험</span></button>
       <button type="button" data-action="tab" data-value="phrases" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-accent-400 bg-accent-500/10 border border-accent-500/30 font-bold"><i class="ri-chat-3-line text-base"></i><span data-i18n="tab_phrases">실전 회화</span></button>
       <button type="button" data-action="tab" data-value="calc" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-calculator-line text-base"></i><span data-i18n="tab_calc">동 계산기</span></button>
       <button type="button" data-action="tab" data-value="food" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-restaurant-2-line text-base"></i><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
@@ -80,6 +81,7 @@
 </footer>
 
 <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-effect border-t border-background-200 px-2 pt-2 safe-bottom-pad flex justify-around">
+  <button type="button" data-action="tab" data-value="exp" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-compass-3-line text-lg"></i><span data-i18n="mtab_exp">체험</span></button>
   <button type="button" data-action="tab" data-value="phrases" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-accent-400"><i class="ri-chat-3-line text-lg"></i><span data-i18n="mtab_phrases">회화</span></button>
   <button type="button" data-action="tab" data-value="calc" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-calculator-line text-lg"></i><span data-i18n="mtab_calc">동계산</span></button>
   <button type="button" data-action="tab" data-value="food" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-restaurant-2-line text-lg"></i><span data-i18n="mtab_food">음식</span></button>
@@ -139,6 +141,15 @@ var T = {
     brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
     siteLang: '사이트 언어', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
+    tab_exp: '문화체험', mtab_exp: '체험',
+    exp_title: '다낭 · 호이안 문화체험', exp_desc: '호이안 구시가지는 유네스코 세계유산이에요. 낮에는 공예와 요리를, 밤에는 등불이 켜진 강을 즐겨 보세요.',
+    exp_access: '다낭 시내에서 호이안까지는 차로 40~50분 정도 걸려요. Grab으로 가면 편해요.',
+    exp_day: '낮 체험', exp_night: '밤 체험', exp_where: '위치', exp_when: '추천 시간', exp_price: '가격', exp_how: '예약 방법',
+    exp_tips: '알아 두면 좋아요', exp_phrases: '이럴 때 이렇게 말해요', exp_map: '지도에서 보기', exp_related: '보기',
+    exp_note: '가격과 운영 시간은 2024~2026년 예약 사이트와 여행 후기를 바탕으로 정리했어요. 현지 사정에 따라 달라질 수 있어요.',
+    secExp: '문화체험',
+    money_title: '환전 · ATM · 카드 결제', money_desc: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요.', money_bills: '지폐 구분은 동 계산기 탭에서 확인하세요',
+    money_note: '카드 조건은 2026년 기준이에요. 혜택과 수수료는 자주 바뀌니 출발 전에 카드 앱에서 꼭 확인하세요.',
     tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트', tab_prep: '여행 준비',
     mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급', mtab_prep: '준비',
     prep_entryTitle: '출국 전 꼭 확인할 입국 규정', prep_entryDesc: '공항에서 막히지 않으려면 이것부터 확인하세요.',
@@ -251,6 +262,15 @@ var T = {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
     siteLang: 'Site language', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
+    tab_exp: 'Experiences', mtab_exp: 'Explore',
+    exp_title: 'Da Nang · Hội An experiences', exp_desc: "Hội An's Ancient Town is a UNESCO World Heritage Site. Spend the day on crafts and cooking, and the evening by the lantern-lit river.",
+    exp_access: 'Hội An is about 40–50 minutes by car from central Da Nang. Grab is the easiest way to get there.',
+    exp_day: 'Daytime', exp_night: 'Evening', exp_where: 'Where', exp_when: 'Best time', exp_price: 'Price', exp_how: 'Booking',
+    exp_tips: 'Good to know', exp_phrases: 'Handy phrases', exp_map: 'Open in Maps', exp_related: 'Open',
+    exp_note: 'Prices and hours are based on 2024–2026 booking sites and traveler reports and may change.',
+    secExp: 'Experiences',
+    money_title: 'Money: exchange, ATMs & cards', money_desc: 'Most travelers either change US dollars at local exchange counters or withdraw dong from ATMs with a travel card.', money_bills: 'Tell the notes apart in the Dong Calculator tab',
+    money_note: 'Card terms are as of 2026. Perks and fees change often, so check your card app before you go.',
     tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes', tab_prep: 'Trip Prep',
     mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS', mtab_prep: 'Prep',
     prep_entryTitle: 'Entry rules to check before you fly', prep_entryDesc: 'Check these first so nothing stops you at the airport.',
@@ -552,6 +572,114 @@ var MISSIONS = [
 ];
 var CALL_CENTER = '+82-2-3210-0404';
 
+/* ================= culture experiences (Da Nang · Hội An; prices from 2024–2026 booking sites and reviews) ================= */
+/* photos go in img/exp/<id>.webp (16:9); list ids here once a photo exists */
+var EXP_PHOTOS = {};
+var EXPERIENCES = [
+  { id: 'lanternboat', time: 'night', emoji: '🏮',
+    name: { ko: '호이안 소원배 & 소원등 띄우기', en: 'Wish boat & floating lanterns' },
+    vi: 'Đi thuyền thả đèn hoa đăng',
+    dur: { ko: '배 약 20분', en: 'About 20 min by boat' },
+    desc: { ko: '해가 지면 올드타운을 흐르는 투본강(호아이강) 위로 형형색색 등불이 켜져요. 작은 나룻배를 타고 강을 돌며 소원을 담은 등을 물 위에 띄우는, 호이안에서 가장 유명한 밤 체험이에요.', en: "As the sun sets, colorful lanterns light up the river through the Old Town. Ride a small boat and set a wish lantern afloat, Hội An's best-known evening experience." },
+    where: { ko: '호이안 올드타운 강변 (박당 거리, 안호이 다리 근처 매표소)', en: 'Hội An Old Town riverside (ticket booths on Bạch Đằng St. and near An Hội Bridge)' },
+    when: { ko: '해 질 무렵 오후 5시~6시 30분이 가장 예뻐요', en: 'Best around sunset, 5–6:30 PM' },
+    price: { ko: '배 1척 15만 동(1~3명, 약 {krw:150000}) · 20만 동(4~5명, 약 {krw:200000}), 소원등 1개 약 1만 동', en: 'VND 150,000 per boat for 1–3 people (about {krw:150000}) or VND 200,000 for 4–5 (about {krw:200000}); lanterns about VND 10,000 each' },
+    how: { ko: '강변의 공식 매표소(Ticket Booth)에서 표를 사요. 정해진 가격이라 흥정할 필요가 없어요.', en: 'Buy tickets at the official riverside ticket booths. Prices are fixed, so there is no haggling.' },
+    tips: [
+      { ko: '음력 14일 밤에는 등불 축제가 열려요. 오후 6시쯤부터 거리가 온통 등불로 밝혀져 더 운치 있어요.', en: 'On the 14th day of each lunar month Hội An holds a lantern night; from about 6 PM the streets glow with lanterns.' },
+      { ko: '사람이 몰리는 시간이라 휴대폰과 가방을 잘 챙기세요.', en: 'It gets crowded, so keep an eye on your phone and bag.' } ],
+    phrases: [
+      { ko: ['배 한 척에 얼마예요?', '배 한 척에 얼마야?'], en: 'How much is one boat?', vi: ['Cho em hỏi, một thuyền bao nhiêu tiền?', 'Một thuyền bao nhiêu?'], pr: ['쪼 앰 호이, 못 투이엔 바오 니에우 띠엔?', '못 투이엔 바오 니에우?'] },
+      { ko: ['소원등 두 개 주세요', '소원등 두 개 줘'], en: 'Two lanterns, please', vi: ['Cho em hai cái đèn hoa đăng.', 'Cho tôi hai cái đèn hoa đăng nhé.'], pr: ['쪼 앰 하이 까이 댄 호아 당', '쪼 또이 하이 까이 댄 호아 당 녜'] } ],
+    map: 'Hoai River, Hoi An', k: '소원배 소원등 등불 배 야경 강 투본강 등불축제 lantern boat river night wish festival' },
+
+  { id: 'basketboat', time: 'day', emoji: '🛶',
+    name: { ko: '껌탄 코코넛 숲 바구니배', en: 'Basket boats in the coconut forest' },
+    vi: 'Thuyền thúng rừng dừa Bảy Mẫu',
+    dur: { ko: '약 1시간', en: 'About 1 hour' },
+    desc: { ko: '대나무로 엮은 동그란 바구니배를 타고 코코넛 숲 사이 물길을 지나가요. 사공이 배를 빙글빙글 돌리는 묘기와 게 잡기 같은 놀이가 이어지는 신나는 체험이에요.', en: 'Glide through coconut-palm waterways in a round woven bamboo boat while boatmen spin the boats and show off tricks like crab catching.' },
+    where: { ko: '껌탄 코코넛 숲 (Rừng dừa Bảy Mẫu), 호이안 올드타운에서 차로 15분 정도', en: 'Bảy Mẫu coconut forest in Cẩm Thanh, about 15 minutes by car from Hội An Old Town' },
+    when: { ko: '덜 더운 오전이나 늦은 오후', en: 'Morning or late afternoon, when it is cooler' },
+    price: { ko: '1인 약 10만 동 (약 {krw:100000})', en: 'About VND 100,000 per person ({krw:100000})' },
+    how: { ko: '현장에서 표를 사거나, 픽업이 포함된 투어로 예약해요.', en: 'Buy tickets on site or book a tour with pickup.' },
+    tips: [
+      { ko: '노 젓는 분이 팁을 달라고 할 수 있어요. 팁은 선택이고, 주고 싶다면 5만~10만 동 정도예요.', en: 'Boatmen may ask for a tip. It is optional; VND 50,000–100,000 if you want to give one.' },
+      { ko: '물이 튈 수 있으니 휴대폰은 방수팩에 넣으세요. 배를 돌리는 게 무서우면 미리 말하세요.', en: 'You may get splashed, so bag your phone. Tell the boatman beforehand if spinning scares you.' } ],
+    phrases: [
+      { ko: ['한 사람에 얼마예요?', '한 사람에 얼마야?'], en: 'How much per person?', vi: ['Cho em hỏi, một người bao nhiêu tiền?', 'Một người bao nhiêu?'], pr: ['쪼 앰 호이, 못 응으어이 바오 니에우 띠엔?', '못 응으어이 바오 니에우?'] },
+      { ko: ['천천히 해 주세요, 무서워요!', '천천히 해, 무서워!'], en: 'Slow down, I am scared!', vi: ['Chậm thôi, em sợ lắm!', 'Chậm thôi, tôi sợ lắm!'], pr: ['쩜 토이, 앰 써 람!', '쩜 토이, 또이 써 람!'] } ],
+    map: 'Rung dua Bay Mau, Cam Thanh, Hoi An', k: '바구니배 코코넛 숲 껌탄 배 basket boat coconut cam thanh' },
+
+  { id: 'lanternmaking', time: 'day', emoji: '🎨',
+    name: { ko: '호이안 등불(랜턴) 만들기', en: 'Lantern-making workshop' },
+    vi: 'Làm đèn lồng Hội An',
+    dur: { ko: '1~2시간', en: '1–2 hours' },
+    desc: { ko: '대나무 뼈대에 비단 천을 붙여 호이안 전통 등불을 직접 만들어요. 색과 무늬를 골라 나만의 등을 완성할 수 있어요.', en: 'Make a traditional Hội An lantern by stretching silk over a bamboo frame, choosing your own colors and patterns.' },
+    where: { ko: '올드타운 주변 공방 여러 곳', en: 'Workshops around the Old Town' },
+    when: { ko: '낮 시간 (공방은 보통 오전 9시~오후 5시)', en: 'Daytime (workshops usually open 9 AM–5 PM)' },
+    price: { ko: '1시간 클래스 약 1만 원부터 (온라인 예약가)', en: 'From about ₩10,000 for a one-hour class (online price)' },
+    how: { ko: '예약 앱(클룩·마이리얼트립 등)이나 공방에 직접 예약해요.', en: 'Book through an app such as Klook or directly with a workshop.' },
+    tips: [
+      { ko: '완성한 등은 접어서 캐리어에 넣어 갈 수 있게 만들어 주는 곳이 많아요.', en: 'Many workshops make foldable lanterns that fit in a suitcase.' },
+      { ko: '아이와 함께하기 좋고, 더운 한낮을 실내에서 보내기에도 좋아요.', en: 'Great with kids, and a good way to escape the midday heat.' } ],
+    phrases: [
+      { ko: ['얼마나 걸려요?', '얼마나 걸려?'], en: 'How long does it take?', vi: ['Cho em hỏi, làm mất bao lâu?', 'Làm mất bao lâu?'], pr: ['쪼 앰 호이, 람 멋 바오 러우?', '람 멋 바오 러우?'] },
+      { ko: ['이 색으로 할게요', '이 색으로 할게'], en: 'I will take this color', vi: ['Em chọn màu này.', 'Tôi chọn màu này.'], pr: ['앰 쫀 마우 나이', '또이 쫀 마우 나이'] } ],
+    map: 'lantern making workshop Hoi An', k: '등불 랜턴 만들기 공방 공예 lantern making workshop craft' },
+
+  { id: 'cooking', time: 'day', emoji: '🍲',
+    name: { ko: '시장 투어 & 쿠킹 클래스', en: 'Market tour & cooking class' },
+    vi: 'Lớp học nấu ăn',
+    dur: { ko: '1~2시간 또는 반나절(4~5시간)', en: '1–2 hours, or a half day (4–5 hours)' },
+    desc: { ko: '현지 시장에서 재료를 고르고, 반쎄오·스프링롤 같은 베트남 요리를 직접 만들어 먹어요. 배를 타거나 채소 마을을 둘러보는 코스도 있어요.', en: 'Shop for ingredients at a local market, then cook and eat dishes like bánh xèo and spring rolls. Some classes add a boat ride or a vegetable-village visit.' },
+    where: { ko: '호이안 시내, 짜께 채소 마을, 강 건너 섬 마을 등', en: 'Hội An town, Trà Quế vegetable village, river islands and more' },
+    when: { ko: '오전 반나절 코스가 가장 많아요', en: 'Morning half-day classes are the most common' },
+    price: { ko: '반나절(시장 투어·배 포함) $26~49 정도, 짧은 클래스는 더 저렴해요', en: 'About $26–49 for a half day with market tour and boat ride; shorter classes cost less' },
+    how: { ko: '예약 앱이나 업체 사이트에서 미리 예약해요. 호텔 픽업 포함 여부를 확인하세요.', en: 'Book ahead online and check whether hotel pickup is included.' },
+    tips: [
+      { ko: '고수처럼 못 먹는 재료나 알레르기는 시작 전에 말하세요.', en: 'Mention allergies or ingredients you avoid, like cilantro, before you start.' },
+      { ko: '만든 요리를 다 먹게 되니 배를 비우고 가세요.', en: 'You eat everything you cook, so come hungry.' } ],
+    phrases: [
+      { ko: ['이건 뭐예요?', '이거 뭐야?'], en: 'What is this?', vi: ['Cho em hỏi, cái này là gì?', 'Cái này là gì?'], pr: ['쪼 앰 호이, 까이 나이 라 지?', '까이 나이 라 지?'] },
+      { ko: ['땅콩 알레르기가 있어요', '나 땅콩 알레르기 있어'], en: 'I am allergic to peanuts', vi: ['Em bị dị ứng đậu phộng.', 'Tôi bị dị ứng đậu phộng.'], pr: ['앰 비 지 응 더우 퐁', '또이 비 지 응 더우 퐁'] } ],
+    link: 'food', map: 'cooking class Hoi An', k: '쿠킹 요리 클래스 요리교실 시장 반쎄오 짜께 cooking class market tra que' },
+
+  { id: 'aodai', time: 'day', emoji: '👗',
+    name: { ko: '아오자이 입고 올드타운 걷기', en: 'Old Town walk in an áo dài' },
+    vi: 'Mặc áo dài dạo phố cổ',
+    dur: { ko: '2~3시간', en: '2–3 hours' },
+    desc: { ko: '베트남 전통 의상 아오자이를 빌려 입고 유네스코 세계유산인 호이안 올드타운을 걸어요. 노란 벽과 등불 거리가 배경이라 사진이 정말 잘 나와요.', en: "Rent Vietnam's traditional áo dài and stroll Hội An's UNESCO-listed Old Town, whose yellow walls and lantern-lined streets make great photos." },
+    where: { ko: '호이안 올드타운', en: 'Hội An Old Town' },
+    when: { ko: '오후 3시~밤 9시 30분에는 차가 다니지 않아 걷기 좋아요', en: 'Cars are kept out from 3 PM to 9:30 PM, the best time to walk' },
+    price: { ko: '아오자이 대여 1인 약 7천~1만 원(가게마다 달라요) · 통합 입장권 12만 동(약 {krw:120000})', en: 'Áo dài rental about ₩7,000–10,000 per person (varies by shop); combined ticket VND 120,000 ({krw:120000})' },
+    how: { ko: '올드타운 근처 대여점에서 빌려요. 통합 입장권은 올드타운 매표소에서 사요.', en: 'Rent from shops near the Old Town and buy the combined ticket at Old Town ticket booths.' },
+    tips: [
+      { ko: '통합 입장권 한 장으로 내원교(일본교)·회관·옛집 등 명소 5곳에 들어갈 수 있어요.', en: 'One combined ticket gets you into 5 sights, such as the Japanese Covered Bridge, assembly halls and old houses.' },
+      { ko: '회관과 사원 안에서는 모자를 벗고 조용히 둘러보세요.', en: 'Take off your hat and keep your voice down inside temples and assembly halls.' } ],
+    phrases: [
+      { ko: ['아오자이 빌릴 수 있어요?', '아오자이 빌려 줄래?'], en: 'Can I rent an áo dài?', vi: ['Cho em thuê áo dài được không?', 'Cho tôi thuê áo dài nhé?'], pr: ['쪼 앰 투에 아오 자이 드억 콩?', '쪼 또이 투에 아오 자이 녜?'] },
+      { ko: ['사진 좀 찍어 주시겠어요?', '사진 좀 찍어 줄래?'], en: 'Could you take a photo of me?', vi: ['Chụp ảnh giúp em được không?', 'Chụp giúp tôi một tấm nhé?'], pr: ['쭙 아잉 줍 앰 드억 콩?', '쭙 줍 또이 못 떰 녜?'] } ],
+    link: 'culture', map: 'Hoi An Ancient Town', k: '아오자이 올드타운 구시가지 입장권 사진 내원교 일본교 ao dai old town ancient town ticket photo' },
+
+  { id: 'pottery', time: 'day', emoji: '🏺',
+    name: { ko: '탄하 도자기 마을에서 도자기 빚기', en: 'Pottery at Thanh Hà village' },
+    vi: 'Làng gốm Thanh Hà',
+    dur: { ko: '1~2시간', en: '1–2 hours' },
+    desc: { ko: '수백 년 동안 도자기를 빚어 온 마을에서 장인들의 공방과 가마를 둘러보고, 물레를 돌려 직접 도자기를 빚어 봐요.', en: 'Explore the workshops and kilns of a centuries-old pottery village and try shaping clay on a wheel.' },
+    where: { ko: '호이안 올드타운에서 서쪽으로 약 3km (자전거·택시·보트)', en: 'About 3 km west of the Old Town (bike, taxi or boat)' },
+    when: { ko: '매일 오전 8시 30분~오후 5시', en: 'Daily, 8:30 AM–5 PM' },
+    price: { ko: '입장료 성인 3만 5천 동(약 {krw:35000}) · 어린이 1만 5천 동', en: 'Entry VND 35,000 for adults ({krw:35000}), VND 15,000 for children' },
+    how: { ko: '마을 입구 매표소에서 입장권을 사면 돼요.', en: 'Buy a ticket at the village entrance.' },
+    tips: [
+      { ko: '입장권에 도자기 만들기 체험과 작은 도자기 피리 기념품이 들어 있어요.', en: 'The ticket includes a pottery-making session and a small clay whistle souvenir.' },
+      { ko: '손에 흙이 묻으니 물티슈를 챙기세요.', en: 'Bring wet wipes; your hands will get muddy.' } ],
+    phrases: [
+      { ko: ['제가 직접 해 봐도 돼요?', '나 해 봐도 돼?'], en: 'Can I try it myself?', vi: ['Em làm thử được không?', 'Tôi làm thử được không?'], pr: ['앰 람 트 드억 콩?', '또이 람 트 드억 콩?'] },
+      { ko: ['이거 얼마예요?', '이거 얼마야?'], en: 'How much is this?', vi: ['Cho em hỏi, cái này bao nhiêu tiền?', 'Cái này bao nhiêu?'], pr: ['쪼 앰 호이, 까이 나이 바오 니에우 띠엔?', '까이 나이 바오 니에우?'] } ],
+    map: 'Thanh Ha Pottery Village, Hoi An', k: '도자기 탄하 마을 물레 공방 pottery thanh ha village clay' }
+];
+var expById = function (id) { for (var i = 0; i < EXPERIENCES.length; i++) if (EXPERIENCES[i].id === id) return EXPERIENCES[i]; return null; };
+
 /* ================= trip prep (facts checked Oct 2026) ================= */
 var PREP_ENTRY = [
   { ic: 'ri-passport-line', t: { ko: '무비자 45일', en: '45 days visa-free' },
@@ -582,10 +710,17 @@ var PREP_LIFE = [
     d: { ko: '수돗물은 마시지 말고 생수를 사 드세요. 양치할 때도 생수를 쓰면 더 안전해요.', en: 'Do not drink tap water. Using bottled water to brush your teeth is safer too.' } },
   { ic: 'ri-sim-card-2-line', t: { ko: '유심 · eSIM', en: 'SIM or eSIM' },
     d: { ko: 'eSIM을 미리 사 두거나 공항에서 유심을 사면 돼요. Viettel·Vinaphone·Mobifone이 대표 통신사예요.', en: 'Buy an eSIM in advance or a SIM card at the airport. Viettel, Vinaphone and Mobifone are the main carriers.' } },
-  { ic: 'ri-exchange-dollar-line', t: { ko: '환전', en: 'Changing money' }, link: 'calc',
-    d: { ko: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요. 지폐 구분은 동 계산기 탭에서 확인하세요.', en: 'Most travelers bring US dollars and change them locally, or withdraw dong from ATMs with a travel card. See the Dong Calculator tab to tell the notes apart.' } },
+  { ic: 'ri-taxi-line', t: { ko: '이동은 Grab으로', en: 'Get around with Grab' },
+    d: { ko: 'Grab 앱으로 부르면 요금이 미리 정해져 흥정할 필요가 없어요. 길에서 탈 때는 마이린·비나선 같은 정식 택시를 타세요.', en: 'Grab shows the fare up front, so there is no haggling. If you hail a cab, use licensed companies like Mai Linh or Vinasun.' } },
   { ic: 'ri-smartphone-line', t: { ko: '미리 깔아 둘 앱', en: 'Apps to install' },
     d: { ko: 'Grab(택시·오토바이·배달), Xanh SM(전기 택시), 구글 지도, 번역 앱(파파고 등)을 출발 전에 깔아 두세요.', en: 'Install Grab (rides and delivery), Xanh SM (electric taxis), Google Maps and a translator app before you go.' } }
+];
+var PREP_MONEY = [
+  { ic: 'ri-exchange-dollar-line', ko: '달러는 빳빳한 100달러 신권으로 준비하세요. 작은 단위나 낡은 지폐는 환율을 덜 쳐 주거나 받지 않기도 해요. 환전소마다 환율이 다르니 두세 곳을 비교해 보세요.', en: 'Bring crisp, new USD 100 notes. Small or worn notes may get a lower rate or be refused. Rates differ between counters, so compare two or three.' },
+  { ic: 'ri-bank-card-line', ko: '트래블카드로 현지 ATM에서 동을 뽑으면 카드사 수수료가 면제돼요. 조건은 카드마다 달라요. 트래블로그는 월 인출 한도(1만 달러) 안에서 모두 면제, 트래블월렛은 한 달 500달러(약 1,300만 동)까지 면제되고 넘는 금액엔 2%가 붙어요.', en: 'Korean travel cards waive their own ATM fees, but terms differ. Travellog waives them on everything within its USD 10,000 monthly limit; Travel Wallet waives them on the first USD 500 a month (about VND 13 million) and charges 2% above that.' },
+  { ic: 'ri-bank-line', ko: 'ATM을 운영하는 현지 은행이 받는 수수료는 트래블카드도 면제해 주지 않아요. VPBank ATM은 수수료가 없는 경우가 많고, TPBank는 2025년 6월부터 수수료를 받아요. 뽑기 전에 화면에 뜨는 수수료를 확인하세요.', en: 'Travel cards do not cover the fee the local ATM bank adds. VPBank ATMs often charge nothing, while TPBank has charged a fee since June 2025. Check the fee shown on screen before you confirm.' },
+  { ic: 'ri-error-warning-line', ko: 'ATM 화면에서 원화로 환산해 주는 옵션(With conversion)을 고르면 환전 수수료가 두 번 붙어요. 동으로 바로 받는 옵션(Without conversion)을 고르세요.', en: 'If the ATM offers to convert to won (“With conversion”), decline. Choosing “Without conversion” avoids paying for the exchange twice.' },
+  { ic: 'ri-store-2-line', ko: '호텔·큰 식당·마트는 카드가 되지만, 시장·노점·작은 가게는 현금만 받는 곳이 많아요.', en: 'Hotels, larger restaurants and supermarkets take cards, but markets, street stalls and small shops are often cash only.' }
 ];
 var PREP_WEATHER = [
   { r: 'north', city: { ko: '하노이 · 하롱베이 · 사파', en: 'Hanoi · Ha Long Bay · Sa Pa' }, rows: [
@@ -633,15 +768,17 @@ var TAB_KEYS = {
   calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address',
-  prep: '여행 준비 준비물 체크리스트 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
+  exp: '문화체험 체험 투어 호이안 다낭 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour hoi an da nang',
+  prep: '여행 준비 준비물 체크리스트 ATM 트래블카드 트래블로그 트래블월렛 수수료 카드 결제 달러 환전소 VPBank TPBank 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
 };
 
 /* ================= state ================= */
-var TABS = ['phrases', 'calc', 'food', 'culture', 'emergency', 'prep'];
+var TABS = ['exp', 'phrases', 'calc', 'food', 'culture', 'emergency', 'prep'];
 var hashTab = (location.hash || '').replace('#', '');
-var savedTab = store.get('tab', 'phrases');
+var savedTab = store.get('tab', 'exp');
 var state = {
-  tab: TABS.indexOf(hashTab) >= 0 ? hashTab : (TABS.indexOf(savedTab) >= 0 ? savedTab : 'phrases'),
+  tab: TABS.indexOf(hashTab) >= 0 ? hashTab : (TABS.indexOf(savedTab) >= 0 ? savedTab : 'exp'),
+  expTime: 'all',
   tone: store.get('tone', 'polite') === 'casual' ? 'casual' : 'polite',
   lang: store.get('lang', 'ko') === 'en' ? 'en' : 'ko',
   bookmarks: store.get('bookmarks', ['p:nocilantro']),
@@ -1087,6 +1224,55 @@ function numRow(label, num) {
     '<a href="tel:' + num.replace(/-/g, '') + '" class="font-bold text-foreground-950 tabular select-all hover:text-accent-400 transition-colors">' + num + '</a>' +
     '<button type="button" data-action="copy" data-text="' + num + '" aria-label="' + esc(t('copy') + ' ' + num) + '" class="ml-auto p-1.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors"><i class="ri-file-copy-line"></i></button></div>';
 }
+function krwTpl(str) { return esc(str).replace(/\{krw:(\d+)\}/g, function (_, v) { return '<span data-krw="' + v + '" class="tabular">' + fmt(Number(v) * effRate() / 1000) + t('unitK') + '</span>'; }); }
+function expCard(x) {
+  var night = x.time === 'night';
+  var chipCls = night ? 'bg-primary-500/10 text-primary-300 border-primary-500/30' : 'bg-accent-500/10 text-accent-300 border-accent-500/30';
+  var info = function (ic, label, html) {
+    return '<div class="flex items-start gap-2.5"><i class="' + ic + ' text-base text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>';
+  };
+  var photo = EXP_PHOTOS[x.id] ? '<div class="aspect-[16/9] bg-background-200 overflow-hidden"><img src="img/exp/' + x.id + '.webp" alt="' + esc(L(x.name)) + '" width="960" height="540" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>' : '';
+  var phrases = x.phrases.map(function (p) {
+    var vi = p.vi[ti()];
+    return '<div class="flex items-center gap-3 p-2.5 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-sm font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
+      '<p class="text-[11px] text-foreground-500">' + esc(pMeaning(p)) + (state.lang === 'ko' ? ' · [' + esc(p.pr[ti()]) + ']' + esc(casualFeel(p)) : '') + '</p></div>' +
+      '<button type="button" data-action="speak" data-text="' + esc(vi) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors flex-shrink-0"><i class="ri-volume-up-line"></i></button></div>';
+  }).join('');
+  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
+  return '<article class="bg-background-100 rounded-2xl border border-background-200 overflow-hidden flex flex-col">' + photo +
+    '<div class="p-5 space-y-4 flex-1 flex flex-col">' +
+    '<div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + x.emoji + '</div>' +
+    '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-1.5 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ' + chipCls + '">' + esc(t(night ? 'exp_night' : 'exp_day')) + '</span>' +
+    '<span class="flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-background-200/70 text-foreground-600 border border-background-300"><i class="ri-time-line"></i>' + esc(L(x.dur)) + '</span></div>' +
+    '<h3 class="font-heading font-bold text-foreground-950 text-base leading-snug">' + esc(L(x.name)) + '</h3><p class="vi text-sm text-accent-400">' + esc(x.vi) + '</p></div>' + bmBtn('e:' + x.id) + '</div>' +
+    '<p class="text-sm text-foreground-500 leading-relaxed">' + esc(L(x.desc)) + '</p>' +
+    '<dl class="grid grid-cols-1 gap-2.5 p-3 rounded-xl bg-background-50 border border-background-200">' +
+    info('ri-map-pin-line', t('exp_where'), esc(L(x.where))) + info(night ? 'ri-moon-line' : 'ri-sun-line', t('exp_when'), esc(L(x.when))) +
+    info('ri-coins-line', t('exp_price'), krwTpl(L(x.price))) + info('ri-ticket-2-line', t('exp_how'), esc(L(x.how))) + '</dl>' +
+    '<div class="space-y-1.5"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_tips')) + '</p><ul class="space-y-1.5">' + x.tips.map(function (tp) {
+      return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + esc(L(tp)) + '</span></li>';
+    }).join('') + '</ul></div>' +
+    '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_phrases')) + '</p>' + phrases + '</div>' +
+    '<div class="flex flex-wrap gap-2 pt-1 mt-auto">' +
+    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(x.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-50 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
+    (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400">' + esc(t('tab_' + x.link)) + ' ' + esc(t('exp_related')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+    '</div></div></article>';
+}
+function viewExp() {
+  var counts = { all: EXPERIENCES.length, day: 0, night: 0 };
+  EXPERIENCES.forEach(function (x) { counts[x.time]++; });
+  var list = state.expTime === 'all' ? EXPERIENCES : EXPERIENCES.filter(function (x) { return x.time === state.expTime; });
+  return '<section class="space-y-6">' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    cardHead('🏮', 'accent', t('exp_title'), t('exp_desc')) +
+    '<p class="text-xs text-foreground-500 flex items-start gap-1.5"><i class="ri-car-line text-accent-400 mt-px"></i><span>' + esc(t('exp_access')) + '</span></p>' +
+    '<div class="flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap gap-2">' +
+    chip('exp-time', 'all', t('all'), state.expTime === 'all', counts.all) + chip('exp-time', 'day', t('exp_day'), state.expTime === 'day', counts.day) + chip('exp-time', 'night', t('exp_night'), state.expTime === 'night', counts.night) +
+    '</div>' + toneSeg() + '</div></div>' +
+    '<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">' + list.map(expCard).join('') + '</div>' +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('exp_note')) + '</p>' +
+    '</section>';
+}
 function prepItem(it) {
   var on = !!state.prep.checks[it.id];
   return '<button type="button" data-action="prep-check" data-value="' + it.id + '" role="checkbox" aria-checked="' + on + '" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left text-sm cursor-pointer transition-colors ' +
@@ -1142,6 +1328,13 @@ function viewPrep() {
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     cardHead('🧭', 'secondary', t('prep_lifeTitle'), t('prep_lifeDesc')) +
     '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">' + life + '</div></div>' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    cardHead('💱', 'primary', t('money_title'), t('money_desc')) +
+    '<ul class="grid grid-cols-1 md:grid-cols-2 gap-2">' + PREP_MONEY.map(function (m) {
+      return '<li class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-primary-500/10 text-primary-300"><i class="' + m.ic + ' text-lg"></i></span><p class="text-xs text-foreground-500 leading-relaxed min-w-0">' + esc(L(m)) + '</p></li>';
+    }).join('') +
+    '<li class="flex items-center gap-3 p-3 rounded-xl bg-accent-500/10 border border-accent-500/30"><span class="text-xl" aria-hidden="true">💴</span><button type="button" data-action="goto-tab" data-value="calc" class="flex items-center gap-1 text-xs font-bold text-accent-400 hover:text-accent-300 cursor-pointer text-left">' + esc(t('money_bills')) + '<i class="ri-arrow-right-line"></i></button></li></ul>' +
+    '<p class="text-[11px] text-foreground-400">' + esc(t('money_note')) + '</p></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     cardHead('🌦️', 'accent', t('prep_weatherTitle'), t('prep_weatherDesc')) +
     '<div class="grid grid-cols-1 md:grid-cols-3 gap-2">' + weather + '</div>' +
@@ -1200,22 +1393,37 @@ function viewEmergency() {
 function searchView(q) {
   var accented = /[\u0300-\u036f]/.test(q.normalize('NFD')) || /đ/i.test(q);
   var prep = accented ? function (x) { return String(x || '').toLowerCase().normalize('NFC').replace(/\s+/g, ' ').trim(); } : norm;
-  var nq = prep(q);
-  var hit = function (fields) { return prep(fields.join(' ')).indexOf(nq) >= 0; };
+  var nq = prep(q), qTokens = nq.split(' ');
+  // Latin queries match from the start of a word, so "atm" does not hit "boatmen" and "ice" does not hit "rice"
+  var latin = /^[a-z]/.test(nq);
+  var hit = function (fields) {
+    var s = prep(fields.join(' ')), i = s.indexOf(nq);
+    if (!latin) return i >= 0;
+    for (; i >= 0; i = s.indexOf(nq, i + 1)) if (i === 0 || !/[a-z0-9]/.test(s.charAt(i - 1))) return true;
+    return false;
+  };
   var ph = PHRASES.filter(function (p) { return hit([p.ko[0], p.ko[1], p.en, p.vi[0], p.vi[1], p.pr[0], p.pr[1], p.k, p.note ? p.note.ko + ' ' + p.note.en : '']); });
   var ds = DISHES.filter(function (d) { return hit([d.vi, d.ko, d.en, d.pr, d.k, d.d.ko, d.d.en]); });
+  var es = EXPERIENCES.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.desc.ko, x.desc.en, x.k]); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
   var us = MONEY_UNITS.filter(function (m) { return hit([m.u, m.say, m.pr, m.k]); });
   var tabs = Object.keys(TAB_KEYS).filter(function (k) {
     var words = prep(TAB_KEYS[k]).split(' ');
-    return words.some(function (w) { return w && (w.indexOf(nq) >= 0 || (nq.length >= 2 && w.length >= (/^[a-z]+$/.test(w) ? 3 : 1) && nq.indexOf(w) >= 0)); });
+    return words.some(function (w) {
+      if (!w) return false;
+      if (latin ? w.indexOf(nq) === 0 : w.indexOf(nq) >= 0) return true;
+      if (nq.length < 2) return false;
+      // the query contains a keyword: Latin keywords (3+ letters) and one-syllable Korean ones (동·원·돈·팁) only at the start of a word, so 소원 does not open the calculator
+      if (/^[a-z]+$/.test(w)) return w.length >= 3 && (' ' + nq).indexOf(' ' + w) >= 0;
+      return w.normalize('NFC').length > 1 ? nq.indexOf(w) >= 0 : qTokens.some(function (tok) { return tok.indexOf(w) === 0; });
+    });
   });
-  var total = ph.length + ds.length + ws.length + us.length;
+  var total = es.length + ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
-  var tabIcon = { calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line', prep: 'ri-suitcase-line' };
+  var tabIcon = { exp: 'ri-compass-3-line', calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line', prep: 'ri-suitcase-line' };
   var html = '<section class="space-y-6"><div class="flex flex-wrap items-center justify-between gap-3"><p class="text-sm text-foreground-500">' + esc(tf('results', { q: q, n: total })) + '</p>' +
     '<button type="button" data-action="clear-search" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-background-100 hover:bg-background-200 border border-background-200 text-xs font-semibold text-foreground-500 hover:text-foreground-900 cursor-pointer transition-colors"><i class="ri-close-line"></i>' + esc(t('clearSearch')) + '</button></div>';
   if (tabs.length) {
@@ -1223,6 +1431,7 @@ function searchView(q) {
       return '<button type="button" data-action="goto-tab" data-value="' + k + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><i class="' + tabIcon[k] + ' text-base"></i>' + esc(t('tab_' + k)) + ' <span class="text-xs font-semibold text-foreground-500">' + esc(t('goTab')) + '</span><i class="ri-arrow-right-line"></i></button>';
     }).join('') + '</div>';
   }
+  if (es.length) html += box('🏮', t('secExp'), es.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + es.map(expCard).join('') + '</div>');
   if (ph.length) html += box('💬', t('secPhrases'), ph.length, toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>');
   if (ds.length) html += box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>');
   if (ws.length) html += box('📖', t('secWords'), ws.length, '<div class="flex flex-wrap gap-2">' + ws.map(wordChip).join('') + '</div>');
@@ -1268,6 +1477,7 @@ function renderMain() {
   else if (state.tab === 'culture') html = viewCulture();
   else if (state.tab === 'emergency') html = viewEmergency();
   else if (state.tab === 'prep') html = viewPrep();
+  else if (state.tab === 'exp') html = viewExp();
   else html = viewPhrases();
   main.innerHTML = html;
   hydrate(main);
@@ -1369,9 +1579,10 @@ function bmModal() {
   var items = state.bookmarks.map(function (id) {
     var kind = id.slice(0, 2), key = id.slice(2), vi, meaning, pr;
     if (kind === 'p:') { var p = phraseById(key); if (!p) return ''; vi = p.vi[ti()]; meaning = pMeaning(p); pr = p.pr[ti()]; }
+    else if (kind === 'e:') { var x = expById(key); if (!x) return ''; vi = x.vi; meaning = L(x.name); pr = ''; }
     else { var d = dishById(key); if (!d) return ''; vi = d.vi; meaning = state.lang === 'en' ? d.en : d.ko; pr = d.pr; }
     return '<div class="flex items-center gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-base font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
-      '<p class="text-xs text-foreground-500">' + esc(meaning) + (state.lang === 'ko' ? ' · [' + esc(pr) + ']' : '') + '</p></div>' +
+      '<p class="text-xs text-foreground-500">' + esc(meaning) + (state.lang === 'ko' && pr ? ' · [' + esc(pr) + ']' : '') + '</p></div>' +
       '<button type="button" data-action="speak" data-text="' + esc(vi.split(' · ')[0]) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors"><i class="ri-volume-up-line"></i></button>' +
       '<button type="button" data-action="bookmark" data-id="' + id + '" aria-label="' + esc(t('remove')) + '" class="p-2 rounded-full text-foreground-400 hover:text-primary-300 hover:bg-primary-500/10 cursor-pointer transition-colors"><i class="ri-delete-bin-line"></i></button></div>';
   }).join('');
@@ -1522,7 +1733,7 @@ document.addEventListener('click', function (e) {
   var a = el.getAttribute('data-action'), v = el.getAttribute('data-value');
   switch (a) {
     case 'home':
-      state.query = ''; $('#search').value = ''; updateSearchClear(); setTab('phrases');
+      state.query = ''; $('#search').value = ''; updateSearchClear(); setTab('exp');
       window.scrollTo({ top: 0, behavior: reduceMotion() ? 'auto' : 'smooth' }); break;
     case 'tone':
       if (state.tone === v) break;
@@ -1541,6 +1752,7 @@ document.addEventListener('click', function (e) {
     case 'copy': copyText(el.getAttribute('data-text')); break;
     case 'bookmark': toggleBm(el.getAttribute('data-id')); break;
     case 'phrase-cat': state.phraseCat = v; renderMain(); break;
+    case 'exp-time': state.expTime = v; renderMain(); break;
     case 'slow': state.slow = !state.slow; store.set('slow', state.slow); renderMain(); break;
     case 'calc-dir':
       if (state.calc.dir !== v) { state.calc.dir = v; state.calc.amount = v === 'v2k' ? 150000 : 10000; renderMain(); } break;

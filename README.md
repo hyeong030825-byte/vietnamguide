@@ -9,6 +9,7 @@
 | `site/index.html` | 실제로 공개되는 파일. Cloudflare Pages가 `site` 폴더를 그대로 올립니다. |
 | `site/favicon.*`, `site/*.png` | 사이트 아이콘(브라우저 탭·홈 화면). `tools/make_icons.py`로 다시 만들 수 있어요. |
 | `site/img/food/*.webp` | 메뉴판 사진 (640×480). 원본에서 `tools/make_food_photos.py`로 만들어요. 메뉴 id와 파일 이름이 같아야 해요. |
+| `site/img/exp/*.webp` | 문화체험 카드 사진 (16:9, 960×540). 파일 이름은 체험 id(예: `lanternboat.webp`)와 같게 하고, `EXP_PHOTOS`에 id를 적어야 보여요. |
 | `src/page.html` | 화면 구조, 문구, 회화·메뉴 데이터, 동작 스크립트 (수정은 주로 여기서) |
 | `src/input.css` | 색상과 공통 스타일 |
 | `src/icons.json` | 페이지에 쓰인 아이콘 모음 (빌드할 때 자동 갱신) |
@@ -36,6 +37,8 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 ## 문구와 데이터 위치 (`src/page.html`)
 
 - `T` : 버튼·메뉴·안내 문구 (한국어 `ko`, 영어 `en`), 문화 & 에티켓 탭 문장
+- `EXPERIENCES` : 문화체험 탭 카드 (다낭·호이안). 가격의 `{krw:150000}`은 실시간 환율로 원화가 표시되는 자리예요. `EXP_PHOTOS`에 사진이 있는 체험 id를 적어요.
+- `PREP_ENTRY`, `PREP_BAN`, `PREP_LIFE`, `PREP_MONEY`, `PREP_WEATHER`, `PREP_CHECK` : 여행 준비 탭 (입국 규정, 반입 금지, 생활 정보, 환전·ATM, 날씨, 체크리스트)
 - `PHRASES` : 실전 회화 (존댓말/반말, 한글 발음)
 - `DISHES`, `WORDS`, `SWITCHES` : 음식 메뉴, 메뉴판 단어, 고수 빼기 스위치
 - `MISSIONS`, `CALL_CENTER` : 대사관·총영사관·영사콜센터 연락처
