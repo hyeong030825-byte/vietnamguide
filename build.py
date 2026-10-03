@@ -19,6 +19,10 @@ import subprocess
 ROOT = pathlib.Path(__file__).resolve().parent
 # 공개 주소. 도메인을 사서 연결하면 여기만 바꾸고 다시 빌드하세요.
 SITE_URL = "https://vietnamguide.pages.dev"
+# 구글 검색결과에 보일 사이트 이름과 별칭 (홈페이지의 WebSite 구조화 데이터·og:site_name).
+# 이게 없으면 구글이 pages.dev 주소의 사이트 이름을 'Cloudflare'로 표시합니다.
+SITE_NAME = "베트남 여행 스마트 가이드"
+SITE_ALT_NAMES = ["베트남 스마트 가이드"]
 SRC = ROOT / "src" / "page.html"
 CSS_IN = ROOT / "src" / "input.css"
 ICON_CACHE = ROOT / "src" / "icons.json"
@@ -40,6 +44,7 @@ HEAD_META = """<meta charset="UTF-8">
 <meta name="theme-color" content="#100D0C">
 <meta name="keywords" content="베트남 여행, 베트남 여행 준비물, 베트남 무비자, 베트남 회화, 베트남 동 환율 계산기, 베트남 음식 메뉴판, 베트남 에티켓">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="__SITE_NAME__">
 <meta property="og:title" content="베트남 여행 스마트 가이드 | 회화·환율·메뉴판·에티켓">
 <meta property="og:description" content="현지에서 바로 쓰는 단 한 권의 가이드. 회화, 환율 계산, 메뉴판 해독, 매너·안전 팁까지.">
 <meta property="og:locale" content="ko_KR">
@@ -47,6 +52,21 @@ HEAD_META = """<meta charset="UTF-8">
 <meta name="twitter:title" content="베트남 여행 스마트 가이드">
 <meta name="twitter:description" content="회화·환율·메뉴판·에티켓을 한눈에. 현지에서 바로 쓰는 실전 가이드.">
 """
+
+
+def site_name_jsonld():
+    """Google site name: https://developers.google.com/search/docs/appearance/site-names"""
+    data = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": SITE_NAME,
+        # 마지막 별칭은 도메인(소문자): 이름이 채택되지 않을 때 'Cloudflare' 대신 쓰이도록.
+        "alternateName": SITE_ALT_NAMES + [SITE_URL.split("://", 1)[1].lower()],
+        "url": SITE_URL + "/",
+        "inLanguage": "ko-KR",
+    }
+    return ('<script type="application/ld+json">' +
+            json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>\n")
 
 
 def ensure_tailwind():
@@ -146,7 +166,8 @@ def main():
     cut = page.index('<div id="root">')
     head_part = page[:cut].replace("<title>베트남 여행 스마트 가이드</title>",
                                    "<title>베트남 여행 스마트 가이드 | 회화·환율·메뉴판·에티켓</title>")
-    site = ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n" + HEAD_META.replace("__SITE_URL__", SITE_URL) + head_part +
+    head_meta = HEAD_META.replace("__SITE_URL__", SITE_URL).replace("__SITE_NAME__", SITE_NAME) + site_name_jsonld()
+    site = ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n" + head_meta + head_part +
             "</head>\n<body>\n" + page[cut:] + "\n</body>\n</html>\n")
     (SITE / "index.html").write_text(site, encoding="utf-8")
 
