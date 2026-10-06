@@ -140,13 +140,16 @@ var T = {
     siteLang: '사이트 언어', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_exp: '문화체험', mtab_exp: '문화체험',
-    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 꼭 먹어 볼 음식과 대표 체험을 볼 수 있어요.',
+    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 대표 체험을 볼 수 있어요.',
     ci_fly: '가는 법', ci_airport: '공항에서 시내로', ci_season: '여행하기 좋은 때', ci_days: '추천 일정', ci_stay: '숙소 잡기 좋은 곳', ci_move: '시내 이동',
-    ci_eats: '꼭 먹어 볼 음식', ci_dish: '메뉴판에서 보기', ci_count: '체험 {n}', exp_list: '{city} 대표 체험', cityGo: '여행 정보',
+    ci_eats: '꼭 먹어 볼 음식', ci_dish: '메뉴판에서 보기', ci_count: '명소 {s} · 체험 {n}', exp_list: '{city} 대표 체험', cityGo: '여행 정보',
     exp_day: '낮 체험', exp_night: '밤 체험', exp_where: '위치', exp_when: '추천 시간', exp_price: '가격', exp_how: '예약 방법',
     exp_tips: '알아 두면 좋아요', exp_phrases: '이럴 때 이렇게 말해요', exp_map: '지도에서 보기', exp_related: '보기',
     exp_note: '가격·운영 시간·항공편은 2025~2026년 공식 사이트, 예약 사이트, 현지 기사를 바탕으로 정리했어요(2026년 10월 확인). 현지 사정에 따라 달라질 수 있어요.',
-    secExp: '문화체험',
+    secExp: '문화체험', secSpots: '관광지',
+    spot_list: '{city} 유명 관광지', spot_desc: '주소는 복사해서 Grab이나 지도 앱에 붙여 넣거나, 택시 기사님께 크게 보여 주세요.',
+    spot_note: '주소는 2025년 7월 행정구역 개편 뒤의 새 동 이름으로 적었어요. 지도 앱에 옛 주소가 보여도 같은 곳이에요. 운영 시간과 입장료는 2026년 10월에 확인했고, 확인되지 않은 곳은 비워 뒀어요.',
+    spot_dress: '복장 예절 보기', copyAddr: '주소 복사', spotDriverMeaning: '이곳으로 데려다 주세요',
     money_title: '환전 · ATM · 카드 결제', money_desc: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요.', money_bills: '지폐 구분은 동 계산기 탭에서 확인하세요',
     money_note: '카드 조건은 2026년 기준이에요. 혜택과 수수료는 자주 바뀌니 출발 전에 카드 앱에서 꼭 확인하세요.',
     tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트', tab_prep: '여행 준비',
@@ -262,13 +265,16 @@ var T = {
     siteLang: 'Site language', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_exp: 'Culture & Experiences', mtab_exp: 'Explore',
-    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, what to eat and the top things to do.',
+    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and the top things to do.',
     ci_fly: 'Getting there', ci_airport: 'Airport to town', ci_season: 'When to go', ci_days: 'How long to stay', ci_stay: 'Where to stay', ci_move: 'Getting around',
-    ci_eats: 'Must-try food', ci_dish: 'See menu card', ci_count: '{n} to do', exp_list: 'Top things to do in {city}', cityGo: 'city guide',
+    ci_eats: 'Must-try food', ci_dish: 'See menu card', ci_count: '{s} sights · {n} to do', exp_list: 'Top things to do in {city}', cityGo: 'city guide',
     exp_day: 'Daytime', exp_night: 'Evening', exp_where: 'Where', exp_when: 'Best time', exp_price: 'Price', exp_how: 'Booking',
     exp_tips: 'Good to know', exp_phrases: 'Handy phrases', exp_map: 'Open in Maps', exp_related: 'Open',
     exp_note: 'Prices, hours and flights are based on 2025–2026 official sites, booking sites and local news (checked October 2026) and may change.',
-    secExp: 'Experiences',
+    secExp: 'Experiences', secSpots: 'Sights',
+    spot_list: 'Famous sights in {city}', spot_desc: 'Copy an address into Grab or a maps app, or show it to your taxi driver in large type.',
+    spot_note: 'Addresses use the new ward names from the July 2025 reorganization; maps may still show the old address for the same place. Hours and fees were checked in October 2026 and are left blank where they could not be confirmed.',
+    spot_dress: 'Dress code', copyAddr: 'Copy address', spotDriverMeaning: 'Please take me here',
     money_title: 'Money: exchange, ATMs & cards', money_desc: 'Most travelers either change US dollars at local exchange counters or withdraw dong from ATMs with a travel card.', money_bills: 'Tell the notes apart in the Dong Calculator tab',
     money_note: 'Card terms are as of 2026. Perks and fees change often, so check your card app before you go.',
     tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes', tab_prep: 'Trip Prep',
@@ -1168,6 +1174,274 @@ var EXPERIENCES = [
 ];
 var expById = function (id) { for (var i = 0; i < EXPERIENCES.length; i++) if (EXPERIENCES[i].id === id) return EXPERIENCES[i]; return null; };
 
+/* famous sights per city: addresses use the ward names in force since the July 2025 reform (street + city when the new ward was not confirmed);
+   hours and fees only where a 2025–2026 source confirmed them (checked Oct 2026) */
+var SPOTS = [
+  /* ---- danang ---- */
+  { id: 'dn_mykhe', city: 'danang', emoji: '🏖️',
+    name: { ko: '미케 비치', en: 'Mỹ Khê Beach' }, vi: 'Bãi biển Mỹ Khê',
+    d: { ko: '다낭 시내 동쪽으로 길게 이어지는 고운 모래 해변이에요. 해변 도로를 따라 호텔·카페·해산물 식당이 늘어서 있고, 아침 일찍이나 해 질 무렵 걷기 좋아요.', en: "A long stretch of fine sand on Da Nang's east side, with hotels, cafés and seafood restaurants along the beach road. Early morning and sunset are good times for a walk." },
+    addr: 'Võ Nguyên Giáp, Đà Nẵng',
+    info: { ko: '입장 무료', en: 'Free' },
+    map: 'My Khe Beach, Da Nang',
+    k: '미케 비치 미케비치 미케 해변 다낭 해변 바다 해수욕 my khe beach bai bien my khe da nang beach' },
+  { id: 'dn_linhung', city: 'danang', emoji: '🙏',
+    name: { ko: '린응사 (선짜 반도)', en: 'Linh Ứng Pagoda (Sơn Trà)' }, vi: 'Chùa Linh Ứng Bãi Bụt',
+    d: { ko: '선짜 반도 산자락의 절로, 바다를 내려다보는 높이 67m의 하얀 해수관음상으로 유명해요. 반바지·민소매처럼 짧은 옷은 피해 주세요.', en: 'A pagoda on the slopes of the Sơn Trà peninsula, known for its 67 m white Lady Buddha statue looking out to sea. Avoid shorts and sleeveless tops.' },
+    addr: 'Hoàng Sa, Sơn Trà, Đà Nẵng',
+    info: { ko: '매일 오전 6시~오후 9시 · 입장 무료', en: 'Daily 6 AM–9 PM · free' },
+    link: 'culture',
+    map: 'Chua Linh Ung Bai But, Son Tra, Da Nang',
+    k: '린응사 린응 사원 영응사 해수관음상 관음상 레이디 부처 레이디붓다 선짜 반도 선짜반도 손짜 반도 절 사찰 linh ung pagoda chua linh ung bai but son tra lady buddha' },
+  { id: 'dn_cathedral', city: 'danang', emoji: '⛪',
+    name: { ko: '다낭 대성당 (핑크 성당)', en: 'Da Nang Cathedral (Pink Church)' }, vi: 'Nhà thờ Chính tòa Đà Nẵng (Nhà thờ Con Gà)',
+    d: { ko: '분홍색 외관 때문에 핑크 성당으로 불리는 프랑스 시대 성당이에요. 첨탑 위 수탉 풍향계 덕분에 현지에선 닭 성당이라고도 하고, 지금도 매일 미사를 드리니 조용히 둘러봐 주세요.', en: 'A French-era church nicknamed the Pink Church for its colour; locals also call it the Rooster Church after the weathervane on its spire. Mass is still held daily, so keep quiet when you visit.' },
+    addr: '156 Trần Phú, Hải Châu, Đà Nẵng',
+    info: { ko: '입장 무료', en: 'Free' },
+    link: 'culture',
+    map: 'Da Nang Cathedral, 156 Tran Phu, Da Nang',
+    k: '다낭 대성당 핑크 성당 핑크성당 분홍 성당 닭 성당 수탉 성당 다낭 성당 da nang cathedral pink church rooster church nha tho con ga chinh toa' },
+  { id: 'dn_hanmarket', city: 'danang', emoji: '🛍️',
+    name: { ko: '한시장', en: 'Hàn Market' }, vi: 'Chợ Hàn',
+    d: { ko: '한강 변의 오래된 재래시장. 1층은 건어물·커피·기념품, 2층은 옷과 아오자이 맞춤집이 모여 있어요.', en: 'An old covered market by the Hàn River: dried seafood, coffee and souvenirs downstairs, clothes and áo dài tailors upstairs.' },
+    addr: '119 Trần Phú, Hải Châu, Đà Nẵng',
+    info: { ko: '매일 오전 6시~오후 7시 · 입장 무료', en: 'Daily 6 AM–7 PM · free' },
+    map: 'Han Market, Da Nang',
+    k: '한시장 한 시장 재래시장 기념품 건어물 커피 아오자이 han market cho han souvenir' },
+  { id: 'dn_chuacau', city: 'danang', emoji: '🌉',
+    name: { ko: '내원교 (일본 다리)', en: 'Japanese Covered Bridge' }, vi: 'Chùa Cầu',
+    d: { ko: '호이안 구시가를 상징하는 지붕 덮인 다리로, 안쪽에 작은 사당이 있어요. 약 2년간의 복원을 마치고 2024년 8월 다시 열었고, 다리를 건너려면 구시가 입장권이 필요해요.', en: "The roofed bridge that symbolises Hội An's Old Town, with a small shrine inside. It reopened in August 2024 after about two years of restoration; crossing it requires the Old Town ticket." },
+    addr: 'Nguyễn Thị Minh Khai, Hội An, Đà Nẵng',
+    info: { ko: '매일 오전 7시 30분~오후 9시 30분 · 구시가 입장권 외국인 12만 동(약 {krw:120000})', en: 'Daily 7:30 AM–9:30 PM · Old Town ticket VND 120,000 for foreigners ({krw:120000})' },
+    link: 'culture',
+    map: 'Japanese Covered Bridge, Hoi An',
+    k: '내원교 일본교 일본 다리 일본인 다리 호이안 다리 호이안 구시가 올드타운 구시가지 입장권 chua cau japanese covered bridge hoi an old town' },
+  { id: 'dn_anbang', city: 'danang', emoji: '🌴',
+    name: { ko: '안방 비치', en: 'An Bàng Beach' }, vi: 'Biển An Bàng',
+    d: { ko: '호이안 구시가에서 3~5km 떨어진 한적한 해변이에요. 바닷가를 따라 카페와 해산물 식당이 있어 구시가 구경과 묶어 반나절 쉬어 가기 좋아요.', en: 'A laid-back beach 3–5 km from Hội An Old Town, with cafés and seafood restaurants along the sand. Easy to pair with the Old Town for a relaxed half day.' },
+    addr: 'Hai Bà Trưng, Hội An Tây, Đà Nẵng',
+    info: { ko: '', en: '' },
+    map: 'An Bang Beach, Hoi An',
+    k: '안방 비치 안방비치 안방 해변 호이안 해변 호이안 바다 an bang beach bai bien an bang hoi an' },
+  /* ---- nhatrang ---- */
+  { id: 'nt_beach', city: 'nhatrang', emoji: '🏖️',
+    name: { ko: '나트랑 해변', en: 'Nha Trang Beach' }, vi: 'Bãi biển Nha Trang',
+    d: { ko: '시내 중심 쩐푸 거리를 따라 약 6km 이어지는 반달 모양 해변이에요. 해변 공원과 산책로가 이어져 있어 시내 호텔에서 걸어서 가기 쉬워요.', en: 'A crescent beach running about 6 km along Trần Phú Street in the city centre, with seaside parks and a promenade within easy walking distance of town hotels.' },
+    addr: 'Trần Phú, Nha Trang, Khánh Hòa',
+    info: { ko: '', en: '' },
+    map: 'Nha Trang Beach, Tran Phu, Nha Trang',
+    k: '나트랑 해변 나짱 해변 냐짱 해변 쩐푸 해변 쩐푸 거리 시내 해변 바다 해수욕 nha trang beach bai bien tran phu' },
+  { id: 'nt_chodam', city: 'nhatrang', emoji: '🛒',
+    name: { ko: '담 시장', en: 'Đầm Market' }, vi: 'Chợ Đầm',
+    d: { ko: '연꽃 모양의 둥근 지붕이 눈에 띄는 나트랑의 대표 재래시장이에요. 건어물·제비집·기념품 가게가 많고, 가격표가 없는 곳은 흥정해 보세요.', en: "Nha Trang's best-known traditional market, under a round lotus-shaped roof. Look for dried seafood, bird's-nest products and souvenirs, and haggle where prices aren't marked." },
+    addr: 'Bến Chợ, Nha Trang, Khánh Hòa',
+    info: { ko: '매일 오전 5시~오후 6시 30분', en: 'Daily 5 AM–6:30 PM' },
+    map: 'Cho Dam, Nha Trang',
+    k: '담 시장 담시장 쩌담 쩌 담 재래시장 건어물 제비집 기념품 시장 cho dam dam market nha trang' },
+  { id: 'nt_cathedral', city: 'nhatrang', emoji: '⛪',
+    name: { ko: '나트랑 대성당 (돌 성당)', en: 'Nha Trang Cathedral (Stone Church)' }, vi: 'Nhà thờ Núi (Nhà thờ Chánh tòa Kitô Vua)',
+    d: { ko: '시내 언덕 위에 회색 돌로 지은 고딕 양식 성당으로, 현지에선 산 성당·돌 성당이라고 불러요. 지금도 미사를 드리는 성당이니 단정한 옷차림으로 조용히 둘러봐 주세요.', en: 'A grey-stone Gothic cathedral on a small hill in town, known locally as the Mountain Church or Stone Church. It is still a working church, so dress modestly and keep quiet.' },
+    addr: 'Thái Nguyên, Nha Trang, Khánh Hòa',
+    info: { ko: '입장 무료', en: 'Free' },
+    link: 'culture',
+    map: 'Nha Trang Cathedral, Thai Nguyen, Nha Trang',
+    k: '나트랑 대성당 돌 성당 돌성당 산 성당 나트랑 성당 나짱 성당 nha tho nui nha tho da stone church nha trang cathedral christ the king' },
+  { id: 'nt_vinwonders', city: 'nhatrang', emoji: '🎢',
+    name: { ko: '빈원더스 나트랑', en: 'VinWonders Nha Trang' }, vi: 'VinWonders Nha Trang',
+    d: { ko: '혼째섬에 있는 대형 테마파크로 놀이기구·워터파크·아쿠아리움이 한곳에 있어요. 시내 남쪽 쩐푸 거리 끝(꺼우다 항 옆) 빈펄 터미널에서 바다 위 케이블카로 건너가고, 케이블카 점검 기간이나 밤늦게는 쾌속선이 대신 다녀요.', en: 'A big theme park on Hòn Tre island with rides, a water park and an aquarium. Cross by sea cable car from the Vinpearl terminal at the south end of Trần Phú Street, next to Cầu Đá port; speedboats run instead during cable car maintenance and late at night.' },
+    addr: 'Đảo Hòn Tre, Nha Trang, Khánh Hòa',
+    info: { ko: '매일 오전 9시~오후 8시 · 성인 105만 동(약 {krw:1050000}), 왕복 케이블카·배 포함 · 2026년 10월 26일~11월 10일은 케이블카 점검으로 쾌속선만 운행', en: 'Daily 9 AM–8 PM · adults VND 1,050,000 ({krw:1050000}), round-trip cable car or boat included · cable car closed for maintenance 26 Oct–10 Nov 2026 (speedboats run instead)' },
+    map: 'VinWonders Nha Trang',
+    k: '빈원더스 빈원더스 나트랑 빈펄랜드 빈펄 랜드 빈펄 혼째섬 혼째 케이블카 놀이공원 워터파크 테마파크 아쿠아리움 vinwonders nha trang vinpearl land hon tre cable car' },
+  { id: 'nt_honchong', city: 'nhatrang', emoji: '🪨',
+    name: { ko: '혼쫑 곶', en: 'Hòn Chồng Promontory' }, vi: 'Hòn Chồng',
+    d: { ko: '바닷가에 커다란 바위들이 겹겹이 쌓인 곶으로, 바위 위에서 나트랑 바다와 해안선을 바라볼 수 있어요. 시내 중심에서 북쪽으로 약 3km 떨어져 있어요.', en: 'A headland of huge stacked boulders with views over the bay and the coastline, about 3 km north of the city centre.' },
+    addr: 'Hòn Chồng, Bắc Nha Trang, Khánh Hòa',
+    info: { ko: '입장료 약 2만 2천 동(약 {krw:22000})', en: 'Admission about VND 22,000 ({krw:22000})' },
+    map: 'Hon Chong Promontory, Nha Trang',
+    k: '혼쫑 혼총 혼종 혼쫑곶 혼쫑 곶 바위 곶 일출 hon chong promontory hon chong nha trang' },
+  { id: 'nt_nightmarket', city: 'nhatrang', emoji: '🌙',
+    name: { ko: '나트랑 야시장', en: 'Nha Trang Night Market' }, vi: 'Chợ đêm Nha Trang',
+    d: { ko: '해변 도로 쩐푸 거리의 침향탑과 4월 2일 광장 맞은편에 저녁마다 서는 야시장이에요. 옷·기념품 노점과 길거리 음식이 모여 있고, 사기 전에 흥정해 보세요.', en: 'An evening market on seafront Trần Phú Street, opposite the Agarwood (Trầm Hương) Tower and 2/4 Square, with clothes, souvenirs and street food. Bargain before you buy.' },
+    addr: '46 Trần Phú, Nha Trang, Khánh Hòa',
+    info: { ko: '매일 오후 6시~11시', en: 'Daily 6–11 PM' },
+    map: 'Nha Trang Night Market, 46 Tran Phu, Nha Trang',
+    k: '나트랑 야시장 나짱 야시장 냐짱 야시장 야시장 침향탑 기념품 길거리 음식 cho dem nha trang night market tran phu' },
+  /* ---- phuquoc ---- */
+  { id: 'pq_saobeach', city: 'phuquoc', emoji: '🏖️',
+    name: { ko: '사오 비치', en: 'Sao Beach' }, vi: 'Bãi Sao',
+    d: { ko: '푸꾸옥 남동쪽 해안에 있는 고운 흰 모래 해변이에요. 물빛이 맑아 해수욕하고 사진 찍기 좋아요.', en: 'A fine white-sand beach on the southeast coast of Phú Quốc, with clear water for swimming and photos.' },
+    addr: 'Bãi Sao, đặc khu Phú Quốc, An Giang',
+    info: { ko: '', en: '' },
+    map: 'Sao Beach, Phu Quoc',
+    k: '사오비치 사오 비치 바이사오 별해변 푸꾸옥 해변 sao beach bai sao phu quoc' },
+  { id: 'pq_grandworld', city: 'phuquoc', emoji: '🛶',
+    name: { ko: '그랜드 월드', en: 'Grand World Phú Quốc' }, vi: 'Grand World Phú Quốc',
+    d: { ko: '베네치아풍 운하와 알록달록한 건물이 늘어선 북부 바이자이 지역의 복합 관광 단지예요. 저녁에 조명과 공연이 더해져 산책하기 좋아요.', en: 'A Venice-themed leisure complex in the Bãi Dài area in the north, with canals and colourful streets that come alive in the evening.' },
+    addr: 'Bãi Dài, đặc khu Phú Quốc, An Giang',
+    info: { ko: '단지 입장 무료 · 곤돌라·공연 등은 별도 요금', en: 'Free to enter the complex · Gondola rides and shows cost extra' },
+    map: 'Grand World Phu Quoc',
+    k: '그랜드월드 그랜드 월드 베니스 곤돌라 테디베어 박물관 grand world phu quoc venice gondola' },
+  { id: 'pq_vinwonders', city: 'phuquoc', emoji: '🎢',
+    name: { ko: '빈원더스 푸꾸옥', en: 'VinWonders Phú Quốc' }, vi: 'VinWonders Phú Quốc',
+    d: { ko: '놀이기구와 워터파크, 아쿠아리움을 한 번에 즐길 수 있는 대형 테마파크예요. 하루 종일 머물 계획으로 가는 게 좋아요.', en: 'A large theme park combining rides, a water park and an aquarium. Plan on spending a full day.' },
+    addr: 'Bãi Dài, đặc khu Phú Quốc, An Giang',
+    info: { ko: '매일 오전 9시~오후 7시 30분 · 입장료 성인 105만 동(약 {krw:1050000}), 키 1~1.4m 어린이·60세 이상 80만 동, 1m 미만 무료', en: 'Daily 9 AM–7:30 PM · VND 1,050,000 for adults; VND 800,000 for children 1–1.4 m and seniors 60+; free under 1 m' },
+    map: 'VinWonders Phu Quoc',
+    k: '빈원더스 빈원더 빈펄랜드 테마파크 워터파크 아쿠아리움 vinwonders phu quoc vinpearl land' },
+  { id: 'pq_safari', city: 'phuquoc', emoji: '🦒',
+    name: { ko: '빈펄 사파리 푸꾸옥', en: 'Vinpearl Safari Phú Quốc' }, vi: 'Vinpearl Safari Phú Quốc',
+    d: { ko: '동물들이 풀어져 지내는 구역을 전용 버스를 타고 둘러보는 사파리 공원이에요. 빈원더스와 가까워 콤보권으로 묶어 가기 좋아요.', en: 'A safari park where a shuttle bus takes you through open-range animal zones. It sits near VinWonders, so a combo ticket is handy.' },
+    addr: 'Bãi Dài, đặc khu Phú Quốc, An Giang',
+    info: { ko: '매일 오전 8시 30분~오후 4시(오후 3시 이후 입장 불가) · 입장료 성인 95만 동(약 {krw:950000}), 키 1~1.4m 어린이·60세 이상 71만 동, 1m 미만 무료', en: 'Daily 8:30 AM–4 PM (no entry after 3 PM) · VND 950,000 for adults; VND 710,000 for children 1–1.4 m and seniors 60+; free under 1 m' },
+    map: 'Vinpearl Safari Phu Quoc',
+    k: '빈펄사파리 빈펄 사파리 사파리 동물원 vinpearl safari phu quoc zoo' },
+  { id: 'pq_prison', city: 'phuquoc', emoji: '⛓️',
+    name: { ko: '푸꾸옥 감옥(코코넛 감옥)', en: 'Phú Quốc Prison (Coconut Prison)' }, vi: 'Di tích Nhà tù Phú Quốc',
+    d: { ko: '프랑스 식민지 시기와 베트남 전쟁 때 포로수용소로 쓰인 역사 유적지예요. 고문 장면을 재현한 모형이 꽤 사실적이라 어린이와 갈 땐 참고하세요.', en: 'A historic prison camp used in the French colonial era and the Vietnam War. Its realistic torture re-creations may upset young children.' },
+    addr: '350 Nguyễn Văn Cừ, đặc khu Phú Quốc, An Giang',
+    info: { ko: '매일 운영, 점심시간(오전 11시 30분~오후 1시 30분) 휴관 · 입장 무료', en: 'Open daily, closed for lunch 11:30 AM–1:30 PM · Free' },
+    map: 'Phu Quoc Prison, Nguyen Van Cu, Phu Quoc',
+    k: '푸꾸옥감옥 푸꾸옥 감옥 코코넛감옥 코코넛 감옥 포로수용소 phu quoc prison coconut prison nha tu phu quoc' },
+  { id: 'pq_hoquoc', city: 'phuquoc', emoji: '🛕', link: 'culture',
+    name: { ko: '호국사(쭉럼 호꾸옥 선원)', en: 'Hộ Quốc Pagoda' }, vi: 'Thiền viện Trúc Lâm Hộ Quốc',
+    d: { ko: '동쪽 해안 언덕에서 바다를 내려다보는 사찰로, 푸꾸옥에서 가장 큰 절로 꼽혀요. 어깨와 무릎을 가리는 옷차림으로 방문하세요.', en: 'A hillside pagoda overlooking the sea on the east coast, often called the largest on Phú Quốc. Cover shoulders and knees.' },
+    addr: 'Ấp Suối Lớn, đặc khu Phú Quốc, An Giang',
+    info: { ko: '입장 무료', en: 'Free' },
+    map: 'Ho Quoc Pagoda, Phu Quoc',
+    k: '호국사 호꾸옥 호꾸억 사원 쭉럼 선원 푸꾸옥 사원 절 ho quoc pagoda truc lam ho quoc thien vien' },
+  /* ---- hanoi ---- */
+  { id: 'hn_mausoleum', city: 'hanoi', emoji: '🏛️',
+    name: { ko: '호찌민 묘소', en: 'Hồ Chí Minh Mausoleum' }, vi: 'Lăng Chủ tịch Hồ Chí Minh',
+    d: { ko: '호찌민 주석의 유해를 안치한 묘소로, 바딘 광장에 있어요. 반바지·민소매·짧은 치마 같은 차림으로는 들어갈 수 없으니 단정하게 입고 가세요.', en: "Ho Chi Minh's embalmed body lies here on Ba Đình Square. Shorts, sleeveless tops and short skirts are not allowed." },
+    addr: '2 Hùng Vương, Ba Đình, Hà Nội',
+    info: { ko: '화·수·목·토·일 오전에만 참배(4~10월 07:30~10:30, 11~3월 08:00~11:00, 주말·공휴일은 조금 연장) · 무료 · 2026년 9월 4일~11월 2일 정기 정비로 휴관(11월 3일 재개)', en: 'Tue–Thu, Sat & Sun mornings only (Apr–Oct 7:30–10:30, Nov–Mar 8:00–11:00, a little longer on some weekends/holidays) · Free · Closed for maintenance 4 Sep–2 Nov 2026 (reopens 3 Nov)' },
+    map: 'Ho Chi Minh Mausoleum, Hanoi',
+    k: '호찌민묘소 호찌민 묘소 호치민묘소 호치민 묘 호치민 영묘 바딘광장 바딘 광장 ho chi minh mausoleum lang bac lang chu tich ho chi minh ba dinh square', link: 'culture' },
+  { id: 'hn_onepillar', city: 'hanoi', emoji: '🪷',
+    name: { ko: '한기둥 사원(못꼿 사원)', en: 'One Pillar Pagoda' }, vi: 'Chùa Một Cột',
+    d: { ko: '연못 한가운데 돌기둥 하나 위에 얹힌 작은 목조 사원으로, 호찌민 묘소 바로 뒤편에 있어요. 사원이니 어깨와 무릎을 가리는 단정한 차림이 좋아요.', en: 'A tiny wooden shrine set on a single stone pillar in a lotus pond, just behind the mausoleum. Dress modestly (cover shoulders and knees).' },
+    addr: 'Phố Chùa Một Cột, Ba Đình, Hà Nội',
+    info: { ko: '무료', en: 'Free' },
+    map: 'One Pillar Pagoda, Hanoi',
+    k: '한기둥사원 한기둥 사원 못꼿사원 못꼿 사원 일주사 연우사 one pillar pagoda chua mot cot', link: 'culture' },
+  { id: 'hn_citadel', city: 'hanoi', emoji: '🏰',
+    name: { ko: '탕롱 황성', en: 'Imperial Citadel of Thăng Long' }, vi: 'Hoàng thành Thăng Long',
+    d: { ko: '천 년 넘게 베트남 왕조의 궁궐이 있던 자리로, 유네스코 세계유산이에요. 정문인 도안몬과 발굴 유적, 전쟁 때 쓰던 지하 지휘 벙커를 둘러볼 수 있어요.', en: 'Seat of Vietnamese royal power for over a thousand years and a UNESCO World Heritage site. See the Đoan Môn gate, excavated foundations and wartime command bunkers.' },
+    addr: '19C Hoàng Diệu, Ba Đình, Hà Nội',
+    info: { ko: '매일 08:00~17:00 · 입장료 10만 동(약 {krw:100000}) · 16세 미만 무료', en: 'Daily 8:00–17:00 · 100,000 VND · Free under 16' },
+    map: 'Imperial Citadel of Thang Long, 19C Hoang Dieu, Hanoi',
+    k: '탕롱황성 탕롱 황성 하노이 황성 탕롱 왕궁 탕롱 성채 도안몬 imperial citadel of thang long hoang thanh thang long doan mon' },
+  { id: 'hn_tranquoc', city: 'hanoi', emoji: '🛕',
+    name: { ko: '쩐꾸옥 사원', en: 'Trấn Quốc Pagoda' }, vi: 'Chùa Trấn Quốc',
+    d: { ko: '서호(호떠이)의 작은 섬에 있는, 1,500년 역사를 지닌 하노이에서 가장 오래된 사원으로 꼽혀요. 붉은 탑과 호수 풍경이 아름답고, 단정한 옷차림으로 방문해야 해요.', en: "Often called Hanoi's oldest pagoda (said to be about 1,500 years old), on a small islet in West Lake. Known for its red stupa; dress modestly." },
+    addr: '46 Thanh Niên, Tây Hồ, Hà Nội',
+    info: { ko: '무료', en: 'Free' },
+    map: 'Tran Quoc Pagoda, Hanoi',
+    k: '쩐꾸옥사원 쩐꾸옥 사원 진국사 서호 호떠이 tran quoc pagoda chua tran quoc west lake ho tay', link: 'culture' },
+  { id: 'hn_cathedral', city: 'hanoi', emoji: '⛪',
+    name: { ko: '하노이 대성당(성 요셉 성당)', en: "St. Joseph's Cathedral" }, vi: 'Nhà thờ Lớn Hà Nội',
+    d: { ko: '1886년에 지은 네오고딕 양식 성당으로, 구시가지와 호안끼엠 호수 가까이에 있어요. 지금도 미사가 열리는 곳이니 조용히 둘러보세요.', en: 'A neo-Gothic cathedral completed in 1886, near the Old Quarter and Hoàn Kiếm Lake. It is an active church, so keep quiet during Mass.' },
+    addr: '40 Nhà Chung, Hoàn Kiếm, Hà Nội',
+    info: { ko: '', en: '' },
+    map: "St. Joseph's Cathedral, Hanoi",
+    k: '하노이대성당 하노이 대성당 성요셉성당 성 요셉 성당 니트어런 st joseph cathedral hanoi nha tho lon ha noi', link: 'culture' },
+  { id: 'hn_hoalo', city: 'hanoi', emoji: '🔒',
+    name: { ko: '호아로 수용소', en: 'Hỏa Lò Prison' }, vi: 'Di tích Nhà tù Hỏa Lò',
+    d: { ko: '프랑스 식민 시기에 지은 감옥으로, 베트남 독립운동가들의 수감 역사와 베트남 전쟁 때 미군 포로(‘하노이 힐튼’) 관련 전시를 볼 수 있어요.', en: "A French colonial-era prison, now a museum on Vietnamese political prisoners and the American POWs who called it the 'Hanoi Hilton'." },
+    addr: '1 Hỏa Lò, Cửa Nam, Hà Nội',
+    info: { ko: '매일 08:00~17:00(명절 포함) · 입장료 5만 동(약 {krw:50000}) · 16세 미만 무료', en: 'Daily 8:00–17:00 incl. holidays · 50,000 VND · Free under 16' },
+    map: 'Hoa Lo Prison Relic, Hanoi',
+    k: '호아로수용소 호아로 수용소 호아로 감옥 호아로 형무소 하노이힐튼 하노이 힐튼 hoa lo prison hanoi hilton nha tu hoa lo' },
+  /* ---- hcmc ---- */
+  { id: 'sg_palace', city: 'hcmc', emoji: '🏛️',
+    name: { ko: '통일궁(독립궁)', en: 'Independence Palace' }, vi: 'Dinh Độc Lập',
+    d: { ko: '옛 남베트남 대통령궁으로, 1975년 4월 30일 탱크가 정문을 밀고 들어오며 전쟁이 끝난 곳이에요. 회의실·접견실과 지하 벙커를 그대로 둘러볼 수 있어요.', en: 'The former South Vietnamese presidential palace, where tanks broke through the gates on 30 April 1975. Tour the state rooms and the basement bunker.' },
+    addr: '135 Nam Kỳ Khởi Nghĩa, Bến Thành, TP. Hồ Chí Minh',
+    info: { ko: '매일 07:00~18:00(점심 휴관 없음) · 본관 입장료 4만 동(약 {krw:40000}), 전시관 포함 통합권 8만 동', en: 'Daily 7:00–18:00, no lunch break · Palace 40,000 VND; with exhibition 80,000 VND' },
+    map: 'Independence Palace, Ho Chi Minh City',
+    k: '통일궁 독립궁 독립궁전 남베트남 대통령궁 independence palace reunification palace dinh doc lap' },
+  { id: 'sg_notredame', city: 'hcmc', emoji: '⛪',
+    name: { ko: '노트르담 대성당', en: 'Notre-Dame Cathedral Basilica of Saigon' }, vi: 'Nhà thờ Đức Bà Sài Gòn',
+    d: { ko: '1880년에 완공된 붉은 벽돌 성당으로, 사이공의 대표 랜드마크예요. 2017년부터 대규모 복원 공사 중이라 2026년에도 비계가 남아 있고, 내부 관광은 할 수 없어요.', en: 'A red-brick cathedral completed in 1880 and a Saigon landmark. Under major restoration since 2017; in 2026 scaffolding remains and the interior is closed to sightseeing.' },
+    addr: '1 Công xã Paris, Sài Gòn, TP. Hồ Chí Minh',
+    info: { ko: '복원 공사 중(2027년 완공도 어렵다는 전망) · 외관만 관람, 내부는 미사 때만 입장', en: 'Under restoration (completion may slip past 2027) · Exterior only; interior open for Mass only' },
+    map: 'Notre-Dame Cathedral Basilica of Saigon',
+    k: '노트르담성당 노트르담 대성당 사이공 대성당 성모마리아 대성당 성모 대성당 notre dame cathedral saigon nha tho duc ba', link: 'culture' },
+  { id: 'sg_postoffice', city: 'hcmc', emoji: '📮',
+    name: { ko: '사이공 중앙우체국', en: 'Saigon Central Post Office' }, vi: 'Bưu điện Thành phố Hồ Chí Minh',
+    d: { ko: '1891년에 완공된 프랑스 식민지 시대 건물로, 지금도 우체국으로 쓰여요. 아치형 천장과 옛 지도를 구경하고 엽서를 부쳐 보세요.', en: 'Completed in 1891 in French colonial style and still a working post office. Admire the vaulted hall and old maps, and send a postcard.' },
+    addr: '2 Công xã Paris, Sài Gòn, TP. Hồ Chí Minh',
+    info: { ko: '무료', en: 'Free' },
+    map: 'Saigon Central Post Office',
+    k: '사이공중앙우체국 중앙우체국 사이공 우체국 호찌민 우체국 호치민 중앙우체국 saigon central post office buu dien thanh pho buu dien trung tam sai gon' },
+  { id: 'sg_benthanh', city: 'hcmc', emoji: '🛍️',
+    name: { ko: '벤탄 시장', en: 'Bến Thành Market' }, vi: 'Chợ Bến Thành',
+    d: { ko: '시계탑 정문으로 유명한 호찌민의 대표 시장이에요. 기념품·커피·먹거리 가게가 모여 있고, 흥정은 기본이에요.', en: "Saigon's best-known market, famous for its clock-tower gate. Souvenirs, coffee and food stalls; bargaining is expected." },
+    addr: 'Lê Lợi, Bến Thành, TP. Hồ Chí Minh',
+    info: { ko: '매일 대략 06:00~18:00(가게마다 달라요)', en: 'Daily approx. 6:00–18:00 (varies by stall)' },
+    map: 'Ben Thanh Market, Ho Chi Minh City',
+    k: '벤탄시장 벤탄 시장 벤짱 시장 ben thanh market cho ben thanh' },
+  { id: 'sg_nguyenhue', city: 'hcmc', emoji: '🚶',
+    name: { ko: '응우옌후에 거리 & 시청', en: 'Nguyễn Huệ Walking Street & City Hall' }, vi: 'Phố đi bộ Nguyễn Huệ',
+    d: { ko: '프랑스풍 노란 시청(인민위원회 청사)에서 사이공강 쪽으로 뻗은 보행자 광장이에요. 시청 앞 호찌민 동상과 야경을 보며 저녁 산책하기 좋아요.', en: "A pedestrian boulevard running from the yellow French-era City Hall (People's Committee building) toward the Saigon River. Great for an evening stroll by the Ho Chi Minh statue." },
+    addr: 'Nguyễn Huệ, Sài Gòn, TP. Hồ Chí Minh',
+    info: { ko: '무료', en: 'Free' },
+    map: 'Nguyen Hue Walking Street, Ho Chi Minh City',
+    k: '응우옌후에거리 응우옌후에 거리 응우옌후에 워킹스트리트 걷는거리 보행자거리 호찌민시청 호치민 시청 인민위원회청사 호찌민 동상 nguyen hue walking street pho di bo nguyen hue city hall ubnd' },
+  { id: 'sg_tandinh', city: 'hcmc', emoji: '💒',
+    name: { ko: '떤딘 성당(핑크 성당)', en: 'Tân Định Church' }, vi: 'Nhà thờ Tân Định',
+    d: { ko: '1876년에 완공된 성당으로, 온통 분홍빛 외관 덕분에 ‘핑크 성당’이라고 불려요. 미사가 열리는 성당이니 단정한 차림으로 조용히 둘러보세요.', en: 'Completed in 1876 and nicknamed the Pink Church for its bright pink facade. It is an active parish, so dress modestly and keep quiet.' },
+    addr: '289 Hai Bà Trưng, Xuân Hòa, TP. Hồ Chí Minh',
+    info: { ko: '', en: '' },
+    map: 'Tan Dinh Church, Ho Chi Minh City',
+    k: '떤딘성당 떤딘 성당 핑크성당 핑크 성당 분홍성당 tan dinh church pink church nha tho tan dinh', link: 'culture' },
+  /* ---- dalat ---- */
+  { id: 'dl_xuanhuong', city: 'dalat', emoji: '🦢',
+    name: { ko: '쑤언흐엉 호수', en: 'Xuân Hương Lake' }, vi: 'Hồ Xuân Hương',
+    d: { ko: '달랏 시내 한가운데 있는 둘레 약 5km의 초승달 모양 호수예요. 호숫가를 따라 산책하기 좋고, 바람이 잔잔한 날엔 오리배도 탈 수 있어요.', en: 'A crescent-shaped lake about 5 km around in central Đà Lạt. Lovely for a lakeside stroll, with swan pedal boats on calm days.' },
+    addr: 'Trần Quốc Toản, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '입장 무료', en: 'Free' },
+    map: 'Xuan Huong Lake, Da Lat',
+    k: '쑤언흐엉호수 쑤언흐엉 호수 수안흐엉 달랏 호수 오리배 xuan huong lake ho xuan huong' },
+  { id: 'dl_crazyhouse', city: 'dalat', emoji: '🏚️',
+    name: { ko: '크레이지 하우스', en: 'Crazy House' }, vi: 'Biệt thự Hằng Nga',
+    d: { ko: '나무뿌리와 동굴을 닮은 기묘한 건물이 미로처럼 이어진 게스트하우스 겸 관광 명소예요.', en: 'A guesthouse and attraction whose surreal, tree-root and cave-like buildings connect like a maze.' },
+    addr: '3 Huỳnh Thúc Kháng, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '매일 오전 8시 30분~오후 6시 · 입장료 키 1.4m 이상 8만 동(약 {krw:80000}), 1.2~1.4m 3만 동, 1.2m 미만 무료', en: 'Daily 8:30 AM–6 PM · VND 80,000 (1.4 m and taller), VND 30,000 (1.2–1.4 m), free under 1.2 m' },
+    map: 'Crazy House, Da Lat',
+    k: '크레이지하우스 크레이지 하우스 항응아 crazy house hang nga' },
+  { id: 'dl_station', city: 'dalat', emoji: '🚂',
+    name: { ko: '달랏 기차역', en: 'Đà Lạt Railway Station' }, vi: 'Ga Đà Lạt',
+    d: { ko: '1930년대에 지어진 프랑스풍 아르데코 양식의 옛 기차역이에요. 역을 둘러본 뒤 짜이맛(Trại Mát)까지 가는 관광열차를 탈 수도 있어요.', en: 'A 1930s French Art Deco station. After looking around, you can ride the tourist train to Trại Mát.' },
+    addr: '1 Quang Trung, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '역 입장료 5만 동(약 {krw:50000})', en: 'Station entry VND 50,000' },
+    map: 'Da Lat Railway Station',
+    k: '달랏기차역 달랏 기차역 달랏역 짜이맛 관광열차 da lat railway station ga da lat trai mat train' },
+  { id: 'dl_baodai', city: 'dalat', emoji: '🏛️',
+    name: { ko: '바오다이 여름 별궁(제3궁전)', en: 'Bảo Đại Summer Palace (Palace III)' }, vi: 'Dinh III (Dinh Bảo Đại)',
+    d: { ko: '베트남 마지막 황제 바오다이가 1930년대에 지은 여름 별궁으로, 당시의 방과 가구가 보존돼 있어요. 정원이 넓어 천천히 둘러보기 좋아요.', en: 'The 1930s summer residence of the last emperor of Vietnam, Bảo Đại, with preserved period rooms, furniture and spacious gardens.' },
+    addr: '1 Triệu Việt Vương, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '', en: '' },
+    map: 'Dinh Bao Dai III, Trieu Viet Vuong, Da Lat',
+    k: '바오다이궁전 바오다이 궁전 바오다이 여름궁전 바오다이 별장 제3궁전 딘3 bao dai summer palace dinh iii dinh 3 dinh bao dai' },
+  { id: 'dl_cathedral', city: 'dalat', emoji: '⛪', link: 'culture',
+    name: { ko: '달랏 대성당(닭 성당)', en: 'Đà Lạt Cathedral (Chicken Church)' }, vi: 'Nhà thờ Chính tòa Đà Lạt (Nhà thờ Con Gà)',
+    d: { ko: '1930~40년대에 지어진 성당으로, 첨탑 위 수탉 모양 풍향계 덕분에 "닭 성당"으로 불려요. 미사 중에는 관람을 피해 주세요.', en: 'Built in the 1930s–40s and nicknamed the "Chicken Church" for the rooster weathervane on its spire. Avoid visiting during Mass.' },
+    addr: '15 Trần Phú, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '입장 무료', en: 'Free' },
+    map: 'Da Lat Cathedral, Tran Phu, Da Lat',
+    k: '달랏대성당 달랏 대성당 닭성당 닭 성당 수탉성당 니콜라스바리 성당 da lat cathedral chicken church nha tho con ga st nicholas' },
+  { id: 'dl_truclam', city: 'dalat', emoji: '🚡', link: 'culture',
+    name: { ko: '죽림선원 & 로빈힐 케이블카', en: 'Trúc Lâm Monastery & Robin Hill Cable Car' }, vi: 'Thiền viện Trúc Lâm',
+    d: { ko: '뚜옌럼 호수 위 언덕에 있는 선종 사찰로, 로빈힐(Đồi Robin)에서 케이블카를 타고 소나무 숲 위로 가요. 케이블카는 평일 점심시간(약 11시 30분~오후 1시)에 운행을 쉬기도 해요.', en: 'A Zen monastery on a hill above Tuyền Lâm Lake, reached by cable car from Robin Hill over pine forest. The cable car may pause around lunch (about 11:30 AM–1 PM) on weekdays.' },
+    addr: 'Đường Trúc Lâm Yên Tử, Xuân Hương – Đà Lạt, Lâm Đồng',
+    info: { ko: '사원 입장 무료(케이블카는 별도 요금)', en: 'Monastery free (cable car costs extra)' },
+    map: 'Truc Lam Monastery, Da Lat',
+    k: '죽림선원 죽림사 쭉럼 사원 쭉람 달랏 케이블카 로빈힐 뚜옌럼 호수 truc lam monastery thien vien truc lam robin hill cable car tuyen lam' }
+];
+var spotById = function (id) { for (var i = 0; i < SPOTS.length; i++) if (SPOTS[i].id === id) return SPOTS[i]; return null; };
+
 /* ================= trip prep (facts checked Oct 2026) ================= */
 var PREP_ENTRY = [
   { ic: 'ri-passport-line', t: { ko: '무비자 45일', en: '45 days visa-free' },
@@ -1763,6 +2037,25 @@ function expCard(x, showCity) {
     (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400">' + esc(t('tab_' + x.link)) + ' ' + esc(t('exp_related')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
     '</div></div></article>';
 }
+/* a famous sight: address with copy / show-the-driver / map */
+function spotCard(sp, showCity) {
+  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
+  var info = L(sp.info);
+  return '<article class="p-4 bg-background-50 rounded-xl border border-background-200 flex flex-col gap-2.5 min-w-0">' +
+    '<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + sp.emoji + '</div>' +
+    '<div class="min-w-0 flex-1">' + (showCity ? '<span class="' + EXP_TAG + ' w-fit mb-1"><i class="ri-map-pin-2-line"></i>' + esc(L(cityById(sp.city).name)) + '</span>' : '') +
+    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(sp.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(sp.vi) + '</p></div>' + bmBtn('s:' + sp.id) + '</div>' +
+    '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(sp.d)) + '</p>' +
+    (info ? '<p class="flex items-start gap-1.5 text-[11px] text-foreground-600 leading-relaxed"><i class="ri-information-line text-foreground-400 mt-px"></i><span>' + krwTpl(info) + '</span></p>' : '') +
+    '<div class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-background-100 border border-background-200"><i class="ri-map-pin-line text-accent-400"></i>' +
+    '<span class="vi text-xs font-semibold text-foreground-900 leading-relaxed select-all break-words min-w-0 flex-1">' + esc(sp.addr) + '</span>' +
+    '<button type="button" data-action="copy" data-text="' + esc(sp.addr) + '" aria-label="' + esc(t('copyAddr')) + '" title="' + esc(t('copyAddr')) + '" class="p-1 -m-0.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors flex-shrink-0"><i class="ri-file-copy-line"></i></button></div>' +
+    '<div class="flex flex-wrap gap-2 mt-auto">' +
+    '<button type="button" data-action="spot-driver" data-value="' + sp.id + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' +
+    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(sp.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
+    (sp.link ? '<button type="button" data-action="goto-tab" data-value="' + sp.link + '" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-shirt-line"></i>' + esc(t('spot_dress')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+    '</div></article>';
+}
 /* 문화체험 tab: 도시별 여행 | 문화 & 에티켓 */
 function expViewSeg() {
   return '<div class="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-background-100 border border-background-200">' +
@@ -1774,12 +2067,13 @@ function expViewSeg() {
 }
 function cityGuide(c) {
   var picker = CITIES.map(function (o) {
-    var on = o.id === c.id, n = 0;
+    var on = o.id === c.id, n = 0, ns = 0;
     EXPERIENCES.forEach(function (x) { if (x.city === o.id) n++; });
+    SPOTS.forEach(function (x) { if (x.city === o.id) ns++; });
     return '<button type="button" data-action="exp-city" data-value="' + o.id + '" aria-pressed="' + on + '" class="flex flex-col items-center justify-center gap-0.5 px-1.5 py-2.5 rounded-xl border text-center cursor-pointer transition-colors min-w-0 ' +
       (on ? 'bg-accent-500/15 text-accent-400 border-accent-500/40' : 'bg-background-50 text-foreground-500 border-background-200 hover:text-foreground-900 hover:border-background-400') + '">' +
       '<span class="text-xl leading-none" aria-hidden="true">' + o.emoji + '</span><span class="text-[11px] font-bold leading-tight mt-1">' + esc(L(o.name)) + '</span>' +
-      '<span class="text-[10px] font-semibold opacity-70 tabular">' + esc(tf('ci_count', { n: n })) + '</span></button>';
+      '<span class="text-[10px] font-semibold opacity-70 tabular">' + esc(tf('ci_count', { n: n, s: ns })) + '</span></button>';
   }).join('');
   var info = c.info.map(function (r) {
     return '<div class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200 min-w-0">' +
@@ -1823,7 +2117,13 @@ function viewExp() {
   var chips = chip('exp-time', 'all', t('all'), time === 'all', counts.all) +
     (counts.day ? chip('exp-time', 'day', t('exp_day'), time === 'day', counts.day) : '') +
     (counts.night ? chip('exp-time', 'night', t('exp_night'), time === 'night', counts.night) : '');
-  return '<section class="space-y-6">' + head + cityGuide(c) +
+  var spots = SPOTS.filter(function (x) { return x.city === c.id; });
+  var spotBox = spots.length ? '<div id="spot-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">📍</span>' + esc(tf('spot_list', { city: L(c.name) })) + ' <span class="text-xs text-foreground-400 tabular">' + spots.length + '</span></h3>' +
+    '<p class="text-xs text-foreground-500">' + esc(t('spot_desc')) + '</p>' +
+    '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + spots.map(function (x) { return spotCard(x); }).join('') + '</div>' +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('spot_note')) + '</p></div>' : '';
+  return '<section class="space-y-6">' + head + cityGuide(c) + spotBox +
     '<div id="exp-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + c.emoji + '</span>' + esc(tf('exp_list', { city: L(c.name) })) + ' <span class="text-xs text-foreground-400 tabular">' + mine.length + '</span></h3>' +
     '<div class="flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap gap-2">' + chips + '</div>' + toneSeg() + '</div></div>' +
@@ -1964,6 +2264,7 @@ function searchView(q) {
   var ds = DISHES.filter(function (d) { return hit([d.vi, d.ko, d.en, d.pr, d.k, d.d.ko, d.d.en]); });
   var es = EXPERIENCES.filter(function (x) { var c = cityById(x.city); return hit([x.name.ko, x.name.en, x.vi, x.desc.ko, x.desc.en, x.k, x.area ? x.area.ko + ' ' + x.area.en : '', c.aka]); });
   var cs = CITIES.filter(function (c) { return hit([c.name.ko, c.name.en, c.vi, c.k]); });
+  var ss = SPOTS.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.d.ko, x.d.en, x.addr, x.k, cityById(x.city).aka]); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
   var us = MONEY_UNITS.filter(function (m) { return hit([m.u, m.say, m.pr, m.k]); });
@@ -1981,7 +2282,7 @@ function searchView(q) {
     });
   });
   if (cs.length) tabs = tabs.filter(function (k) { return k !== 'exp'; });
-  var total = es.length + ph.length + ds.length + ws.length + us.length;
+  var total = es.length + ss.length + ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
@@ -1997,6 +2298,7 @@ function searchView(q) {
   }
   var sec = {
     es: es.length ? box('🏮', t('secExp'), es.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + es.map(function (x) { return expCard(x, true); }).join('') + '</div>') : '',
+    ss: ss.length ? box('📍', t('secSpots'), ss.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ss.map(function (x) { return spotCard(x, true); }).join('') + '</div>') : '',
     ph: ph.length ? box('💬', t('secPhrases'), ph.length, toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>') : '',
     ds: ds.length ? box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>') : '',
     ws: ws.length ? box('📖', t('secWords'), ws.length, '<div class="flex flex-wrap gap-2">' + ws.map(wordChip).join('') + '</div>') : '',
@@ -2004,7 +2306,7 @@ function searchView(q) {
   };
   // a query that starts a dish name (pho, bun, banh mi, 반미) is a menu search: show the menu first, not experiences that mention "photos" or "phố"
   var dishFirst = ds.some(function (d) { return prep(d.vi).indexOf(nq) === 0 || prep(d.ko).indexOf(nq) === 0; });
-  html += (dishFirst ? ['ds', 'ws', 'es', 'ph', 'us'] : ['es', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
+  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'ph', 'us'] : ['ss', 'es', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
   if (!total && !tabs.length && !cs.length) {
     html += '<div class="bg-background-100 p-8 rounded-2xl border border-background-200 text-center space-y-3"><p class="text-3xl" aria-hidden="true">🔍</p><p class="font-heading font-bold text-foreground-950">' + esc(t('noResults')) + '</p><p class="text-xs text-foreground-400">' + esc(t('tryThese')) + '</p>' +
       '<div class="flex flex-wrap justify-center gap-2">' + t('sugg').map(function (s) { return chip('suggest', s, s, false); }).join('') + '</div></div>';
@@ -2149,6 +2451,7 @@ function bmModal() {
     var kind = id.slice(0, 2), key = id.slice(2), vi, meaning, pr;
     if (kind === 'p:') { var p = phraseById(key); if (!p) return ''; vi = p.vi[ti()]; meaning = pMeaning(p); pr = p.pr[ti()]; }
     else if (kind === 'e:') { var x = expById(key); if (!x) return ''; vi = x.vi; meaning = L(x.name); pr = ''; }
+    else if (kind === 's:') { var sp = spotById(key); if (!sp) return ''; vi = sp.vi; meaning = L(sp.name) + ' · ' + sp.addr; pr = ''; }
     else { var d = dishById(key); if (!d) return ''; vi = d.vi; meaning = state.lang === 'en' ? d.en : d.ko; pr = d.pr; }
     return '<div class="flex items-center gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-base font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
       '<p class="text-xs text-foreground-500">' + esc(meaning) + (state.lang === 'ko' && pr ? ' · [' + esc(pr) + ']' : '') + '</p></div>' +
@@ -2325,6 +2628,10 @@ document.addEventListener('click', function (e) {
     case 'exp-view': state.expView = v; store.set('expView', v); renderMain(); break;
     case 'exp-city': state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); break;
     case 'exp-city-go': state.city = v; store.set('city', v); state.expTime = 'all'; state.expView = 'city'; store.set('expView', 'city'); setTab('exp'); break;
+    case 'spot-driver':
+      var sd = spotById(v);
+      if (sd) openModal('big', { label: t('showDriver'), title: 'Làm ơn chở tôi đến đây:', vi: sd.vi, sub: sd.addr, meaning: L(sd.name) + ' · ' + t('spotDriverMeaning'), speak: 'Làm ơn chở tôi đến ' + sd.vi + '.' });
+      break;
     case 'dish-open':
       if (!dishById(v)) break;
       state.food.cat = 'all'; setTab('food');

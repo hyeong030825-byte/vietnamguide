@@ -38,6 +38,7 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 
 - `T` : 버튼·메뉴·안내 문구 (한국어 `ko`, 영어 `en`), 문화 & 에티켓 문장
 - `CITIES` : 문화체험 탭의 도시별 여행 정보 6곳 (다낭·호이안, 나트랑, 푸꾸옥, 하노이·하롱베이, 호치민, 달랏). 가는 법·공항에서 시내·여행 시기·일정·숙소·이동·음식·팁. `aka`는 체험 카드를 찾을 때 쓰는 도시 이름, `k`는 도시 바로가기 검색어예요.
+- `SPOTS` : 도시별 유명 관광지 (`city`로 도시를 정해요). 주소 `addr`는 베트남어로, 2025년 7월 행정구역 개편 뒤의 새 동 이름을 확인된 곳만 적었어요. 운영 시간·입장료 `info`는 확인된 것만 넣고 모르면 비워 둬요.
 - `EXPERIENCES` : 도시별 체험 카드 (`city`로 도시를 정해요). 가격의 `{krw:150000}`은 실시간 환율로 원화가 표시되는 자리예요. `EXP_PHOTOS`에 사진이 있는 체험 id를 적어요.
 - `PREP_ENTRY`, `PREP_BAN`, `PREP_LIFE`, `PREP_MONEY`, `PREP_WEATHER`, `PREP_CHECK` : 여행 준비 탭 (입국 규정, 반입 금지, 생활 정보, 환전·ATM, 날씨, 체크리스트)
 - `PHRASES` : 실전 회화 (존댓말/반말, 한글 발음)
@@ -62,4 +63,5 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - The Claude page version is written to `build/claude-page.html` (git-ignored). Claude page: https://claude.ai/artifact/CTnwBVkGrjGXhuVpcU2zB3 — publish it with the Artifact tool; it reads the live rate from its db doc `rates/krw_vnd`, refreshed by the scheduled task "베트남 가이드 환율 갱신".
 - Original culture & etiquette copy comes from the owner's earlier Readdy site; keep its Korean text unchanged unless asked.
 - Tabs (Oct 2026): 문화체험 (`exp`) holds two views, 도시별 여행 (`state.expView = 'city'`) and 문화 & 에티켓 (`'culture'`, the old culture tab). `setTab('culture')`, `#culture` and a saved `culture` tab all open the etiquette view, so old links keep working.
+- Sights (`SPOTS`): Hồ Chí Minh Mausoleum is closed 4 Sep–2 Nov 2026; VinWonders Nha Trang cable car is closed 26 Oct–10 Nov 2026; Saigon Notre-Dame is still under restoration. Remove or update these notes after the dates pass.
 - City facts were checked in Oct 2026. Time-sensitive ones to recheck: Đà Lạt–Incheon flights (expected from Dec 2026), Long Thành airport (opens Dec 2026, international flights move in phases to 2028), Bà Nà Hills and Hòn Thơm cable car 2026 price lists, Phú Quốc VinBus fares, Hanoi Train Street access.
