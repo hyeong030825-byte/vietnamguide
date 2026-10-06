@@ -36,8 +36,9 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 
 ## 문구와 데이터 위치 (`src/page.html`)
 
-- `T` : 버튼·메뉴·안내 문구 (한국어 `ko`, 영어 `en`), 문화 & 에티켓 탭 문장
-- `EXPERIENCES` : 문화체험 탭 카드 (다낭·호이안). 가격의 `{krw:150000}`은 실시간 환율로 원화가 표시되는 자리예요. `EXP_PHOTOS`에 사진이 있는 체험 id를 적어요.
+- `T` : 버튼·메뉴·안내 문구 (한국어 `ko`, 영어 `en`), 문화 & 에티켓 문장
+- `CITIES` : 문화체험 탭의 도시별 여행 정보 6곳 (다낭·호이안, 나트랑, 푸꾸옥, 하노이·하롱베이, 호치민, 달랏). 가는 법·공항에서 시내·여행 시기·일정·숙소·이동·음식·팁. `aka`는 체험 카드를 찾을 때 쓰는 도시 이름, `k`는 도시 바로가기 검색어예요.
+- `EXPERIENCES` : 도시별 체험 카드 (`city`로 도시를 정해요). 가격의 `{krw:150000}`은 실시간 환율로 원화가 표시되는 자리예요. `EXP_PHOTOS`에 사진이 있는 체험 id를 적어요.
 - `PREP_ENTRY`, `PREP_BAN`, `PREP_LIFE`, `PREP_MONEY`, `PREP_WEATHER`, `PREP_CHECK` : 여행 준비 탭 (입국 규정, 반입 금지, 생활 정보, 환전·ATM, 날씨, 체크리스트)
 - `PHRASES` : 실전 회화 (존댓말/반말, 한글 발음)
 - `DISHES`, `WORDS`, `SWITCHES` : 음식 메뉴, 메뉴판 단어, 고수 빼기 스위치
@@ -60,3 +61,5 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - Google Search Console / Naver: use the HTML meta-tag method (put tags in `HEAD_META` in build.py). Cloudflare Pages 308-redirects `/x.html` to `/x`, so file-based verification can fail.
 - The Claude page version is written to `build/claude-page.html` (git-ignored). Claude page: https://claude.ai/artifact/CTnwBVkGrjGXhuVpcU2zB3 — publish it with the Artifact tool; it reads the live rate from its db doc `rates/krw_vnd`, refreshed by the scheduled task "베트남 가이드 환율 갱신".
 - Original culture & etiquette copy comes from the owner's earlier Readdy site; keep its Korean text unchanged unless asked.
+- Tabs (Oct 2026): 문화체험 (`exp`) holds two views, 도시별 여행 (`state.expView = 'city'`) and 문화 & 에티켓 (`'culture'`, the old culture tab). `setTab('culture')`, `#culture` and a saved `culture` tab all open the etiquette view, so old links keep working.
+- City facts were checked in Oct 2026. Time-sensitive ones to recheck: Đà Lạt–Incheon flights (expected from Dec 2026), Long Thành airport (opens Dec 2026, international flights move in phases to 2028), Bà Nà Hills and Hòn Thơm cable car 2026 price lists, Phú Quốc VinBus fares, Hanoi Train Street access.
