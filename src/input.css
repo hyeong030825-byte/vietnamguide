@@ -1,6 +1,8 @@
 /* Layout: sticky glass header + tab nav, lantern-night hero, single max-w-5xl content column, maroon footer, phone tab bar.
-   Palette: lacquer black ground (bg), warm ivory text (fg), flag red (pr), star gold (ac), jade (se). */
-:root {
+   Palette: lacquer black ground (bg), warm ivory text (fg), flag red (pr), star gold (ac), jade (se).
+   Two themes share the same token names. Dark is the default; <html data-theme="light"> switches to the light set.
+   Elements with class "theme-dark" (the hero painting, the footer, banknotes) keep the dark tokens in both themes. */
+:root, .theme-dark {
   color-scheme: dark;
   /* background — lacquer black, 50 is the page; 950 is the deepest shade used for image veils */
   --bg-50: 16 13 12;   --bg-100: 26 21 19;  --bg-200: 42 34 31;  --bg-300: 59 49 44;
@@ -22,6 +24,21 @@
   --ac-50: 255 251 235; --ac-100: 255 243 198; --ac-200: 255 229 138; --ac-300: 252 210 90;
   --ac-400: 244 190 62; --ac-500: 226 165 33; --ac-600: 188 131 20; --ac-700: 148 99 19;
   --ac-800: 119 79 21; --ac-900: 95 63 20;  --ac-950: 53 33 7;
+}
+/* light — rice-paper white page, cards a shade warmer, ink text. 300/400 of the colour scales are the
+   text shades, so they turn darker here to stay readable on white; 500 stays the fill colour. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-50: 255 255 255; --bg-100: 248 245 240; --bg-200: 234 228 220; --bg-300: 216 207 196;
+  --bg-400: 189 178 166; --bg-500: 160 148 136; --bg-600: 130 119 109; --bg-700: 101 92 84;
+  --bg-800: 72 65 59;  --bg-900: 44 39 35;   --bg-950: 20 16 14;
+  /* foreground — ink; higher = darker */
+  --fg-50: 245 241 236; --fg-100: 226 220 213; --fg-200: 196 188 180; --fg-300: 160 150 141;
+  --fg-400: 117 106 97; --fg-500: 102 92 84;  --fg-600: 88 79 72;   --fg-700: 72 64 58;
+  --fg-800: 56 49 44;  --fg-900: 40 34 30;   --fg-950: 22 18 16;
+  --pr-300: 196 40 32; --pr-400: 180 32 26;
+  --se-300: 12 120 92; --se-400: 10 112 86;
+  --ac-300: 136 88 6;  --ac-400: 146 94 6;
 }
 
 @tailwind base;
@@ -95,3 +112,12 @@ i > svg.ico.fa { width: auto; }
   .animate-spin-slow, .animate-float, .animate-pulse, .speaking { animation: none !important; }
   .flip-inner { transition: none; }
 }
+
+/* ---- theme details ---- */
+/* text on solid colour buttons (gold, red, jade) is dark ink in both themes */
+.text-background-50 { color: rgb(16 13 12); }
+/* in light, the 400 shades are text inks, so solid-button hovers use the bright fill instead */
+:root[data-theme="light"] .hover\:bg-accent-400:hover { background-color: rgb(244 190 62); }
+:root[data-theme="light"] .hover\:bg-primary-400:hover { background-color: rgb(248 100 90); }
+:root[data-theme="light"] .hover\:bg-secondary-400:hover { background-color: rgb(56 201 157); }
+:root[data-theme="light"] .switch::after, :root[data-theme="light"] .switch.on::after { background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .25); }

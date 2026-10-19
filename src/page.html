@@ -4,6 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
 <style>/*__TAILWIND__*/</style>
+<script data-boot="theme">try { if (JSON.parse(localStorage.getItem('vnguide:theme')) === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) { /* storage blocked: dark */ }</script>
 <!-- Icons: Remix Icon (remixicon.com) and Font Awesome Free 6 (fontawesome.com, CC BY 4.0), inlined as SVG -->
 
 <div id="root"><div class="min-h-screen flex flex-col bg-background-50">
@@ -12,7 +13,7 @@
   <header class="glass-effect border-b border-background-200">
     <div class="w-full px-4 md:px-8 py-3 flex items-center justify-between gap-3">
       <button type="button" data-action="home" class="flex items-center gap-3 cursor-pointer text-left min-w-0">
-        <span class="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-accent-400 font-black text-xl border border-accent-500/40 flex-shrink-0">★</span>
+        <span class="theme-dark w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-accent-400 font-black text-xl border border-accent-500/40 flex-shrink-0">★</span>
         <span class="min-w-0 max-[399px]:hidden">
           <span class="flex items-center gap-2">
             <span class="font-heading font-bold text-base md:text-xl tracking-tight leading-none text-foreground-950 truncate" data-i18n="brand">베트남 여행 스마트 가이드</span>
@@ -27,6 +28,7 @@
           <button type="button" data-action="lang" data-value="ko" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer bg-accent-500 text-background-50">한국어</button>
           <button type="button" data-action="lang" data-value="en" class="px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer text-foreground-500 hover:text-foreground-900"><span class="sm:hidden">EN</span><span class="hidden sm:inline">English</span></button>
         </div>
+        <button type="button" id="theme-btn" data-action="theme" aria-label="밝은 화면으로 보기" title="밝은 화면으로 보기" class="p-2 rounded-md border transition-colors cursor-pointer bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-sun-line text-lg"></i></button>
         <button type="button" data-action="deck" data-i18n-aria="deck" aria-label="단어장 카드" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent-500/10 hover:bg-accent-500/20 text-accent-400 border border-accent-500/30 text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap"><i class="ri-stack-line"></i><span class="hidden sm:inline" data-i18n="deck">단어장 카드</span></button>
         <button type="button" data-action="bookmarks" data-i18n-title="bookmarksTitle" title="북마크 모아보기" class="relative p-2 rounded-md border transition-colors cursor-pointer bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-bookmark-line text-lg"></i><span id="bm-count" class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 bg-primary-500 text-background-50 text-[10px] font-bold rounded-full flex items-center justify-center tabular">1</span></button>
       </div>
@@ -44,7 +46,7 @@
   </nav>
 </div>
 
-<section class="relative w-full overflow-hidden border-b border-background-200">
+<section class="theme-dark relative w-full overflow-hidden border-b border-background-200">
   <div class="absolute inset-0 w-full h-full">
     <canvas id="hero-canvas" role="img" data-i18n-aria="heroAlt" aria-label="베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트" title="말은 통하게, 계산은 신속하게, 여행은 안전하게!" class="w-full h-full block"></canvas>
     <div class="absolute inset-0 bg-gradient-to-b from-background-950/70 via-background-950/60 to-background-50"></div>
@@ -66,7 +68,7 @@
 
 <main id="main" class="w-full max-w-5xl mx-auto px-4 py-6 flex-1 pb-28 md:pb-10"></main>
 
-<footer class="bg-primary-950 border-t border-background-200">
+<footer class="theme-dark bg-primary-950 border-t border-background-200">
   <div class="w-full max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
     <div>
       <p class="font-heading font-bold text-accent-400 text-sm" data-i18n="brand">베트남 여행 스마트 가이드</p>
@@ -137,7 +139,7 @@ function hydrate(root) {
 var T = {
   ko: {
     brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
-    siteLang: '사이트 언어', polite: '존댓말', casual: '반말',
+    siteLang: '사이트 언어', themeToLight: '밝은 화면으로 보기', themeToDark: '어두운 화면으로 보기', toastLight: '밝은 화면으로 바꿨어요', toastDark: '어두운 화면으로 바꿨어요', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_exp: '문화체험', mtab_exp: '문화체험',
     ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 대표 체험을 볼 수 있어요.',
@@ -146,7 +148,12 @@ var T = {
     exp_day: '낮 체험', exp_night: '밤 체험', exp_where: '위치', exp_when: '추천 시간', exp_price: '가격', exp_how: '예약 방법',
     exp_tips: '알아 두면 좋아요', exp_phrases: '이럴 때 이렇게 말해요', exp_map: '지도에서 보기', exp_related: '보기',
     exp_note: '가격·운영 시간·항공편은 2025~2026년 공식 사이트, 예약 사이트, 현지 기사를 바탕으로 정리했어요(2026년 10월 확인). 현지 사정에 따라 달라질 수 있어요.',
-    secExp: '문화체험', secSpots: '관광지',
+    secExp: '문화체험', secSpots: '관광지', secGifts: '기념품', tab_gift: '기념품',
+    ev_culture: '문화 & 에티켓', ev_gift: '기념품', gc_coffee: '커피 · 차', gc_food: '먹거리 · 간식', gc_craft: '공예 · 패션',
+    gift_title: '기념품 추천', gift_desc: '한국 여행자들이 많이 사 오는 베트남 기념품이에요. 마트 가격과 살 곳, 챙길 점을 같이 적었어요.',
+    gift_where: '살 곳', gift_from: '{city} 특산', gift_customsTitle: '한국 들어올 때 확인하세요', gift_customsDesc: '면세 한도와 들여올 수 없는 물건이에요.',
+    gift_banned: '반입 금지 · 검역 대상', gift_carry: '짐 쌀 때',
+    gift_note: '가격은 2025~2026년 마트·브랜드 매장 가격이고, 관광지 상점이나 공항은 더 비싸요. 면세 한도와 반입 규정은 2026년 10월 기준이니 출국 전에 관세청·농림축산검역본부 안내를 한 번 더 확인하세요.',
     spot_list: '{city} 유명 관광지', spot_desc: '주소는 복사해서 Grab이나 지도 앱에 붙여 넣거나, 택시 기사님께 크게 보여 주세요.',
     spot_note: '주소는 2025년 7월 행정구역 개편 뒤의 새 동 이름으로 적었어요. 지도 앱에 옛 주소가 보여도 같은 곳이에요. 운영 시간과 입장료는 2026년 10월에 확인했고, 확인되지 않은 곳은 비워 뒀어요.',
     spot_dress: '복장 예절 보기', copyAddr: '주소 복사', spotDriverMeaning: '이곳으로 데려다 주세요',
@@ -262,7 +269,7 @@ var T = {
   },
   en: {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
-    siteLang: 'Site language', polite: 'Formal', casual: 'Casual',
+    siteLang: 'Site language', themeToLight: 'Switch to light mode', themeToDark: 'Switch to dark mode', toastLight: 'Light mode on', toastDark: 'Dark mode on', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_exp: 'Culture & Experiences', mtab_exp: 'Explore',
     ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and the top things to do.',
@@ -271,7 +278,12 @@ var T = {
     exp_day: 'Daytime', exp_night: 'Evening', exp_where: 'Where', exp_when: 'Best time', exp_price: 'Price', exp_how: 'Booking',
     exp_tips: 'Good to know', exp_phrases: 'Handy phrases', exp_map: 'Open in Maps', exp_related: 'Open',
     exp_note: 'Prices, hours and flights are based on 2025–2026 official sites, booking sites and local news (checked October 2026) and may change.',
-    secExp: 'Experiences', secSpots: 'Sights',
+    secExp: 'Experiences', secSpots: 'Sights', secGifts: 'Souvenirs', tab_gift: 'Souvenirs',
+    ev_culture: 'Culture & etiquette', ev_gift: 'Souvenirs', gc_coffee: 'Coffee & tea', gc_food: 'Food & snacks', gc_craft: 'Crafts & fashion',
+    gift_title: 'Souvenir picks', gift_desc: 'What Korean travelers most often bring home from Vietnam, with supermarket prices, where to buy and what to watch out for.',
+    gift_where: 'Where to buy', gift_from: 'From {city}', gift_customsTitle: 'Before you fly home to Korea', gift_customsDesc: 'Duty-free allowance and what you cannot bring in.',
+    gift_banned: 'Banned or needs quarantine', gift_carry: 'Packing',
+    gift_note: 'Prices are 2025–2026 supermarket or brand-store prices; tourist shops and airports charge more. Allowances and import rules are as of October 2026, so check Korea Customs and the quarantine agency before you fly.',
     spot_list: 'Famous sights in {city}', spot_desc: 'Copy an address into Grab or a maps app, or show it to your taxi driver in large type.',
     spot_note: 'Addresses use the new ward names from the July 2025 reorganization; maps may still show the old address for the same place. Hours and fees were checked in October 2026 and are left blank where they could not be confirmed.',
     spot_dress: 'Dress code', copyAddr: 'Copy address', spotDriverMeaning: 'Please take me here',
@@ -1442,6 +1454,11 @@ var SPOTS = [
 ];
 var spotById = function (id) { for (var i = 0; i < SPOTS.length; i++) if (SPOTS[i].id === id) return SPOTS[i]; return null; };
 
+/* souvenirs (기념품) and Korea entry rules */
+var GIFTS = [];
+var GIFT_CUSTOMS = null;
+var giftById = function (id) { for (var i = 0; i < GIFTS.length; i++) if (GIFTS[i].id === id) return GIFTS[i]; return null; };
+
 /* ================= trip prep (facts checked Oct 2026) ================= */
 var PREP_ENTRY = [
   { ic: 'ri-passport-line', t: { ko: '무비자 45일', en: '45 days visa-free' },
@@ -1527,6 +1544,7 @@ var PREP_CHECK = [
 var PREP_ITEMS = []; PREP_CHECK.forEach(function (g) { g.items.forEach(function (it) { PREP_ITEMS.push(it.id); }); });
 
 var TAB_KEYS = {
+  gift: '기념품 선물 쇼핑 특산품 면세 반입 souvenir gift shopping',
   calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address',
@@ -1539,15 +1557,18 @@ var TABS = ['exp', 'phrases', 'calc', 'food', 'emergency', 'prep'];
 /* the old 'culture' tab is now the 문화 & 에티켓 view inside the 문화체험 tab */
 var hashTab = (location.hash || '').replace('#', '');
 var savedTab = store.get('tab', 'exp');
-var initTab = TABS.indexOf(hashTab) >= 0 || hashTab === 'culture' ? hashTab : savedTab;
+var EXP_VIEWS = { culture: 1, gift: 1 };  /* views of the 문화체험 tab that also work as #hash / tab names */
+var initTab = TABS.indexOf(hashTab) >= 0 || EXP_VIEWS[hashTab] ? hashTab : savedTab;
 var savedCity = store.get('city', 'danang');
 var state = {
-  tab: initTab === 'culture' ? 'exp' : (TABS.indexOf(initTab) >= 0 ? initTab : 'exp'),
-  expView: initTab === 'culture' || store.get('expView', 'city') === 'culture' ? 'culture' : 'city',
+  tab: EXP_VIEWS[initTab] ? 'exp' : (TABS.indexOf(initTab) >= 0 ? initTab : 'exp'),
+  expView: EXP_VIEWS[initTab] ? initTab : (EXP_VIEWS[store.get('expView', 'city')] ? store.get('expView', 'city') : 'city'),
+  giftCat: 'all',
   city: CITIES.some(function (c) { return c.id === savedCity; }) ? savedCity : 'danang',
   expTime: 'all',
   tone: store.get('tone', 'polite') === 'casual' ? 'casual' : 'polite',
   lang: store.get('lang', 'ko') === 'en' ? 'en' : 'ko',
+  theme: store.get('theme', 'dark') === 'light' ? 'light' : 'dark',
   bookmarks: store.get('bookmarks', ['p:nocilantro']),
   query: '',
   phraseCat: 'all',
@@ -1845,7 +1866,7 @@ function viewCalc() {
   chips += '<button type="button" data-action="calc-clear" class="px-3 py-1.5 rounded-full bg-primary-500/10 hover:bg-primary-500/20 border border-primary-500/30 text-xs font-bold text-primary-300 cursor-pointer transition-colors">' + esc(t('clear')) + '</button>';
 
   var bills = BILLS.map(function (b) {
-    return '<div class="bill rounded-lg p-2.5 border border-background-300" style="background:linear-gradient(135deg,' + b.c1 + ',' + b.c2 + ')">' +
+    return '<div class="bill theme-dark rounded-lg p-2.5 border border-background-300" style="background:linear-gradient(135deg,' + b.c1 + ',' + b.c2 + ')">' +
       '<p class="vi text-sm font-extrabold text-foreground-950 tabular leading-none">' + fmt(b.v) + '</p>' +
       '<p class="text-[10px] font-semibold text-foreground-900 mt-1.5">' + esc(state.lang === 'en' ? b.en : b.ko) + '</p>' +
       '<p class="text-[10px] text-foreground-900/80 tabular" data-bill-krw="' + b.v + '">≈ ' + fmt(b.v * effRate() / 1000) + t('unitK') + '</p></div>';
@@ -2058,12 +2079,62 @@ function spotCard(sp, showCity) {
 }
 /* 문화체험 tab: 도시별 여행 | 문화 & 에티켓 */
 function expViewSeg() {
-  return '<div class="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-background-100 border border-background-200">' +
-    [{ v: 'city', ic: 'ri-map-2-line', label: t('ev_city') }, { v: 'culture', ic: 'ri-ancient-gate-line', label: t('tab_culture') }].map(function (it) {
-      var on = state.expView === it.v;
-      return '<button type="button" data-action="exp-view" data-value="' + it.v + '" aria-pressed="' + on + '" class="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-colors border ' +
+  var views = [{ v: 'city', ic: 'ri-map-2-line', label: t('ev_city') }, { v: 'culture', ic: 'ri-ancient-gate-line', label: t('ev_culture') }];
+  if (GIFTS.length) views.push({ v: 'gift', ic: 'ri-gift-line', label: t('ev_gift') });
+  return '<div class="grid ' + (views.length === 3 ? 'grid-cols-3' : 'grid-cols-2') + ' gap-1 p-1 rounded-2xl bg-background-100 border border-background-200">' +
+    views.map(function (it) {
+      var on = (state.expView === 'gift' && !GIFTS.length ? 'city' : state.expView) === it.v;
+      return '<button type="button" data-action="exp-view" data-value="' + it.v + '" aria-pressed="' + on + '" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold text-center leading-tight cursor-pointer transition-colors border ' +
         (on ? 'bg-accent-500/15 text-accent-400 border-accent-500/40' : 'text-foreground-500 hover:text-foreground-900 border-transparent') + '"><i class="' + it.ic + ' text-base"></i>' + esc(it.label) + '</button>';
     }).join('') + '</div>';
+}
+/* 기념품: souvenir cards by category, plus what Korea lets you bring home */
+var GIFT_CATS = ['coffee', 'food', 'craft'];
+var GIFT_CAT_EMOJI = { coffee: '☕', food: '🍬', craft: '🏮' };
+function giftCard(g, showTag) {
+  var row = function (ic, label, html) {
+    return html ? '<div class="flex items-start gap-2.5"><i class="' + ic + ' text-base text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>' : '';
+  };
+  var city = g.city ? cityById(g.city) : null;
+  var price = krwTpl(L(g.price)), where = esc(L(g.where));
+  return '<article class="bg-background-100 rounded-2xl border border-background-200 p-5 flex flex-col gap-3 min-w-0">' +
+    '<div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + g.emoji + '</div>' +
+    '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-1.5 mb-1">' +
+    (showTag ? '<span class="' + EXP_TAG + '">' + GIFT_CAT_EMOJI[g.cat] + ' ' + esc(t('gc_' + g.cat)) + '</span>' : '') +
+    (city ? '<button type="button" data-action="exp-city-go" data-value="' + city.id + '" class="' + EXP_TAG + ' hover:text-foreground-950 cursor-pointer"><i class="ri-map-pin-2-line"></i>' + esc(tf('gift_from', { city: L(city.name) })) + '</button>' : '') +
+    '</div><h3 class="font-heading font-bold text-foreground-950 text-base leading-snug">' + esc(L(g.name)) + '</h3><p class="vi text-sm text-accent-400 break-words">' + esc(g.vi) + '</p></div>' + bmBtn('g:' + g.id) + '</div>' +
+    '<p class="text-sm text-foreground-500 leading-relaxed">' + esc(L(g.d)) + '</p>' +
+    ((price || where) ? '<dl class="grid grid-cols-1 gap-2.5 p-3 rounded-xl bg-background-50 border border-background-200">' + row('ri-coins-line', t('exp_price'), price) + row('ri-store-2-line', t('gift_where'), where) + '</dl>' : '') +
+    (L(g.tip) ? '<p class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed mt-auto"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(L(g.tip)) + '</span></p>' : '') +
+    '</article>';
+}
+function viewGifts() {
+  var counts = { all: GIFTS.length }; GIFT_CATS.forEach(function (c) { counts[c] = 0; });
+  GIFTS.forEach(function (g) { counts[g.cat]++; });
+  var cat = counts[state.giftCat] ? state.giftCat : 'all';
+  var list = cat === 'all' ? GIFTS : GIFTS.filter(function (g) { return g.cat === cat; });
+  var chips = chip('gift-cat', 'all', t('all'), cat === 'all', counts.all) + GIFT_CATS.map(function (c) {
+    return counts[c] ? chip('gift-cat', c, GIFT_CAT_EMOJI[c] + ' ' + t('gc_' + c), cat === c, counts[c]) : '';
+  }).join('');
+  var bullets = function (arr, ic, tone) {
+    return '<ul class="space-y-2">' + arr.map(function (x) {
+      return '<li class="flex items-start gap-2 text-xs text-foreground-900 leading-relaxed"><i class="' + ic + ' ' + tone + ' text-base mt-px flex-shrink-0"></i><span>' + krwTpl(L(x)) + '</span></li>';
+    }).join('') + '</ul>';
+  };
+  var cu = GIFT_CUSTOMS;
+  var customs = cu ? '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
+    cardHead('🛃', 'primary', t('gift_customsTitle'), t('gift_customsDesc')) +
+    (L(cu.allowance) ? '<p class="flex items-start gap-2 p-3 rounded-xl bg-accent-500/10 border border-accent-500/30 text-xs text-foreground-900 leading-relaxed"><i class="ri-shopping-bag-3-line text-accent-400 text-base mt-px flex-shrink-0"></i><span>' + krwTpl(L(cu.allowance)) + '</span></p>' : '') +
+    '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
+    (cu.banned && cu.banned.length ? '<div class="space-y-2"><p class="text-xs font-bold text-primary-400">' + esc(t('gift_banned')) + '</p>' + bullets(cu.banned, 'ri-forbid-2-line', 'text-primary-400') + '</div>' : '') +
+    (cu.carry && cu.carry.length ? '<div class="space-y-2"><p class="text-xs font-bold text-secondary-400">' + esc(t('gift_carry')) + '</p>' + bullets(cu.carry, 'ri-luggage-cart-line', 'text-secondary-400') + '</div>' : '') +
+    '</div></div>' : '';
+  return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    cardHead('🎁', 'accent', t('gift_title'), t('gift_desc')) +
+    '<div class="flex flex-wrap gap-2">' + chips + '</div></div>' +
+    '<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">' + list.map(function (g) { return giftCard(g, cat === 'all'); }).join('') + '</div>' +
+    customs +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('gift_note')) + '</p>';
 }
 function cityGuide(c) {
   var picker = CITIES.map(function (o) {
@@ -2108,6 +2179,7 @@ function cityGuide(c) {
 function viewExp() {
   var head = expViewSeg();
   if (state.expView === 'culture') return '<section class="space-y-6">' + head + viewCulture() + '</section>';
+  if (state.expView === 'gift' && GIFTS.length) return '<section class="space-y-6">' + head + viewGifts() + '</section>';
   var c = cityById(state.city);
   var mine = EXPERIENCES.filter(function (x) { return x.city === c.id; });
   var counts = { all: mine.length, day: 0, night: 0 };
@@ -2265,6 +2337,7 @@ function searchView(q) {
   var es = EXPERIENCES.filter(function (x) { var c = cityById(x.city); return hit([x.name.ko, x.name.en, x.vi, x.desc.ko, x.desc.en, x.k, x.area ? x.area.ko + ' ' + x.area.en : '', c.aka]); });
   var cs = CITIES.filter(function (c) { return hit([c.name.ko, c.name.en, c.vi, c.k]); });
   var ss = SPOTS.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.d.ko, x.d.en, x.addr, x.k, cityById(x.city).aka]); });
+  var gs = GIFTS.filter(function (g) { return hit([g.name.ko, g.name.en, g.vi, g.d.ko, g.d.en, g.k, g.city ? cityById(g.city).aka : '']); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
   var us = MONEY_UNITS.filter(function (m) { return hit([m.u, m.say, m.pr, m.k]); });
@@ -2282,11 +2355,12 @@ function searchView(q) {
     });
   });
   if (cs.length) tabs = tabs.filter(function (k) { return k !== 'exp'; });
-  var total = es.length + ss.length + ph.length + ds.length + ws.length + us.length;
+  if (!GIFTS.length) tabs = tabs.filter(function (k) { return k !== 'gift'; });
+  var total = es.length + ss.length + gs.length + ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
-  var tabIcon = { exp: 'ri-compass-3-line', calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line', prep: 'ri-suitcase-line' };
+  var tabIcon = { gift: 'ri-gift-line', exp: 'ri-compass-3-line', calc: 'ri-calculator-line', culture: 'ri-ancient-gate-line', emergency: 'ri-shield-star-line', prep: 'ri-suitcase-line' };
   var html = '<section class="space-y-6"><div class="flex flex-wrap items-center justify-between gap-3"><p class="text-sm text-foreground-500">' + esc(tf('results', { q: q, n: total })) + '</p>' +
     '<button type="button" data-action="clear-search" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-background-100 hover:bg-background-200 border border-background-200 text-xs font-semibold text-foreground-500 hover:text-foreground-900 cursor-pointer transition-colors"><i class="ri-close-line"></i>' + esc(t('clearSearch')) + '</button></div>';
   if (cs.length || tabs.length) {
@@ -2298,6 +2372,7 @@ function searchView(q) {
   }
   var sec = {
     es: es.length ? box('🏮', t('secExp'), es.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + es.map(function (x) { return expCard(x, true); }).join('') + '</div>') : '',
+    gs: gs.length ? box('🎁', t('secGifts'), gs.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + gs.map(function (g) { return giftCard(g, true); }).join('') + '</div>') : '',
     ss: ss.length ? box('📍', t('secSpots'), ss.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ss.map(function (x) { return spotCard(x, true); }).join('') + '</div>') : '',
     ph: ph.length ? box('💬', t('secPhrases'), ph.length, toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>') : '',
     ds: ds.length ? box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>') : '',
@@ -2306,7 +2381,7 @@ function searchView(q) {
   };
   // a query that starts a dish name (pho, bun, banh mi, 반미) is a menu search: show the menu first, not experiences that mention "photos" or "phố"
   var dishFirst = ds.some(function (d) { return prep(d.vi).indexOf(nq) === 0 || prep(d.ko).indexOf(nq) === 0; });
-  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'ph', 'us'] : ['ss', 'es', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
+  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'gs', 'ph', 'us'] : ['ss', 'es', 'gs', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
   if (!total && !tabs.length && !cs.length) {
     html += '<div class="bg-background-100 p-8 rounded-2xl border border-background-200 text-center space-y-3"><p class="text-3xl" aria-hidden="true">🔍</p><p class="font-heading font-bold text-foreground-950">' + esc(t('noResults')) + '</p><p class="text-xs text-foreground-400">' + esc(t('tryThese')) + '</p>' +
       '<div class="flex flex-wrap justify-center gap-2">' + t('sugg').map(function (s) { return chip('suggest', s, s, false); }).join('') + '</div></div>';
@@ -2325,8 +2400,19 @@ var CLS = {
   mtab: 'tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer',
   mOn: 'text-accent-400', mOff: 'text-foreground-400'
 };
+/* dark (default) or light colours: the tokens in input.css switch on <html data-theme> */
+function applyTheme() {
+  var light = state.theme === 'light', root = document.documentElement;
+  if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+  var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', light ? '#FFFFFF' : '#100D0C');
+  var b = $('#theme-btn'); if (!b) return;
+  var label = t(light ? 'themeToDark' : 'themeToLight');
+  b.setAttribute('aria-label', label); b.title = label; b.setAttribute('aria-pressed', light);
+  b.innerHTML = '<i class="' + (light ? 'ri-moon-line' : 'ri-sun-line') + ' text-lg"></i>'; hydrate(b);
+}
 function applyStatic() {
   document.documentElement.lang = state.lang;
+  applyTheme();
   $$('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
   $$('[data-i18n-title]').forEach(function (el) { el.title = t(el.getAttribute('data-i18n-title')); });
   $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-i18n-ph')); });
@@ -2353,7 +2439,7 @@ function renderMain() {
   hydrate(main);
 }
 function setTab(tab) {
-  if (tab === 'culture') { state.expView = 'culture'; store.set('expView', 'culture'); tab = 'exp'; }
+  if (EXP_VIEWS[tab]) { state.expView = tab; store.set('expView', tab); tab = 'exp'; }
   if (TABS.indexOf(tab) < 0) return;
   var wasSearching = !!state.query;
   state.tab = tab; store.set('tab', tab);
@@ -2452,6 +2538,7 @@ function bmModal() {
     if (kind === 'p:') { var p = phraseById(key); if (!p) return ''; vi = p.vi[ti()]; meaning = pMeaning(p); pr = p.pr[ti()]; }
     else if (kind === 'e:') { var x = expById(key); if (!x) return ''; vi = x.vi; meaning = L(x.name); pr = ''; }
     else if (kind === 's:') { var sp = spotById(key); if (!sp) return ''; vi = sp.vi; meaning = L(sp.name) + ' · ' + sp.addr; pr = ''; }
+    else if (kind === 'g:') { var gf = giftById(key); if (!gf) return ''; vi = gf.vi; meaning = L(gf.name); pr = ''; }
     else { var d = dishById(key); if (!d) return ''; vi = d.vi; meaning = state.lang === 'en' ? d.en : d.ko; pr = d.pr; }
     return '<div class="flex items-center gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-base font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
       '<p class="text-xs text-foreground-500">' + esc(meaning) + (state.lang === 'ko' && pr ? ' · [' + esc(pr) + ']' : '') + '</p></div>' +
@@ -2614,6 +2701,7 @@ document.addEventListener('click', function (e) {
       toast(t('vtToast_' + v), 'ri-translate-2');
       if (hadFocus) { var nf = $((inModal ? '#modal-root' : '#main') + ' [data-action="tone"][data-value="' + v + '"]'); if (nf) nf.focus({ preventScroll: true }); }
       break;
+    case 'theme': state.theme = state.theme === 'light' ? 'dark' : 'light'; store.set('theme', state.theme); applyTheme(); toast(t(state.theme === 'light' ? 'toastLight' : 'toastDark'), state.theme === 'light' ? 'ri-sun-line' : 'ri-moon-line'); break;
     case 'lang': state.lang = v; store.set('lang', v); applyStatic(); renderMain(); if (modal) renderModal(); drawHeroSoon(); break;
     case 'tab': setTab(v); break;
     case 'goto-tab': setTab(v); break;
@@ -2626,6 +2714,7 @@ document.addEventListener('click', function (e) {
     case 'phrase-cat': state.phraseCat = v; renderMain(); break;
     case 'exp-time': state.expTime = v; renderMain(); break;
     case 'exp-view': state.expView = v; store.set('expView', v); renderMain(); break;
+    case 'gift-cat': state.giftCat = v; renderMain(); break;
     case 'exp-city': state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); break;
     case 'exp-city-go': state.city = v; store.set('city', v); state.expTime = 'all'; state.expView = 'city'; store.set('expView', 'city'); setTab('exp'); break;
     case 'spot-driver':
