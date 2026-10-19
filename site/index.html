@@ -1477,9 +1477,156 @@ var SPOTS = [
 ];
 var spotById = function (id) { for (var i = 0; i < SPOTS.length; i++) if (SPOTS[i].id === id) return SPOTS[i]; return null; };
 
-/* souvenirs (기념품) and Korea entry rules */
-var GIFTS = [];
-var GIFT_CUSTOMS = null;
+/* souvenirs (기념품): supermarket/brand prices 2025–2026; Korea entry rules from Korea Customs, Incheon Airport and
+   quarantine-agency news (checked Oct 2026) */
+var GIFTS = [
+  { id: 'coffee', cat: 'coffee', emoji: '☕',
+    name: { ko: '베트남 커피 (G7·원두)', en: 'Vietnamese coffee (G7 & ground beans)' }, vi: 'Cà phê Việt Nam',
+    d: { ko: '진하고 쌉쌀한 로부스타 커피예요. 가볍고 값이 싸서 선물로 가장 많이 사요.', en: 'Strong, bitter robusta coffee. Light and cheap, it is the most popular gift to take home.' },
+    price: { ko: 'G7 3in1(16g×21봉지) 약 7만 동(약 {krw:70000}) · 50봉지 약 16만 9천 동 · 쭝응우옌 상따오1 원두가루 500g 약 11만 동 · 알루미늄 핀(공식몰) 약 10만 동', en: 'G7 3in1 (21 × 16 g) about VND 70,000 ({krw:70000}) · 50 sachets about VND 169,000 · Trung Nguyên Sáng tạo 1 ground, 500 g, about VND 110,000 · aluminium phin (official store) about VND 100,000' },
+    where: { ko: '롯데마트·윈마트·박화싼 같은 마트, 쭝응우옌 레전드 매장', en: 'Supermarkets (Lotte Mart, WinMart, Bách Hóa Xanh) and Trung Nguyên Legend shops' },
+    tip: { ko: '핀(베트남식 드립 필터)을 하나 같이 사면 원두가루를 집에서 그대로 내려 마실 수 있어요. 원두가루 봉지는 지퍼백에 한 번 더 싸면 향이 덜 새요.', en: 'Buy a phin (Vietnamese drip filter) to brew the ground coffee the local way at home. Double-bag ground coffee so the smell does not spread in your luggage.' },
+    city: '',
+    k: '커피 g7 원두 핀 쭝응우옌 믹스커피 coffee ca phe g7 trung nguyen sang tao phin filter instant' },
+
+  { id: 'weasel', cat: 'coffee', emoji: '🫘',
+    name: { ko: '족제비 커피 (주의)', en: 'Weasel coffee (buyer beware)' }, vi: 'Cà phê chồn',
+    d: { ko: '사향고양이가 먹고 배설한 원두라고 파는 커피예요. 관광지에서 파는 것은 대부분 진짜가 아니고, 진짜는 좁은 우리에 가둔 사향고양이에게서 나오는 경우가 많아 동물 학대 논란이 있어요.', en: 'Sold as beans passed through a civet. Most of what tourists are offered is not genuine, and the real thing usually comes from civets kept in small cages, which raises welfare concerns.' },
+    price: { ko: '', en: '' },
+    where: { ko: '관광지 기념품점, 시장, 달랏 커피 농장', en: 'Souvenir shops, markets and Đà Lạt coffee farms' },
+    tip: { ko: '시장에서 싸게 파는 족제비 커피는 진짜일 가능성이 낮아요. 다람쥐 그림이 있는 콘삭(Con Sóc) 커피는 헤이즐넛 향 커피로, 족제비 커피와는 달라요.', en: 'Cheap market "weasel coffee" is very unlikely to be real. Con Sóc (the squirrel brand) is a hazelnut-flavoured coffee, not weasel coffee.' },
+    city: '',
+    k: '족제비커피 위즐커피 루왁 콘삭 다람쥐커피 weasel coffee civet kopi luwak ca phe chon con soc' },
+
+  { id: 'lotustea', cat: 'coffee', emoji: '🪷',
+    name: { ko: '연꽃차', en: 'Lotus tea' }, vi: 'Trà sen',
+    d: { ko: '녹차에 연꽃 향을 입힌 차예요. 하노이 서호(떠이호)의 전통 연꽃차가 특히 유명해요.', en: 'Green tea scented with lotus. The traditional lotus tea of West Lake (Tây Hồ) in Hanoi is the best known.' },
+    price: { ko: '푹롱 연꽃차 100g 캔 약 7만 동(약 {krw:70000}) · 티백 25개 약 3만 6천 동', en: 'Phúc Long lotus tea, 100 g tin, about VND 70,000 ({krw:70000}) · 25 tea bags about VND 36,000' },
+    where: { ko: '롯데마트·윈마트 같은 대형 마트, 차 전문점', en: 'Big supermarkets (Lotte Mart, WinMart) and tea shops' },
+    tip: { ko: '마트 제품은 향을 입힌 대중적인 차예요. 연꽃 속에서 직접 향을 들인 전통 수제 차는 값이 훨씬 올라가니 차 전문점에서 고르세요.', en: 'Supermarket packs are everyday scented tea. Traditional hand-scented lotus tea costs far more, so buy it from a specialist tea shop.' },
+    city: '',
+    k: '연꽃차 연차 차 푹롱 lotus tea tra sen phuc long tay ho' },
+
+  { id: 'artichoke', cat: 'coffee', emoji: '🌿',
+    name: { ko: '아티초크차', en: 'Artichoke tea' }, vi: 'Trà atiso',
+    d: { ko: '달랏 고원에서 나는 아티초크로 만든 허브차예요. 맛이 순하고 티백이라 간편해요.', en: 'Herbal tea made from artichokes grown in the Đà Lạt highlands. Mild in taste and easy to brew from tea bags.' },
+    price: { ko: '라도파 티백 100개(2g) 약 9만 6천 동(약 {krw:96000})', en: 'Ladophar, 100 tea bags (2 g), about VND 96,000 ({krw:96000})' },
+    where: { ko: '달랏 시장·특산품점, 전국 대형 마트', en: 'Đà Lạt market and specialty shops; big supermarkets nationwide' },
+    tip: { ko: '라도파(Ladophar)는 달랏 제약회사 브랜드라 마트에서 사도 품질이 일정해요. 티백 상자가 가볍고 부피도 작아요.', en: 'Ladophar is a Đà Lạt (Lâm Đồng) pharmaceutical brand, so supermarket boxes are consistent. Tea-bag boxes are light and compact.' },
+    city: 'dalat',
+    k: '아티초크 아티소 차 허브차 라도파 artichoke tea tra atiso ladophar dalat' },
+
+  { id: 'coconutcandy', cat: 'food', emoji: '🥥',
+    name: { ko: '코코넛 캔디', en: 'Coconut candy' }, vi: 'Kẹo dừa Bến Tre',
+    d: { ko: '메콩델타 벤째 지방의 쫀득한 코코넛 캔디예요. 두리안·판단 맛도 있고 낱개 포장이라 나눠 주기 좋아요.', en: 'Chewy coconut candy from Bến Tre in the Mekong Delta. Comes in durian and pandan flavours too, and the pieces are wrapped for sharing.' },
+    price: { ko: '200g 약 3만 동(약 {krw:30000}) · 500g 약 6만 6천~7만 4천 동', en: '200 g about VND 30,000 ({krw:30000}) · 500 g about VND 66,000–74,000' },
+    where: { ko: '꿉마트·롯데마트 같은 마트, 기념품 시장', en: 'Supermarkets (Co.opmart, Lotte Mart) and souvenir markets' },
+    tip: { ko: '더운 곳에 두면 말랑해져 서로 붙기 쉬워요. 유통기한을 확인하고 짐 안쪽에 넣어 오세요.', en: 'It softens and sticks together in the heat. Check the expiry date and pack it in the middle of your bag.' },
+    city: '',
+    k: '코코넛캔디 코코넛 사탕 벤째 coconut candy keo dua ben tre' },
+
+  { id: 'driedfruit', cat: 'food', emoji: '🥭',
+    name: { ko: '말린 과일 (망고·잭프루트)', en: 'Dried fruit (mango, jackfruit)' }, vi: 'Trái cây sấy (xoài sấy, mít sấy)',
+    d: { ko: '말린 망고와 바삭한 잭프루트 칩이 대표 제품이에요. 생과일은 한국에 가져갈 수 없어서 대신 많이 사요.', en: 'Dried mango and crunchy jackfruit chips are the classics. Fresh fruit cannot go to Korea, so this is the usual substitute.' },
+    price: { ko: '비나밋 말린 망고 100g 약 6만 1천 동(약 {krw:61000}) · 250g 약 14만 3천 동 · 잭프루트 칩 100g 약 4만~4만 6천 동', en: 'Vinamit dried mango 100 g about VND 61,000 ({krw:61000}) · 250 g about VND 143,000 · jackfruit chips 100 g about VND 40,000–46,000' },
+    where: { ko: '롯데마트·박화싼 같은 대형 마트', en: 'Supermarkets such as Lotte Mart and Bách Hóa Xanh' },
+    tip: { ko: '말린 과일은 입국할 때 검역 신고를 하세요. 대부분은 병해충이 없으면 그대로 통과돼요.', en: 'Declare dried fruit at the quarantine desk on arrival in Korea. Most of it passes if no pests are found.' },
+    city: '',
+    k: '말린망고 건망고 잭프루트칩 비나밋 dried mango jackfruit chips vinamit xoai say mit say' },
+
+  { id: 'cashew', cat: 'food', emoji: '🥜',
+    name: { ko: '캐슈너트', en: 'Cashew nuts' }, vi: 'Hạt điều rang muối',
+    d: { ko: '베트남은 손꼽히는 캐슈너트 산지예요. 소금에 볶은 제품이 고소해서 간식이나 안주로 인기가 많아요.', en: 'Vietnam is a leading cashew producer. Salted roasted cashews are a popular snack and go well with drinks.' },
+    price: { ko: '250g 약 10만~14만 동(약 {krw:100000}~{krw:140000}) · 150g 약 7만 8천~9만 동', en: '250 g about VND 100,000–140,000 ({krw:100000}–{krw:140000}) · 150 g about VND 78,000–90,000' },
+    where: { ko: '롯데마트 같은 대형 마트, 시장 견과류 가게', en: 'Big supermarkets such as Lotte Mart; nut stalls in markets' },
+    tip: { ko: '시장의 벌크 제품보다 마트의 밀봉 제품이 위생적이에요. 견과류도 입국할 때 검역 신고를 하세요.', en: 'Sealed supermarket packs are more hygienic than loose market nuts. Declare nuts at quarantine on arrival in Korea.' },
+    city: '',
+    k: '캐슈넛 캐슈너트 견과류 cashew nuts hat dieu rang muoi' },
+
+  { id: 'marou', cat: 'food', emoji: '🍫',
+    name: { ko: '마루 초콜릿', en: 'Marou chocolate' }, vi: 'Sô-cô-la Marou',
+    d: { ko: '베트남 카카오로 만든 수제 초콜릿이에요. 산지별 바와 예쁜 포장 덕분에 선물로 좋아요.', en: 'Craft chocolate made from Vietnamese cacao. Single-origin bars in pretty wrappers make good gifts.' },
+    price: { ko: '싱글 오리진 80g 약 14만 동(약 {krw:140000}) · 가향 바 80g 약 15만 5천~21만 동 · 미니 24g 약 6만 6천~7만 7천 동', en: 'Single-origin 80 g bar about VND 140,000 ({krw:140000}) · flavoured 80 g bars about VND 155,000–210,000 · 24 g minis about VND 66,000–77,000' },
+    where: { ko: '메종 마루 매장(호찌민·하노이·다낭·호이안·나트랑)', en: 'Maison Marou shops (Ho Chi Minh City, Hanoi, Đà Nẵng, Hội An, Nha Trang)' },
+    tip: { ko: '더위에 쉽게 녹아요. 숙소에서는 시원한 곳에 두고, 비행기에서는 기내 가방에 넣어 가세요.', en: 'It melts easily in the heat. Keep it somewhere cool and carry it in your cabin bag on the flight.' },
+    city: '',
+    k: '마루 초콜릿 초콜렛 marou chocolate socola' },
+
+  { id: 'fishsauce', cat: 'food', emoji: '🐟',
+    name: { ko: '푸꾸옥 피시소스', en: 'Phú Quốc fish sauce' }, vi: 'Nước mắm Phú Quốc',
+    d: { ko: '멸치를 소금에 절여 발효한 베트남 액젓이에요. 푸꾸옥산이 유명하고, 병에 적힌 단백질 수치(độ đạm)가 높을수록 진해요.', en: 'Vietnamese anchovy sauce fermented with salt. Phú Quốc is the famous origin; the higher the protein number (độ đạm) on the label, the richer it is.' },
+    price: { ko: '525ml 약 10만~14만 5천 동(약 {krw:100000}~{krw:145000})', en: '525 ml about VND 100,000–145,000 ({krw:100000}–{krw:145000})' },
+    where: { ko: '푸꾸옥 피시소스 공장, 전국 대형 마트', en: 'Fish sauce factories on Phú Quốc; big supermarkets nationwide' },
+    tip: { ko: '기내에는 들고 탈 수 없어요. 베트남항공은 위탁 수하물로 1인 3L까지 받지만 유리병은 안 되고, 뚜껑을 테이프로 감은 플라스틱 병을 스티로폼 상자에 넣어야 해요.', en: 'It cannot go in your cabin bag. Vietnam Airlines accepts up to 3 L per person in checked baggage, but not in glass: use plastic bottles with taped lids, packed in a foam box.' },
+    city: 'phuquoc',
+    k: '피시소스 느억맘 액젓 생선소스 fish sauce nuoc mam phu quoc' },
+
+  { id: 'pepper', cat: 'food', emoji: '🧂',
+    name: { ko: '푸꾸옥 후추', en: 'Phú Quốc pepper' }, vi: 'Tiêu Phú Quốc',
+    d: { ko: '향이 강한 푸꾸옥산 통후추예요. 그라인더가 달린 병 제품이 선물로 쓰기 편해요.', en: 'Aromatic whole peppercorns from Phú Quốc. Jars with a built-in grinder make easy gifts.' },
+    price: { ko: '통후추 100g 약 6만 7천 동(약 {krw:67000}) · 그라인더 병 45g 약 8만 7천~9만 5천 동', en: 'Whole black pepper 100 g about VND 67,000 ({krw:67000}) · 45 g grinder jar about VND 87,000–95,000' },
+    where: { ko: '푸꾸옥 후추 농장, 전국 대형 마트', en: 'Pepper farms on Phú Quốc; big supermarkets nationwide' },
+    tip: { ko: '통후추도 식물류라 애매하면 입국할 때 검역 신고를 하세요. 유리 그라인더 병은 옷으로 감싸 오세요.', en: 'Peppercorns are a plant product, so declare them at quarantine if unsure. Wrap glass grinder jars in clothing.' },
+    city: 'phuquoc',
+    k: '후추 통후추 푸꾸옥 pepper peppercorn tieu phu quoc' },
+
+  { id: 'noodles', cat: 'food', emoji: '🍜',
+    name: { ko: '라면·인스턴트 쌀국수', en: 'Instant noodles & instant phở' }, vi: 'Mì Hảo Hảo, phở ăn liền',
+    d: { ko: '새콤매콤한 새우 맛 하오하오는 베트남 국민 라면이에요. 비폰·꿍딘 인스턴트 쌀국수도 싸고 가벼워 많이 사요.', en: 'Hảo Hảo hot-and-sour shrimp noodles are the everyday favourite. Vifon and Cung Đình instant phở are also cheap and light.' },
+    price: { ko: '하오하오 75g×30봉지 약 12만~13만 동(약 {krw:120000}~{krw:130000}) · 인스턴트 쌀국수 1봉 약 7천~1만 동', en: 'Hảo Hảo 30 × 75 g about VND 120,000–130,000 ({krw:120000}–{krw:130000}) · instant phở about VND 7,000–10,000 a pack' },
+    where: { ko: '대형 마트, 편의점', en: 'Supermarkets and convenience stores' },
+    tip: { ko: '고기 건더기나 고기 팩이 따로 든 제품은 한국 반입이 막힐 수 있어요. 수프만 든 제품을 고르고, 애매하면 입국할 때 신고하세요.', en: 'Packs with real meat pieces or a separate meat sachet may be refused in Korea. Choose seasoning-only packs and declare if unsure.' },
+    city: '',
+    k: '라면 하오하오 쌀국수 인스턴트 포 비폰 instant noodles hao hao pho an lien vifon cung dinh' },
+
+  { id: 'lantern', cat: 'craft', emoji: '🏮',
+    name: { ko: '호이안 등(랜턴)', en: 'Hội An lantern' }, vi: 'Đèn lồng Hội An',
+    d: { ko: '호이안 구시가를 밝히는 비단 등이에요. 접이식이 많아 납작하게 접어 가져갈 수 있어요.', en: 'The silk lanterns that light up Hội An Old Town. Many fold flat for packing.' },
+    price: { ko: '크기와 재질에 따라 약 3만~20만 동(약 {krw:30000}~{krw:200000})', en: 'About VND 30,000–200,000 depending on size and material ({krw:30000}–{krw:200000})' },
+    where: { ko: '호이안 야시장, 구시가 등 가게', en: 'Hội An night market and lantern shops in the Old Town' },
+    tip: { ko: '사기 전에 접었을 때 크기가 캐리어에 들어가는지 확인하세요. 시장에서는 처음 부른 값의 절반쯤부터 흥정해요.', en: 'Check the folded size fits your suitcase before buying. In markets, start bargaining at about half the first price.' },
+    city: 'danang',
+    k: '등 랜턴 등불 호이안 lantern den long hoi an' },
+
+  { id: 'nonla', cat: 'craft', emoji: '👒',
+    name: { ko: '논라 (베트남 삿갓)', en: 'Nón lá (conical hat)' }, vi: 'Nón lá',
+    d: { ko: '야자잎을 엮어 만든 베트남 전통 삿갓이에요. 여행 중 사진 소품으로 쓰고 집에서는 장식으로 걸어 둬요.', en: 'The traditional Vietnamese palm-leaf conical hat. Fun for photos on the trip and as wall decor at home.' },
+    price: { ko: '약 4만~15만 동(약 {krw:40000}~{krw:150000})', en: 'About VND 40,000–150,000 ({krw:40000}–{krw:150000})' },
+    where: { ko: '시장, 관광지 기념품 가게', en: 'Markets and souvenir shops' },
+    tip: { ko: '부피가 커서 캐리어에 잘 안 들어가요. 귀국길에 따로 들고 다녀야 한다는 점을 생각하고 사세요.', en: 'It rarely fits in a suitcase, so plan to carry it separately on the way home.' },
+    city: '',
+    k: '논라 삿갓 모자 conical hat non la' },
+
+  { id: 'tailor', cat: 'craft', emoji: '👗',
+    name: { ko: '아오자이·맞춤옷', en: 'Áo dài & tailor-made clothes' }, vi: 'Áo dài, may đo',
+    d: { ko: '호이안은 하루이틀 만에 옷을 맞춰 주는 양장점으로 유명해요. 아오자이나 셔츠, 원피스를 내 치수에 맞출 수 있어요.', en: 'Hội An is known for tailors who make clothes in a day or two. Get an áo dài, shirt or dress made to your measurements.' },
+    price: { ko: '셔츠·원피스 약 30만 동(약 {krw:300000})부터 · 정장은 수백만 동', en: 'Shirts and dresses from about VND 300,000 ({krw:300000}) · suits run to several million VND' },
+    where: { ko: '호이안 구시가 양장점, 다낭 한시장 2층', en: 'Tailor shops in Hội An Old Town; 2nd floor of Hàn Market, Đà Nẵng' },
+    tip: { ko: '여행 초반에 주문해야 가봉하고 고칠 시간이 있어요. 원하는 디자인 사진을 가져가면 상담이 빨라요.', en: 'Order early in your trip so there is time for fittings and changes. Bring photos of the design you want.' },
+    city: 'danang',
+    k: '아오자이 맞춤옷 양장점 테일러 ao dai tailor may do hoi an' },
+
+  { id: 'rattan', cat: 'craft', emoji: '👜',
+    name: { ko: '라탄백', en: 'Rattan bag' }, vi: 'Túi cói, túi mây',
+    d: { ko: '라탄이나 왕골로 엮은 가방이에요. 가볍고 여름에 들기 좋아요.', en: 'Woven rattan or sedge bags. Light and perfect for summer.' },
+    price: { ko: '작은 크로스백 약 10만~20만 동(약 {krw:100000}~{krw:200000})', en: 'Small crossbody bags about VND 100,000–200,000 ({krw:100000}–{krw:200000})' },
+    where: { ko: '다낭 한시장, 호이안 야시장 등 시장', en: 'Markets such as Hàn Market (Đà Nẵng) and Hội An night market' },
+    tip: { ko: '처음 부른 값의 절반쯤부터 흥정하고, 여러 개 사면 더 깎기 쉬워요. 대부분 현금(동)만 받아요.', en: 'Start at about half the asking price; buying several gets a better deal. Most stalls take cash (VND) only.' },
+    city: '',
+    k: '라탄백 라탄 가방 왕골 rattan bag tui coi tui may' }
+];
+var GIFT_CUSTOMS = { allowance: { ko: '1인당 면세한도는 미화 800달러예요. 이와 별도로 술은 총 2L 이하이면서 400달러 이하면 병 수와 관계없이 면세이고, 담배는 200개비, 향수는 100ml까지 면세예요. 만 19세 미만은 술·담배 면세가 없어요. 농축수산물은 800달러 안에서 품목당 5kg, 총 40kg, 해외 구입가 합계 10만 원까지예요. 한도를 넘으면 자진신고 때 관세 30%를 감면받고, 신고하지 않다가 걸리면 세액의 40%(2년 안에 2번 이상이면 60%)를 가산세로 내요.', en: 'The duty-free allowance is USD 800 per person. On top of that, alcohol is duty-free up to 2 L in total and USD 400 (no bottle limit), plus 200 cigarettes and 100 ml of perfume. Travellers under 19 get no alcohol or tobacco allowance. Farm and fishery products count within the USD 800: up to 5 kg per item, 40 kg in total and KRW 100,000 in overseas purchase price. Over the limit, declaring voluntarily cuts the duty by 30%; if caught undeclared you pay a 40% penalty on the tax (60% for a second offence within 2 years).' },
+  banned: [
+    { ko: '망고·망고스틴·두리안 같은 생과일과 고추 같은 열매채소는 반입 금지예요. 한두 개라도 안 돼요.', en: 'Fresh fruit such as mango, mangosteen and durian, and fruit vegetables such as chillies, are banned, even one or two pieces.' },
+    { ko: '소시지·햄·육포·베이컨, 고기 솜(짜봉) 같은 육가공품과 고기가 든 즉석식품은 가져올 수 없어요. 베트남은 아프리카돼지열병·구제역 발생국이라 집중 단속 노선이고, 불법 반입 과태료는 최대 1,000만 원이에요.', en: 'Meat products such as sausage, ham, jerky, bacon and meat floss (chà bông), and ready meals containing meat, cannot be brought in. Vietnam has African swine fever and foot-and-mouth disease, so its flights are closely checked; fines run up to KRW 10 million.' },
+    { ko: '묘목·씨앗·흙, 흙 묻은 식물, 살아 있는 곤충도 반입 금지예요.', en: 'Seedlings, seeds, soil, plants with soil attached and live insects are also banned.' },
+    { ko: '말린 망고 같은 건조 과일과 견과류는 대부분 검역 신고 후 병해충이 없으면 통과돼요. 통조림·염장 식품처럼 가열하거나 가공한 식물성 식품은 검역 대상이 아니에요.', en: 'Most dried fruit (e.g. dried mango) and nuts are allowed after you declare them and they pass a pest check. Heated or processed plant foods such as canned or salted goods are not subject to quarantine.' },
+    { ko: '관세청은 과일·농림축수산물(가공품 포함)·식품류를 신고 대상으로 안내해요. 애매하면 입국장에서 신고하세요. 자진 신고하고 검역을 받으면 비용이 들지 않아요.', en: 'Korea Customs lists fruit, farm, livestock and fishery products (including processed ones) and other foods as items to declare. If in doubt, declare on arrival; declaring and having items inspected costs nothing.' }
+  ],
+  carry: [
+    { ko: '기내에는 100ml 이하 용기만 1L 이하 투명 지퍼백 1개에 담아 가져갈 수 있어요. 피시소스나 큰 병 술은 위탁 수하물로 보내고, 면세점에서 산 액체는 전용 봉투에 밀봉한 채로 들고 타세요.', en: 'Cabin bags may hold liquids only in containers of 100 ml or less, in one clear resealable bag of up to 1 L. Put fish sauce and large bottles of alcohol in checked baggage; keep duty-free liquids sealed in their special bag.' },
+    { ko: '베트남항공은 피시소스 같은 냄새 나는 액체를 위탁 수하물로 1인 3L(3kg)까지 받아요. 유리병은 안 되고, 뚜껑을 테이프로 감은 플라스틱 병을 95%까지만 채워 스티로폼 상자에 넣어야 해요. 다른 항공사는 기준이 다르거나 아예 받지 않을 수 있으니 미리 확인하세요.', en: 'Vietnam Airlines accepts up to 3 L (3 kg) of fish sauce or other strong-smelling liquids per person in checked baggage. No glass: use plastic bottles filled to 95% with taped lids, packed in a sealed foam box. Other airlines may differ or refuse it, so check first.' }
+  ] };
 var giftById = function (id) { for (var i = 0; i < GIFTS.length; i++) if (GIFTS[i].id === id) return GIFTS[i]; return null; };
 
 /* ================= trip prep (facts checked Oct 2026) ================= */
@@ -2359,7 +2506,7 @@ function searchView(q) {
   var es = EXPERIENCES.filter(function (x) { var c = cityById(x.city); return hit([x.name.ko, x.name.en, x.vi, x.desc.ko, x.desc.en, x.k, x.area ? x.area.ko + ' ' + x.area.en : '', c.aka]); });
   var cs = CITIES.filter(function (c) { return hit([c.name.ko, c.name.en, c.vi, c.k]); });
   var ss = SPOTS.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.d.ko, x.d.en, x.addr, x.k, cityById(x.city).aka]); });
-  var gs = GIFTS.filter(function (g) { return hit([g.name.ko, g.name.en, g.vi, g.d.ko, g.d.en, g.k, g.city ? cityById(g.city).aka : '']); });
+  var gs = GIFTS.filter(function (g) { return hit([g.name.ko, g.name.en, g.vi, g.d.ko, g.d.en, g.k, g.city ? cityById(g.city).aka : '', '기념품 선물 쇼핑 souvenir gift']); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
   var us = MONEY_UNITS.filter(function (m) { return hit([m.u, m.say, m.pr, m.k]); });
@@ -2403,7 +2550,7 @@ function searchView(q) {
   };
   // a query that starts a dish name (pho, bun, banh mi, 반미) is a menu search: show the menu first, not experiences that mention "photos" or "phố"
   var dishFirst = ds.some(function (d) { return prep(d.vi).indexOf(nq) === 0 || prep(d.ko).indexOf(nq) === 0; });
-  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'gs', 'ph', 'us'] : ['ss', 'es', 'gs', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
+  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'gs', 'ph', 'us'] : tabs.indexOf('gift') >= 0 ? ['gs', 'ss', 'es', 'ph', 'ds', 'ws', 'us'] : ['ss', 'es', 'gs', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
   if (!total && !tabs.length && !cs.length) {
     html += '<div class="bg-background-100 p-8 rounded-2xl border border-background-200 text-center space-y-3"><p class="text-3xl" aria-hidden="true">🔍</p><p class="font-heading font-bold text-foreground-950">' + esc(t('noResults')) + '</p><p class="text-xs text-foreground-400">' + esc(t('tryThese')) + '</p>' +
       '<div class="flex flex-wrap justify-center gap-2">' + t('sugg').map(function (s) { return chip('suggest', s, s, false); }).join('') + '</div></div>';
