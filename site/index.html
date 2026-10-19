@@ -2566,6 +2566,9 @@ function expViewSeg() {
 }
 /* 기념품: souvenir cards by category, plus what Korea lets you bring home */
 var GIFT_CATS = ['coffee', 'food', 'craft'];
+/* souvenirs with a photo in img/gift/<id>.webp (16:9, made by tools/make_gift_photos.py) */
+var GIFT_PHOTOS = { coffee: 1, weasel: 1, lotustea: 1, artichoke: 1, coconutcandy: 1, driedfruit: 1, cashew: 1, macadamia: 1,
+  fishsauce: 1, pepper: 1, noodles: 1, lantern: 1, nonla: 1, tailor: 1, rattan: 1 };
 var GIFT_CAT_EMOJI = { coffee: '☕', food: '🍬', craft: '🏮' };
 function giftCard(g, showTag) {
   var row = function (ic, label, html) {
@@ -2573,7 +2576,9 @@ function giftCard(g, showTag) {
   };
   var city = g.city ? cityById(g.city) : null;
   var price = krwTpl(L(g.price)), where = esc(L(g.where));
-  return '<article class="bg-background-100 rounded-2xl border border-background-200 p-5 flex flex-col gap-3 min-w-0">' +
+  var photo = GIFT_PHOTOS[g.id] ? '<div class="aspect-[16/9] bg-background-200 overflow-hidden"><img src="img/gift/' + g.id + '.webp" alt="' + esc(L(g.name)) + '" width="800" height="450" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>' : '';
+  return '<article class="bg-background-100 rounded-2xl border border-background-200 overflow-hidden flex flex-col min-w-0">' + photo +
+    '<div class="p-5 flex flex-col gap-3 flex-1">' +
     '<div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + g.emoji + '</div>' +
     '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-1.5 mb-1">' +
     (showTag ? '<span class="' + EXP_TAG + '">' + GIFT_CAT_EMOJI[g.cat] + ' ' + esc(t('gc_' + g.cat)) + '</span>' : '') +
@@ -2582,7 +2587,7 @@ function giftCard(g, showTag) {
     '<p class="text-sm text-foreground-500 leading-relaxed">' + esc(L(g.d)) + '</p>' +
     ((price || where) ? '<dl class="grid grid-cols-1 gap-2.5 p-3 rounded-xl bg-background-50 border border-background-200">' + row('ri-coins-line', t('exp_price'), price) + row('ri-store-2-line', t('gift_where'), where) + '</dl>' : '') +
     (L(g.tip) ? '<p class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed mt-auto"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(L(g.tip)) + '</span></p>' : '') +
-    '</article>';
+    '</div></article>';
 }
 function viewGifts() {
   var counts = { all: GIFTS.length }; GIFT_CATS.forEach(function (c) { counts[c] = 0; });
