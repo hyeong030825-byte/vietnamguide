@@ -73,3 +73,7 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - Local eats (`EATS`): prices and hours change often; recheck every few months (Michelin Guide Vietnam is updated each June). Bánh Cuốn Thanh Vân is listed by street only (Hàng Gà) because sources give different house numbers.
 - Sights (`SPOTS`): Hồ Chí Minh Mausoleum is closed 4 Sep–2 Nov 2026; VinWonders Nha Trang cable car is closed 26 Oct–10 Nov 2026; Saigon Notre-Dame is still under restoration. Remove or update these notes after the dates pass.
 - City facts were checked in Oct 2026. Time-sensitive ones to recheck: Đà Lạt–Incheon flights (expected from Dec 2026), Long Thành airport (opens Dec 2026, international flights move in phases to 2028), Bà Nà Hills and Hòn Thơm cable car 2026 price lists, Phú Quốc VinBus fares, Hanoi Train Street access.
+
+## 검색엔진용 첫 화면 미리 그리기
+
+`python3 build.py`는 마지막에 `tools/prerender.js`(Playwright)로 페이지를 한 번 열어 첫 화면(도시별 여행 · 다낭)을 `site/index.html`의 `<main>` 안에 HTML로 넣어 둬요. 자바스크립트를 실행하지 않는 검색 로봇(네이버 등)도 내용을 읽을 수 있게 하려는 것이고, 실제 방문자 화면은 스크립트가 바로 다시 그려요. Playwright가 없는 환경에서는 이 단계만 건너뛰어요.

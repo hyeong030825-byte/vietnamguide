@@ -3,7 +3,7 @@
 
     python3 build.py
 
-  site/index.html          Netlify가 공개하는 파일 (저장소에 포함)
+  site/index.html          Cloudflare Pages가 공개하는 파일 (저장소에 포함, 첫 화면은 미리 그려 둠)
   build/claude-page.html   Claude 페이지(아티팩트)용 사본 (저장소에는 올리지 않음)
 
 src/page.html   화면 구조·문구·데이터·스크립트. 수정은 대부분 여기서 합니다.
@@ -130,6 +130,20 @@ def collect_icons(src):
     return icons, missing
 
 
+def prerender(path):
+    """First screen as static HTML (tools/prerender.js, headless Chromium). None if it cannot run."""
+    try:
+        r = subprocess.run(["node", str(ROOT / "tools" / "prerender.js"), str(path)],
+                           capture_output=True, text=True, timeout=120, cwd=ROOT)
+    except (OSError, subprocess.TimeoutExpired) as e:
+        print(f"prerender skipped: {e}")
+        return None
+    if r.returncode != 0 or "<section" not in r.stdout:
+        print("prerender skipped: " + (r.stderr.strip() or "no output")[:300])
+        return None
+    return r.stdout
+
+
 def main():
     ensure_tailwind()
     BUILD.mkdir(exist_ok=True)
@@ -170,6 +184,14 @@ def main():
     site = ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n" + head_meta + head_part +
             "</head>\n<body>\n" + page[cut:] + "\n</body>\n</html>\n")
     (SITE / "index.html").write_text(site, encoding="utf-8")
+
+    # Search engines that do not run JavaScript (Naver) only see the static HTML, and #main is empty
+    # until the script runs. Put the first screen (도시별 여행 · 다낭) in it; the script replaces it on load.
+    pre = prerender(SITE / "index.html")
+    empty_main = '<main id="main" class="w-full max-w-5xl mx-auto px-4 py-6 flex-1 pb-28 md:pb-10"></main>'
+    if pre and empty_main in site:
+        site = site.replace(empty_main, empty_main.replace("></main>", ">" + pre + "</main>"))
+        (SITE / "index.html").write_text(site, encoding="utf-8")
 
     # Search engines: sitemap + robots
     today = datetime.date.today().isoformat()
