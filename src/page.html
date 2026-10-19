@@ -40,7 +40,7 @@
       <button type="button" data-action="tab" data-value="phrases" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-accent-400 bg-accent-500/10 border border-accent-500/30 font-bold"><i class="ri-chat-3-line text-base"></i><span data-i18n="tab_phrases">실전 회화</span></button>
       <button type="button" data-action="tab" data-value="calc" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-calculator-line text-base"></i><span data-i18n="tab_calc">동 계산기</span></button>
       <button type="button" data-action="tab" data-value="food" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-restaurant-2-line text-base"></i><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
-      <button type="button" data-action="tab" data-value="emergency" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-shield-star-line text-base"></i><span data-i18n="tab_emergency">긴급 &amp; 노트</span></button>
+      <button type="button" data-action="tab" data-value="emergency" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-shield-star-line text-base"></i><span data-i18n="tab_emergency">긴급 상황</span></button>
       <button type="button" data-action="tab" data-value="prep" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-suitcase-line text-base"></i><span data-i18n="tab_prep">여행 준비</span></button>
     </div>
   </nav>
@@ -159,7 +159,7 @@ var T = {
     spot_dress: '복장 예절 보기', copyAddr: '주소 복사', spotDriverMeaning: '이곳으로 데려다 주세요',
     money_title: '환전 · ATM · 카드 결제', money_desc: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요.', money_bills: '지폐 구분은 동 계산기 탭에서 확인하세요',
     money_note: '카드 조건은 2026년 기준이에요. 혜택과 수수료는 자주 바뀌니 출발 전에 카드 앱에서 꼭 확인하세요.',
-    tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 & 노트', tab_prep: '여행 준비',
+    tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 상황', tab_prep: '여행 준비',
     mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급', mtab_prep: '준비',
     prep_entryTitle: '출국 전 꼭 확인할 입국 규정', prep_entryDesc: '공항에서 막히지 않으려면 이것부터 확인하세요.',
     prep_source: '출처: 외교부 해외안전여행, 베트남 대사관·중앙은행 안내 등 (2026년 10월 확인). 규정은 바뀔 수 있으니 출발 전에 한 번 더 확인하세요.',
@@ -171,7 +171,6 @@ var T = {
     prep_checkTitle: '준비물 체크리스트', prep_checkDesc: '챙긴 건 눌러서 체크하세요. 이 기기 브라우저에 저장돼요.',
     prep_progress: '{n} / {total}개 챙겼어요', prep_done: '준비 끝! 즐거운 여행 되세요', prep_reset: '체크 초기화',
     prep_resetConfirm: '한 번 더 누르면 체크가 모두 지워져요', prep_resetDone: '체크를 모두 지웠어요',
-    prep_addrTip: '숙소 주소는 긴급 & 노트 탭에 베트남어로 저장해 두면 택시 기사님께 바로 보여줄 수 있어요.', prep_goNotes: '긴급 & 노트로 가기',
     pg_docs: '서류', pg_money: '돈', pg_tech: '통신 · 전자기기', pg_health: '건강', pg_clothes: '옷', pg_etc: '기타',
     heroAlt: '베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트',
     heroBadge: '🇻🇳 현지에서 바로 쓰는 단 한 권의 가이드',
@@ -248,7 +247,7 @@ var T = {
     main: '대표', emergency: '긴급', phone: '전화', call: '전화 걸기',
     embassySource: '출처: 외교부 해외안전여행 (2026년 10월 확인) ·',
     emPhrasesTitle: '위급할 때 바로 쓰는 말', emPhrasesDesc: '말이 안 나오면 화면을 그대로 보여주세요.',
-    notesTitle: '내 여행 노트', notesDesc: '입력한 내용은 이 기기 브라우저에만 저장돼요.',
+    notesTitle: '내 여행 노트', notesDesc: '숙소 주소를 베트남어로 적어 두면 택시 기사님께 바로 크게 보여줄 수 있어요. 입력한 내용은 이 기기 브라우저에만 저장돼요.',
     hotelName: '숙소 이름', hotelNamePh: '예: Hoa Mai Hotel', hotelAddr: '숙소 주소 (베트남어 그대로)', hotelAddrPh: '예: 12 Hàng Bạc, Hoàn Kiếm, Hà Nội',
     showDriver: '기사님께 보여주기', needAddr: '숙소 주소를 먼저 입력해 주세요', driverMeaning: '이 주소로 데려다 주세요',
     memo: '메모', memoPh: '예: 공항 픽업 14:30 · 환전 300만 동 · 투어 예약번호 A1234',
@@ -289,7 +288,7 @@ var T = {
     spot_dress: 'Dress code', copyAddr: 'Copy address', spotDriverMeaning: 'Please take me here',
     money_title: 'Money: exchange, ATMs & cards', money_desc: 'Most travelers either change US dollars at local exchange counters or withdraw dong from ATMs with a travel card.', money_bills: 'Tell the notes apart in the Dong Calculator tab',
     money_note: 'Card terms are as of 2026. Perks and fees change often, so check your card app before you go.',
-    tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency & Notes', tab_prep: 'Trip Prep',
+    tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency', tab_prep: 'Trip Prep',
     mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS', mtab_prep: 'Prep',
     prep_entryTitle: 'Entry rules to check before you fly', prep_entryDesc: 'Check these first so nothing stops you at the airport.',
     prep_source: 'Sources: Korean MOFA Safe Travel, Vietnamese embassy and central bank guidance (checked Oct 2026). Rules can change, so check again before you leave.',
@@ -301,7 +300,6 @@ var T = {
     prep_checkTitle: 'Packing checklist', prep_checkDesc: 'Tap items as you pack. Saved in this browser.',
     prep_progress: '{n} of {total} packed', prep_done: 'All packed! Have a great trip', prep_reset: 'Clear checks',
     prep_resetConfirm: 'Tap again to clear all checks', prep_resetDone: 'All checks cleared',
-    prep_addrTip: 'Save your hotel address in Vietnamese on the Emergency & Notes tab so you can show it to taxi drivers.', prep_goNotes: 'Go to Emergency & Notes',
     pg_docs: 'Documents', pg_money: 'Money', pg_tech: 'Phone & gadgets', pg_health: 'Health', pg_clothes: 'Clothing', pg_etc: 'Other',
     heroAlt: 'Stylized night illustration of a Vietnamese lantern festival',
     heroBadge: '🇻🇳 The one guide you will actually use on the ground',
@@ -378,7 +376,7 @@ var T = {
     main: 'Main', emergency: 'Emergency', phone: 'Phone', call: 'Call',
     embassySource: 'Source: MOFA Safe Travel (checked Oct 2026) ·',
     emPhrasesTitle: 'Words for an emergency', emPhrasesDesc: 'If words fail, just show the screen.',
-    notesTitle: 'My travel notes', notesDesc: 'Saved only in this browser on this device.',
+    notesTitle: 'My travel notes', notesDesc: 'Save your hotel address in Vietnamese to show taxi drivers in large type. Saved only in this browser on this device.',
     hotelName: 'Hotel name', hotelNamePh: 'e.g. Hoa Mai Hotel', hotelAddr: 'Hotel address (in Vietnamese)', hotelAddrPh: 'e.g. 12 Hàng Bạc, Hoàn Kiếm, Hà Nội',
     showDriver: 'Show the driver', needAddr: 'Enter the hotel address first', driverMeaning: 'Please take me to this address',
     memo: 'Memo', memoPh: 'e.g. Airport pickup 14:30 · Changed 3M VND · Tour booking A1234',
@@ -1547,9 +1545,9 @@ var TAB_KEYS = {
   gift: '기념품 선물 쇼핑 특산품 면세 반입 souvenir gift shopping',
   calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
-  emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 노트 메모 숙소 주소 embassy consulate police hospital ambulance emergency note memo hotel address',
+  emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 embassy consulate police hospital ambulance emergency',
   exp: '문화체험 체험 투어 도시 여행정보 관광지 명소 호이안 다낭 나트랑 푸꾸옥 하노이 하롱베이 호치민 사이공 달랏 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour city guide sights hoi an da nang nha trang phu quoc hanoi ha long ho chi minh saigon da lat',
-  prep: '여행 준비 준비물 체크리스트 ATM 트래블카드 트래블로그 트래블월렛 수수료 카드 결제 달러 환전소 VPBank TPBank 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
+  prep: '여행 준비 노트 메모 숙소 주소 호텔 note memo hotel address 준비물 체크리스트 ATM 트래블카드 트래블로그 트래블월렛 수수료 카드 결제 달러 환전소 VPBank TPBank 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
 };
 
 /* ================= state ================= */
@@ -2273,10 +2271,7 @@ function viewPrep() {
     cardHead('✅', 'secondary', t('prep_checkTitle'), t('prep_checkDesc')) +
     '<div id="prep-progress">' + prepProgressHtml() + '</div>' +
     groups +
-    '<div class="p-3 rounded-xl bg-accent-500/10 border border-accent-500/30 flex flex-col sm:flex-row sm:items-center gap-2 text-xs">' +
-    '<p class="flex-1 text-foreground-900 leading-relaxed flex items-start gap-1.5"><i class="ri-taxi-line text-accent-400 text-base"></i><span>' + esc(t('prep_addrTip')) + '</span></p>' +
-    '<button type="button" data-action="goto-tab" data-value="emergency" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-accent-500 hover:bg-accent-400 text-background-50 font-bold cursor-pointer transition-colors whitespace-nowrap self-start sm:self-auto">' + esc(t('prep_goNotes')) + '<i class="ri-arrow-right-line"></i></button></div>' +
-    '</div></section>';
+    '</div>' + notesCard() + '</section>';
 }
 function viewEmergency() {
   var tiles = [{ n: '113', e: '🚓', k: 'police' }, { n: '114', e: '🚒', k: 'fire' }, { n: '115', e: '🚑', k: 'ambulance' }].map(function (x) {
@@ -2296,9 +2291,6 @@ function viewEmergency() {
       '<button type="button" data-action="big" data-vi="' + esc(vi) + '" data-meaning="' + esc(pMeaning(p)) + '" aria-label="' + esc(t('bigView')) + '" class="p-2 rounded-full bg-background-100 hover:bg-background-200 border border-background-200 text-foreground-500 hover:text-foreground-950 cursor-pointer transition-colors"><i class="ri-fullscreen-line"></i></button>' +
       '<button type="button" data-action="speak" data-text="' + esc(vi) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors"><i class="ri-volume-up-line"></i></button></div>';
   }).join('');
-  var n = state.notes;
-  var inputCls = 'w-full px-3 py-2.5 text-sm bg-background-50 border border-background-300 rounded-xl text-foreground-950 placeholder-foreground-400 focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30 transition';
-
   return '<section class="space-y-6">' +
     '<div class="space-y-3"><div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' + tiles + '</div>' +
     '<p class="text-xs text-foreground-500 flex items-start gap-1.5"><i class="ri-information-line text-primary-400 mt-px"></i><span>' + esc(t('localNote')) + '</span></p></div>' +
@@ -2309,15 +2301,20 @@ function viewEmergency() {
     '<button type="button" data-action="copy" data-text="' + CALL_CENTER + '" aria-label="' + esc(t('copy')) + '" class="p-1.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors"><i class="ri-file-copy-line"></i></button></div></div>' +
     '<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">' + missions + '</div>' +
     '<p class="text-[11px] text-foreground-400">' + esc(t('embassySource')) + ' <a href="https://0404.go.kr/ntnSafetyInfo/86/detail" target="_blank" rel="noopener noreferrer" class="underline hover:text-foreground-900">0404.go.kr</a></p></div>' +
-    '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🆘', 'primary', t('emPhrasesTitle'), t('emPhrasesDesc')) + toneSeg() + '<div class="space-y-2">' + help + '</div></div>' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' + cardHead('📝', 'accent', t('notesTitle'), t('notesDesc')) +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' + cardHead('🆘', 'primary', t('emPhrasesTitle'), t('emPhrasesDesc')) + toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-2">' + help + '</div></div>' +
+    '</section>';
+}
+/* 내 여행 노트: hotel name/address (show the driver) and a free memo, saved in this browser */
+function notesCard() {
+  var n = state.notes;
+  var inputCls = 'w-full px-3 py-2.5 text-sm bg-background-50 border border-background-300 rounded-xl text-foreground-950 placeholder-foreground-400 focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30 transition';
+  return '<div id="notes" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' + cardHead('📝', 'accent', t('notesTitle'), t('notesDesc')) +
+    '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
     '<div class="space-y-2"><label for="note-name" class="block text-xs font-bold text-foreground-400">' + esc(t('hotelName')) + '</label><input id="note-name" type="text" autocomplete="off" value="' + esc(n.name) + '" placeholder="' + esc(t('hotelNamePh')) + '" class="' + inputCls + '">' +
     '<label for="note-addr" class="block text-xs font-bold text-foreground-400 pt-1">' + esc(t('hotelAddr')) + '</label><input id="note-addr" type="text" autocomplete="off" value="' + esc(n.addr) + '" placeholder="' + esc(t('hotelAddrPh')) + '" class="vi ' + inputCls + '">' +
     '<button type="button" data-action="show-address" class="w-full mt-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500 hover:bg-accent-400 text-background-50 text-sm font-bold cursor-pointer transition-colors"><i class="ri-taxi-line text-base"></i>' + esc(t('showDriver')) + '</button></div>' +
     '<div class="space-y-2"><label for="note-memo" class="block text-xs font-bold text-foreground-400">' + esc(t('memo')) + '</label><textarea id="note-memo" rows="4" placeholder="' + esc(t('memoPh')) + '" class="' + inputCls + ' resize-y">' + esc(n.memo) + '</textarea>' +
-    '<p id="note-status" class="text-[11px] text-foreground-400 flex items-center gap-1"><i class="ri-check-line"></i><span>' + esc(store.ok ? t('saved') : t('savedOff')) + '</span></p></div></div>' +
-    '</div></section>';
+    '<p id="note-status" class="text-[11px] text-foreground-400 flex items-center gap-1"><i class="ri-check-line"></i><span>' + esc(store.ok ? t('saved') : t('savedOff')) + '</span></p></div></div></div>';
 }
 
 function searchView(q) {
