@@ -39,6 +39,8 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - `T` : 버튼·메뉴·안내 문구 (한국어 `ko`, 영어 `en`), 문화 & 에티켓 문장
 - `CITIES` : 문화체험 탭의 도시별 여행 정보 6곳 (다낭·호이안, 나트랑, 푸꾸옥, 하노이·하롱베이, 호치민, 달랏). 가는 법·공항에서 시내·여행 시기·일정·숙소·이동·음식·팁. `aka`는 체험 카드를 찾을 때 쓰는 도시 이름, `k`는 도시 바로가기 검색어예요.
 - `GIFTS`, `GIFT_CUSTOMS` : 문화체험 탭의 기념품 추천(카테고리 coffee·food·craft, 특산 도시 `city`)과 한국 입국 면세 한도·반입 금지 안내. 가격은 마트·브랜드 매장 기준이에요.
+- `EATS` : 도시별 현지인 맛집(길거리 식당). 하노이·호치민·다낭은 미쉐린 가이드 2026 수록 집(`mich`: `bib` 빕 구르망, `sel` 수록)에서, 나머지는 2025~2026년 베트남 여행 기사에서 골랐어요. 영업시간 `hours`·가격 `price`는 출처가 있는 것만 넣고, 없으면 빼 둬요(카드에서 줄이 사라져요). `dish`는 메뉴판(`DISHES`) id로 '메뉴판에서 보기' 링크가 돼요. 북마크는 `r:` 접두어예요.
+- `MARKET_PHRASES` : 문화 & 에티켓의 '전통시장 바가지 · 사기 피하는 법' 카드에 나오는 시장 회화(존댓말 em / 반말 tôi). 카드 문구는 `c_mk*` 키예요.
 - `SPOTS` : 도시별 유명 관광지 (`city`로 도시를 정해요). 주소 `addr`는 베트남어로, 2025년 7월 행정구역 개편 뒤의 새 동 이름을 확인된 곳만 적었어요. 운영 시간·입장료 `info`는 확인된 것만 넣고 모르면 비워 둬요.
 - `EXPERIENCES` : 도시별 체험 카드 (`city`로 도시를 정해요). 가격의 `{krw:150000}`은 실시간 환율로 원화가 표시되는 자리예요. `EXP_PHOTOS`에 사진이 있는 체험 id를 적어요.
 - `PREP_ENTRY`, `PREP_BAN`, `PREP_LIFE`, `PREP_MONEY`, `PREP_WEATHER`, `PREP_CHECK` : 여행 준비 탭 (입국 규정, 반입 금지, 생활 정보, 환전·ATM, 날씨, 체크리스트)
@@ -67,5 +69,6 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - 문화체험 views: `state.expView` = 'city' | 'culture' | 'gift'; `#culture` and `#gift` (and `setTab('culture'|'gift')`) open those views. Souvenir prices and Korea import rules were checked Oct 2026; recheck yearly (the 2025 alcohol rule change: 2 L / USD 400, no bottle limit).
 - Tabs (Oct 19, 2026): 긴급 상황 holds emergency numbers, missions and SOS phrases only; the hotel/memo notes card (`notesCard()`, ids note-name/note-addr/note-memo) lives at the end of 여행 준비.
 - Tabs (Oct 2026): 문화체험 (`exp`) holds two views, 도시별 여행 (`state.expView = 'city'`) and 문화 & 에티켓 (`'culture'`, the old culture tab). `setTab('culture')`, `#culture` and a saved `culture` tab all open the etiquette view, so old links keep working.
+- Local eats (`EATS`): prices and hours change often; recheck every few months (Michelin Guide Vietnam is updated each June). Bánh Cuốn Thanh Vân is listed by street only (Hàng Gà) because sources give different house numbers.
 - Sights (`SPOTS`): Hồ Chí Minh Mausoleum is closed 4 Sep–2 Nov 2026; VinWonders Nha Trang cable car is closed 26 Oct–10 Nov 2026; Saigon Notre-Dame is still under restoration. Remove or update these notes after the dates pass.
 - City facts were checked in Oct 2026. Time-sensitive ones to recheck: Đà Lạt–Incheon flights (expected from Dec 2026), Long Thành airport (opens Dec 2026, international flights move in phases to 2028), Bà Nà Hills and Hòn Thơm cable car 2026 price lists, Phú Quốc VinBus fares, Hanoi Train Street access.

@@ -142,7 +142,7 @@ var T = {
     siteLang: '사이트 언어', themeToLight: '밝은 화면으로 보기', themeToDark: '어두운 화면으로 보기', toastLight: '밝은 화면으로 바꿨어요', toastDark: '어두운 화면으로 바꿨어요', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_exp: '문화체험', mtab_exp: '문화체험',
-    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 대표 체험을 볼 수 있어요.',
+    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 현지인 맛집, 대표 체험을 볼 수 있어요.',
     ci_fly: '가는 법', ci_airport: '공항에서 시내로', ci_season: '여행하기 좋은 때', ci_days: '추천 일정', ci_stay: '숙소 잡기 좋은 곳', ci_move: '시내 이동',
     ci_eats: '꼭 먹어 볼 음식', ci_dish: '메뉴판에서 보기', ci_count: '명소 {s} · 체험 {n}', exp_list: '{city} 대표 체험', cityGo: '여행 정보',
     exp_day: '낮 체험', exp_night: '밤 체험', exp_where: '위치', exp_when: '추천 시간', exp_price: '가격', exp_how: '예약 방법',
@@ -157,6 +157,17 @@ var T = {
     spot_list: '{city} 유명 관광지', spot_desc: '주소는 복사해서 Grab이나 지도 앱에 붙여 넣거나, 택시 기사님께 크게 보여 주세요.',
     spot_note: '주소는 2025년 7월 행정구역 개편 뒤의 새 동 이름으로 적었어요. 지도 앱에 옛 주소가 보여도 같은 곳이에요. 운영 시간과 입장료는 2026년 10월에 확인했고, 확인되지 않은 곳은 비워 뒀어요.',
     spot_dress: '복장 예절 보기', copyAddr: '주소 복사', spotDriverMeaning: '이곳으로 데려다 주세요',
+    eat_list: '{city} 현지인 맛집', eat_desc: '현지 사람들이 줄 서서 먹는 길거리 식당이에요. 미쉐린 가이드 2026에 오른 곳은 따로 표시했어요.',
+    eat_order: '추천 메뉴', eat_hours: '영업시간', eat_bib: '미쉐린 빕 구르망 2026', eat_sel: '미쉐린 가이드 2026', secEats: '현지인 맛집',
+    eat_note: '가격과 영업시간은 미쉐린 가이드 2026과 2025~2026년 베트남 현지 기사를 바탕으로 정리했어요(2026년 10월 확인). 대부분 현금만 받고, 재료가 떨어지면 일찍 닫기도 해요.',
+    c_mkTitle: '전통시장 바가지 · 사기 피하는 법', c_mkDesc: '한시장·벤탄시장·동쑤언시장 같은 재래시장과 야시장, 해산물 식당에서 특히 챙기세요.',
+    c_mk1T: '값부터 묻고, 숫자로 받기', c_mk1: '가격표가 없으면 고르기 전에 먼저 물어보고, 단위(1개·1kg·100g)와 총액을 계산기나 종이에 숫자로 받아 두세요. 흥정은 달러 말고 동으로 하고, 0이 헷갈리면 동 계산기에서 원화로 바로 확인하세요.',
+    c_mk2T: '해산물 · 과일은 저울을 눈앞에서', c_mk2: 'kg당 값을 먼저 정하고, 저울 숫자를 직접 보고 사진으로 남겨 두세요. 요리하기 전에 무게와 총액을 확정해야 해요. 2026년 7월 다낭 선짜 야시장 앞에서는 1.5~1.7kg짜리 두리안을 4kg으로 계산한 상인을 경찰이 불러 확인했고, 2025년 나트랑에서는 가격을 게시하지 않은 해상 식당이 벌금을 받았어요.',
+    c_mk3T: '흥정은 가격표 없는 곳에서만', c_mk3: '시장 기념품·야시장 물건·노점은 흥정이 보통이지만, 정찰제(Giá cố định) 가게·메뉴판 있는 식당·마트·그랩에선 하지 않아요. 두세 집 값을 비교한 뒤 낼 만한 값보다 조금 낮게 부르고, 값이 정해지면 사는 게 예의예요. 아침 첫 손님(mở hàng)은 그날 장사 운을 연다고 여겨 잘 깎아 주기도 하지만, 그때 흥정만 하고 그냥 가면 큰 실례예요.',
+    c_mk4T: '돈은 한 장씩, 거스름돈은 그 자리에서', c_mk4: '2만 동과 50만 동은 둘 다 파란 지폐라 헷갈리기 쉬워요. 큰돈은 따로 넣어 두고, 금액을 말하면서 한 장씩 건넨 뒤 거스름돈을 그 자리에서 천천히 세어 보세요. "잔돈이 없다"는 말에 대비해 작은 돈을 챙기면 좋아요.',
+    c_mk5T: '이상하면 증거부터', c_mk5: '가격표·저울·영수증을 사진이나 영상으로 남기고, 자리를 뜨기 전에 따지세요. 다 먹고 증거가 사라지면 신고해도 처리가 어렵다는 사례가 있어요. 시장 관리사무소(Ban quản lý chợ)나 경찰(113)에 도움을 청할 수 있어요.',
+    c_mkPh: '시장에서 바로 쓰는 말', c_mkCalc: '동 계산기 열기',
+    c_mkPhNote: '하노이 등 북부에선 1kg을 cân(껀)이라고도 해요. 남부(호치민)에선 "비싸요"를 Mắc quá(막 꽈)라고 하고, nghìn(응인) 대신 ngàn(응안)을 써요.',
     money_title: '환전 · ATM · 카드 결제', money_desc: '달러를 가져가 현지 환전소에서 동으로 바꾸거나, 트래블카드로 현지 ATM에서 뽑는 방법을 많이 써요.', money_bills: '지폐 구분은 동 계산기 탭에서 확인하세요',
     money_note: '카드 조건은 2026년 기준이에요. 혜택과 수수료는 자주 바뀌니 출발 전에 카드 앱에서 꼭 확인하세요.',
     tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 상황', tab_prep: '여행 준비',
@@ -271,7 +282,7 @@ var T = {
     siteLang: 'Site language', themeToLight: 'Switch to light mode', themeToDark: 'Switch to dark mode', toastLight: 'Light mode on', toastDark: 'Dark mode on', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_exp: 'Culture & Experiences', mtab_exp: 'Explore',
-    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and the top things to do.',
+    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and where locals eat it, and the top things to do.',
     ci_fly: 'Getting there', ci_airport: 'Airport to town', ci_season: 'When to go', ci_days: 'How long to stay', ci_stay: 'Where to stay', ci_move: 'Getting around',
     ci_eats: 'Must-try food', ci_dish: 'See menu card', ci_count: '{s} sights · {n} to do', exp_list: 'Top things to do in {city}', cityGo: 'city guide',
     exp_day: 'Daytime', exp_night: 'Evening', exp_where: 'Where', exp_when: 'Best time', exp_price: 'Price', exp_how: 'Booking',
@@ -286,6 +297,17 @@ var T = {
     spot_list: 'Famous sights in {city}', spot_desc: 'Copy an address into Grab or a maps app, or show it to your taxi driver in large type.',
     spot_note: 'Addresses use the new ward names from the July 2025 reorganization; maps may still show the old address for the same place. Hours and fees were checked in October 2026 and are left blank where they could not be confirmed.',
     spot_dress: 'Dress code', copyAddr: 'Copy address', spotDriverMeaning: 'Please take me here',
+    eat_list: 'Where locals eat in {city}', eat_desc: 'Street-food spots that locals queue for. Places in the 2026 MICHELIN Guide are marked.',
+    eat_order: 'What to order', eat_hours: 'Hours', eat_bib: 'MICHELIN Bib Gourmand 2026', eat_sel: 'MICHELIN Guide 2026', secEats: 'Local eats',
+    eat_note: 'Prices and hours come from the 2026 MICHELIN Guide and 2025–2026 Vietnamese articles (checked October 2026). Most places are cash only and may close early when the food runs out.',
+    c_mkTitle: 'Markets: how not to get overcharged', c_mkDesc: 'Especially at markets like Hàn, Bến Thành and Đồng Xuân, at night markets and in seafood restaurants.',
+    c_mk1T: 'Ask first, get it in numbers', c_mk1: 'If there is no price tag, ask before you choose, and get the unit (each, per kg, per 100 g) and the total as numbers on a calculator or paper. Bargain in dong, not dollars, and if the zeros get confusing, check the won amount in the Dong Calculator.',
+    c_mk2T: 'Watch the scale for seafood and fruit', c_mk2: 'Agree the per-kilo price first, read the scale yourself and take a photo, and settle the weight and total before anything is cooked. In July 2026 police in Đà Nẵng called in a vendor outside the Sơn Trà night market who had charged a 1.5–1.7 kg durian as 4 kg, and in 2025 a floating restaurant in Nha Trang was fined for not posting its prices.',
+    c_mk3T: 'Haggle only where there are no price tags', c_mk3: 'Haggling is normal for market souvenirs, night-market goods and street stalls, but not in fixed-price shops (Giá cố định), restaurants with menus, supermarkets or Grab. Compare two or three stalls, open a little below what you would happily pay, and once you agree a price, buy it. The first customer of the day (mở hàng) is thought to set the day’s luck, so sellers may give a good price, but haggling and then walking away is very bad form.',
+    c_mk4T: 'One note at a time, count your change', c_mk4: 'The 20,000 and 500,000 notes are both blue and easy to mix up. Keep big notes separate, say the amount as you hand over each one, and count your change slowly before you leave. Carry small notes in case the seller has “no change.”',
+    c_mk5T: 'Keep evidence on the spot', c_mk5: 'If something seems off, photograph or film the price list, scale and bill, and raise it before you leave. Once the meal and the evidence are gone, complaints are hard to act on. You can ask the market management office (Ban quản lý chợ) or the police (113) for help.',
+    c_mkPh: 'Handy phrases at the market', c_mkCalc: 'Open the Dong Calculator',
+    c_mkPhNote: 'In the north (Hanoi) a kilo is also “cân”. In the south (Saigon) “too expensive” is “Mắc quá”, and “nghìn” (thousand) becomes “ngàn”.',
     money_title: 'Money: exchange, ATMs & cards', money_desc: 'Most travelers either change US dollars at local exchange counters or withdraw dong from ATMs with a travel card.', money_bills: 'Tell the notes apart in the Dong Calculator tab',
     money_note: 'Card terms are as of 2026. Perks and fees change often, so check your card app before you go.',
     tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency', tab_prep: 'Trip Prep',
@@ -1452,6 +1474,244 @@ var SPOTS = [
 ];
 var spotById = function (id) { for (var i = 0; i < SPOTS.length; i++) if (SPOTS[i].id === id) return SPOTS[i]; return null; };
 
+/* where locals eat (현지인 맛집): street-food shops still open in 2026. Hanoi, HCMC and Đà Nẵng picks are from the
+   2026 MICHELIN Guide Vietnam (mich: 'bib' Bib Gourmand, 'sel' listed); the others from 2025–2026 Vietnamese travel
+   articles. Hours and prices from those sources (checked Oct 2026); hours left out where no source gave them.
+   dish: id in DISHES for the "see menu card" link */
+var EATS = [
+  /* ---- danang (+ Hội An) ---- */
+  { id: 'eat_dn_baduong', city: 'danang', emoji: '🥞', mich: 'sel', dish: 'banhxeo',
+    name: { ko: '반쎄오 바즈엉', en: 'Bánh Xèo Bà Dưỡng' }, vi: 'Bánh xèo Bà Dưỡng',
+    d: { ko: '골목 끝에서 30년 넘게 반쎄오를 부쳐 온 집이에요. 바삭한 반쎄오와 돼지고기 꼬치 넴루이를 채소와 함께 라이스페이퍼에 싸서, 간 고기를 넣은 땅콩 소스에 찍어 먹어요.', en: 'A no-frills shop at the end of an alley that has been frying bánh xèo for over 30 years. Wrap the crispy pancakes and nem lụi pork skewers in rice paper with greens, then dip them in the peanut sauce with minced pork.' },
+    order: { ko: '반쎄오 + 넴루이(돼지고기 꼬치)', en: 'Bánh xèo + nem lụi (pork skewers)' },
+    hours: { ko: '매일 오전 9시 30분~오후 9시 30분', en: 'Daily 9:30 AM–9:30 PM' },
+    price: { ko: '반쎄오 2장 + 넴루이 2개에 5만 동 정도(약 {krw:50000})', en: 'About VND 50,000 for two pancakes and two skewers ({krw:50000})' },
+    tip: { ko: '호앙지에우 거리의 280번 골목(K280)으로 들어가 끝까지 가요. 현금만 받아요.', en: 'Walk to the very end of alley K280 off Hoàng Diệu Street. Cash only.' },
+    addr: 'K280/23 Hoàng Diệu, Hòa Cường, Đà Nẵng',
+    map: 'Banh Xeo Ba Duong, 280/23 Hoang Dieu, Da Nang',
+    k: '반쎄오 반세오 바즈엉 바 즈엉 바두엉 넴루이 banh xeo ba duong pancake nem lui' },
+  { id: 'eat_dn_109', city: 'danang', emoji: '🐟', mich: 'bib',
+    name: { ko: '분짜까 109', en: 'Bún Chả Cá 109' }, vi: 'Bún chả cá 109',
+    d: { ko: '3대째 50년 넘게 이어 온 어묵 쌀국수(분짜까) 집이에요. 직접 만든 튀긴 어묵과 찐 어묵이 쫄깃하고, 파인애플과 토마토로 낸 국물이 달큰하면서 살짝 새콤해요.', en: 'A third-generation shop that has served bún chả cá (fish-cake noodle soup) for over 50 years. The house-made fried and steamed fish cakes are springy, and the broth is sweet with a gentle sourness from pineapple and tomato.' },
+    order: { ko: '분짜까 (참치·고등어·게살 어묵 추가 가능)', en: 'Bún chả cá (add tuna, mackerel or crab cakes)' },
+    hours: { ko: '매일 오전 6시~오후 10시', en: 'Daily 6 AM–10 PM' },
+    price: { ko: '한 그릇 2만 5천~5만 동 정도(약 {krw:25000}~{krw:50000})', en: 'About VND 25,000–50,000 a bowl ({krw:25000}–{krw:50000})' },
+    tip: { ko: '현금만 받아요.', en: 'Cash only.' },
+    addr: '109 Nguyễn Chí Thanh, Hải Châu, Đà Nẵng',
+    map: 'Bun Cha Ca 109, 109 Nguyen Chi Thanh, Da Nang',
+    k: '분짜까 분차까 분짜 까 어묵 쌀국수 어묵국수 생선 국수 bun cha ca 109 fish cake noodle soup' },
+  { id: 'eat_dn_1a', city: 'danang', emoji: '🍜', mich: 'sel', dish: 'miquang',
+    name: { ko: '미꽝 1A', en: 'Mì Quảng 1A' }, vi: 'Mì Quảng 1A',
+    d: { ko: '다낭식 넓적 쌀국수 미꽝만 파는 소박한 집이에요. 강황과 피시소스로 맛을 낸 국물을 자작하게 붓고 땅콩·숙주를 얹어, 상추·바나나꽃과 함께 비벼 먹어요.', en: 'A simple shop that serves only mì quảng: wide rice noodles in a little turmeric and fish-sauce broth, topped with peanuts and bean sprouts and tossed with lettuce and banana flower.' },
+    order: { ko: '미꽝 đặc biệt(특) — 돼지고기·새우와 닭이 다 들어가요', en: 'Mì quảng đặc biệt (special) to get pork, shrimp and chicken' },
+    hours: { ko: '매일 오전 6시~오후 9시', en: 'Daily 6 AM–9 PM' },
+    price: { ko: '한 그릇 2만 5천~4만 동 정도(약 {krw:25000}~{krw:40000})', en: 'About VND 25,000–40,000 a bowl ({krw:25000}–{krw:40000})' },
+    tip: { ko: '현금만 받아요.', en: 'Cash only.' },
+    addr: '1A Hải Phòng, Hải Châu, Đà Nẵng',
+    map: 'Mi Quang 1A, 1A Hai Phong, Da Nang',
+    k: '미꽝 미광 미 꽝 1a 다낭 국수 mi quang 1a my quang noodle' },
+  { id: 'eat_ha_babuoi', city: 'danang', area: { ko: '호이안', en: 'Hội An' }, emoji: '🍗', dish: 'comga',
+    name: { ko: '껌가 바부오이', en: 'Cơm Gà Bà Buội' }, vi: 'Cơm gà Bà Buội',
+    d: { ko: '호이안 구시가에서 오래 장사해 온 닭고기 덮밥(껌가) 집이에요. 노랗게 지은 밥에 잘게 찢은 닭고기와 양파·허브를 얹어 줘요.', en: "A long-running chicken-rice shop in Hội An's Old Town: yellow rice topped with shredded chicken, onion and herbs." },
+    order: { ko: '껌가 쎄(찢은 닭고기 덮밥)', en: 'Cơm gà xé (shredded chicken rice)' },
+    hours: { ko: '매일 오전 9시~오후 9시 30분', en: 'Daily 9 AM–9:30 PM' },
+    price: { ko: '닭고기 덮밥 한 접시 5만 5천 동(약 {krw:55000})', en: 'VND 55,000 a plate ({krw:55000})' },
+    tip: { ko: '점심때는 자리가 금방 차요. 점심 피크를 조금 피해 가면 수월해요.', en: 'It fills up at lunchtime, so go a little before or after the rush.' },
+    addr: '22 Phan Châu Trinh, Hội An, Đà Nẵng',
+    map: 'Com Ga Ba Buoi, 22 Phan Chau Trinh, Hoi An',
+    k: '껌가 컴가 바부오이 바 부오이 닭밥 치킨라이스 닭고기 덮밥 호이안 com ga ba buoi chicken rice hoi an' },
+  { id: 'eat_ha_thanh', city: 'danang', area: { ko: '호이안', en: 'Hội An' }, emoji: '🍝', dish: 'caolau',
+    name: { ko: '까오러우 타잉', en: 'Cao Lầu Thanh' }, vi: 'Cao lầu Thanh',
+    d: { ko: '호이안에서만 맛볼 수 있는 쫄깃한 국수 까오러우를 파는 작은 가게예요. 국물 없이 자작한 양념에 돼지고기, 바삭한 튀김 과자, 허브를 얹어 비벼 먹어요.', en: 'A small shop for cao lầu, the chewy noodle dish found only in Hội An, served with just a splash of sauce, sliced pork, crunchy crackers and herbs to toss together.' },
+    order: { ko: '까오러우', en: 'Cao lầu' },
+    hours: { ko: '매일 오전 7시~오후 7시', en: 'Daily 7 AM–7 PM' },
+    price: { ko: '한 그릇 3만 5천~5만 동(약 {krw:35000}~{krw:50000})', en: 'VND 35,000–50,000 a bowl ({krw:35000}–{krw:50000})' },
+    addr: '26 Thái Phiên, Hội An, Đà Nẵng',
+    map: 'Cao Lau Thanh, 26 Thai Phien, Hoi An',
+    k: '까오러우 까오라우 까오 러우 타잉 호이안 국수 cao lau thanh hoi an noodle' },
+  /* ---- nhatrang ---- */
+  { id: 'eat_nt_nguyenloan', city: 'nhatrang', emoji: '🐟',
+    name: { ko: '분까 응우옌로안', en: 'Bún Cá Nguyên Loan' }, vi: 'Bún cá dầm Nguyên Loan',
+    d: { ko: '나트랑 사람들이 아침으로 즐겨 먹는 생선 쌀국수(분까) 집이에요. 어묵과 생선살이 듬뿍 들어가고, 고추와 라임을 더해 먹어요.', en: 'A local favourite for bún cá, the fish noodle soup Nha Trang eats for breakfast, loaded with fish cakes and fish and finished with chili and lime.' },
+    order: { ko: '분까(생선 쌀국수)', en: 'Bún cá (fish noodle soup)' },
+    hours: { ko: '매일 오전 5시~오후 10시 30분', en: 'Daily 5 AM–10:30 PM' },
+    price: { ko: '한 그릇 4만~4만 5천 동(약 {krw:40000}~{krw:45000})', en: 'VND 40,000–45,000 a bowl ({krw:40000}–{krw:45000})' },
+    addr: '123 Ngô Gia Tự, Nha Trang, Khánh Hòa',
+    map: 'Bun Ca Nguyen Loan, 123 Ngo Gia Tu, Nha Trang',
+    k: '분까 분 까 생선 쌀국수 어묵 응우옌로안 응우옌 로안 나트랑 bun ca nguyen loan fish noodle nha trang' },
+  { id: 'eat_nt_banhcan51', city: 'nhatrang', emoji: '🍳',
+    name: { ko: '반깐 51 또히엔타잉', en: 'Bánh Căn 51 Tô Hiến Thành' }, vi: 'Bánh căn 51 Tô Hiến Thành',
+    d: { ko: '작은 토기 틀에 쌀 반죽을 붓고 메추리알·새우·오징어 같은 재료를 얹어 구운 한입 크기 반깐을 파는 저녁 가게예요. 피시소스에 찍어 먹어요.', en: 'An evening shop for bánh căn: bite-sized rice-batter cakes baked in little clay moulds with toppings such as quail egg, shrimp or squid, dipped in fish sauce.' },
+    order: { ko: '반깐 모둠(계란·새우·오징어)', en: 'Mixed bánh căn (egg, shrimp, squid)' },
+    hours: { ko: '매일 오후 4시~9시', en: 'Daily 4–9 PM' },
+    price: { ko: '4만~6만 동(약 {krw:40000}~{krw:60000})', en: 'VND 40,000–60,000 ({krw:40000}–{krw:60000})' },
+    addr: '51 Tô Hiến Thành, Nha Trang, Khánh Hòa',
+    map: 'Banh Can 51 To Hien Thanh, Nha Trang',
+    k: '반깐 반 깐 바인깐 51 또히엔타잉 나트랑 간식 banh can 51 to hien thanh nha trang' },
+  { id: 'eat_nt_dangvanquyen', city: 'nhatrang', emoji: '🍢',
+    name: { ko: '넴느엉 당반꾸옌', en: 'Nem Nướng Đặng Văn Quyên' }, vi: 'Nem nướng Đặng Văn Quyên',
+    d: { ko: '숯불에 구운 돼지고기 완자 넴느엉을 채소와 함께 라이스페이퍼에 싸서 걸쭉한 소스에 찍어 먹는 나트랑 명물이에요.', en: "Nha Trang's signature nem nướng: chargrilled pork sausages wrapped in rice paper with greens and dipped in a thick sauce." },
+    order: { ko: '넴느엉 세트', en: 'Nem nướng set' },
+    hours: { ko: '매일 오전 7시 30분~오후 8시 30분', en: 'Daily 7:30 AM–8:30 PM' },
+    price: { ko: '4만 5천~6만 동(약 {krw:45000}~{krw:60000})', en: 'VND 45,000–60,000 ({krw:45000}–{krw:60000})' },
+    tip: { ko: '2~4 Phan Bội Châu에도 지점이 있어요.', en: 'There is a second branch at 2–4 Phan Bội Châu.' },
+    addr: '16A Lãn Ông, Nha Trang, Khánh Hòa',
+    map: 'Nem Nuong Dang Van Quyen, 16A Lan Ong, Nha Trang',
+    k: '넴느엉 넴 느엉 넴누엉 당반꾸옌 당 반 꾸옌 나트랑 완자 nem nuong dang van quyen nha trang' },
+  /* ---- phuquoc ---- */
+  { id: 'eat_pq_kienxay', city: 'phuquoc', emoji: '🍥',
+    name: { ko: '분꿔이 끼엔써이', en: 'Bún Quậy Kiến Xây' }, vi: 'Bún quậy Kiến Xây',
+    d: { ko: '즉석에서 만든 생선·새우 어묵을 넣은 푸꾸옥식 쌀국수예요. 소금·설탕·고추·라임(tắc)으로 소스를 직접 만들어 그릇에 붓고 휘저어(quậy) 먹어서 이런 이름이 붙었어요.', en: 'Phú Quốc-style noodles with freshly made fish and shrimp cakes. You mix your own sauce from salt, sugar, chili and kumquat-lime (tắc), pour it in and stir (quậy), hence the name.' },
+    order: { ko: '분꿔이(생선·새우 어묵)', en: 'Bún quậy with fish and shrimp cakes' },
+    hours: { ko: '매일 오전 7시쯤~밤 11시 30분쯤', en: 'Daily from about 7 AM to 11:30 PM' },
+    price: { ko: '한 그릇 5만~8만 동(약 {krw:50000}~{krw:80000})', en: 'VND 50,000–80,000 a bowl ({krw:50000}–{krw:80000})' },
+    tip: { ko: '오전 8~10시와 저녁 6~8시가 가장 붐벼요. 즈엉동 야시장과 가까워요.', en: 'Busiest 8–10 AM and 6–8 PM. Close to the Dương Đông night market.' },
+    addr: '28 Bạch Đằng, đặc khu Phú Quốc, An Giang',
+    map: 'Bun Quay Kien Xay, 28 Bach Dang, Phu Quoc',
+    k: '분꿔이 분꾸어이 분 꿔이 끼엔써이 끼엔 써이 푸꾸옥 국수 bun quay kien xay phu quoc' },
+  { id: 'eat_pq_utluom', city: 'phuquoc', emoji: '🥥',
+    name: { ko: '분깬 웃르엄', en: 'Bún Kèn Út Lượm' }, vi: 'Bún kèn Út Lượm',
+    d: { ko: '생선살을 레몬그라스·마늘과 볶은 뒤 코코넛 밀크를 넣고 끓인 국물을 쌀국수에 부어 먹는 푸꾸옥 아침 국수(분깬) 집이에요. 분깬 가게는 대부분 오전에만 팔아요.', en: "A spot for bún kèn, Phú Quốc's breakfast noodles in a broth of fish stir-fried with lemongrass and garlic, then simmered with coconut milk. Most bún kèn shops sell only in the morning." },
+    order: { ko: '분깬', en: 'Bún kèn' },
+    hours: { ko: '오전 6시쯤 열어요. 일찍 떨어지는 날이 많아요', en: 'Opens around 6 AM and often sells out early' },
+    price: { ko: '한 그릇 2만 5천~3만 동(약 {krw:25000}~{krw:30000})', en: 'VND 25,000–30,000 a bowl ({krw:25000}–{krw:30000})' },
+    tip: { ko: '오전 6시 30분~8시 사이에 가는 게 가장 확실해요.', en: 'Aim for 6:30–8 AM to be safe.' },
+    addr: '42 Đường 30 Tháng 4, đặc khu Phú Quốc, An Giang',
+    map: 'Bun Ken Ut Luom, 42 Duong 30 Thang 4, Phu Quoc',
+    k: '분깬 분껜 분 깬 웃르엄 웃 르엄 푸꾸옥 아침 국수 코코넛 bun ken ut luom phu quoc breakfast' },
+  { id: 'eat_pq_rakhoi', city: 'phuquoc', emoji: '🐠',
+    name: { ko: '라커이 (고이까찌)', en: 'Ra Khơi (herring salad)' }, vi: 'Nhà hàng Ra Khơi',
+    d: { ko: '푸꾸옥 명물 고이까찌(청어 회무침)를 먹으러 가는 해산물 식당이에요. 라임에 살짝 절인 청어를 코코넛 채·허브와 함께 얇은 라이스페이퍼에 싸서 땅콩 피시소스에 찍어 먹어요.', en: "A seafood restaurant for gỏi cá trích, Phú Quốc's herring salad: lime-cured herring wrapped in thin rice paper with grated coconut and herbs, dipped in peanut fish sauce." },
+    order: { ko: '고이까찌(gỏi cá trích)', en: 'Gỏi cá trích (herring salad)' },
+    price: { ko: '고이까찌 한 접시 15만 동부터(약 {krw:150000}~)', en: 'Herring salad from VND 150,000 ({krw:150000})' },
+    tip: { ko: '길거리 노점이 아니라 앉아서 먹는 식당이에요. 무게로 값을 매기는 해산물은 주문 전에 무게와 가격을 확인하세요.', en: "It's a sit-down restaurant rather than a stall. For seafood priced by weight, confirm the weight and price before ordering." },
+    addr: '131 Đường 30 Tháng 4, đặc khu Phú Quốc, An Giang',
+    map: 'Nha hang Ra Khoi, 131 Duong 30 Thang 4, Phu Quoc',
+    k: '라커이 라 커이 고이까찌 고이 까 찌 청어 회 샐러드 해산물 푸꾸옥 ra khoi goi ca trich herring salad seafood phu quoc' },
+  /* ---- hanoi ---- */
+  { id: 'eat_hn_batdan', city: 'hanoi', emoji: '🍜', mich: 'bib', dish: 'phobo',
+    name: { ko: '퍼 바단 (퍼 지아쭈옌)', en: 'Phở Bát Đàn (Phở Gia Truyền)' }, vi: 'Phở Gia Truyền Bát Đàn',
+    d: { ko: '하노이에서 가장 유명한 소고기 쌀국수 집 중 하나예요. 고기는 살짝 익힌 것(tái)부터 푹 익힌 양지(chín)까지 고를 수 있고, 꽈이(튀긴 빵)나 달걀노른자를 추가할 수 있어요.', en: "One of Hanoi's most iconic phở shops. Choose your beef from rare (tái) to well-done brisket (chín), and add quẩy (fried dough) or an egg yolk." },
+    order: { ko: '퍼 따이(tái, 살짝 익힌 소고기)', en: 'Phở tái (rare beef)' },
+    hours: { ko: '매일 오전 6시~11시, 오후 5시~9시 30분', en: 'Daily 6–11 AM and 5–9:30 PM' },
+    price: { ko: '한 그릇 5만 5천~7만 동(약 {krw:55000}~{krw:70000})', en: 'VND 55,000–70,000 a bowl ({krw:55000}–{krw:70000})' },
+    tip: { ko: '줄을 서서 주문·계산한 뒤 그릇을 직접 자리로 가져가는 방식이에요. 현금만 받아요.', en: 'Queue, order and pay at the counter, then carry your bowl to a table yourself. Cash only.' },
+    addr: '49 Bát Đàn, Hoàn Kiếm, Hà Nội',
+    map: 'Pho Gia Truyen, 49 Bat Dan, Hanoi',
+    k: '퍼 바단 바 단 퍼지아쭈옌 쌀국수 소고기 쌀국수 하노이 쌀국수 pho bat dan pho gia truyen beef pho hanoi' },
+  { id: 'eat_hn_nguyet', city: 'hanoi', emoji: '🐔', mich: 'bib', dish: 'phoga',
+    name: { ko: '퍼가 응우옛', en: 'Phở Gà Nguyệt' }, vi: 'Phở gà Nguyệt',
+    d: { ko: '2009년 문을 연 닭고기 쌀국수 전문점이에요. 닭 부위를 골라 먹을 수 있는데, 미쉐린은 부드러운 닭다리살을 추천해요. 국물 있는 퍼와 비빔(khô) 둘 다 있어요.', en: 'A chicken-phở specialist founded in 2009. You can pick your cut; the MICHELIN inspectors recommend the tender thigh, in soup or as dry noodles (khô).' },
+    order: { ko: '퍼가 + 닭다리살(đùi)', en: 'Phở gà with thigh (đùi)' },
+    hours: { ko: '매일 오전 6시 30분~자정', en: 'Daily 6:30 AM–midnight' },
+    price: { ko: '한 그릇 3만 5천~6만 동 정도(약 {krw:35000}~{krw:60000})', en: 'About VND 35,000–60,000 a bowl ({krw:35000}–{krw:60000})' },
+    addr: '5B Phủ Doãn, Hoàn Kiếm, Hà Nội',
+    map: 'Pho Ga Nguyet, 5B Phu Doan, Hanoi',
+    k: '퍼가 퍼 가 닭 쌀국수 닭고기 쌀국수 응우옛 하노이 pho ga nguyet chicken pho hanoi' },
+  { id: 'eat_hn_huonglien', city: 'hanoi', emoji: '🥢', mich: 'sel', dish: 'buncha',
+    name: { ko: '분짜 흐엉리엔 (오바마 분짜)', en: 'Bún Chả Hương Liên (the “Obama” bún chả)' }, vi: 'Bún chả Hương Liên',
+    d: { ko: '2016년 오바마 전 미국 대통령과 셰프 앤서니 보데인이 함께 먹어 유명해진 분짜집이에요. 숯불 돼지고기와 완자를 새콤달콤한 국물에 적셔 쌀국수·채소와 먹어요.', en: 'The bún chả shop made famous when US President Barack Obama ate here with chef Anthony Bourdain in 2016: smoky grilled pork and patties in a sweet-sour broth with noodles and herbs.' },
+    order: { ko: '콤보 오바마(분짜 + 해산물 넴 + 하노이 맥주)', en: 'Combo Obama (bún chả + seafood spring roll + Hanoi beer)' },
+    hours: { ko: '매일 오전 8시~오후 8시', en: 'Daily 8 AM–8 PM' },
+    price: { ko: '분짜 6만 동(약 {krw:60000}), 콤보 오바마 13만 동(약 {krw:130000})', en: 'Bún chả VND 60,000 ({krw:60000}); Combo Obama VND 130,000 ({krw:130000})' },
+    tip: { ko: '나갈 때 입구에서 현금으로 계산해요.', en: 'Pay in cash at the entrance on your way out.' },
+    addr: '24 Lê Văn Hưu, Hai Bà Trưng, Hà Nội',
+    map: 'Bun Cha Huong Lien, 24 Le Van Huu, Hanoi',
+    k: '분짜 분차 흐엉리엔 흐엉 리엔 오바마 분짜 오바마 보데인 하노이 bun cha huong lien obama bourdain hanoi' },
+  { id: 'eat_hn_thanhvan', city: 'hanoi', emoji: '🫓', mich: 'bib',
+    name: { ko: '반꾸온 타잉번', en: 'Bánh Cuốn Thanh Vân' }, vi: 'Bánh cuốn gia truyền Thanh Vân',
+    d: { ko: '4대째 이어 온 반꾸온(얇게 찐 쌀피에 다진 고기를 넣어 만 것) 집으로, 2026년 미쉐린 빕 구르망에 새로 올랐어요. 계피 향 햄(chả quế) 같은 곁들이를 더해 피시소스에 찍어 먹어요.', en: 'A fourth-generation shop for bánh cuốn, thin steamed rice sheets rolled around minced pork, new to the MICHELIN Bib Gourmand list in 2026. Add sides such as cinnamon pork roll (chả quế) and dip in fish sauce.' },
+    order: { ko: '반꾸온 돼지고기 소(nhân thịt)', en: 'Bánh cuốn with pork (nhân thịt)' },
+    hours: { ko: '매일 오전 6시 30분~오후 2시, 오후 5시~10시', en: 'Daily 6:30 AM–2 PM and 5–10 PM' },
+    price: { ko: '돼지고기 4만 5천 동, 닭고기 5만 동, 새우 6만 5천 동(약 {krw:45000}~{krw:65000}) · 곁들이 한 조각 1만 동', en: 'Pork VND 45,000, chicken 50,000, shrimp 65,000 ({krw:45000}–{krw:65000}); sides VND 10,000 a piece' },
+    tip: { ko: '오전 8시 30분~낮 12시 30분이 가장 붐벼요.', en: 'Busiest from 8:30 AM to 12:30 PM.' },
+    addr: 'Phố Hàng Gà, Hoàn Kiếm, Hà Nội',
+    map: 'Banh Cuon Gia Truyen Thanh Van, Hang Ga, Hanoi',
+    k: '반꾸온 반꾸언 반 꾸온 타잉번 타잉 번 쌀피 롤 하노이 아침 banh cuon thanh van hang ga hanoi' },
+  /* ---- hcmc ---- */
+  { id: 'eat_sg_huynhhoa', city: 'hcmc', emoji: '🥖', dish: 'banhmi',
+    name: { ko: '반미 후인호아', en: 'Bánh Mì Huỳnh Hoa' }, vi: 'Bánh mì Huỳnh Hoa',
+    d: { ko: '햄·파테·고기를 두툼하게 채운 반미로, 호치민에서 가장 비싼 반미 집으로 꼽혀요. 오후부터 저녁까지 사러 온 사람들로 줄이 길어요.', en: 'Bánh mì stuffed thick with cold cuts, pâté and pork, often called the priciest in Saigon. Expect a queue from mid-afternoon into the evening.' },
+    order: { ko: '반미 (큰 사이즈)', en: 'Bánh mì (large)' },
+    hours: { ko: '매일 오전 6시~오후 10시', en: 'Daily 6 AM–10 PM' },
+    price: { ko: '큰 사이즈 1개 7만 8천 동(약 {krw:78000})', en: 'VND 78,000 for a large one ({krw:78000})' },
+    tip: { ko: '현금만 받아요. 220 Phan Xích Long에도 지점이 있어요.', en: 'Cash only. There is a second branch at 220 Phan Xích Long.' },
+    addr: '26 Lê Thị Riêng, Bến Thành, TP. Hồ Chí Minh',
+    map: 'Banh Mi Huynh Hoa, 26 Le Thi Rieng, Ho Chi Minh City',
+    k: '반미 후인호아 후인 호아 훈호아 호치민 반미 banh mi huynh hoa saigon' },
+  { id: 'eat_sg_baghien', city: 'hcmc', emoji: '🍚', mich: 'bib', dish: 'comtam',
+    name: { ko: '껌떰 바기엔', en: 'Cơm Tấm Ba Ghiền' }, vi: 'Cơm tấm Ba Ghiền',
+    d: { ko: '1990년대부터 장사해 온, 현지인들이 호치민 최고로 꼽기도 하는 껌떰(부서진 쌀밥) 집이에요. 양념해 숯불에 구운 커다란 돼지갈비를 얹고 절인 무와 새콤달콤한 피시소스를 곁들여요.', en: 'Serving cơm tấm since the 1990s and rated the best in the city by many locals: broken rice with a big marinated, charcoal-grilled pork chop, pickled radish and sweet-sour fish sauce.' },
+    order: { ko: '껌떰 쓰언(돼지갈비)', en: 'Cơm tấm sườn (pork chop)' },
+    hours: { ko: '매일 오전 9시~오후 9시 30분', en: 'Daily 9 AM–9:30 PM' },
+    price: { ko: '한 접시 7만 5천~14만 5천 동(약 {krw:75000}~{krw:145000})', en: 'VND 75,000–145,000 a plate ({krw:75000}–{krw:145000})' },
+    tip: { ko: '현금만 받아요. 1군 중심가가 아니라 푸뉴언(Phú Nhuận) 쪽이라 그랩으로 가는 게 편해요.', en: 'Cash only. It is in Phú Nhuận rather than downtown, so take a Grab.' },
+    addr: '84 Đặng Văn Ngữ, Phú Nhuận, TP. Hồ Chí Minh',
+    map: 'Com Tam Ba Ghien, 84 Dang Van Ngu, Ho Chi Minh City',
+    k: '껌떰 컴땀 꼼땀 깜떰 바기엔 바 기엔 돼지갈비 덮밥 호치민 com tam ba ghien broken rice pork chop' },
+  { id: 'eat_sg_46a', city: 'hcmc', emoji: '🥞', mich: 'bib', dish: 'banhxeo',
+    name: { ko: '반쎄오 46A', en: 'Bánh Xèo 46A' }, vi: 'Bánh xèo 46A Đinh Công Tráng',
+    d: { ko: '70년 넘게 단골이 찾아온 남부식 대형 반쎄오 집이에요. 녹두·숙주·돼지고기·새우를 넣은 큼직한 반쎄오를 채소잎에 싸서 피시소스에 찍어 먹어요. 주방 옆 야외 자리가 가장 현지 분위기예요.', en: 'Regulars have come back for over seven decades for these huge southern-style bánh xèo filled with mung beans, bean sprouts, pork and shrimp. Wrap pieces in greens and dip in fish sauce; the open-air seats by the kitchen feel the most local.' },
+    order: { ko: '반쎄오 + 숯불구이(돼지고기·오징어·새우)', en: 'Bánh xèo plus chargrilled pork, squid or prawns' },
+    hours: { ko: '매일 오전 10시~오후 1시 50분, 오후 4시~8시 50분', en: 'Daily 10 AM–1:50 PM and 4–8:50 PM' },
+    price: { ko: '반쎄오 보통 11만 동, 스페셜 18만 동(약 {krw:110000}~{krw:180000})', en: 'Regular VND 110,000, special 180,000 ({krw:110000}–{krw:180000})' },
+    tip: { ko: '문 닫기 직전보다 넉넉히 일찍 가세요. 현금만 받아요.', en: 'Arrive well before closing time. Cash only.' },
+    addr: '46A Đinh Công Tráng, Tân Định, TP. Hồ Chí Minh',
+    map: 'Banh Xeo 46A, 46A Dinh Cong Trang, Ho Chi Minh City',
+    k: '반쎄오 반세오 46a 딘꽁짱 딘 꽁 짱 호치민 부침개 banh xeo 46a dinh cong trang saigon pancake' },
+  { id: 'eat_sg_ocoanh', city: 'hcmc', emoji: '🐚', mich: 'sel',
+    name: { ko: '옥 오아잉 (빈카잉 먹자거리)', en: 'Ốc Oanh (Vĩnh Khánh food street)' }, vi: 'Ốc Oanh',
+    d: { ko: '밤늦게까지 조개·해산물 가게가 이어지는 빈카잉 먹자거리의 대표 가게예요. 고둥·새우·문어·게 같은 해산물을 볶거나 구워 주고, 에어컨 없는 길거리 분위기가 매력이에요.', en: 'The best-known stop on Vĩnh Khánh food street, where shellfish joints stay open late: whelks, prawns, octopus and crab, stir-fried or grilled, with an open-air street vibe and no air-con.' },
+    order: { ko: '고둥·새우·문어 요리 몇 접시 나눠 먹기', en: 'A few plates to share: whelks, prawns, octopus' },
+    hours: { ko: '매일 오후 1시~자정 넘어서까지', en: 'Daily from 1 PM until after midnight' },
+    price: { ko: '한 접시 10만 동부터(약 {krw:100000}~)', en: 'From VND 100,000 a plate ({krw:100000})' },
+    tip: { ko: '무게로 값을 매기는 메뉴는 주문 전에 무게와 가격을 꼭 확인하세요. 현금만 받아요.', en: 'For anything priced by weight, confirm the weight and price before ordering. Cash only.' },
+    addr: '534 Vĩnh Khánh, Khánh Hội, TP. Hồ Chí Minh',
+    map: 'Oc Oanh, 534 Vinh Khanh, Ho Chi Minh City',
+    k: '옥오아잉 옥 오아잉 옥오안 빈카잉 빈칸 먹자거리 해산물 조개 고둥 호치민 4군 oc oanh vinh khanh seafood snail district 4' },
+  /* ---- dalat ---- */
+  { id: 'eat_dl_le', city: 'dalat', emoji: '🍳',
+    name: { ko: '반깐 레', en: 'Bánh Căn Lệ' }, vi: 'Bánh căn Lệ',
+    d: { ko: '예르생 거리 골목 안의 반깐 집이에요. 토기 틀에 구운 쌀 반죽에 메추리알·오리알·소고기·새우·오징어 등을 얹고, 피시소스나 미트볼 소스(xíu mại)에 찍어 먹어요.', en: 'A bánh căn shop down an alley off Yersin Street: rice-batter cakes baked in clay moulds with quail or duck egg, beef, shrimp or squid, dipped in fish sauce or a meatball sauce (xíu mại).' },
+    order: { ko: '반깐 + 씨우마이(미트볼) 소스', en: 'Bánh căn with xíu mại (meatball) sauce' },
+    hours: { ko: '매일 오전 6시 30분~오후 3시 30분', en: 'Daily 6:30 AM–3:30 PM' },
+    price: { ko: '3만 5천~6만 5천 동(약 {krw:35000}~{krw:65000})', en: 'VND 35,000–65,000 ({krw:35000}–{krw:65000})' },
+    addr: '27/44 Yersin, Đà Lạt, Lâm Đồng',
+    map: 'Banh Can Le, 27/44 Yersin, Da Lat',
+    k: '반깐 반 깐 반깐레 예르생 달랏 아침 banh can le yersin da lat' },
+  { id: 'eat_dl_didinh', city: 'dalat', emoji: '🍕',
+    name: { ko: '반짱느엉 지딘', en: 'Bánh Tráng Nướng Dì Đinh' }, vi: 'Bánh tráng nướng Dì Đinh',
+    d: { ko: '라이스페이퍼를 숯불에 굽고 메추리알·파 같은 재료를 얹어 바삭하게 만든 달랏 간식 반짱느엉, 일명 "베트남 피자"를 파는 가게예요.', en: 'A stall for bánh tráng nướng, the “Vietnamese pizza”: rice paper crisped over charcoal with quail egg, spring onion and other toppings.' },
+    order: { ko: '반짱느엉(계란·파)', en: 'Bánh tráng nướng with egg and spring onion' },
+    hours: { ko: '매일 오후 2시~6시 30분', en: 'Daily 2–6:30 PM' },
+    price: { ko: '한 장 5천~1만 8천 동(약 {krw:5000}~{krw:18000})', en: 'VND 5,000–18,000 each ({krw:5000}–{krw:18000})' },
+    tip: { ko: '오후에만 열어요. 저녁에는 달랏 시장 주변 노점에서도 먹을 수 있어요.', en: 'Afternoons only. In the evening, stalls around Đà Lạt Market sell it too.' },
+    addr: '26 Hoàng Diệu, Cam Ly – Đà Lạt, Lâm Đồng',
+    map: 'Banh Trang Nuong Di Dinh, 26 Hoang Dieu, Da Lat',
+    k: '반짱느엉 반짱 느엉 반짱누엉 라이스페이퍼 피자 베트남 피자 지딘 디딘 달랏 banh trang nuong di dinh vietnamese pizza da lat' },
+  { id: 'eat_dl_trang', city: 'dalat', emoji: '🐓',
+    name: { ko: '반으엇 롱가 짱', en: 'Bánh Ướt Lòng Gà Trang' }, vi: 'Bánh ướt lòng gà Trang',
+    d: { ko: '얇고 부드러운 쌀피(반으엇)에 찢은 닭고기와 닭 내장(lòng gà)을 곁들여 피시소스에 찍어 먹는 달랏식 한 접시예요.', en: 'A Đà Lạt favourite: soft steamed rice sheets (bánh ướt) with shredded chicken and chicken giblets (lòng gà), dipped in fish sauce.' },
+    order: { ko: '반으엇 롱가 (내장이 싫으면 닭고기만)', en: 'Bánh ướt lòng gà (or chicken only)' },
+    hours: { ko: '매일 낮 12시 30분~오후 8시', en: 'Daily 12:30–8 PM' },
+    price: { ko: '3만~6만 동(약 {krw:30000}~{krw:60000})', en: 'VND 30,000–60,000 ({krw:30000}–{krw:60000})' },
+    tip: { ko: '내장을 빼고 싶으면 "Không lấy lòng(콩 러이 롱)"이라고 하세요.', en: 'To skip the giblets, say “Không lấy lòng.”' },
+    addr: '15F Tăng Bạt Hổ, Xuân Hương – Đà Lạt, Lâm Đồng',
+    map: 'Banh Uot Long Ga Trang, 15F Tang Bat Ho, Da Lat',
+    k: '반으엇 반으엇롱가 롱가 닭 내장 짱 땅밧호 달랏 banh uot long ga trang tang bat ho da lat chicken' }
+];
+var eatById = function (id) { for (var i = 0; i < EATS.length; i++) if (EATS[i].id === id) return EATS[i]; return null; };
+
+/* 문화 & 에티켓 → 전통시장: phrases for asking prices, weighing and change (em / tôi like the rest of the site) */
+var MARKET_PHRASES = [
+  { ko: ['이거 얼마예요?', '이거 얼마야?'], en: 'How much is this?', vi: ['Cái này bao nhiêu tiền ạ?', 'Cái này bao nhiêu tiền?'], pr: ['까이 나이 바오 니에우 띠엔 아?', '까이 나이 바오 니에우 띠엔?'] },
+  { ko: ['1kg에 얼마예요?', '1kg에 얼마야?'], en: 'How much per kilo?', vi: ['Một ký bao nhiêu tiền ạ?', 'Một ký bao nhiêu?'], pr: ['못 끼 바오 니에우 띠엔 아?', '못 끼 바오 니에우?'] },
+  { ko: ['전부 얼마예요? 적어 주세요', '전부 얼마야? 적어 줘'], en: 'How much altogether? Please write it down', vi: ['Tổng cộng bao nhiêu ạ? Viết ra giúp em với.', 'Tổng cộng bao nhiêu? Viết ra giúp tôi.'], pr: ['똥 꽁 바오 니에우 아? 비엣 자 줍 앰 버이', '똥 꽁 바오 니에우? 비엣 자 줍 또이'] },
+  { ko: ['다시 달아 주세요', '다시 달아 줘'], en: 'Please weigh it again', vi: ['Cân lại giúp em với ạ.', 'Cân lại giúp tôi.'], pr: ['껀 라이 줍 앰 버이 아', '껀 라이 줍 또이'] },
+  { ko: ['너무 비싸요, 좀 깎아 주세요', '너무 비싸, 좀 깎아 줘'], en: 'Too expensive. A little lower?', vi: ['Đắt quá, bớt cho em một chút nhé.', 'Đắt quá, bớt chút đi.'], pr: ['닷 꽈, 벗 쪼 앰 못 쭛 녜', '닷 꽈, 벗 쭛 디'] },
+  { ko: ['50만 동짜리 드렸어요', '50만 동짜리 줬어'], en: 'I gave you a 500,000 note', vi: ['Em đưa tờ năm trăm nghìn mà ạ.', 'Tôi đưa tờ năm trăm nghìn mà.'], pr: ['앰 드어 떠 남 짬 응인 마 아', '또이 드어 떠 남 짬 응인 마'] }
+];
+
 /* souvenirs (기념품): supermarket/brand prices 2025–2026; Korea entry rules from Korea Customs, Incheon Airport and
    quarantine-agency news (checked Oct 2026) */
 var GIFTS = [
@@ -1691,9 +1951,9 @@ var PREP_ITEMS = []; PREP_CHECK.forEach(function (g) { g.items.forEach(function 
 var TAB_KEYS = {
   gift: '기념품 선물 쇼핑 특산품 면세 반입 souvenir gift shopping',
   calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
-  culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 tip etiquette manners temple dress scam massage',
+  culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 전통시장 재래시장 흥정 바가지 저울 거스름돈 tip etiquette manners temple dress scam massage haggle bargain overcharge',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 embassy consulate police hospital ambulance emergency',
-  exp: '문화체험 체험 투어 도시 여행정보 관광지 명소 호이안 다낭 나트랑 푸꾸옥 하노이 하롱베이 호치민 사이공 달랏 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour city guide sights hoi an da nang nha trang phu quoc hanoi ha long ho chi minh saigon da lat',
+  exp: '문화체험 체험 투어 도시 여행정보 관광지 명소 맛집 노점 길거리 호이안 다낭 나트랑 푸꾸옥 하노이 하롱베이 호치민 사이공 달랏 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour city guide sights hoi an da nang nha trang phu quoc hanoi ha long ho chi minh saigon da lat',
   prep: '여행 준비 노트 메모 숙소 주소 호텔 note memo hotel address 준비물 체크리스트 ATM 트래블카드 트래블로그 트래블월렛 수수료 카드 결제 달러 환전소 VPBank TPBank 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
 };
 
@@ -2149,7 +2409,26 @@ function viewCulture() {
     '</div>' +
     '<div class="bg-background-100 p-5 sm:p-6 rounded-2xl border border-background-200 space-y-4"><h3 class="font-heading font-bold text-base text-foreground-950 flex items-center gap-2"><i class="ri-alert-line text-primary-500"></i> ' + esc(t('c_scamTitle')) + '</h3>' +
     '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">' + scam('fa-mobile-screen-button', 'c_s1T', 'c_s1') + scam('fa-taxi', 'c_s2T', 'c_s2') + scam('fa-shoe-prints', 'c_s3T', 'c_s3') + '</div></div>' +
+    marketCard() +
     '</section>';
+}
+/* 전통시장: how not to get overcharged, with the phrases for it */
+function marketCard() {
+  var tips = [['ri-price-tag-3-line', 1], ['ri-scales-3-line', 2], ['ri-hand-coin-line', 3], ['ri-wallet-3-line', 4], ['ri-camera-line', 5]].map(function (it) {
+    return '<li class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200">' +
+      '<span class="w-8 h-8 rounded-lg bg-primary-500/10 text-primary-400 flex items-center justify-center flex-shrink-0"><i class="' + it[0] + ' text-base"></i></span>' +
+      '<div class="min-w-0"><p class="text-sm font-bold text-foreground-950 leading-snug">' + esc(t('c_mk' + it[1] + 'T')) + '</p>' +
+      '<p class="text-xs text-foreground-500 leading-relaxed mt-1">' + esc(t('c_mk' + it[1])) + '</p></div></li>';
+  }).join('');
+  return '<div id="market" class="bg-background-100 p-5 sm:p-6 rounded-2xl border border-background-200 space-y-4">' +
+    cardHead('🛒', 'primary', t('c_mkTitle'), t('c_mkDesc')) +
+    '<div class="grid grid-cols-1 lg:grid-cols-5 gap-5">' +
+    '<ol class="lg:col-span-3 space-y-2.5">' + tips + '</ol>' +
+    '<div class="lg:col-span-2 space-y-2.5 min-w-0"><p class="text-xs font-bold text-foreground-400">' + esc(t('c_mkPh')) + '</p>' + toneSeg() +
+    MARKET_PHRASES.map(function (p) { return miniPhrase(p); }).join('') +
+    '<p class="flex items-start gap-1.5 text-[11px] text-foreground-500 leading-relaxed"><i class="ri-information-line text-foreground-400 mt-px"></i><span>' + esc(t('c_mkPhNote')) + '</span></p>' +
+    '<button type="button" data-action="goto-tab" data-value="calc" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-calculator-line"></i>' + esc(t('c_mkCalc')) + '<i class="ri-arrow-right-line"></i></button>' +
+    '</div></div></div>';
 }
 
 function numRow(label, num) {
@@ -2168,6 +2447,13 @@ function expPlace(x, showCity) {
   var parts = L(cityById(x.city).name).split(' · ');
   return parts.some(function (p) { return area.indexOf(p) >= 0; }) ? area : parts[0] + (area ? ' · ' + area : '');
 }
+/* one phrase with its meaning, pronunciation and a listen button (experience cards, market tips) */
+function miniPhrase(p, bg) {
+  var vi = p.vi[ti()];
+  return '<div class="flex items-center gap-3 p-2.5 ' + (bg || 'bg-background-50') + ' rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-sm font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
+    '<p class="text-[11px] text-foreground-500">' + esc(pMeaning(p)) + (state.lang === 'ko' ? ' · [' + esc(p.pr[ti()]) + ']' + esc(casualFeel(p)) : '') + '</p></div>' +
+    '<button type="button" data-action="speak" data-text="' + esc(vi) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors flex-shrink-0"><i class="ri-volume-up-line"></i></button></div>';
+}
 function expCard(x, showCity) {
   var night = x.time === 'night';
   var chipCls = night ? 'bg-primary-500/10 text-primary-300 border-primary-500/30' : 'bg-accent-500/10 text-accent-300 border-accent-500/30';
@@ -2175,12 +2461,7 @@ function expCard(x, showCity) {
     return '<div class="flex items-start gap-2.5"><i class="' + ic + ' text-base text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>';
   };
   var photo = EXP_PHOTOS[x.id] ? '<div class="aspect-[16/9] bg-background-200 overflow-hidden"><img src="img/exp/' + x.id + '.webp" alt="' + esc(L(x.name)) + '" width="960" height="540" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>' : '';
-  var phrases = x.phrases.map(function (p) {
-    var vi = p.vi[ti()];
-    return '<div class="flex items-center gap-3 p-2.5 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-sm font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
-      '<p class="text-[11px] text-foreground-500">' + esc(pMeaning(p)) + (state.lang === 'ko' ? ' · [' + esc(p.pr[ti()]) + ']' + esc(casualFeel(p)) : '') + '</p></div>' +
-      '<button type="button" data-action="speak" data-text="' + esc(vi) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors flex-shrink-0"><i class="ri-volume-up-line"></i></button></div>';
-  }).join('');
+  var phrases = x.phrases.map(function (p) { return miniPhrase(p); }).join('');
   var place = expPlace(x, showCity);
   var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
   return '<article class="bg-background-100 rounded-2xl border border-background-200 overflow-hidden flex flex-col">' + photo +
@@ -2220,6 +2501,31 @@ function spotCard(sp, showCity) {
     '<button type="button" data-action="spot-driver" data-value="' + sp.id + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' +
     '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(sp.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
     (sp.link ? '<button type="button" data-action="goto-tab" data-value="' + sp.link + '" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-shirt-line"></i>' + esc(t('spot_dress')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+    '</div></article>';
+}
+/* a local eatery: what to order, hours, price, address with copy / show-the-driver / map */
+function eatCard(e, showCity) {
+  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
+  var row = function (ic, label, html) {
+    return html ? '<div class="flex items-start gap-2"><i class="' + ic + ' text-sm text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>' : '';
+  };
+  var place = expPlace(e, showCity), tip = L(e.tip);
+  var tags = (e.mich ? '<span class="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-300 border border-primary-500/30"><i class="ri-award-line"></i>' + esc(t('eat_' + e.mich)) + '</span>' : '') +
+    (place ? '<span class="' + EXP_TAG + '"><i class="ri-map-pin-2-line"></i>' + esc(place) + '</span>' : '');
+  return '<article class="p-4 bg-background-50 rounded-xl border border-background-200 flex flex-col gap-2.5 min-w-0">' +
+    '<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + e.emoji + '</div>' +
+    '<div class="min-w-0 flex-1">' + (tags ? '<div class="flex flex-wrap items-center gap-1.5 mb-1">' + tags + '</div>' : '') +
+    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(e.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(e.vi) + '</p></div>' + bmBtn('r:' + e.id) + '</div>' +
+    '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(e.d)) + '</p>' +
+    '<dl class="grid grid-cols-1 gap-2 p-2.5 rounded-lg bg-background-100 border border-background-200">' +
+    row('ri-restaurant-2-line', t('eat_order'), esc(L(e.order)) + (e.dish && dishById(e.dish) ? ' <button type="button" data-action="dish-open" data-value="' + e.dish + '" class="inline-flex items-center gap-0.5 ml-0.5 text-[11px] font-bold text-accent-400 hover:underline cursor-pointer whitespace-nowrap">' + esc(t('ci_dish')) + '<i class="ri-arrow-right-line"></i></button>' : '')) + row('ri-time-line', t('eat_hours'), esc(L(e.hours))) + row('ri-coins-line', t('exp_price'), krwTpl(L(e.price))) + '</dl>' +
+    (tip ? '<p class="flex items-start gap-1.5 text-[11px] text-foreground-600 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(tip) + '</span></p>' : '') +
+    '<div class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-background-100 border border-background-200 mt-auto"><i class="ri-map-pin-line text-accent-400"></i>' +
+    '<span class="vi text-xs font-semibold text-foreground-900 leading-relaxed select-all break-words min-w-0 flex-1">' + esc(e.addr) + '</span>' +
+    '<button type="button" data-action="copy" data-text="' + esc(e.addr) + '" aria-label="' + esc(t('copyAddr')) + '" title="' + esc(t('copyAddr')) + '" class="p-1 -m-0.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors flex-shrink-0"><i class="ri-file-copy-line"></i></button></div>' +
+    '<div class="flex flex-wrap gap-2">' +
+    '<button type="button" data-action="spot-driver" data-value="' + e.id + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' +
+    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(e.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
     '</div></article>';
 }
 /* 문화체험 tab: 도시별 여행 | 문화 & 에티켓 */
@@ -2340,7 +2646,15 @@ function viewExp() {
     '<p class="text-xs text-foreground-500">' + esc(t('spot_desc')) + '</p>' +
     '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + spots.map(function (x) { return spotCard(x); }).join('') + '</div>' +
     '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('spot_note')) + '</p></div>' : '';
-  return '<section class="space-y-6">' + head + cityGuide(c) + spotBox +
+  var eats = EATS.filter(function (x) { return x.city === c.id; });
+  /* "하노이 · 하롱베이" → "하노이" unless an eatery is in the second place (호이안) */
+  var eatCity = eats.some(function (x) { return x.area; }) ? L(c.name) : L(c.name).split(' · ')[0];
+  var eatBox = eats.length ? '<div id="eat-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">🍲</span>' + esc(tf('eat_list', { city: eatCity })) + ' <span class="text-xs text-foreground-400 tabular">' + eats.length + '</span></h3>' +
+    '<p class="text-xs text-foreground-500">' + esc(t('eat_desc')) + '</p>' +
+    '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + eats.map(function (x) { return eatCard(x); }).join('') + '</div>' +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('eat_note')) + '</p></div>' : '';
+  return '<section class="space-y-6">' + head + cityGuide(c) + spotBox + eatBox +
     '<div id="exp-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + c.emoji + '</span>' + esc(tf('exp_list', { city: L(c.name) })) + ' <span class="text-xs text-foreground-400 tabular">' + mine.length + '</span></h3>' +
     '<div class="flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap gap-2">' + chips + '</div>' + toneSeg() + '</div></div>' +
@@ -2481,6 +2795,9 @@ function searchView(q) {
   var es = EXPERIENCES.filter(function (x) { var c = cityById(x.city); return hit([x.name.ko, x.name.en, x.vi, x.desc.ko, x.desc.en, x.k, x.area ? x.area.ko + ' ' + x.area.en : '', c.aka]); });
   var cs = CITIES.filter(function (c) { return hit([c.name.ko, c.name.en, c.vi, c.k]); });
   var ss = SPOTS.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.d.ko, x.d.en, x.addr, x.k, cityById(x.city).aka]); });
+  var rs = EATS.filter(function (x) { return hit([x.name.ko, x.name.en, x.vi, x.d.ko, x.d.en, x.order.ko, x.order.en, x.addr, x.k, cityById(x.city).aka, x.area ? x.area.ko + ' ' + x.area.en : '', '맛집 현지인 로컬 길거리 음식점 식당 노점 street food local eats eatery']); });
+  // eateries named after the query first, so "pho" lists the phở shops before one on Hải Phòng street
+  rs = rs.map(function (x, i) { return { x: x, i: i, s: hit([x.name.ko, x.name.en, x.vi]) ? 0 : 1 }; }).sort(function (a, b) { return a.s - b.s || a.i - b.i; }).map(function (o) { return o.x; });
   var gs = GIFTS.filter(function (g) { return hit([g.name.ko, g.name.en, g.vi, g.d.ko, g.d.en, g.k, g.city ? cityById(g.city).aka : '', '기념품 선물 쇼핑 souvenir gift']); });
   var ws = [];
   WORDS.forEach(function (g) { g.items.forEach(function (w) { if (hit([w.vi, w.ko, w.en, w.pr])) ws.push(w); }); });
@@ -2500,7 +2817,7 @@ function searchView(q) {
   });
   if (cs.length) tabs = tabs.filter(function (k) { return k !== 'exp'; });
   if (!GIFTS.length) tabs = tabs.filter(function (k) { return k !== 'gift'; });
-  var total = es.length + ss.length + gs.length + ph.length + ds.length + ws.length + us.length;
+  var total = es.length + ss.length + rs.length + gs.length + ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
     return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3"><h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + emoji + '</span>' + esc(title) + ' <span class="text-xs text-foreground-400 tabular">' + n + '</span></h3>' + inner + '</div>';
   };
@@ -2518,6 +2835,7 @@ function searchView(q) {
     es: es.length ? box('🏮', t('secExp'), es.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + es.map(function (x) { return expCard(x, true); }).join('') + '</div>') : '',
     gs: gs.length ? box('🎁', t('secGifts'), gs.length, '<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">' + gs.map(function (g) { return giftCard(g, true); }).join('') + '</div>') : '',
     ss: ss.length ? box('📍', t('secSpots'), ss.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ss.map(function (x) { return spotCard(x, true); }).join('') + '</div>') : '',
+    rs: rs.length ? box('🍲', t('secEats'), rs.length, '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + rs.map(function (x) { return eatCard(x, true); }).join('') + '</div>') : '',
     ph: ph.length ? box('💬', t('secPhrases'), ph.length, toneSeg() + '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + ph.map(phraseCard).join('') + '</div>') : '',
     ds: ds.length ? box('🍜', t('secDishes'), ds.length, '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">' + ds.map(dishCard).join('') + '</div>') : '',
     ws: ws.length ? box('📖', t('secWords'), ws.length, '<div class="flex flex-wrap gap-2">' + ws.map(wordChip).join('') + '</div>') : '',
@@ -2525,7 +2843,7 @@ function searchView(q) {
   };
   // a query that starts a dish name (pho, bun, banh mi, 반미) is a menu search: show the menu first, not experiences that mention "photos" or "phố"
   var dishFirst = ds.some(function (d) { return prep(d.vi).indexOf(nq) === 0 || prep(d.ko).indexOf(nq) === 0; });
-  html += (dishFirst ? ['ds', 'ws', 'es', 'ss', 'gs', 'ph', 'us'] : tabs.indexOf('gift') >= 0 ? ['gs', 'ss', 'es', 'ph', 'ds', 'ws', 'us'] : ['ss', 'es', 'gs', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
+  html += (dishFirst ? ['ds', 'rs', 'ws', 'es', 'ss', 'gs', 'ph', 'us'] : tabs.indexOf('gift') >= 0 ? ['gs', 'ss', 'rs', 'es', 'ph', 'ds', 'ws', 'us'] : ['ss', 'rs', 'es', 'gs', 'ph', 'ds', 'ws', 'us']).map(function (k) { return sec[k]; }).join('');
   if (!total && !tabs.length && !cs.length) {
     html += '<div class="bg-background-100 p-8 rounded-2xl border border-background-200 text-center space-y-3"><p class="text-3xl" aria-hidden="true">🔍</p><p class="font-heading font-bold text-foreground-950">' + esc(t('noResults')) + '</p><p class="text-xs text-foreground-400">' + esc(t('tryThese')) + '</p>' +
       '<div class="flex flex-wrap justify-center gap-2">' + t('sugg').map(function (s) { return chip('suggest', s, s, false); }).join('') + '</div></div>';
@@ -2683,6 +3001,7 @@ function bmModal() {
     else if (kind === 'e:') { var x = expById(key); if (!x) return ''; vi = x.vi; meaning = L(x.name); pr = ''; }
     else if (kind === 's:') { var sp = spotById(key); if (!sp) return ''; vi = sp.vi; meaning = L(sp.name) + ' · ' + sp.addr; pr = ''; }
     else if (kind === 'g:') { var gf = giftById(key); if (!gf) return ''; vi = gf.vi; meaning = L(gf.name); pr = ''; }
+    else if (kind === 'r:') { var ea = eatById(key); if (!ea) return ''; vi = ea.vi; meaning = L(ea.name) + ' · ' + ea.addr; pr = ''; }
     else { var d = dishById(key); if (!d) return ''; vi = d.vi; meaning = state.lang === 'en' ? d.en : d.ko; pr = d.pr; }
     return '<div class="flex items-center gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><div class="flex-1 min-w-0"><p class="vi text-base font-bold text-accent-400 break-words">' + esc(vi) + '</p>' +
       '<p class="text-xs text-foreground-500">' + esc(meaning) + (state.lang === 'ko' && pr ? ' · [' + esc(pr) + ']' : '') + '</p></div>' +
@@ -2862,7 +3181,7 @@ document.addEventListener('click', function (e) {
     case 'exp-city': state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); break;
     case 'exp-city-go': state.city = v; store.set('city', v); state.expTime = 'all'; state.expView = 'city'; store.set('expView', 'city'); setTab('exp'); break;
     case 'spot-driver':
-      var sd = spotById(v);
+      var sd = spotById(v) || eatById(v);
       if (sd) openModal('big', { label: t('showDriver'), title: 'Làm ơn chở tôi đến đây:', vi: sd.vi, sub: sd.addr, meaning: L(sd.name) + ' · ' + t('spotDriverMeaning'), speak: 'Làm ơn chở tôi đến ' + sd.vi + '.' });
       break;
     case 'dish-open':
