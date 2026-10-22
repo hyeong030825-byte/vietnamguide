@@ -77,3 +77,7 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 ## 검색엔진용 첫 화면 미리 그리기
 
 `python3 build.py`는 마지막에 `tools/prerender.js`(Playwright)로 페이지를 한 번 열어 첫 화면(도시별 여행 · 다낭)을 `site/index.html`의 `<main>` 안에 HTML로 넣어 둬요. 자바스크립트를 실행하지 않는 검색 로봇(네이버 등)도 내용을 읽을 수 있게 하려는 것이고, 실제 방문자 화면은 스크립트가 바로 다시 그려요. Playwright가 없는 환경에서는 이 단계만 건너뛰어요.
+
+## 사이트 소개 · 개인정보처리방침 · 문의 페이지
+
+`src/pages/`의 `about.html`, `privacy.html`, `contact.html`(본문)과 `layout.html`(공통 틀)로 `site/about.html` 등을 만들어요. 제목·설명·수정일은 `build.py`의 `PAGES`에 있어요. 공개 연락처는 vietnamguide708@gmail.com 이에요. 방문 통계·광고·로그인처럼 정보를 모으는 기능을 넣을 때는 `privacy.html`을 먼저 고치고 시행일을 바꿔요.

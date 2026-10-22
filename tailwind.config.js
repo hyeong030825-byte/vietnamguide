@@ -9,7 +9,7 @@ const scale = (p) =>
   );
 
 module.exports = {
-  content: ['./src/page.html'],
+  content: ['./src/page.html', './src/pages/*.html'],
   theme: {
     extend: {
       colors: {

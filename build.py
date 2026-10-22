@@ -33,6 +33,16 @@ FA_DIR = pathlib.Path("/opt/npm-tools/node_modules/@fortawesome/fontawesome-free
 SITE = ROOT / "site"
 BUILD = ROOT / "build"
 
+# about / privacy / contact: (slug, title, description, date line); bodies in src/pages/<slug>.html
+PAGES = [
+    ("about", "사이트 소개", "베트남 여행 스마트 가이드가 어떤 사이트인지, 어떤 정보를 어떻게 확인해서 담는지 소개해요.",
+     "최종 수정 2026년 10월 22일"),
+    ("privacy", "개인정보처리방침", "베트남 여행 스마트 가이드의 개인정보처리방침이에요. 회원 가입 없이 쓰는 사이트로, 북마크와 메모는 이용자 기기에만 저장돼요.",
+     "시행일 2026년 10월 22일"),
+    ("contact", "문의", "잘못된 정보 제보, 기능 제안, 제휴 문의는 이메일이나 인스타그램 DM으로 보내 주세요.",
+     "최종 수정 2026년 10월 22일"),
+]
+
 HEAD_META = """<meta charset="UTF-8">
 <link rel="canonical" href="__SITE_URL__/">
 <meta name="google-site-verification" content="eFjrRy1QDJ2rNgtwGZyg4DaRtowQSRaqH0nd9Dwhxqw" />
@@ -144,6 +154,39 @@ def prerender(path):
     return r.stdout
 
 
+def page_links(for_site):
+    """Where the footer links point: pretty URLs on the site, plain files next to the artifact page."""
+    links = {slug: (f"/{slug}" if for_site else f"{slug}.html") for slug, *_ in PAGES}
+    links["home"] = "/" if for_site else "index.html"
+    return links
+
+
+def build_pages(css, for_site):
+    """Static about / privacy / contact pages. Returns {file name: html}."""
+    layout = (ROOT / "src" / "pages" / "layout.html").read_text(encoding="utf-8")
+    links = page_links(for_site)
+    nav = " ".join(f'<a href="{links[slug]}" class="hover:text-accent-400 hover:underline">{title}</a>'
+                   for slug, title, *_ in PAGES)
+    out = {}
+    for slug, title, desc, updated in PAGES:
+        body = (ROOT / "src" / "pages" / f"{slug}.html").read_text(encoding="utf-8")
+        canonical = f'<link rel="canonical" href="{SITE_URL}/{slug}">\n' if for_site else ""
+        html = (layout.replace("{{BODY}}", body.rstrip()).replace("{{TITLE}}", title).replace("{{DESC}}", desc)
+                .replace("{{UPDATED}}", updated).replace("{{CANONICAL}}", canonical).replace("{{NAV}}", nav)
+                .replace("{{CSS}}", css))
+        html = (html.replace("{{HOME}}", links["home"]).replace("{{ABOUT}}", links["about"])
+                .replace("{{PRIVACY}}", links["privacy"]).replace("{{CONTACT}}", links["contact"]))
+        out[f"{slug}.html"] = html
+    return out
+
+
+def link_footer(page, for_site):
+    links = page_links(for_site)
+    for slug, *_ in PAGES:
+        page = page.replace(f"__LINK_{slug}__", links[slug])
+    return page
+
+
 def main():
     ensure_tailwind()
     BUILD.mkdir(exist_ok=True)
@@ -174,7 +217,13 @@ def main():
         "/*__ICONS__*/{}", json.dumps(icons, ensure_ascii=False, separators=(",", ":")))
 
     # Claude page (artifact): body content only; the host adds doctype/head.
-    (BUILD / "claude-page.html").write_text(page, encoding="utf-8")
+    (BUILD / "claude-page.html").write_text(link_footer(page, False), encoding="utf-8")
+    (BUILD / "pages").mkdir(exist_ok=True)
+    for name, html in build_pages(css, False).items():
+        (BUILD / "pages" / name).write_text(html, encoding="utf-8")
+    for name, html in build_pages(css, True).items():
+        (SITE / name).write_text(html, encoding="utf-8")
+    page = link_footer(page, True)
 
     # Public site: full document.
     cut = page.index('<div id="root">')
@@ -198,7 +247,8 @@ def main():
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f'  <url>\n    <loc>{SITE_URL}/</loc>\n    <lastmod>{today}</lastmod>\n  </url>\n'
+        f'  <url>\n    <loc>{SITE_URL}/</loc>\n    <lastmod>{today}</lastmod>\n  </url>\n' +
+        "".join(f'  <url>\n    <loc>{SITE_URL}/{slug}</loc>\n  </url>\n' for slug, *_ in PAGES) +
         '</urlset>\n', encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
 

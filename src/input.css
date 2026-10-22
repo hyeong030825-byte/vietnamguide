@@ -121,3 +121,28 @@ i > svg.ico.fa { width: auto; }
 :root[data-theme="light"] .hover\:bg-primary-400:hover { background-color: rgb(248 100 90); }
 :root[data-theme="light"] .hover\:bg-secondary-400:hover { background-color: rgb(56 201 157); }
 :root[data-theme="light"] .switch::after, :root[data-theme="light"] .switch.on::after { background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .25); }
+
+/* about / privacy / contact pages (src/pages) */
+@layer components {
+  .doc { @apply text-[15px] leading-7 text-foreground-700; }
+  .doc .lead { @apply text-base leading-8 text-foreground-900; }
+  .doc h2 { @apply font-heading font-bold text-lg text-foreground-950 mt-10 mb-3; }
+  .doc p { @apply my-3; }
+  .doc ul { @apply my-3 pl-5 list-disc space-y-1.5 marker:text-accent-400; }
+  .doc strong { @apply text-foreground-950; }
+  .doc a { @apply text-accent-400 underline underline-offset-2 decoration-accent-500/40 hover:decoration-accent-400; }
+  .doc table { @apply w-full my-4 text-sm border-collapse block overflow-x-auto sm:table; }
+  .doc th { @apply text-left font-bold text-foreground-950 bg-background-100 border border-background-200 px-3 py-2 whitespace-nowrap; }
+  .doc td { @apply align-top border border-background-200 px-3 py-2 min-w-[8rem]; }
+  .doc .note-box { @apply my-6 p-4 rounded-2xl border border-accent-500/30 bg-accent-500/10 text-foreground-900; }
+  .doc .note-box p, .doc .note-box ul { @apply my-1.5; }
+  .doc .facts { @apply my-4 grid gap-2; }
+  .doc .facts > div { @apply flex flex-wrap gap-x-4 gap-y-0.5 p-3 rounded-xl bg-background-100 border border-background-200; }
+  .doc .facts dt { @apply w-28 flex-shrink-0 text-sm font-bold text-foreground-500; }
+  .doc .facts dd { @apply text-sm text-foreground-950 break-all; }
+  .doc .contact-cards { @apply my-6 grid gap-3 sm:grid-cols-2; }
+  .doc .contact-card { @apply flex items-center gap-3 p-4 rounded-2xl border border-background-200 bg-background-100 no-underline hover:border-accent-500/50 transition-colors; }
+  .doc .contact-icon { @apply w-11 h-11 rounded-xl bg-background-50 border border-background-200 flex items-center justify-center text-xl flex-shrink-0; }
+  .doc .contact-label { @apply block text-xs font-bold text-foreground-500; }
+  .doc .contact-value { @apply block text-sm font-bold text-foreground-950 break-all; }
+}
