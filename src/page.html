@@ -200,7 +200,8 @@ var T = {
     acct_login: '로그인', acct_title: '로그인', acct_mine: '내 계정', acct_why: '로그인하면 이런 게 좋아요',
     acct_b1: '북마크·메모·준비물 체크를 휴대폰과 PC에서 같이 써요', acct_b2: '맛집·관광지·체험에 후기를 남기고 다른 여행자의 후기를 볼 수 있어요',
     acct_with_google: 'Google로 로그인', acct_with_kakao: '카카오로 로그인', acct_with_naver: '네이버로 로그인',
-    acct_notice: '로그인 서비스가 알려 주는 회원 번호와 별명만 저장해요. 이메일·전화번호는 받지 않아요.', acct_privacy: '개인정보처리방침',
+    acct_notice: '로그인 서비스에서는 회원 번호만 저장해요. 이름·이메일·전화번호·사진은 저장하지 않고, 닉네임은 "여행자1234"처럼 자동으로 정해 드려요(내 계정에서 바꿀 수 있어요).',
+    acct_age: '만 14세 이상이에요 (필수)', acct_ageNeed: '만 14세 이상인지 먼저 체크해 주세요', acct_privacy: '개인정보처리방침',
     acct_via: '{p} 계정으로 로그인했어요', acct_p_google: 'Google', acct_p_kakao: '카카오', acct_p_naver: '네이버',
     acct_nick: '닉네임 (후기에 보여요)', acct_nickSave: '저장', acct_nickSaved: '닉네임을 바꿨어요', acct_nickShort: '닉네임은 2~20자로 적어 주세요',
     acct_sync: '기기 간 동기화', acct_syncDesc: '북마크, 메모, 준비물 체크, 단어장 기록', acct_syncing: '동기화하는 중…', acct_synced: '동기화됨', acct_syncNow: '지금 동기화',
@@ -359,7 +360,8 @@ var T = {
     acct_login: 'Log in', acct_title: 'Log in', acct_mine: 'My account', acct_why: 'Logging in lets you',
     acct_b1: 'Use your bookmarks, notes and packing checklist on both phone and computer', acct_b2: 'Review eateries, sights and experiences, and read other travelers’ reviews',
     acct_with_google: 'Continue with Google', acct_with_kakao: 'Continue with Kakao', acct_with_naver: 'Continue with Naver',
-    acct_notice: 'We only keep the member number and nickname the login service gives us. No email or phone number.', acct_privacy: 'Privacy policy (Korean)',
+    acct_notice: 'We only keep the member number from the login service — never your name, email, phone number or photo. You get a random nickname like "여행자1234" that you can change in My account.',
+    acct_age: 'I am 14 or older (required)', acct_ageNeed: 'Please confirm you are 14 or older first', acct_privacy: 'Privacy policy (Korean)',
     acct_via: 'Logged in with {p}', acct_p_google: 'Google', acct_p_kakao: 'Kakao', acct_p_naver: 'Naver',
     acct_nick: 'Nickname (shown on reviews)', acct_nickSave: 'Save', acct_nickSaved: 'Nickname updated', acct_nickShort: 'Use 2–20 characters',
     acct_sync: 'Sync across devices', acct_syncDesc: 'Bookmarks, notes, checklist, flashcards', acct_syncing: 'Syncing…', acct_synced: 'Synced', acct_syncNow: 'Sync now',
@@ -3301,6 +3303,7 @@ document.addEventListener('input', function (e) {
   var id = e.target.id;
   if (id === 'review-body' && modal && modal.type === 'reviews') { modal.data.body = e.target.value; modal.data.touched = true; var rc = $('#review-count'); if (rc) rc.textContent = e.target.value.length + ' / 500'; return; }
   if (id === 'acct-nick' && modal && modal.type === 'acct') { modal.data.nick = e.target.value; return; }
+  if (id === 'acct-age' && modal && modal.type === 'acct') { modal.data.age = e.target.checked; return; }
   if (id === 'search') {
     state.query = e.target.value.trim(); updateSearchClear(); applyStatic(); renderMain();
   } else if (id === 'calc-input') {
@@ -3559,12 +3562,14 @@ function acctModal() {
   if (!u) {
     var list = auth.providers.map(function (p) {
       var st = PROVIDER_STYLE[p];
-      return '<a href="' + esc(loginUrl(p)) + '" class="' + btn + ' ' + st.cls + '">' + (st.icon ? '<i class="' + st.icon + ' text-lg"></i>' : '<span class="font-extrabold text-base leading-none" aria-hidden="true">N</span>') + esc(t('acct_with_' + p)) + '</a>';
+      return '<button type="button" data-action="acct-go" data-value="' + p + '" class="' + btn + ' ' + st.cls + '">' + (st.icon ? '<i class="' + st.icon + ' text-lg"></i>' : '<span class="font-extrabold text-base leading-none" aria-hidden="true">N</span>') + esc(t('acct_with_' + p)) + '</button>';
     }).join('');
     return shell(modalHeader('ri-user-3-line', t('acct_title'), 'm-title') +
       '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' +
       '<div class="space-y-2"><p class="text-sm font-bold text-foreground-950">' + esc(t('acct_why')) + '</p>' +
       '<ul class="space-y-1.5 text-sm text-foreground-600">' + ['acct_b1', 'acct_b2'].map(function (k) { return '<li class="flex items-start gap-2"><i class="ri-check-line text-accent-400 mt-0.5"></i><span>' + esc(t(k)) + '</span></li>'; }).join('') + '</ul></div>' +
+      '<label class="flex items-center gap-2.5 p-3 rounded-xl bg-background-50 border border-background-200 text-sm font-semibold text-foreground-900 cursor-pointer select-none">' +
+        '<input type="checkbox" id="acct-age" class="w-4 h-4 accent-accent-500 cursor-pointer"' + (modal.data.age ? ' checked' : '') + '>' + esc(t('acct_age')) + '</label>' +
       '<div class="space-y-2">' + list + '</div>' +
       '<p class="text-[11px] text-foreground-500 leading-relaxed">' + esc(t('acct_notice')) + ' <a href="__LINK_privacy__" class="text-accent-400 underline underline-offset-2">' + esc(t('acct_privacy')) + '</a></p>' +
       '</div>', 'm-title');
@@ -3668,6 +3673,12 @@ function authAction(a, v, el) {
   switch (a) {
     case 'account': auth.deleteArmed = false; openModal('acct'); return true;
     case 'reviews': openReviews(v, el.getAttribute('data-title') || ''); return true;
+    case 'acct-go': {
+      var age = $('#acct-age');
+      if (!age || !age.checked) { toast(t('acct_ageNeed'), 'ri-error-warning-line'); if (age) age.focus(); return true; }
+      if (auth.providers.indexOf(v) !== -1) location.href = loginUrl(v);
+      return true;
+    }
     case 'acct-sync': pull(); return true;
     case 'acct-nick-save':
       var nn = ($('#acct-nick') || {}).value || '';

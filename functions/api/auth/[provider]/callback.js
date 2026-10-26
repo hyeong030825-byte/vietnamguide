@@ -1,5 +1,5 @@
 // GET /api/auth/<provider>/callback?code=…&state=… → find or create the member, start a session, go back to the page
-import { configured, parseCookies, cookie, safeReturn, getDb, randomToken, cleanText, createSession } from '../../../../server/lib.js';
+import { configured, parseCookies, cookie, safeReturn, getDb, randomToken, createSession } from '../../../../server/lib.js';
 import { fetchProfile } from '../../../../server/oauth.js';
 
 function back(origin, ret, status, extraCookies = []) {
@@ -37,8 +37,8 @@ export async function onRequestGet({ request, env, params }) {
   if (user) {
     await db.prepare('UPDATE users SET last_login = ? WHERE id = ?').bind(now, user.id).run();
   } else {
-    let nickname = cleanText(profile.nickname, 20).replace(/\n/g, ' ');
-    if (nickname.length < 2) nickname = '여행자' + Math.floor(1000 + Math.random() * 9000);
+    /* never the real name from the login service: reviews are public, so everyone starts with a random nickname */
+    const nickname = '여행자' + Math.floor(1000 + Math.random() * 9000);
     user = { id: randomToken(12) };
     await db.prepare('INSERT INTO users (id, provider, provider_uid, nickname, created_at, last_login) VALUES (?, ?, ?, ?, ?, ?)')
       .bind(user.id, provider, profile.uid, nickname, now, now).run();

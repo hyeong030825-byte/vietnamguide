@@ -90,5 +90,6 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
   - Bindings: D1 database, 이름 `DB` → `vietnamguide-db` (표는 처음 요청 때 자동으로 만들어져요)
   - Variables and Secrets (Encrypt): `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` / `KAKAO_REST_API_KEY`(+ Client Secret을 켰다면 `KAKAO_CLIENT_SECRET`) / `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET` / 관리자 회원 id를 쉼표로 `ADMIN_USER_IDS` (관리자는 남의 후기도 지울 수 있어요. 내 id는 로그인 후 `/api/me`에서 확인)
 - 로그인 앱의 Redirect/Callback URL: `https://vietnamguide.pages.dev/api/auth/<google|kakao|naver>/callback`. 도메인을 바꾸면 새 주소를 추가로 등록해요.
-- 저장하는 정보: 로그인 서비스 회원 번호, 닉네임, 동기화 기록(북마크·메모·체크리스트·단어장), 후기·신고. 이메일·전화번호는 받지 않아요. 바꾸면 `src/pages/privacy.html`도 같이 고쳐요.
+- 저장하는 정보: 로그인 서비스 회원 번호, 닉네임, 동기화 기록(북마크·메모·체크리스트·단어장), 후기·신고. 이름·이메일·전화번호·사진은 저장하지 않아요. 구글은 `openid` 범위만 요청하고, 카카오·네이버 동의항목도 고르지 않아도 돼요(고를 수밖에 없으면 최소 1개만). 닉네임은 처음에 `여행자1234`처럼 무작위로 정하고, 후기에 실명이 드러나지 않게 해요. 바꾸면 `src/pages/privacy.html`도 같이 고쳐요.
+- 로그인 창에서 "만 14세 이상"을 체크해야 로그인 버튼이 넘어가요(개인정보 보호법 제22조의2).
 - 로컬 테스트: `node tools/dev_server.mjs 8788` → http://localhost:8788 (D1 대신 node:sqlite, 가짜 구글·카카오·네이버. 코드 값이 그대로 사용자 id가 돼요)
