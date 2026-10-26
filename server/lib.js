@@ -1,5 +1,5 @@
 // Shared code for the Cloudflare Pages Functions in /functions (login, sync, reviews).
-// Needs a D1 binding named DB and, per login provider, the secrets listed in PROVIDERS.
+// Needs a D1 binding named DB ("db" also works) and, per login provider, the secrets listed in PROVIDERS.
 // Everything stays hidden on the site until at least one provider is fully configured.
 
 export const SESSION_COOKIE = 'vg_session';
@@ -12,8 +12,13 @@ export const PROVIDERS = {
   naver: ['NAVER_CLIENT_ID', 'NAVER_CLIENT_SECRET'],
 };
 
+/* the D1 database; Cloudflare binding names are case-sensitive, so accept "DB" or "db" */
+export function dbBinding(env) {
+  return (env && (env.DB || env.db)) || null;
+}
+
 export function configured(env, provider) {
-  return !!(env && env.DB && PROVIDERS[provider] && PROVIDERS[provider].every((k) => env[k]));
+  return !!(dbBinding(env) && PROVIDERS[provider] && PROVIDERS[provider].every((k) => env[k]));
 }
 export function configuredProviders(env) {
   return Object.keys(PROVIDERS).filter((p) => configured(env, p));
@@ -81,15 +86,16 @@ let schemaReady = false;
 /* tables are created on first use, so no migration step is needed in the dashboard */
 export async function getDb(env) {
   if (!schemaReady) {
-    await env.DB.batch(SCHEMA.map((s) => env.DB.prepare(s)));
+    const db = dbBinding(env);
+    await db.batch(SCHEMA.map((s) => db.prepare(s)));
     schemaReady = true;
   }
-  return env.DB;
+  return dbBinding(env);
 }
 
 export async function currentUser(context) {
   const { request, env } = context;
-  if (!env.DB) return null;
+  if (!dbBinding(env)) return null;
   const token = parseCookies(request)[SESSION_COOKIE];
   if (!token || token.length > 100) return null;
   const db = await getDb(env);
