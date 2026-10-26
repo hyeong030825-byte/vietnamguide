@@ -1,5 +1,6 @@
 // GET  /api/reviews?item=r:eat_dn_baduong   → reviews for one card
 // GET  /api/reviews?items=a,b,c              → count and average rating for several cards
+// GET  /api/reviews?feed=1[&items=a,b][&before=ms] → newest reviews across cards (여행 후기 tab)
 // POST /api/reviews {item, rating, body}     → write or edit my review (one per card)
 // DELETE /api/reviews?id=…                    → delete my review (admins: any review)
 import { json, currentUser, getDb, isAdmin, readJson, cleanText, randomToken, HttpError } from '../../server/lib.js';
@@ -11,6 +12,21 @@ export async function onRequestGet(context) {
   const url = new URL(context.request.url);
   const db = await getDb(context.env);
   const items = url.searchParams.get('items');
+  if (url.searchParams.get('feed')) {
+    const user = await currentUser(context);
+    const list = items ? [...new Set(items.split(',').filter((s) => ITEM.test(s)))].slice(0, 90) : [];
+    const before = Number(url.searchParams.get('before')) || Date.now() + 1;
+    const limit = 15;
+    const rows = (await db.prepare(
+      `SELECT r.id, r.item, r.rating, r.body, r.created_at, r.updated_at, r.user_id, u.nickname FROM reviews r JOIN users u ON u.id = r.user_id
+       WHERE r.hidden = 0 AND r.created_at < ?${list.length ? ` AND r.item IN (${list.map(() => '?').join(',')})` : ''} ORDER BY r.created_at DESC LIMIT ?`
+    ).bind(before, ...list, limit).all()).results || [];
+    return json({
+      reviews: rows.map((r) => ({ id: r.id, item: r.item, rating: r.rating, body: r.body, nickname: r.nickname, createdAt: r.created_at,
+        edited: r.updated_at !== r.created_at, mine: !!user && r.user_id === user.id })),
+      next: rows.length === limit ? rows[rows.length - 1].created_at : null,
+    });
+  }
   if (items != null) {
     const list = [...new Set(items.split(',').filter((s) => ITEM.test(s)))].slice(0, 60);
     const counts = {};

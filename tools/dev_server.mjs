@@ -36,6 +36,16 @@ const env = {
   NAVER_CLIENT_ID: process.env.NO_NAVER ? '' : 'test-naver-id', NAVER_CLIENT_SECRET: process.env.NO_NAVER ? '' : 'test-naver-secret',
   ADMIN_USER_IDS: process.env.ADMIN_USER_IDS || '',
 };
+/* R2 stand-in (PHOTOS=1): photos kept in memory instead of D1 */
+if (process.env.PHOTOS) {
+  const objects = new Map();
+  env.PHOTOS = {
+    async put(key, bytes, opts) { objects.set(key, { bytes: new Uint8Array(bytes), type: opts && opts.httpMetadata && opts.httpMetadata.contentType }); },
+    async get(key) { const o = objects.get(key); return o ? { arrayBuffer: async () => o.bytes.buffer.slice(o.bytes.byteOffset, o.bytes.byteOffset + o.bytes.length) } : null; },
+    async delete(keys) { [].concat(keys).forEach((k) => objects.delete(k)); },
+    _objects: objects,
+  };
+}
 
 /* ---- fake login providers ---- */
 const realFetch = globalThis.fetch;
@@ -69,6 +79,7 @@ globalThis.fetch = async (input, init = {}) => {
 const ROUTES = [
   [/^\/api\/config$/, 'config.js'], [/^\/api\/me$/, 'me.js'], [/^\/api\/data$/, 'data.js'],
   [/^\/api\/reviews$/, 'reviews.js'], [/^\/api\/report$/, 'report.js'], [/^\/api\/auth\/logout$/, 'auth/logout.js'],
+  [/^\/api\/stories$/, 'stories.js'], [/^\/api\/photos$/, 'photos/index.js'], [/^\/api\/photos\/([^/]+)$/, 'photos/[id].js', 'id'],
   [/^\/api\/auth\/([^/]+)\/login$/, 'auth/[provider]/login.js', 'provider'],
   [/^\/api\/auth\/([^/]+)\/callback$/, 'auth/[provider]/callback.js', 'provider'],
 ];
@@ -86,7 +97,7 @@ async function handleApi(request) {
     const m = await mod(route[1]);
     const fn = m[METHOD[request.method]] || m.onRequest;
     if (!fn) return new Response('Method not allowed', { status: 405 });
-    return fn({ request, env, params, data: {}, waitUntil() {} });
+    return fn({ request, env, params, data: {}, waitUntil(p) { Promise.resolve(p).catch(() => {}); } });
   };
   return mw.onRequest({ request, env, params, next, data: {} });
 }

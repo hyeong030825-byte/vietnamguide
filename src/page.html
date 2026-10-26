@@ -43,6 +43,7 @@
       <button type="button" data-action="tab" data-value="food" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-restaurant-2-line text-base"></i><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
       <button type="button" data-action="tab" data-value="emergency" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-shield-star-line text-base"></i><span data-i18n="tab_emergency">긴급 상황</span></button>
       <button type="button" data-action="tab" data-value="prep" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-suitcase-line text-base"></i><span data-i18n="tab_prep">여행 준비</span></button>
+      <button type="button" data-action="tab" data-value="reviews" hidden class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-quill-pen-line text-base"></i><span data-i18n="tab_reviews">여행 후기</span></button>
     </div>
   </nav>
 </div>
@@ -94,6 +95,7 @@
   <button type="button" data-action="tab" data-value="food" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-restaurant-2-line text-lg"></i><span data-i18n="mtab_food">음식</span></button>
   <button type="button" data-action="tab" data-value="emergency" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-shield-star-line text-lg"></i><span data-i18n="mtab_emergency">긴급</span></button>
   <button type="button" data-action="tab" data-value="prep" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-suitcase-line text-lg"></i><span data-i18n="mtab_prep">준비</span></button>
+  <button type="button" data-action="tab" data-value="reviews" hidden class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-quill-pen-line text-lg"></i><span data-i18n="mtab_reviews">후기</span></button>
 </nav>
 
 </div>
@@ -148,7 +150,7 @@ var T = {
     brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
     siteLang: '사이트 언어', themeToLight: '밝은 화면으로 보기', themeToDark: '어두운 화면으로 보기', toastLight: '밝은 화면으로 바꿨어요', toastDark: '어두운 화면으로 바꿨어요', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
-    tab_exp: '문화체험', mtab_exp: '문화체험',
+    tab_exp: '문화체험', mtab_exp: '문화체험', tab_reviews: '여행 후기', mtab_reviews: '후기',
     ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 현지인 맛집, 대표 체험을 볼 수 있어요.',
     ci_fly: '가는 법', ci_airport: '공항에서 시내로', ci_season: '여행하기 좋은 때', ci_days: '추천 일정', ci_stay: '숙소 잡기 좋은 곳', ci_move: '시내 이동',
     ci_eats: '꼭 먹어 볼 음식', ci_dish: '메뉴판에서 보기', ci_count: '명소 {s} · 체험 {n}', exp_list: '{city} 대표 체험', cityGo: '여행 정보',
@@ -214,6 +216,23 @@ var T = {
     rv_submit: '등록', rv_update: '수정하기', rv_saved: '후기를 올렸어요', rv_delete: '삭제', rv_deleteArmed: '한 번 더 누르면 삭제', rv_deleted: '후기를 지웠어요',
     rv_report: '신고', rv_reported: '신고했어요. 확인할게요.', rv_mine: '내 후기', rv_hidden: '신고가 쌓여 숨겨짐', rv_edited: '수정됨', rv_rating: '별점',
     rv_starsLabel: '별 {n}개', rv_rule: '욕설·광고·개인정보가 담긴 후기는 지워질 수 있어요. 신고가 3번 쌓이면 자동으로 숨겨져요.',
+    st_desc: '베트남에 다녀온 여행자들이 직접 남긴 이야기예요', st_viewStories: '여행기', st_viewPlaces: '장소 후기',
+    st_write: '여행기 쓰기', st_writePlace: '장소 후기 쓰기', st_loginHint: '읽기는 누구나, 쓰기는 로그인하면 할 수 있어요.', st_other: '기타 지역',
+    st_empty: '아직 여행기가 없어요. 첫 여행기를 남겨 주세요!', st_emptyPlaces: '아직 장소 후기가 없어요. 다녀온 곳에 첫 후기를 남겨 주세요!',
+    st_loading: '불러오는 중…', st_loadFail: '불러오지 못했어요. 잠시 뒤 다시 해 주세요.', st_retry: '다시 불러오기', st_more: '더 보기',
+    st_trip: '{y}년 {m}월 여행', st_tripOpt: '{y}년 {m}월', st_photoCount: '사진 {n}장',
+    st_city: '어디를 다녀왔나요?', st_tripLabel: '여행한 달 (선택)', st_tripNone: '선택 안 함', st_ratingLabel: '여행 만족도',
+    st_titleLabel: '제목', st_titlePh: '예: 아이와 함께한 다낭 3박 4일', st_bodyLabel: '내용',
+    st_bodyPh: '일정, 숙소, 맛집, 이동 방법, 꿀팁, 아쉬웠던 점까지 자유롭게 적어 주세요. (20자 이상)',
+    st_photoLabel: '사진 (최대 6장, 선택)', st_photoAdd: '사진 추가', st_photoDel: '이 사진 빼기',
+    st_photoNote: '사진은 올릴 때 크기를 줄이고, 찍은 위치(GPS)·카메라 정보는 자동으로 지워요. 다른 사람 얼굴이 크게 나온 사진이나 남이 찍은 사진은 올리지 말아 주세요.',
+    st_photoFail: '사진을 올리지 못했어요. 다른 사진으로 해 보세요.', st_photoMax: '사진은 6장까지 올릴 수 있어요', st_photoWait: '사진을 다 올린 뒤에 눌러 주세요', st_photoMany: '오늘은 사진을 더 올릴 수 없어요',
+    st_submit: '올리기', st_update: '수정 완료', st_edit: '수정', st_delete: '삭제', st_deleteArmed: '한 번 더 누르면 삭제돼요', st_report: '신고',
+    st_saved: '여행기를 올렸어요', st_updated: '여행기를 고쳤어요', st_deleted: '여행기를 지웠어요', st_reported: '신고했어요. 3번 쌓이면 자동으로 숨겨져요.',
+    st_err_title: '제목을 2자 이상 적어 주세요', st_err_body: '내용을 20자 이상 적어 주세요', st_err_many: '여행기는 하루에 5개까지 쓸 수 있어요', st_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
+    st_newTitle: '여행기 쓰기', st_editTitle: '여행기 고치기', st_mine: '내 글', st_hidden: '신고가 쌓여 숨겨짐', st_edited: '수정됨',
+    st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고, 남의 개인정보나 사진이 담긴 글은 지워질 수 있고, 신고가 3번 쌓이면 자동으로 숨겨져요.',
+    pp_title: '어느 곳의 후기를 쓸까요?', pp_search: '장소 이름으로 찾기', pp_none: '찾는 곳이 없어요', pk_s: '관광지', pk_r: '맛집', pk_e: '체험', pf_all: '이 장소 후기 모두 보기',
     rv_err_short: '5자 이상 적어 주세요', rv_err_many: '오늘은 후기를 더 쓸 수 없어요', rv_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
     rv_loading: '불러오는 중…', rv_loadFail: '후기를 불러오지 못했어요',
     follow: '@viet_nam.guide 팔로우', copyright: '© 2026 Vietnam Smart Guide. 현지에서 바로 쓰는 실전 가이드.',
@@ -308,7 +327,7 @@ var T = {
     brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
     siteLang: 'Site language', themeToLight: 'Switch to light mode', themeToDark: 'Switch to dark mode', toastLight: 'Light mode on', toastDark: 'Dark mode on', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
-    tab_exp: 'Culture & Experiences', mtab_exp: 'Explore',
+    tab_exp: 'Culture & Experiences', mtab_exp: 'Explore', tab_reviews: 'Trip Reviews', mtab_reviews: 'Reviews',
     ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and where locals eat it, and the top things to do.',
     ci_fly: 'Getting there', ci_airport: 'Airport to town', ci_season: 'When to go', ci_days: 'How long to stay', ci_stay: 'Where to stay', ci_move: 'Getting around',
     ci_eats: 'Must-try food', ci_dish: 'See menu card', ci_count: '{s} sights · {n} to do', exp_list: 'Top things to do in {city}', cityGo: 'city guide',
@@ -374,6 +393,23 @@ var T = {
     rv_submit: 'Post', rv_update: 'Update', rv_saved: 'Review posted', rv_delete: 'Delete', rv_deleteArmed: 'Tap again to delete', rv_deleted: 'Review deleted',
     rv_report: 'Report', rv_reported: 'Reported. We will take a look.', rv_mine: 'Mine', rv_hidden: 'Hidden after reports', rv_edited: 'edited', rv_rating: 'Rating',
     rv_starsLabel: '{n} stars', rv_rule: 'Reviews with abuse, ads or personal information may be removed. A review is hidden automatically after 3 reports.',
+    st_desc: 'Stories from travelers who have been to Vietnam', st_viewStories: 'Trip stories', st_viewPlaces: 'Place reviews',
+    st_write: 'Write a story', st_writePlace: 'Review a place', st_loginHint: 'Anyone can read. Log in to write.', st_other: 'Elsewhere',
+    st_empty: 'No trip stories yet. Be the first to share yours!', st_emptyPlaces: 'No place reviews yet. Review a place you visited!',
+    st_loading: 'Loading…', st_loadFail: 'Could not load. Please try again shortly.', st_retry: 'Try again', st_more: 'Load more',
+    st_trip: 'Trip: {m}/{y}', st_tripOpt: '{m}/{y}', st_photoCount: '{n} photos',
+    st_city: 'Where did you go?', st_tripLabel: 'When (optional)', st_tripNone: 'Not set', st_ratingLabel: 'How was the trip?',
+    st_titleLabel: 'Title', st_titlePh: 'e.g. 4 days in Da Nang with kids', st_bodyLabel: 'Story',
+    st_bodyPh: 'Itinerary, where you stayed, food, getting around, tips and what you would skip. (at least 20 characters)',
+    st_photoLabel: 'Photos (up to 6, optional)', st_photoAdd: 'Add photos', st_photoDel: 'Remove this photo',
+    st_photoNote: 'Photos are resized on upload, and location (GPS) and camera data are removed automatically. Please do not post close-ups of other people or photos taken by someone else.',
+    st_photoFail: 'Could not upload that photo. Try another one.', st_photoMax: 'You can add up to 6 photos', st_photoWait: 'Please wait for the photos to finish uploading', st_photoMany: 'Photo limit for today reached',
+    st_submit: 'Post', st_update: 'Save changes', st_edit: 'Edit', st_delete: 'Delete', st_deleteArmed: 'Tap again to delete', st_report: 'Report',
+    st_saved: 'Story posted', st_updated: 'Story updated', st_deleted: 'Story deleted', st_reported: 'Reported. Stories are hidden after 3 reports.',
+    st_err_title: 'Please write a title of at least 2 characters', st_err_body: 'Please write at least 20 characters', st_err_many: 'You can post up to 5 stories a day', st_err: 'Something went wrong. Please try again shortly.',
+    st_newTitle: 'Write a trip story', st_editTitle: 'Edit your story', st_mine: 'Mine', st_hidden: 'Hidden after reports', st_edited: 'edited',
+    st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos may be removed, and a post is hidden automatically after 3 reports.',
+    pp_title: 'Which place would you like to review?', pp_search: 'Search by place name', pp_none: 'No matching places', pk_s: 'Sight', pk_r: 'Eatery', pk_e: 'Experience', pf_all: 'All reviews of this place',
     rv_err_short: 'Please write at least 5 characters', rv_err_many: 'You cannot post more reviews today', rv_err: 'Something went wrong. Please try again shortly.',
     rv_loading: 'Loading…', rv_loadFail: 'Could not load reviews',
     follow: 'Follow @viet_nam.guide', copyright: '© 2026 Vietnam Smart Guide. A practical guide for use on the ground.',
@@ -2005,7 +2041,7 @@ var TAB_KEYS = {
 };
 
 /* ================= state ================= */
-var TABS = ['exp', 'phrases', 'calc', 'food', 'emergency', 'prep'];
+var TABS = ['exp', 'phrases', 'calc', 'food', 'emergency', 'prep', 'reviews'];
 /* the old 'culture' tab is now the 문화 & 에티켓 view inside the 문화체험 tab */
 var hashTab = (location.hash || '').replace('#', '');
 var savedTab = store.get('tab', 'exp');
@@ -2952,9 +2988,11 @@ function renderMain() {
   else if (state.tab === 'emergency') html = viewEmergency();
   else if (state.tab === 'prep') html = viewPrep();
   else if (state.tab === 'exp') html = viewExp();
+  else if (state.tab === 'reviews') html = viewReviews();
   else html = viewPhrases();
   main.innerHTML = html;
   hydrate(main);
+  if (state.tab === 'reviews' && !state.query) rvEnsure();
   if (auth.providers.length) loadReviewCounts();
 }
 function setTab(tab) {
@@ -3175,7 +3213,8 @@ function renderModal() {
   var root = $('#modal-root');
   if (!modal) { root.innerHTML = ''; return; }
   var hadFocus = root.contains(document.activeElement);
-  root.innerHTML = modal.type === 'bm' ? bmModal() : modal.type === 'deck' ? deckModal() : modal.type === 'acct' ? acctModal() : modal.type === 'reviews' ? reviewsModal() : bigModal();
+  root.innerHTML = modal.type === 'bm' ? bmModal() : modal.type === 'deck' ? deckModal() : modal.type === 'acct' ? acctModal() : modal.type === 'reviews' ? reviewsModal() :
+    modal.type === 'story' ? storyModal() : modal.type === 'story-edit' ? storyEditModal() : modal.type === 'place-pick' ? placePickModal() : bigModal();
   hydrate(root);
   if (hadFocus) { var f = root.querySelector('[data-autofocus-main]') || root.querySelector('[data-autofocus]'); if (f) f.focus({ preventScroll: true }); }
 }
@@ -3304,6 +3343,12 @@ document.addEventListener('input', function (e) {
   if (id === 'review-body' && modal && modal.type === 'reviews') { modal.data.body = e.target.value; modal.data.touched = true; var rc = $('#review-count'); if (rc) rc.textContent = e.target.value.length + ' / 500'; return; }
   if (id === 'acct-nick' && modal && modal.type === 'acct') { modal.data.nick = e.target.value; return; }
   if (id === 'acct-age' && modal && modal.type === 'acct') { modal.data.age = e.target.checked; return; }
+  if (modal && modal.type === 'story-edit' && (id === 'st-title' || id === 'st-body' || id === 'st-trip')) {
+    modal.data[id.slice(3)] = e.target.value;
+    if (id === 'st-body') { var sc = $('#st-count'); if (sc) sc.textContent = e.target.value.length + ' / 3000'; }
+    return;
+  }
+  if (id === 'pp-search' && modal && modal.type === 'place-pick') { modal.data.q = e.target.value; var pl = $('#pp-list'); if (pl) { pl.innerHTML = placePickList(); hydrate(pl); } return; }
   if (id === 'search') {
     state.query = e.target.value.trim(); updateSearchClear(); applyStatic(); renderMain();
   } else if (id === 'calc-input') {
@@ -3317,6 +3362,9 @@ document.addEventListener('input', function (e) {
     clearTimeout(noteTimer);
     noteTimer = setTimeout(function () { var s = $('#note-status span'); if (s) s.textContent = store.ok ? t('savedNow') : t('savedOff'); }, 250);
   }
+});
+document.addEventListener('change', function (e) {
+  if (e.target.id === 'st-files' && modal && modal.type === 'story-edit') { addStoryPhotos(Array.prototype.slice.call(e.target.files || [])); e.target.value = ''; }
 });
 document.addEventListener('keydown', function (e) {
   if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.hasAttribute('data-action')) { e.preventDefault(); e.target.click(); return; }
@@ -3468,9 +3516,11 @@ function api(method, path, body) {
     });
 }
 function setUser(u) {
+  var before = auth.user ? auth.user.id : null;
   auth.user = u || null;
   renderAcctBtn();
-  if (modal && (modal.type === 'acct' || modal.type === 'reviews')) renderModal();
+  if (modal && (modal.type === 'acct' || modal.type === 'reviews' || modal.type === 'story')) renderModal();
+  if (before !== (auth.user ? auth.user.id : null) && typeof rv !== 'undefined') { rv.draft = null; rvReset(); if (state.tab === 'reviews' && !state.query) renderMain(); }
 }
 function renderAcctBtn() {
   var b = $('#acct-btn'); if (!b) return;
@@ -3541,7 +3591,7 @@ function renderAcctStatus() {
 function authInit() {
   var q = new URLSearchParams(location.search), lp = q.get('login');
   if (lp) { q.delete('login'); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash); } catch (e) { /* ignore */ } }
-  if (!/^https?:$/.test(location.protocol)) return;  /* opened as a file: no server */
+  if (!/^https?:$/.test(location.protocol)) { reviewTabs(); return; }  /* opened as a file: no server */
   api('GET', 'config').then(function (c) {
     if (!c || c.app !== 'vietnamguide') throw new Error('not our api');  /* e.g. the Claude page preview */
     auth.providers = (c.providers || []).filter(function (p) { return PROVIDER_STYLE[p]; });
@@ -3553,8 +3603,14 @@ function authInit() {
       if (m.user) pull();
     });
   }).catch(function () { auth.providers = []; })
-    .then(function () { renderAcctBtn(); if (auth.providers.length) renderMain(); });
+    .then(function () { renderAcctBtn(); reviewTabs(); if (auth.providers.length) renderMain(); });
   document.addEventListener('visibilitychange', function () { if (!document.hidden && auth.user && Date.now() - auth.lastPull > 60000) pull(); });
+}
+/* show the 여행 후기 tab only when the server answers; leave it if it was the saved tab and there is no server */
+function reviewTabs() {
+  var on = auth.providers.length > 0;
+  $$('[data-action="tab"][data-value="reviews"]').forEach(function (b) { b.hidden = !on; });
+  if (!on && state.tab === 'reviews') { state.tab = 'exp'; applyStatic(); renderMain(); }
 }
 function loginUrl(p) { return '/api/auth/' + p + '/login?return=' + encodeURIComponent(location.pathname + location.hash); }
 function acctModal() {
@@ -3668,8 +3724,322 @@ function reviewsModal() {
     '<div class="overflow-y-auto custom-scrollbar p-4 space-y-3">' + form + '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('rv_rule')) + '</p>' +
     '<div class="space-y-2 pt-1">' + body + '</div></div>', 'm-title');
 }
+/* ================= 여행 후기 tab: 여행기 (trip stories with photos) + newest place reviews ================= */
+var RV_CITIES = CITIES.map(function (c) { return c.id; }).concat(['other']);
+var rv = { view: store.get('rvView', 'stories') === 'places' ? 'places' : 'stories', city: '', stories: null, next: null, feed: null, feedNext: null, loading: false, err: false, seq: 0, draft: null };
+var PHOTO_MAX = 6;
+function rvCityName(id) { return id === 'other' ? t('st_other') : L(cityById(id).name); }
+function photoUrl(id) { return '/api/photos/' + encodeURIComponent(id); }
+function tripLabel(trip) { if (!trip) return ''; var p = trip.split('-'); return tf('st_trip', { y: p[0], m: Number(p[1]) }); }
+function itemInfo(item) {
+  var k = item.charAt(0), id = item.slice(2), x = k === 's' ? spotById(id) : k === 'r' ? eatById(id) : k === 'e' ? expById(id) : null;
+  return x ? { item: item, name: L(x.name), vi: x.vi || '', emoji: x.emoji || '📍', city: x.city, kind: k, k: [x.name.ko, x.name.en, x.vi, x.k || ''].join(' ').toLowerCase() } : null;
+}
+function cityItems(city) {
+  var out = [];
+  SPOTS.forEach(function (x) { if (!city || x.city === city) out.push('s:' + x.id); });
+  EATS.forEach(function (x) { if (!city || x.city === city) out.push('r:' + x.id); });
+  EXPERIENCES.forEach(function (x) { if (!city || x.city === city) out.push('e:' + x.id); });
+  return out;
+}
+function rvReset() { rv.seq++; rv.loading = false; rv.err = false; rv.stories = null; rv.next = null; rv.feed = null; rv.feedNext = null; }
+function rvEnsure() {
+  if (!auth.providers.length || rv.loading || rv.err) return;
+  if (rv.view === 'stories' ? rv.stories == null : rv.feed == null) rvLoad(false);
+}
+function rvLoad(more) {
+  var seq = ++rv.seq, view = rv.view, city = rv.city, req;
+  rv.loading = true; rv.err = false;
+  if (view === 'stories') req = api('GET', 'stories?limit=10' + (city ? '&city=' + city : '') + (more && rv.next ? '&before=' + rv.next : ''));
+  else req = api('GET', 'reviews?feed=1' + (city ? '&items=' + encodeURIComponent(cityItems(city).join(',')) : '') + (more && rv.feedNext ? '&before=' + rv.feedNext : ''));
+  req.then(function (j) {
+    if (seq !== rv.seq) return;
+    if (view === 'stories') { rv.stories = (more && rv.stories ? rv.stories : []).concat(j.stories); rv.next = j.next; }
+    else { rv.feed = (more && rv.feed ? rv.feed : []).concat(j.reviews); rv.feedNext = j.next; }
+  }).catch(function () { if (seq === rv.seq) rv.err = true; })
+    .then(function () { if (seq === rv.seq) { rv.loading = false; rvRenderList(); } });
+  rvRenderList();
+}
+function rvRenderList() {
+  if (state.tab !== 'reviews' || state.query) return;
+  var box = $('#rv-list'); if (!box) return;
+  box.innerHTML = rvListHtml(); hydrate(box);
+}
+var BTN_SOFT = 'flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl border bg-background-100 hover:bg-background-200 border-background-200 text-sm font-semibold text-foreground-900 cursor-pointer transition-colors';
+var BTN_MAIN = 'flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-accent-500 hover:bg-accent-400 text-background-50 text-sm font-bold cursor-pointer transition-colors';
+function rvMsg(text, extra) {
+  return '<div class="p-8 text-center bg-background-100 rounded-2xl border border-background-200 space-y-4"><p class="text-sm text-foreground-500">' + esc(text) + '</p>' + (extra ? '<div class="flex justify-center">' + extra + '</div>' : '') + '</div>';
+}
+function rvMore(next) {
+  if (!next && !rv.loading) return '';
+  return '<div class="flex justify-center pt-5"><button type="button" data-action="rv-more" class="' + BTN_SOFT + '"' + (rv.loading ? ' disabled' : '') + '>' +
+    (rv.loading ? '<i class="ri-loader-4-line animate-spin"></i>' + esc(t('st_loading')) : esc(t('st_more'))) + '</button></div>';
+}
+function rvListHtml() {
+  if (!auth.providers.length) return rvMsg(t('st_loading'));
+  var retry = '<button type="button" data-action="rv-retry" class="' + BTN_SOFT + '"><i class="ri-refresh-line"></i>' + esc(t('st_retry')) + '</button>';
+  if (rv.view === 'places') {
+    if (rv.err && !rv.feed) return rvMsg(t('st_loadFail'), retry);
+    if (!rv.feed) return rvMsg(t('st_loading'));
+    if (!rv.feed.length) return rvMsg(t('st_emptyPlaces'), '<button type="button" data-action="place-pick" class="' + BTN_MAIN + '"><i class="ri-chat-smile-2-line"></i>' + esc(t('st_writePlace')) + '</button>');
+    return '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">' + rv.feed.map(placeReviewCard).join('') + '</div>' + rvMore(rv.feedNext);
+  }
+  if (rv.err && !rv.stories) return rvMsg(t('st_loadFail'), retry);
+  if (!rv.stories) return rvMsg(t('st_loading'));
+  if (!rv.stories.length) return rvMsg(t('st_empty'), '<button type="button" data-action="story-new" class="' + BTN_MAIN + '"><i class="ri-quill-pen-line"></i>' + esc(t('st_write')) + '</button>');
+  return '<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">' + rv.stories.map(storyCard).join('') + '</div>' + rvMore(rv.next);
+}
+function viewReviews() {
+  var stories = rv.view === 'stories';
+  var cities = stories ? RV_CITIES : CITIES.map(function (c) { return c.id; });
+  if (rv.city && cities.indexOf(rv.city) < 0) rv.city = '';
+  var chips = chip('rv-city', '', t('all'), !rv.city) + cities.map(function (id) { return chip('rv-city', id, rvCityName(id).split(' · ')[0], rv.city === id); }).join('');
+  var write = '<button type="button" data-action="' + (stories ? 'story-new' : 'place-pick') + '" class="' + BTN_MAIN + '"><i class="' + (stories ? 'ri-quill-pen-line' : 'ri-chat-smile-2-line') + '"></i>' + esc(t(stories ? 'st_write' : 'st_writePlace')) + '</button>';
+  return '<section class="space-y-6">' +
+    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
+      cardHead('✍️', 'accent', t('tab_reviews'), t('st_desc')) +
+      '<div class="flex flex-wrap items-center justify-between gap-3">' + seg('rv-view', [{ v: 'stories', label: t('st_viewStories') }, { v: 'places', label: t('st_viewPlaces') }], rv.view) + write + '</div>' +
+      '<div class="flex gap-2 overflow-x-auto custom-scrollbar pb-1">' + chips + '</div>' +
+      (!auth.user ? '<p class="text-[11px] text-foreground-400 flex items-center gap-1"><i class="ri-information-line"></i>' + esc(t('st_loginHint')) + '</p>' : '') +
+    '</div>' +
+    '<div id="rv-list">' + rvListHtml() + '</div>' +
+    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('st_rule')) + '</p>' +
+  '</section>';
+}
+function storyTags(s) {
+  return '<span class="' + EXP_TAG + '"><i class="ri-map-pin-2-line"></i>' + esc(rvCityName(s.city)) + '</span>' +
+    (s.trip ? '<span class="' + EXP_TAG + '"><i class="ri-calendar-line"></i>' + esc(tripLabel(s.trip)) + '</span>' : '') +
+    '<span class="text-accent-400 text-sm leading-none tracking-tight" aria-label="' + esc(tf('rv_starsLabel', { n: s.rating })) + '">' + stars(s.rating) + '</span>' +
+    (s.mine ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-accent-500/15 text-accent-400">' + esc(t('st_mine')) + '</span>' : '') +
+    (s.hidden ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-primary-500/15 text-primary-400">' + esc(t('st_hidden')) + '</span>' : '');
+}
+function storyCard(s) {
+  var img = s.cover ? '<span class="block aspect-[16/10] bg-background-200 overflow-hidden"><img src="' + photoUrl(s.cover.id) + '" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover"></span>' : '';
+  return '<button type="button" data-action="story-open" data-value="' + esc(s.id) + '" class="w-full text-left bg-background-100 rounded-2xl border ' + (s.mine ? 'border-accent-500/40' : 'border-background-200') + ' overflow-hidden hover:border-background-400 transition-colors cursor-pointer">' + img +
+    '<span class="block p-4 space-y-2 min-w-0">' +
+      '<span class="flex flex-wrap items-center gap-1.5">' + storyTags(s) + '</span>' +
+      '<span class="block font-heading font-bold text-foreground-950 text-base leading-snug break-words">' + esc(s.title) + '</span>' +
+      '<span class="block text-sm text-foreground-600 leading-relaxed line-clamp-3 break-words whitespace-pre-line">' + esc(s.excerpt) + (s.more ? '…' : '') + '</span>' +
+      '<span class="flex flex-wrap items-center gap-x-2 text-[11px] text-foreground-400"><span class="font-bold text-foreground-700">' + esc(s.nickname) + '</span><span class="tabular">' + fmtDate(s.createdAt) + '</span>' +
+        (s.photoCount ? '<span class="flex items-center gap-0.5"><i class="ri-image-line"></i>' + esc(tf('st_photoCount', { n: s.photoCount })) + '</span>' : '') + '</span>' +
+    '</span></button>';
+}
+function placeReviewCard(r) {
+  var info = itemInfo(r.item); if (!info) return '';
+  return '<article class="p-4 bg-background-100 rounded-2xl border ' + (r.mine ? 'border-accent-500/40' : 'border-background-200') + ' space-y-2 min-w-0">' +
+    '<div class="flex items-start gap-2.5"><span class="text-2xl leading-none" aria-hidden="true">' + info.emoji + '</span>' +
+      '<div class="min-w-0 flex-1"><p class="font-bold text-foreground-950 text-sm leading-snug">' + esc(info.name) + '</p><p class="text-[11px] text-foreground-400">' + esc(t('pk_' + info.kind)) + ' · ' + esc(rvCityName(info.city)) + '</p></div>' +
+      '<span class="text-accent-400 text-sm leading-none tracking-tight flex-shrink-0" aria-label="' + esc(tf('rv_starsLabel', { n: r.rating })) + '">' + stars(r.rating) + '</span></div>' +
+    '<p class="text-sm text-foreground-700 leading-relaxed break-words whitespace-pre-line">' + esc(r.body) + '</p>' +
+    '<div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-foreground-400"><span><span class="font-bold text-foreground-700">' + esc(r.nickname) + '</span> · <span class="tabular">' + fmtDate(r.createdAt) + '</span></span>' +
+      '<button type="button" data-action="reviews" data-value="' + esc(r.item) + '" data-title="' + esc(info.name) + '" class="flex items-center gap-0.5 font-bold text-accent-400 hover:text-accent-300 cursor-pointer">' + esc(t('pf_all')) + '<i class="ri-arrow-right-s-line"></i></button></div>' +
+  '</article>';
+}
+/* one 여행기 */
+function openStory(id) {
+  var d = { id: id, s: null, armed: false };
+  openModal('story', d);
+  api('GET', 'stories?id=' + encodeURIComponent(id)).then(function (j) {
+    if (modal && modal.data === d) { d.s = j.story; d.canDelete = j.canDelete; renderModal(); }
+  }).catch(function () { if (modal && modal.data === d) { d.err = true; renderModal(); } });
+}
+function storyModal() {
+  var d = modal.data, s = d.s, u = auth.user, inner;
+  var small = 'flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-colors';
+  if (d.err) inner = '<p class="text-sm text-primary-400 text-center py-10">' + esc(t('st_loadFail')) + '</p>';
+  else if (!s) inner = '<p class="text-sm text-foreground-500 text-center py-10">' + esc(t('st_loading')) + '</p>';
+  else {
+    var photos = s.photos.length ? '<div class="flex gap-2 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-1">' + s.photos.map(function (p) {
+      return '<a href="' + photoUrl(p.id) + '" target="_blank" rel="noopener" class="snap-center flex-shrink-0 ' + (s.photos.length === 1 ? 'w-full' : 'w-[85%] sm:w-[70%]') + '">' +
+        '<img src="' + photoUrl(p.id) + '" alt="" decoding="async"' + (p.w && p.h ? ' width="' + p.w + '" height="' + p.h + '"' : '') + ' class="w-full h-60 sm:h-80 object-cover rounded-xl bg-background-200"></a>';
+    }).join('') + '</div>' : '';
+    var acts = '';
+    var del = '<button type="button" data-action="story-delete" class="' + small + ' ' + (d.armed ? 'bg-primary-500 text-background-50' : 'text-primary-400 hover:bg-primary-500/10') + '"><i class="ri-delete-bin-line"></i>' + esc(t(d.armed ? 'st_deleteArmed' : 'st_delete')) + '</button>';
+    if (s.mine) acts = '<button type="button" data-action="story-edit" class="' + small + ' text-foreground-700 hover:bg-background-200"><i class="ri-edit-line"></i>' + esc(t('st_edit')) + '</button>' + del;
+    else if (u) acts = (d.canDelete ? del : '') + '<button type="button" data-action="story-report" class="' + small + ' text-foreground-500 hover:bg-background-200"><i class="ri-flag-line"></i>' + esc(t('st_report')) + '</button>';
+    inner = photos +
+      '<div class="space-y-2"><div class="flex flex-wrap items-center gap-1.5">' + storyTags(s) + '</div>' +
+      '<h4 class="font-heading font-bold text-lg text-foreground-950 leading-snug break-words">' + esc(s.title) + '</h4>' +
+      '<p class="flex flex-wrap items-center gap-x-2 text-xs text-foreground-400"><span class="font-bold text-foreground-700">' + esc(s.nickname) + '</span><span class="tabular">' + fmtDate(s.createdAt) + (s.edited ? ' · ' + esc(t('st_edited')) : '') + '</span></p></div>' +
+      '<p class="text-[15px] text-foreground-800 leading-7 break-words whitespace-pre-line">' + esc(s.body) + '</p>' +
+      (acts ? '<div class="flex flex-wrap justify-end gap-1 pt-2 border-t border-background-200">' + acts + '</div>' : '');
+  }
+  return shell(modalHeader('ri-book-open-line', s ? rvCityName(s.city) : t('st_viewStories'), 'm-title') +
+    '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + inner + '</div>', 'm-title', true);
+}
+/* writing or editing a 여행기; a new one keeps its draft until it is posted */
+function openStoryEdit(s) {
+  if (!auth.user) { openModal('acct'); return; }
+  var d = s ? { id: s.id, city: s.city, trip: s.trip, rating: s.rating, title: s.title, body: s.body, photos: s.photos.map(function (p) { return { id: p.id, w: p.w, h: p.h }; }) }
+    : (rv.draft || (rv.draft = { id: null, city: rv.city || state.city, trip: '', rating: 5, title: '', body: '', photos: [] }));
+  d.busy = false;
+  openModal('story-edit', d);
+}
+function storyPhotoTiles(d) {
+  var tiles = d.photos.map(function (p, i) {
+    var src = p.local || (p.id ? photoUrl(p.id) : '');
+    return '<div class="relative aspect-square rounded-xl overflow-hidden bg-background-200">' +
+      (src ? '<img src="' + src + '" alt="" class="w-full h-full object-cover">' : '') +
+      (p.uploading ? '<span class="absolute inset-0 flex items-center justify-center bg-background-950/50 text-white"><i class="ri-loader-4-line animate-spin text-2xl"></i></span>' : '') +
+      '<button type="button" data-action="st-photo-del" data-value="' + i + '" aria-label="' + esc(t('st_photoDel')) + '" class="absolute top-1 right-1 w-7 h-7 rounded-full bg-background-950/70 hover:bg-background-950/90 text-white flex items-center justify-center cursor-pointer"><i class="ri-close-line"></i></button></div>';
+  }).join('');
+  if (d.photos.length < PHOTO_MAX) tiles += '<label class="aspect-square rounded-xl border-2 border-dashed border-background-300 hover:border-accent-500 hover:text-accent-400 flex flex-col items-center justify-center gap-1 text-foreground-400 text-xs font-semibold cursor-pointer transition-colors">' +
+    '<i class="ri-image-add-line text-2xl"></i>' + esc(t('st_photoAdd')) + '<input type="file" id="st-files" accept="image/*" multiple class="sr-only"></label>';
+  return tiles;
+}
+function storyEditModal() {
+  var d = modal.data;
+  var field = 'w-full px-3 py-2.5 rounded-xl bg-background-50 border border-background-300 text-sm text-foreground-950 placeholder:text-foreground-400 focus:outline-none focus:border-accent-500';
+  var label = function (txt, forId) { return '<label' + (forId ? ' for="' + forId + '"' : '') + ' class="block text-xs font-bold text-foreground-400 mb-1.5">' + esc(txt) + '</label>'; };
+  var cities = RV_CITIES.map(function (id) { return chip('st-city', id, rvCityName(id).split(' · ')[0], d.city === id); }).join('');
+  var now = new Date(), months = '<option value="">' + esc(t('st_tripNone')) + '</option>', seen = false;
+  for (var i = 0; i < 36; i++) {
+    var dt = new Date(now.getFullYear(), now.getMonth() - i, 1), v = dt.getFullYear() + '-' + ('0' + (dt.getMonth() + 1)).slice(-2);
+    if (v === d.trip) seen = true;
+    months += '<option value="' + v + '"' + (v === d.trip ? ' selected' : '') + '>' + esc(tf('st_tripOpt', { y: dt.getFullYear(), m: dt.getMonth() + 1 })) + '</option>';
+  }
+  if (d.trip && !seen) { var tp = d.trip.split('-'); months += '<option value="' + d.trip + '" selected>' + esc(tf('st_tripOpt', { y: tp[0], m: Number(tp[1]) })) + '</option>'; }
+  var starBtns = '';
+  for (var n = 1; n <= 5; n++) starBtns += '<button type="button" data-action="st-star" data-value="' + n + '" aria-pressed="' + (n <= d.rating) + '" aria-label="' + esc(tf('rv_starsLabel', { n: n })) + '" class="text-3xl leading-none px-0.5 cursor-pointer ' + (n <= d.rating ? 'text-accent-400' : 'text-foreground-300') + '">' + (n <= d.rating ? '★' : '☆') + '</button>';
+  var uploading = d.photos.some(function (p) { return p.uploading; });
+  return shell(modalHeader('ri-quill-pen-line', t(d.id ? 'st_editTitle' : 'st_newTitle'), 'm-title') +
+    '<div class="overflow-y-auto custom-scrollbar p-5 space-y-5">' +
+      '<div>' + label(t('st_city')) + '<div class="flex flex-wrap gap-2">' + cities + '</div></div>' +
+      '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><div>' + label(t('st_tripLabel'), 'st-trip') + '<select id="st-trip" class="' + field + ' cursor-pointer">' + months + '</select></div>' +
+        '<div>' + label(t('st_ratingLabel')) + '<div class="flex" role="group" aria-label="' + esc(t('st_ratingLabel')) + '">' + starBtns + '</div></div></div>' +
+      '<div>' + label(t('st_titleLabel'), 'st-title') + '<input id="st-title" type="text" maxlength="60" value="' + esc(d.title) + '" placeholder="' + esc(t('st_titlePh')) + '" class="' + field + '" data-autofocus-main></div>' +
+      '<div>' + label(t('st_bodyLabel'), 'st-body') + '<textarea id="st-body" rows="8" maxlength="3000" placeholder="' + esc(t('st_bodyPh')) + '" class="' + field + ' resize-y leading-relaxed">' + esc(d.body) + '</textarea>' +
+        '<p id="st-count" class="text-[11px] text-foreground-400 tabular text-right mt-1">' + d.body.length + ' / 3000</p></div>' +
+      '<div>' + label(t('st_photoLabel')) + '<div id="st-photos" class="grid grid-cols-3 sm:grid-cols-6 gap-2">' + storyPhotoTiles(d) + '</div>' +
+        '<p class="text-[11px] text-foreground-400 leading-relaxed mt-2 flex gap-1"><i class="ri-shield-check-line text-secondary-400 mt-px"></i><span>' + esc(t('st_photoNote')) + '</span></p></div>' +
+      '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('st_rule')) + '</p>' +
+      '<button type="button" id="st-submit" data-action="st-submit" class="w-full ' + BTN_MAIN + ' py-3' + (uploading || d.busy ? ' opacity-60' : '') + '"' + (d.busy ? ' disabled' : '') + '>' +
+        (d.busy ? '<i class="ri-loader-4-line animate-spin"></i>' : '<i class="ri-send-plane-line"></i>') + esc(t(d.id ? 'st_update' : 'st_submit')) + '</button>' +
+    '</div>', 'm-title', true);
+}
+function refreshStoryPhotos(d) {
+  if (!modal || modal.data !== d) return;
+  var box = $('#st-photos'); if (box) { box.innerHTML = storyPhotoTiles(d); hydrate(box); }
+  var b = $('#st-submit'); if (b) b.classList.toggle('opacity-60', d.busy || d.photos.some(function (p) { return p.uploading; }));
+}
+/* shrink to at most 1280 px and re-encode (WebP, or JPEG where WebP can't be made): the camera's EXIF data, GPS included, is not copied */
+function shrinkPhoto(file) {
+  return new Promise(function (resolve, reject) {
+    var url = URL.createObjectURL(file), img = new Image();
+    img.onload = function () {
+      var w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, 1280 / Math.max(w, h));
+      var cw = Math.max(1, Math.round(w * k)), ch = Math.max(1, Math.round(h * k));
+      var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+      c.getContext('2d').drawImage(img, 0, 0, cw, ch);
+      URL.revokeObjectURL(url);
+      var done = function (b) { if (b && b.size) resolve({ blob: b, w: cw, h: ch }); else reject(new Error('encode')); };
+      try { c.toBlob(function (b) { if (b && b.type === 'image/webp' && b.size < 1100000) done(b); else c.toBlob(done, 'image/jpeg', 0.8); }, 'image/webp', 0.8); }
+      catch (e) { reject(e); }
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode')); };
+    img.src = url;
+  });
+}
+function addStoryPhotos(files) {
+  var d = modal.data, room = PHOTO_MAX - d.photos.length;
+  if (files.length > room) toast(t('st_photoMax'), 'ri-information-line');
+  files.slice(0, Math.max(0, room)).forEach(function (f) {
+    var p = { id: null, uploading: true };
+    d.photos.push(p);
+    shrinkPhoto(f).then(function (r) {
+      p.local = URL.createObjectURL(r.blob); p.w = r.w; p.h = r.h; refreshStoryPhotos(d);
+      return fetch('/api/photos?w=' + r.w + '&h=' + r.h, { method: 'POST', credentials: 'same-origin', headers: { 'content-type': r.blob.type }, body: r.blob })
+        .then(function (res) { return res.json().then(function (j) { if (!res.ok) { var er = new Error(j.error || 'upload'); er.status = res.status; throw er; } return j; }); });
+    }).then(function (j) { p.id = j.id; p.uploading = false; refreshStoryPhotos(d); })
+      .catch(function (e) {
+        var i = d.photos.indexOf(p); if (i >= 0) d.photos.splice(i, 1);
+        toast(t(e && e.message === 'too_many' ? 'st_photoMany' : e && e.status === 401 ? 'acct_failed' : 'st_photoFail'), 'ri-error-warning-line');
+        if (e && e.status === 401) setUser(null);
+        refreshStoryPhotos(d);
+      });
+  });
+  refreshStoryPhotos(d);
+}
+function submitStory() {
+  var d = modal.data;
+  if (d.busy) return;
+  if (d.photos.some(function (p) { return p.uploading; })) { toast(t('st_photoWait'), 'ri-time-line'); return; }
+  if (d.title.trim().length < 2) { toast(t('st_err_title'), 'ri-error-warning-line'); return; }
+  if (d.body.trim().length < 20) { toast(t('st_err_body'), 'ri-error-warning-line'); return; }
+  d.busy = true; renderModal();
+  var body = { city: d.city, trip: d.trip, rating: d.rating, title: d.title, body: d.body, photos: d.photos.map(function (p) { return p.id; }) };
+  api(d.id ? 'PUT' : 'POST', 'stories' + (d.id ? '?id=' + encodeURIComponent(d.id) : ''), body).then(function (j) {
+    if (!d.id) rv.draft = null;
+    d.photos.forEach(function (p) { if (p.local) URL.revokeObjectURL(p.local); });
+    toast(t(d.id ? 'st_updated' : 'st_saved'), 'ri-check-line');
+    if (rv.view !== 'stories') { rv.view = 'stories'; store.set('rvView', 'stories'); }
+    rvReset();
+    if (state.tab === 'reviews' && !state.query) renderMain();
+    openStory(j.id);
+  }).catch(function (e) {
+    d.busy = false; renderModal();
+    toast(t(e.code === 'too_many' ? 'st_err_many' : e.code === 'title_short' ? 'st_err_title' : e.code === 'body_short' ? 'st_err_body' : e.status === 401 ? 'acct_failed' : 'st_err'), 'ri-error-warning-line');
+    if (e.status === 401) setUser(null);
+  });
+}
+/* choosing a place to review */
+function placePickList() {
+  var q = ((modal && modal.data.q) || '').trim().toLowerCase();
+  var cities = rv.city && rv.city !== 'other' ? [cityById(rv.city)] : CITIES;
+  var out = cities.map(function (c) {
+    var items = cityItems(c.id).map(itemInfo).filter(function (x) { return x && (!q || x.k.indexOf(q) >= 0 || x.name.toLowerCase().indexOf(q) >= 0); });
+    if (!items.length) return '';
+    return '<div class="space-y-1.5"><p class="text-xs font-bold text-foreground-400 pt-1">' + c.emoji + ' ' + esc(L(c.name)) + '</p>' + items.map(function (x) {
+      return '<button type="button" data-action="pp-item" data-value="' + esc(x.item) + '" data-title="' + esc(x.name) + '" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-background-50 border border-background-200 hover:border-accent-500/50 text-left cursor-pointer transition-colors">' +
+        '<span class="text-xl leading-none" aria-hidden="true">' + x.emoji + '</span><span class="min-w-0 flex-1"><span class="block text-sm font-semibold text-foreground-950 truncate">' + esc(x.name) + '</span>' +
+        '<span class="block text-[11px] text-foreground-400 truncate">' + esc(t('pk_' + x.kind)) + (x.vi ? ' · ' + esc(x.vi) : '') + '</span></span><i class="ri-arrow-right-s-line text-foreground-400"></i></button>';
+    }).join('') + '</div>';
+  }).join('');
+  return out || '<p class="text-sm text-foreground-500 text-center py-6">' + esc(t('pp_none')) + '</p>';
+}
+function placePickModal() {
+  return shell(modalHeader('ri-chat-smile-2-line', t('pp_title'), 'm-title') +
+    '<div class="p-4 pb-0"><div class="relative"><i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-foreground-400"></i>' +
+      '<label for="pp-search" class="sr-only">' + esc(t('pp_search')) + '</label><input id="pp-search" type="search" value="' + esc(modal.data.q || '') + '" placeholder="' + esc(t('pp_search')) + '" data-autofocus-main class="w-full pl-9 pr-3 py-2.5 rounded-xl bg-background-50 border border-background-300 text-sm text-foreground-950 placeholder:text-foreground-400 focus:outline-none focus:border-accent-500"></div></div>' +
+    '<div id="pp-list" class="overflow-y-auto custom-scrollbar p-4 space-y-3">' + placePickList() + '</div>', 'm-title');
+}
+function rvAction(a, v, el) {
+  switch (a) {
+    case 'rv-view': if (rv.view !== v) { rv.view = v; store.set('rvView', v); rv.err = false; if (v === 'places' && rv.city === 'other') { rv.city = ''; rvReset(); } renderMain(); } return true;
+    case 'rv-city': if (rv.city !== v) { rv.city = v; rvReset(); renderMain(); } return true;
+    case 'rv-more': if (!rv.loading) rvLoad(true); return true;
+    case 'rv-retry': rv.err = false; rvLoad(false); return true;
+    case 'story-open': openStory(v); return true;
+    case 'story-new': openStoryEdit(null); return true;
+    case 'story-edit': if (modal && modal.data.s) openStoryEdit(modal.data.s); return true;
+    case 'story-delete': {
+      var d = modal.data;
+      if (!d.armed) { d.armed = true; renderModal(); return true; }
+      api('DELETE', 'stories?id=' + encodeURIComponent(d.id)).then(function () {
+        closeModal(); toast(t('st_deleted'), 'ri-delete-bin-line'); rvReset(); if (state.tab === 'reviews' && !state.query) renderMain();
+      }).catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
+      return true;
+    }
+    case 'story-report':
+      api('POST', 'report', { type: 'story', id: modal.data.id }).then(function () { toast(t('st_reported'), 'ri-flag-line'); })
+        .catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
+      return true;
+    case 'st-city': modal.data.city = v; renderModal(); return true;
+    case 'st-star': modal.data.rating = Number(v); renderModal(); return true;
+    case 'st-photo-del': {
+      var dd = modal.data, p = dd.photos[Number(v)];
+      if (p) { if (p.local) URL.revokeObjectURL(p.local); dd.photos.splice(Number(v), 1); refreshStoryPhotos(dd); }
+      return true;
+    }
+    case 'st-submit': submitStory(); return true;
+    case 'place-pick': if (!auth.user) { openModal('acct'); return true; } openModal('place-pick', { q: '' }); return true;
+    case 'pp-item': openReviews(v, el.getAttribute('data-title') || ''); return true;
+  }
+  return false;
+}
 /* clicks for the parts above; returns true when handled */
 function authAction(a, v, el) {
+  if (rvAction(a, v, el)) return true;
   switch (a) {
     case 'account': auth.deleteArmed = false; openModal('acct'); return true;
     case 'reviews': openReviews(v, el.getAttribute('data-title') || ''); return true;
@@ -3704,12 +4074,14 @@ function authAction(a, v, el) {
       if (text.length < 5) { toast(t('rv_err_short'), 'ri-error-warning-line'); return true; }
       api('POST', 'reviews', { item: d.item, rating: d.rating, body: text }).then(function () {
         d.touched = false; toast(t('rv_saved'), 'ri-check-line'); loadReviews();
+        if (state.tab === 'reviews' && rv.view === 'places') { rvReset(); rvEnsure(); }
       }).catch(function (e) { toast(t(e.code === 'too_many' ? 'rv_err_many' : e.code === 'body_short' ? 'rv_err_short' : e.status === 401 ? 'acct_failed' : 'rv_err'), 'ri-error-warning-line'); if (e.status === 401) setUser(null); });
       return true;
     case 'review-delete':
       if (modal.data.armed !== v) { modal.data.armed = v; renderModal(); return true; }
       api('DELETE', 'reviews?id=' + encodeURIComponent(v)).then(function () {
         var d2 = modal.data; d2.armed = ''; if (d2.mineId === v) { d2.mineId = null; d2.body = ''; d2.rating = 5; } toast(t('rv_deleted'), 'ri-delete-bin-line'); loadReviews();
+        if (state.tab === 'reviews' && rv.view === 'places') { rvReset(); rvEnsure(); }
       }).catch(function () { toast(t('rv_err'), 'ri-error-warning-line'); });
       return true;
     case 'review-report':

@@ -2,6 +2,9 @@
    Palette: lacquer black ground (bg), warm ivory text (fg), flag red (pr), star gold (ac), jade (se).
    Two themes share the same token names. Dark is the default; <html data-theme="light"> switches to the light set.
    Elements with class "theme-dark" (the hero painting, the footer, banknotes) keep the dark tokens in both themes. */
+
+/* elements with the hidden attribute stay hidden even when a utility class sets display */
+[hidden] { display: none !important; }
 :root, .theme-dark {
   color-scheme: dark;
   /* background — lacquer black, 50 is the page; 950 is the deepest shade used for image veils */

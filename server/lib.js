@@ -81,6 +81,20 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS reviews_item ON reviews (item, created_at)`,
   `CREATE INDEX IF NOT EXISTS reviews_user ON reviews (user_id, created_at)`,
   `CREATE TABLE IF NOT EXISTS review_reports (review_id TEXT NOT NULL, user_id TEXT NOT NULL, created_at INTEGER NOT NULL, PRIMARY KEY (review_id, user_id))`,
+  `CREATE INDEX IF NOT EXISTS reviews_time ON reviews (created_at)`,
+  /* 여행기 (trip stories) with up to 6 photos each; photo_blobs holds the image when there is no R2 bucket */
+  `CREATE TABLE IF NOT EXISTS stories (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, city TEXT NOT NULL, trip TEXT NOT NULL DEFAULT '',
+     rating INTEGER NOT NULL, title TEXT NOT NULL, body TEXT NOT NULL, photos TEXT NOT NULL DEFAULT '[]', created_at INTEGER NOT NULL,
+     updated_at INTEGER NOT NULL, reports INTEGER NOT NULL DEFAULT 0, hidden INTEGER NOT NULL DEFAULT 0)`,
+  `CREATE INDEX IF NOT EXISTS stories_time ON stories (created_at)`,
+  `CREATE INDEX IF NOT EXISTS stories_city ON stories (city, created_at)`,
+  `CREATE INDEX IF NOT EXISTS stories_user ON stories (user_id, created_at)`,
+  `CREATE TABLE IF NOT EXISTS story_reports (story_id TEXT NOT NULL, user_id TEXT NOT NULL, created_at INTEGER NOT NULL, PRIMARY KEY (story_id, user_id))`,
+  `CREATE TABLE IF NOT EXISTS photos (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, story_id TEXT, store TEXT NOT NULL, type TEXT NOT NULL,
+     size INTEGER NOT NULL, width INTEGER NOT NULL DEFAULT 0, height INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS photos_user ON photos (user_id, created_at)`,
+  `CREATE INDEX IF NOT EXISTS photos_story ON photos (story_id)`,
+  `CREATE TABLE IF NOT EXISTS photo_blobs (id TEXT PRIMARY KEY, data TEXT NOT NULL)`,
 ];
 let schemaReady = false;
 /* tables are created on first use, so no migration step is needed in the dashboard */
@@ -127,6 +141,9 @@ export async function readJson(request, maxBytes = 65536) {
   if (text.length > maxBytes) throw new HttpError(413, 'too_large');
   try { return JSON.parse(text || '{}'); } catch (e) { throw new HttpError(400, 'bad_json'); }
 }
+/* cities a 여행기 can be about (same ids as CITIES on the page) */
+export const CITY_IDS = ['danang', 'nhatrang', 'phuquoc', 'hanoi', 'hcmc', 'dalat', 'other'];
+
 export class HttpError extends Error {
   constructor(status, code) { super(code); this.status = status; this.code = code; }
 }
