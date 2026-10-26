@@ -81,3 +81,14 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 ## 사이트 소개 · 개인정보처리방침 · 문의 페이지
 
 `src/pages/`의 `about.html`, `privacy.html`, `contact.html`(본문)과 `layout.html`(공통 틀)로 `site/about.html` 등을 만들어요. 제목·설명·수정일은 `build.py`의 `PAGES`에 있어요. 공개 연락처는 vietnamguide708@gmail.com 이에요. 방문 통계·광고·로그인처럼 정보를 모으는 기능을 넣을 때는 `privacy.html`을 먼저 고치고 시행일을 바꿔요.
+
+## 로그인 · 동기화 · 후기 (Cloudflare Pages Functions + D1)
+
+- 서버 코드: `functions/api/*` (Cloudflare Pages가 GitHub에서 자동 배포), 공용 코드 `server/lib.js`, `server/oauth.js`.
+- 화면: `src/page.html`의 `login · sync · reviews` 부분. `/api/config`가 `{app: "vietnamguide", providers: [...]}`를 돌려줄 때만 로그인 버튼과 후기 버튼이 보여요. 키를 넣기 전이나 Claude 페이지·파일로 열 때는 숨겨져요.
+- Cloudflare 설정 (Workers & Pages → vietnamguide → Settings)
+  - Bindings: D1 database, 이름 `DB` → `vietnamguide-db` (표는 처음 요청 때 자동으로 만들어져요)
+  - Variables and Secrets (Encrypt): `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` / `KAKAO_REST_API_KEY`(+ Client Secret을 켰다면 `KAKAO_CLIENT_SECRET`) / `NAVER_CLIENT_ID`, `NAVER_CLIENT_SECRET` / 관리자 회원 id를 쉼표로 `ADMIN_USER_IDS` (관리자는 남의 후기도 지울 수 있어요. 내 id는 로그인 후 `/api/me`에서 확인)
+- 로그인 앱의 Redirect/Callback URL: `https://vietnamguide.pages.dev/api/auth/<google|kakao|naver>/callback`. 도메인을 바꾸면 새 주소를 추가로 등록해요.
+- 저장하는 정보: 로그인 서비스 회원 번호, 닉네임, 동기화 기록(북마크·메모·체크리스트·단어장), 후기·신고. 이메일·전화번호는 받지 않아요. 바꾸면 `src/pages/privacy.html`도 같이 고쳐요.
+- 로컬 테스트: `node tools/dev_server.mjs 8788` → http://localhost:8788 (D1 대신 node:sqlite, 가짜 구글·카카오·네이버. 코드 값이 그대로 사용자 id가 돼요)
