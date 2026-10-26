@@ -82,6 +82,16 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 
 `src/pages/`의 `about.html`, `privacy.html`, `contact.html`(본문)과 `layout.html`(공통 틀)로 `site/about.html` 등을 만들어요. 제목·설명·수정일은 `build.py`의 `PAGES`에 있어요. 공개 연락처는 vietnamguide708@gmail.com 이에요. 방문 통계·광고·로그인처럼 정보를 모으는 기능을 넣을 때는 `privacy.html`을 먼저 고치고 시행일을 바꿔요.
 
+## 방문 통계 · 광고 · 제휴 링크 켜기 (개인정보처리방침 스위치)
+
+개인정보처리방침과 사이트 소개에 들어갈 문구는 `src/pages/privacy.html`, `about.html`에 `<!--if:ads-->…<!--end-->`처럼 미리 써 두었어요. 실제로 쓰기 전에는 화면에 나오지 않아요.
+
+1. `build.py`의 `POLICY`에서 켤 항목에 시작 날짜를 넣어요 (`"ads": "2026-11-05"`). 날짜가 빌드한 날보다 뒤면 방침 맨 위에 "예정된 변경"이 먼저 나오고, 스크립트는 그날부터 들어가요(그날 다시 빌드·배포).
+2. 방문 통계: Cloudflare Web Analytics 토큰을 `CF_ANALYTICS_TOKEN`에 넣어요. Pages 프로젝트의 Web Analytics 켜기로 Cloudflare가 직접 넣는 경우엔 토큰 없이 `POLICY["analytics"]`만 켜요.
+3. 광고: 애드센스 `ca-pub-…`를 `ADSENSE_CLIENT`에 넣으면 광고 스크립트와 `site/ads.txt`가 생겨요. 애드센스 → 개인 정보 보호 및 메시지에서 유럽(EEA)·영국·스위스용 동의 메시지를 켜요(방침에 그렇게 적혀 있어요). 켜기 전에 방침의 브라우저 쿠키 메뉴 이름이 지금도 맞는지 확인해요.
+4. 제휴 링크: 링크 옆에 "제휴" 표시를 꼭 넣어요(방침과 사이트 소개에 그렇게 적혀 있어요).
+5. 스위치가 꺼져 있는데 토큰이나 `ca-pub`를 넣으면 빌드가 멈춰요. 방침보다 스크립트가 먼저 나가는 일을 막기 위해서예요.
+
 ## 로그인 · 동기화 · 후기 (Cloudflare Pages Functions + D1)
 
 - 서버 코드: `functions/api/*` (Cloudflare Pages가 GitHub에서 자동 배포), 공용 코드 `server/lib.js`, `server/oauth.js`.

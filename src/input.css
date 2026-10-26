@@ -127,6 +127,7 @@ i > svg.ico.fa { width: auto; }
   .doc { @apply text-[15px] leading-7 text-foreground-700; }
   .doc .lead { @apply text-base leading-8 text-foreground-900; }
   .doc h2 { @apply font-heading font-bold text-lg text-foreground-950 mt-10 mb-3; }
+  .doc h3 { @apply font-heading font-bold text-base text-foreground-950 mt-7 mb-2; }
   .doc p { @apply my-3; }
   .doc ul { @apply my-3 pl-5 list-disc space-y-1.5 marker:text-accent-400; }
   .doc strong { @apply text-foreground-950; }

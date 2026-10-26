@@ -33,12 +33,40 @@ FA_DIR = pathlib.Path("/opt/npm-tools/node_modules/@fortawesome/fontawesome-free
 SITE = ROOT / "site"
 BUILD = ROOT / "build"
 
+# ---- Switches for things that change the privacy policy ----
+# "" = not used. "YYYY-MM-DD" = in use from that day. Turning one on adds its ready-made text in src/pages/*.html
+# (blocks between <!--if:name--> and <!--end-->; "!name" = while off, "a&b" / "a|b" = both / either), a line in the
+# change history and a new revision date. A date after the build day shows an "예정된 변경" notice instead, and the
+# matching script is only added from that day, so the site never runs something the policy doesn't describe yet.
+POLICY = {
+    "analytics": "",  # Cloudflare Web Analytics: visit counts without cookies
+    "ads": "",        # Google AdSense
+    "affiliate": "",  # booking links that pay a commission
+}
+POLICY_LABEL = {  # each ends in a vowel, so the notice can say "…를 시작해요"
+    "analytics": "방문 통계(Cloudflare Web Analytics)",
+    "ads": "광고(Google 애드센스)",
+    "affiliate": "숙소·투어 제휴 링크",
+}
+POLICY_HISTORY = {
+    "analytics": "방문 통계(Cloudflare Web Analytics)를 시작하면서 3번 외부 서비스에 내용을 추가했어요.",
+    "ads": "광고(Google 애드센스)를 시작하면서 3번 외부 서비스, 5번 쿠키와 맞춤 광고(행태정보), 맞춤 광고 끄는 방법을 추가했어요.",
+    "affiliate": "숙소·투어 제휴 링크를 넣으면서 3번 외부 서비스에 내용을 추가했어요.",
+}
+# Cloudflare → Web Analytics → this site → the token in the JS snippet. Leave "" if the Pages project's own
+# "Web Analytics → Enable" switch adds the script (POLICY["analytics"] still has to be set in that case).
+CF_ANALYTICS_TOKEN = ""
+ADSENSE_CLIENT = ""  # "ca-pub-0000000000000000" from AdSense; also writes site/ads.txt
+PRIVACY_STARTED, PRIVACY_REVISED = "2026-10-22", "2026-10-26"  # when privacy.html itself last changed
+ABOUT_REVISED = "2026-10-26"
+
 # about / privacy / contact: (slug, title, description, date line); bodies in src/pages/<slug>.html
+# The about / privacy date lines depend on POLICY and are filled in by page_dates().
 PAGES = [
     ("about", "사이트 소개", "베트남 여행 스마트 가이드가 어떤 사이트인지, 어떤 정보를 어떻게 확인해서 담는지 소개해요.",
-     "최종 수정 2026년 10월 22일"),
-    ("privacy", "개인정보처리방침", "베트남 여행 스마트 가이드의 개인정보처리방침이에요. 로그인은 선택이고, 로그인하면 회원 번호와 별명, 동기화할 기록과 후기만 저장해요.",
-     "시행일 2026년 10월 22일 · 최종 개정 2026년 10월 26일"),
+     None),
+    ("privacy", "개인정보처리방침", "베트남 여행 스마트 가이드의 개인정보처리방침이에요. 로그인은 선택이고, 로그인하면 회원 번호와 동기화할 기록, 직접 쓴 후기만 저장해요.",
+     None),
     ("contact", "문의", "잘못된 정보 제보, 기능 제안, 제휴 문의는 이메일이나 인스타그램 DM으로 보내 주세요.",
      "최종 수정 2026년 10월 22일"),
 ]
@@ -154,6 +182,85 @@ def prerender(path):
     return r.stdout
 
 
+def kdate(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return f"{y}년 {m}월 {d}일"
+
+
+def policy_check(today):
+    """Stop the build if a switch is malformed or a script would run without its policy text."""
+    for name, day in POLICY.items():
+        if day:
+            datetime.date.fromisoformat(day)
+    if CF_ANALYTICS_TOKEN and not POLICY["analytics"]:
+        raise SystemExit('CF_ANALYTICS_TOKEN is set but POLICY["analytics"] is off: set its start date first.')
+    if ADSENSE_CLIENT and not POLICY["ads"]:
+        raise SystemExit('ADSENSE_CLIENT is set but POLICY["ads"] is off: set its start date first.')
+    if ADSENSE_CLIENT and not re.fullmatch(r"ca-pub-\d{16}", ADSENSE_CLIENT):
+        raise SystemExit('ADSENSE_CLIENT should look like "ca-pub-0000000000000000".')
+    if POLICY["ads"] and POLICY["ads"] <= today and not ADSENSE_CLIENT:
+        print('note: POLICY["ads"] is on but ADSENSE_CLIENT is empty, so no ad script is added.')
+
+
+def page_dates(today):
+    """Date lines for the about / privacy pages: the text's own date or the latest switch already in effect."""
+    live = [day for day in POLICY.values() if day and day <= today]
+    about_live = [POLICY[k] for k in ("ads", "affiliate") if POLICY[k] and POLICY[k] <= today]
+    return {
+        "about": f"최종 수정 {kdate(max([ABOUT_REVISED] + about_live))}",
+        "privacy": f"시행일 {kdate(PRIVACY_STARTED)} · 최종 개정 {kdate(max([PRIVACY_REVISED] + live))}",
+    }
+
+
+def apply_policy(text, today, live_only=False):
+    """Keep or drop the <!--if:…--> blocks, fill {{since:name}}, the change notice and the history lines.
+    live_only: a switch dated after today counts as off (pages other than the policy, which announces it early)."""
+    def cond(expr):
+        if "|" in expr:
+            return any(cond(e) for e in expr.split("|"))
+        if "&" in expr:
+            return all(cond(e) for e in expr.split("&"))
+        name = expr.lstrip("!")
+        if name not in POLICY:
+            raise SystemExit(f"unknown policy switch in src/pages: {name}")
+        on = bool(POLICY[name]) and not (live_only and POLICY[name] > today)
+        return on != expr.startswith("!")
+
+    def block(m):
+        lead, expr, body, tail = m.group(1), m.group(2), m.group(3), m.group(4)
+        if cond(expr):
+            return (lead or "") + body + (tail or "")
+        return "" if lead is not None and tail else (lead or "")  # a block on its own line leaves no blank line
+
+    text = re.sub(r"(^[ \t]*)?<!--if:([!\w&|]+)-->(.*?)<!--end-->([ \t]*\n)?", block, text, flags=re.S | re.M)
+    if "<!--if:" in text or "<!--end-->" in text:
+        raise SystemExit("unmatched <!--if:…--> / <!--end--> in src/pages (blocks can't be nested)")
+    text = re.sub(r"\{\{since:(\w+)\}\}", lambda m: f"({kdate(POLICY[m.group(1)])}부터)" if POLICY[m.group(1)] else "", text)
+
+    soon = sorted((day, name) for name, day in POLICY.items() if day and day > today)
+    notice = ""
+    if soon:
+        items = "".join(f"<li>{kdate(day)}부터 {POLICY_LABEL[name]}를 시작해요.</li>" for day, name in soon)
+        notice = ('<div class="note-box">\n  <p><strong>예정된 변경</strong></p>\n  <ul>' + items + "</ul>\n"
+                  "  <p>바뀌는 내용은 아래 해당 항목에 시작 날짜와 함께 미리 적어 두었어요.</p>\n</div>\n")
+    text = text.replace("{{POLICY_NOTICE}}\n", notice)
+    history = "".join(f"  <li>{kdate(day)}: {POLICY_HISTORY[name]}</li>\n"
+                      for day, name in sorted(((d, n) for n, d in POLICY.items() if d), reverse=True))
+    return text.replace("{{POLICY_HISTORY}}\n", history)
+
+
+def site_scripts(today):
+    """Third-party scripts for the public site, only once their policy switch is in effect."""
+    tags = ""
+    if CF_ANALYTICS_TOKEN and POLICY["analytics"] and POLICY["analytics"] <= today:
+        tags += ("<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
+                 f"data-cf-beacon='{{\"token\": \"{CF_ANALYTICS_TOKEN}\"}}'></script>\n")
+    if ADSENSE_CLIENT and POLICY["ads"] and POLICY["ads"] <= today:
+        tags += (f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_CLIENT}" '
+                 'crossorigin="anonymous"></script>\n')
+    return tags
+
+
 def page_links(for_site):
     """Where the footer links point: pretty URLs on the site, plain files next to the artifact page."""
     links = {slug: (f"/{slug}" if for_site else f"{slug}.html") for slug, *_ in PAGES}
@@ -161,21 +268,27 @@ def page_links(for_site):
     return links
 
 
-def build_pages(css, for_site):
+def build_pages(css, for_site, today):
     """Static about / privacy / contact pages. Returns {file name: html}."""
     layout = (ROOT / "src" / "pages" / "layout.html").read_text(encoding="utf-8")
+    dates = page_dates(today)
+    scripts = site_scripts(today) if for_site else ""
     links = page_links(for_site)
     nav = " ".join(f'<a href="{links[slug]}" class="hover:text-accent-400 hover:underline">{title}</a>'
                    for slug, title, *_ in PAGES)
     out = {}
     for slug, title, desc, updated in PAGES:
-        body = (ROOT / "src" / "pages" / f"{slug}.html").read_text(encoding="utf-8")
+        updated = dates.get(slug, updated)
+        body = apply_policy((ROOT / "src" / "pages" / f"{slug}.html").read_text(encoding="utf-8"), today,
+                            live_only=slug != "privacy")
         canonical = f'<link rel="canonical" href="{SITE_URL}/{slug}">\n' if for_site else ""
         html = (layout.replace("{{BODY}}", body.rstrip()).replace("{{TITLE}}", title).replace("{{DESC}}", desc)
                 .replace("{{UPDATED}}", updated).replace("{{CANONICAL}}", canonical).replace("{{NAV}}", nav)
                 .replace("{{CSS}}", css))
         html = (html.replace("{{HOME}}", links["home"]).replace("{{ABOUT}}", links["about"])
                 .replace("{{PRIVACY}}", links["privacy"]).replace("{{CONTACT}}", links["contact"]))
+        if scripts:
+            html = html.replace("</head>", scripts + "</head>", 1)
         out[f"{slug}.html"] = html
     return out
 
@@ -219,9 +332,11 @@ def main():
     # Claude page (artifact): body content only; the host adds doctype/head.
     (BUILD / "claude-page.html").write_text(link_footer(page, False), encoding="utf-8")
     (BUILD / "pages").mkdir(exist_ok=True)
-    for name, html in build_pages(css, False).items():
+    today = datetime.date.today().isoformat()
+    policy_check(today)
+    for name, html in build_pages(css, False, today).items():
         (BUILD / "pages" / name).write_text(html, encoding="utf-8")
-    for name, html in build_pages(css, True).items():
+    for name, html in build_pages(css, True, today).items():
         (SITE / name).write_text(html, encoding="utf-8")
     page = link_footer(page, True)
 
@@ -242,8 +357,18 @@ def main():
         site = site.replace(empty_main, empty_main.replace("></main>", ">" + pre + "</main>"))
         (SITE / "index.html").write_text(site, encoding="utf-8")
 
+    # Analytics / ad scripts go in after the prerender, so building never loads them.
+    scripts = site_scripts(today)
+    if scripts:
+        site = site.replace("</head>", scripts + "</head>", 1)
+        (SITE / "index.html").write_text(site, encoding="utf-8")
+    ads_txt = SITE / "ads.txt"
+    if ADSENSE_CLIENT and POLICY["ads"] and POLICY["ads"] <= today:
+        ads_txt.write_text(f"google.com, {ADSENSE_CLIENT.replace('ca-', '')}, DIRECT, f08c47fec0942fa0\n", encoding="utf-8")
+    elif ads_txt.exists():
+        ads_txt.unlink()
+
     # Search engines: sitemap + robots
-    today = datetime.date.today().isoformat()
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
