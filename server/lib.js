@@ -82,7 +82,7 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS reviews_user ON reviews (user_id, created_at)`,
   `CREATE TABLE IF NOT EXISTS review_reports (review_id TEXT NOT NULL, user_id TEXT NOT NULL, created_at INTEGER NOT NULL, PRIMARY KEY (review_id, user_id))`,
   `CREATE INDEX IF NOT EXISTS reviews_time ON reviews (created_at)`,
-  /* 여행기 (trip stories) with up to 6 photos each; photo_blobs holds the image when there is no R2 bucket */
+  /* 여행기 (trip stories) with up to 6 photos each; photo_parts holds the image (base64 in 90 KB pieces) when there is no R2 bucket */
   `CREATE TABLE IF NOT EXISTS stories (id TEXT PRIMARY KEY, user_id TEXT NOT NULL, city TEXT NOT NULL, trip TEXT NOT NULL DEFAULT '',
      rating INTEGER NOT NULL, title TEXT NOT NULL, body TEXT NOT NULL, photos TEXT NOT NULL DEFAULT '[]', created_at INTEGER NOT NULL,
      updated_at INTEGER NOT NULL, reports INTEGER NOT NULL DEFAULT 0, hidden INTEGER NOT NULL DEFAULT 0)`,
@@ -94,7 +94,7 @@ const SCHEMA = [
      size INTEGER NOT NULL, width INTEGER NOT NULL DEFAULT 0, height INTEGER NOT NULL DEFAULT 0, created_at INTEGER NOT NULL)`,
   `CREATE INDEX IF NOT EXISTS photos_user ON photos (user_id, created_at)`,
   `CREATE INDEX IF NOT EXISTS photos_story ON photos (story_id)`,
-  `CREATE TABLE IF NOT EXISTS photo_blobs (id TEXT PRIMARY KEY, data TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS photo_parts (id TEXT NOT NULL, part INTEGER NOT NULL, data TEXT NOT NULL, PRIMARY KEY (id, part))`,
 ];
 let schemaReady = false;
 /* tables are created on first use, so no migration step is needed in the dashboard */

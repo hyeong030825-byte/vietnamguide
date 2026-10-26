@@ -1,12 +1,14 @@
 // Photos for 여행기. The page shrinks each photo to at most 1280 px and re-encodes it (JPEG or WebP), which drops
 // the camera's EXIF data such as GPS location; the server strips any EXIF/XMP/IPTC block that is still there, so a
 // stored photo never says where or when it was taken.
-// Storage: an R2 bucket bound as PHOTOS ("photos" also works) when there is one, otherwise base64 text in D1.
+// Storage: an R2 bucket bound as PHOTOS ("photos" also works) when there is one, otherwise base64 text in D1, split into
+// 90 KB pieces because a D1 statement may be at most 100 KB (all pieces go in one batch, which D1 counts as one query).
 import { HttpError } from './lib.js';
 
 export const PHOTO_MAX_BYTES = 1200000;   // after the page's resize a photo is usually 150–400 KB
 export const PHOTOS_PER_STORY = 6;
 export const UPLOADS_PER_DAY = 40;
+const PART_CHARS = 90000;                 // base64 characters per D1 row (a multiple of 4, so pieces join cleanly)
 
 export function photoBucket(env) {
   return (env && (env.PHOTOS || env.photos)) || null;
@@ -88,7 +90,11 @@ export async function savePhoto(env, db, { id, userId, bytes, type, width, heigh
     await bucket.put('p/' + id, bytes, { httpMetadata: { contentType: type } });
     await row.run();
   } else {
-    await db.batch([row, db.prepare('INSERT INTO photo_blobs (id, data) VALUES (?, ?)').bind(id, toBase64(bytes))]);
+    const text = toBase64(bytes), parts = [];
+    for (let i = 0, n = 0; i < text.length; i += PART_CHARS, n++) {
+      parts.push(db.prepare('INSERT INTO photo_parts (id, part, data) VALUES (?, ?, ?)').bind(id, n, text.slice(i, i + PART_CHARS)));
+    }
+    await db.batch([row, ...parts]);
   }
 }
 
@@ -98,8 +104,8 @@ export async function readPhoto(env, db, meta) {
     const obj = bucket && await bucket.get('p/' + meta.id);
     return obj ? new Uint8Array(await obj.arrayBuffer()) : null;
   }
-  const blob = await db.prepare('SELECT data FROM photo_blobs WHERE id = ?').bind(meta.id).first();
-  return blob ? fromBase64(blob.data) : null;
+  const parts = (await db.prepare('SELECT data FROM photo_parts WHERE id = ? ORDER BY part').bind(meta.id).all()).results || [];
+  return parts.length ? fromBase64(parts.map((p) => p.data).join('')) : null;
 }
 
 /* delete photo rows (and their files) matching a WHERE clause, e.g. 'story_id = ?' */
@@ -113,7 +119,7 @@ export async function deletePhotosWhere(env, db, where, ...args) {
   for (let i = 0; i < ids.length; i += 50) {
     const chunk = ids.slice(i, i + 50), q = chunk.map(() => '?').join(',');
     await db.batch([
-      db.prepare(`DELETE FROM photo_blobs WHERE id IN (${q})`).bind(...chunk),
+      db.prepare(`DELETE FROM photo_parts WHERE id IN (${q})`).bind(...chunk),
       db.prepare(`DELETE FROM photos WHERE id IN (${q})`).bind(...chunk),
     ]);
   }
