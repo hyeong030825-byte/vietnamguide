@@ -24,7 +24,8 @@ export async function onRequestGet(context) {
     headers: {
       'content-type': meta.type,
       'cache-control': open ? 'public, max-age=86400' : 'private, no-store',
-      'content-security-policy': "default-src 'none'",
+      // no scripts; inline styles allowed so the browser's own image page can center the photo when opened directly
+      'content-security-policy': "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'",
     },
   });
 }

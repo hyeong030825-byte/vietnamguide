@@ -150,3 +150,8 @@ i > svg.ico.fa { width: auto; }
   .doc .contact-label { @apply block text-xs font-bold text-foreground-500; }
   .doc .contact-value { @apply block text-sm font-bold text-foreground-950 break-all; }
 }
+
+/* window heights that follow the visible screen: on phones "vh" counts the area under the address bar,
+   which pushed the top of bottom sheets (and their ✕ button) off screen; dvh is the visible height */
+.sheet-h { max-height: 88vh; max-height: 88dvh; }
+.sheet-h90 { max-height: 90vh; max-height: 90dvh; }

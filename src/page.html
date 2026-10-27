@@ -233,6 +233,7 @@ var T = {
     st_newTitle: '여행기 쓰기', st_editTitle: '여행기 고치기', st_mine: '내 글', st_hidden: '신고가 쌓여 숨겨짐', st_edited: '수정됨',
     st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고, 남의 개인정보나 사진이 담긴 글은 지워질 수 있고, 신고가 3번 쌓이면 자동으로 숨겨져요.',
     rv_photoLabel: '사진 (최대 4장, 선택)', rv_photoNote: '사진의 찍은 위치(GPS)·카메라 정보는 올릴 때 자동으로 지워져요.',
+    pv_title: '사진 보기', pv_prev: '이전 사진', pv_next: '다음 사진', pv_open: '사진 크게 보기 ({n}/{total})',
     cm_title: '댓글', cm_count: '댓글 {n}', cm_ph: '댓글을 남겨 주세요 (2~500자)', cm_submit: '등록', cm_login: '로그인하고 댓글 쓰기', cm_none: '아직 댓글이 없어요. 궁금한 점이나 응원을 남겨 보세요!',
     cm_author: '글쓴이', cm_saved: '댓글을 남겼어요', cm_deleted: '댓글을 지웠어요', cm_reported: '신고했어요. 3번 쌓이면 자동으로 숨겨져요.',
     cm_err_short: '댓글을 2자 이상 적어 주세요', cm_err_many: '댓글은 하루에 30개까지 쓸 수 있어요', cm_now: '방금', cm_min: '{n}분 전', cm_hour: '{n}시간 전',
@@ -419,6 +420,7 @@ var T = {
     st_newTitle: 'Write a trip story', st_editTitle: 'Edit your story', st_mine: 'Mine', st_hidden: 'Hidden after reports', st_edited: 'edited',
     st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos may be removed, and a post is hidden automatically after 3 reports.',
     rv_photoLabel: 'Photos (up to 4, optional)', rv_photoNote: 'Location (GPS) and camera data are removed from photos automatically.',
+    pv_title: 'Photo viewer', pv_prev: 'Previous photo', pv_next: 'Next photo', pv_open: 'View photo {n} of {total}',
     cm_title: 'Comments', cm_count: '{n} comments', cm_ph: 'Leave a comment (2–500 characters)', cm_submit: 'Post', cm_login: 'Log in to comment', cm_none: 'No comments yet. Ask a question or cheer them on!',
     cm_author: 'Author', cm_saved: 'Comment posted', cm_deleted: 'Comment deleted', cm_reported: 'Reported. Comments are hidden after 3 reports.',
     cm_err_short: 'Please write at least 2 characters', cm_err_many: 'You can post up to 30 comments a day', cm_now: 'just now', cm_min: '{n} min ago', cm_hour: '{n} h ago',
@@ -3197,14 +3199,26 @@ function toggleBm(id) {
 
 /* ================= modals ================= */
 var modal = null;
+/* the phone's back button closes the open window (or the photo viewer) instead of leaving the site:
+   opening one adds a history entry, closing it with ✕/Esc takes that entry back off */
+var histDepth = 0, popSkip = 0;
+function histPush() { try { history.pushState({ vgLayer: histDepth + 1 }, ''); histDepth++; } catch (e) { /* ignore */ } }
+function histPop() { if (histDepth > 0) { histDepth--; popSkip++; try { history.back(); } catch (e) { popSkip--; } } }
+window.addEventListener('popstate', function () {
+  if (popSkip > 0) { popSkip--; return; }
+  if (histDepth > 0) histDepth--;
+  if (viewer) closeViewer(true); else if (modal) closeModal(true);
+});
 function openModal(type, data) {
+  if (!modal) histPush();
   modal = { type: type, data: data || {}, ret: document.activeElement };
   renderModal();
   document.documentElement.style.overflow = 'hidden';
   setTimeout(function () { var f = $('#modal-root [data-autofocus-main]') || $('#modal-root [data-autofocus]'); if (f) f.focus(); }, 40);
 }
-function closeModal() {
+function closeModal(fromBack) {
   if (!modal) return;
+  if (!fromBack) histPop();
   var ret = modal.ret; modal = null;
   $('#modal-root').innerHTML = '';
   document.documentElement.style.overflow = '';
@@ -3214,7 +3228,7 @@ function closeModal() {
 function shell(inner, labelId, wide) {
   return '<div class="fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4" role="dialog" aria-modal="true" aria-labelledby="' + labelId + '">' +
     '<div data-action="close-modal" class="absolute inset-0 bg-background-950/75 backdrop-blur-sm"></div>' +
-    '<div class="relative w-full ' + (wide ? 'sm:max-w-2xl' : 'sm:max-w-lg') + ' max-h-[88vh] flex flex-col bg-background-100 border border-background-200 rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden safe-bottom-pad sm:pb-0">' + inner + '</div></div>';
+    '<div class="relative w-full ' + (wide ? 'sm:max-w-2xl' : 'sm:max-w-lg') + ' sheet-h flex flex-col bg-background-100 border border-background-200 rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden safe-bottom-pad sm:pb-0">' + inner + '</div></div>';
 }
 function modalHeader(icon, title, id, extra) {
   return '<div class="flex items-center justify-between gap-3 px-5 py-4 border-b border-background-200"><h3 id="' + id + '" class="font-heading font-bold text-foreground-950 flex items-center gap-2"><i class="' + icon + ' text-accent-400"></i>' + esc(title) + (extra || '') + '</h3>' +
@@ -3331,7 +3345,7 @@ function bigModal() {
   var b = modal.data;
   return '<div class="fixed inset-0 z-[60] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="m-title">' +
     '<div data-action="close-modal" class="absolute inset-0 bg-background-950/90"></div>' +
-    '<div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl bg-background-50 border border-accent-500/40 p-6 sm:p-10 text-center space-y-4 shadow-2xl">' +
+    '<div class="relative w-full max-w-3xl sheet-h90 overflow-y-auto rounded-3xl bg-background-50 border border-accent-500/40 p-6 sm:p-10 text-center space-y-4 shadow-2xl">' +
     '<p id="m-title" class="text-xs font-bold text-accent-400">' + esc(b.label || '') + '</p>' +
     (b.title ? '<p class="vi text-xl sm:text-2xl font-bold text-foreground-900 break-words">' + esc(b.title) + '</p>' : '') +
     '<p class="vi text-3xl sm:text-5xl font-extrabold text-foreground-950 leading-tight break-words">' + esc(b.vi) + '</p>' +
@@ -3501,6 +3515,12 @@ document.addEventListener('change', function (e) {
 });
 document.addEventListener('keydown', function (e) {
   if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.hasAttribute('data-action')) { e.preventDefault(); e.target.click(); return; }
+  if (viewer) {
+    if (e.key === 'Escape') { e.preventDefault(); closeViewer(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); moveViewer(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); moveViewer(-1); }
+    return;
+  }
   if (e.target && e.target.id === 'search' && e.key === 'Escape' && state.query) { state.query = ''; e.target.value = ''; updateSearchClear(); applyStatic(); renderMain(); return; }
   if (!modal) return;
   if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
@@ -4035,9 +4055,10 @@ function storyModal() {
   if (d.err) inner = '<p class="text-sm text-primary-400 text-center py-10">' + esc(t('st_loadFail')) + '</p>';
   else if (!s) inner = '<p class="text-sm text-foreground-500 text-center py-10">' + esc(t('st_loading')) + '</p>';
   else {
-    var photos = s.photos.length ? '<div class="flex gap-2 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-1">' + s.photos.map(function (p) {
-      return '<a href="' + photoUrl(p.id) + '" target="_blank" rel="noopener" class="snap-center flex-shrink-0 ' + (s.photos.length === 1 ? 'w-full' : 'w-[85%] sm:w-[70%]') + '">' +
-        '<img src="' + photoUrl(p.id) + '" alt="" decoding="async"' + (p.w && p.h ? ' width="' + p.w + '" height="' + p.h + '"' : '') + ' class="w-full h-60 sm:h-80 object-cover rounded-xl bg-background-200"></a>';
+    var ids = s.photos.map(function (p) { return p.id; });
+    var photos = s.photos.length ? '<div class="flex gap-2 overflow-x-auto snap-x snap-mandatory custom-scrollbar pb-1">' + s.photos.map(function (p, k) {
+      return photoButton(ids, k, 'snap-center flex-shrink-0 ' + (s.photos.length === 1 ? 'w-full' : 'w-[85%] sm:w-[70%]'),
+        '<img src="' + photoUrl(p.id) + '" alt="" decoding="async"' + (p.w && p.h ? ' width="' + p.w + '" height="' + p.h + '"' : '') + ' class="w-full h-60 sm:h-80 object-cover rounded-xl bg-background-200">');
     }).join('') + '</div>' : '';
     var acts = '';
     var del = '<button type="button" data-action="story-delete" class="' + small + ' ' + (d.armed ? 'bg-primary-500 text-background-50' : 'text-primary-400 hover:bg-primary-500/10') + '"><i class="ri-delete-bin-line"></i>' + esc(t(d.armed ? 'st_deleteArmed' : 'st_delete')) + '</button>';
@@ -4153,10 +4174,69 @@ function addPhotos(d, pre, files) {
 /* small photo strip under a review */
 function photoStrip(photos) {
   if (!photos || !photos.length) return '';
-  return '<div class="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1">' + photos.map(function (p) {
-    return '<a href="' + photoUrl(p.id) + '" target="_blank" rel="noopener" class="flex-shrink-0"><img src="' + photoUrl(p.id) + '" alt="" loading="lazy" decoding="async" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg bg-background-200"></a>';
+  var ids = photos.map(function (p) { return p.id; });
+  return '<div class="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1">' + photos.map(function (p, k) {
+    return photoButton(ids, k, 'flex-shrink-0', '<img src="' + photoUrl(p.id) + '" alt="" loading="lazy" decoding="async" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg bg-background-200">');
   }).join('') + '</div>';
 }
+/* full-screen photo viewer over everything: swipe or arrow keys to move, Esc / ✕ / tap outside the photo to close */
+var viewer = null;
+function photoButton(ids, i, cls, inner) {
+  return '<button type="button" data-action="photo-view" data-value="' + i + '" data-photos="' + esc(ids.join(',')) + '" aria-label="' + esc(tf('pv_open', { n: i + 1, total: ids.length })) + '" class="' + cls + ' block p-0 cursor-zoom-in">' + inner + '</button>';
+}
+function openViewer(ids, i, from) {
+  if (!ids.length) return;
+  histPush();
+  viewer = { ids: ids, i: Math.max(0, Math.min(ids.length - 1, i)), ret: from, overflow: document.documentElement.style.overflow };
+  document.documentElement.style.overflow = 'hidden';
+  var root = document.createElement('div'); root.id = 'photo-viewer'; document.body.appendChild(root);
+  renderViewer();
+  setTimeout(function () { var c = $('#pv-close'); if (c) c.focus(); }, 30);
+}
+function closeViewer(fromBack) {
+  if (!viewer) return;
+  if (!fromBack) histPop();
+  var v = viewer; viewer = null;
+  var root = $('#photo-viewer'); if (root) root.parentNode.removeChild(root);
+  document.documentElement.style.overflow = modal ? 'hidden' : v.overflow;
+  if (v.ret && v.ret.focus && document.body.contains(v.ret)) v.ret.focus();
+}
+function moveViewer(step) {
+  if (!viewer || viewer.ids.length < 2) return;
+  viewer.i = (viewer.i + step + viewer.ids.length) % viewer.ids.length;
+  renderViewer();
+}
+function renderViewer() {
+  var root = $('#photo-viewer'); if (!root || !viewer) return;
+  var n = viewer.ids.length, i = viewer.i, many = n > 1;
+  var arrow = function (dir, icon, label) {
+    return '<button type="button" data-action="pv-move" data-value="' + dir + '" aria-label="' + esc(t(label)) + '" class="hidden sm:flex absolute top-1/2 -translate-y-1/2 ' + (dir < 0 ? 'left-4' : 'right-4') +
+      ' w-12 h-12 rounded-full bg-white/10 hover:bg-white/25 text-white items-center justify-center cursor-pointer transition-colors"><i class="' + icon + ' text-3xl"></i></button>';
+  };
+  root.innerHTML = '<div class="fixed inset-0 z-[80] bg-black/95 flex flex-col select-none" role="dialog" aria-modal="true" aria-label="' + esc(t('pv_title')) + '">' +
+    '<div class="flex items-center justify-between px-4 py-3 text-white/90 text-sm font-semibold tabular"><span aria-live="polite">' + (many ? (i + 1) + ' / ' + n : '') + '</span>' +
+      '<button type="button" id="pv-close" data-action="pv-close" aria-label="' + esc(t('close')) + '" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center cursor-pointer transition-colors"><i class="ri-close-line text-2xl"></i></button></div>' +
+    '<div id="pv-stage" data-action="pv-close" class="relative flex-1 min-h-0 flex items-center justify-center px-2 sm:px-20 pb-3">' +
+      '<img src="' + photoUrl(viewer.ids[i]) + '" alt="" data-action="pv-noop" draggable="false" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">' +
+      (many ? arrow(-1, 'ri-arrow-left-s-line', 'pv_prev') + arrow(1, 'ri-arrow-right-s-line', 'pv_next') : '') + '</div>' +
+    (many ? '<div class="flex justify-center gap-2 pb-6 pt-1">' + viewer.ids.map(function (id, k) {
+      return '<button type="button" data-action="pv-go" data-value="' + k + '" aria-label="' + esc(tf('pv_open', { n: k + 1, total: n })) + '" class="w-2.5 h-2.5 rounded-full cursor-pointer transition-colors ' + (k === i ? 'bg-white' : 'bg-white/35 hover:bg-white/60') + '"></button>';
+    }).join('') + '</div>' : '') +
+  '</div>';
+  hydrate(root);
+  if (many) [1, -1].forEach(function (st) { var im = new Image(); im.src = photoUrl(viewer.ids[(i + st + n) % n]); });
+}
+var pvTouch = null;
+document.addEventListener('touchstart', function (e) {
+  if (!viewer || !e.target.closest || !e.target.closest('#photo-viewer') || e.touches.length !== 1) { pvTouch = null; return; }
+  pvTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+}, { passive: true });
+document.addEventListener('touchend', function (e) {
+  if (!viewer || !pvTouch || !e.changedTouches.length) return;
+  var dx = e.changedTouches[0].clientX - pvTouch.x, dy = e.changedTouches[0].clientY - pvTouch.y;
+  pvTouch = null;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { moveViewer(dx < 0 ? 1 : -1); e.preventDefault(); }
+});
 function submitStory() {
   var d = modal.data;
   if (d.busy) return;
@@ -4246,6 +4326,11 @@ function rvAction(a, v, el) {
       api('POST', 'report', { type: 'comment', id: v }).then(function () { toast(t('cm_reported'), 'ri-flag-line'); loadComments(modal.data); })
         .catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
       return true;
+    case 'photo-view': openViewer((el.getAttribute('data-photos') || '').split(',').filter(Boolean), Number(v) || 0, el); return true;
+    case 'pv-close': closeViewer(); return true;
+    case 'pv-move': moveViewer(Number(v)); return true;
+    case 'pv-go': if (viewer) { viewer.i = Number(v); renderViewer(); } return true;
+    case 'pv-noop': return true;
     case 'st-city': modal.data.city = v; renderModal(); return true;
     case 'st-star': modal.data.rating = Number(v); renderModal(); return true;
     case 'st-photo-del': case 'rv-photo-del': {
