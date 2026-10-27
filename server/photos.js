@@ -7,6 +7,7 @@ import { HttpError } from './lib.js';
 
 export const PHOTO_MAX_BYTES = 1200000;   // after the page's resize a photo is usually 150–400 KB
 export const PHOTOS_PER_STORY = 6;
+export const PHOTOS_PER_REVIEW = 4;
 export const UPLOADS_PER_DAY = 40;
 const PART_CHARS = 90000;                 // base64 characters per D1 row (a multiple of 4, so pieces join cleanly)
 
@@ -126,14 +127,36 @@ export async function deletePhotosWhere(env, db, where, ...args) {
   return ids.length;
 }
 
-/* photos uploaded for a 여행기 that was never posted are removed after a day */
+/* photos uploaded for a 여행기 or review that was never posted are removed after a day */
 export function cleanOrphans(env, db) {
-  return deletePhotosWhere(env, db, 'story_id IS NULL AND created_at < ? LIMIT 20', Date.now() - 864e5);
+  return deletePhotosWhere(env, db, 'story_id IS NULL AND review_id IS NULL AND created_at < ? LIMIT 20', Date.now() - 864e5);
 }
 
-export function checkPhotoList(list) {
-  if (!Array.isArray(list) || list.length > PHOTOS_PER_STORY || list.some((x) => typeof x !== 'string' || !/^[\w-]{8,40}$/.test(x))) {
+export function checkPhotoList(list, max = PHOTOS_PER_STORY) {
+  if (!Array.isArray(list) || list.length > max || list.some((x) => typeof x !== 'string' || !/^[\w-]{8,40}$/.test(x))) {
     throw new HttpError(400, 'bad_photos');
   }
   return [...new Set(list)];
+}
+
+export const parseList = (s) => { try { const a = JSON.parse(s); return Array.isArray(a) ? a : []; } catch (e) { return []; } };
+
+/* {id: {id, w, h}} for the given photo ids */
+export async function photoMeta(db, ids) {
+  const list = [...new Set(ids)], out = {};
+  for (let i = 0; i < list.length; i += 90) {
+    const chunk = list.slice(i, i + 90);
+    const r = await db.prepare(`SELECT id, width, height FROM photos WHERE id IN (${chunk.map(() => '?').join(',')})`).bind(...chunk).all();
+    (r.results || []).forEach((p) => { out[p.id] = { id: p.id, w: p.width, h: p.height }; });
+  }
+  return out;
+}
+
+/* every listed photo must be the member's own and unattached, or already on this post */
+export async function checkOwnPhotos(db, userId, photos, { storyId = null, reviewId = null } = {}) {
+  if (!photos.length) return;
+  const rows = (await db.prepare(`SELECT id, user_id, story_id, review_id FROM photos WHERE id IN (${photos.map(() => '?').join(',')})`).bind(...photos).all()).results || [];
+  const ok = rows.filter((p) => p.user_id === userId &&
+    (p.story_id == null || p.story_id === storyId) && (p.review_id == null || p.review_id === reviewId) && !(p.story_id && p.review_id));
+  if (ok.length !== photos.length) throw new HttpError(400, 'bad_photos');
 }

@@ -226,12 +226,13 @@ var T = {
     st_bodyPh: '일정, 숙소, 맛집, 이동 방법, 꿀팁, 아쉬웠던 점까지 자유롭게 적어 주세요. (20자 이상)',
     st_photoLabel: '사진 (최대 6장, 선택)', st_photoAdd: '사진 추가', st_photoDel: '이 사진 빼기',
     st_photoNote: '사진은 올릴 때 크기를 줄이고, 찍은 위치(GPS)·카메라 정보는 자동으로 지워요. 다른 사람 얼굴이 크게 나온 사진이나 남이 찍은 사진은 올리지 말아 주세요.',
-    st_photoFail: '사진을 올리지 못했어요. 다른 사진으로 해 보세요.', st_photoMax: '사진은 6장까지 올릴 수 있어요', st_photoWait: '사진을 다 올린 뒤에 눌러 주세요', st_photoMany: '오늘은 사진을 더 올릴 수 없어요',
+    st_photoFail: '사진을 올리지 못했어요. 다른 사진으로 해 보세요.', st_photoMax: '사진은 {n}장까지 올릴 수 있어요', st_photoWait: '사진을 다 올린 뒤에 눌러 주세요', st_photoMany: '오늘은 사진을 더 올릴 수 없어요',
     st_submit: '올리기', st_update: '수정 완료', st_edit: '수정', st_delete: '삭제', st_deleteArmed: '한 번 더 누르면 삭제돼요', st_report: '신고',
     st_saved: '여행기를 올렸어요', st_updated: '여행기를 고쳤어요', st_deleted: '여행기를 지웠어요', st_reported: '신고했어요. 3번 쌓이면 자동으로 숨겨져요.',
     st_err_title: '제목을 2자 이상 적어 주세요', st_err_body: '내용을 20자 이상 적어 주세요', st_err_many: '여행기는 하루에 5개까지 쓸 수 있어요', st_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
     st_newTitle: '여행기 쓰기', st_editTitle: '여행기 고치기', st_mine: '내 글', st_hidden: '신고가 쌓여 숨겨짐', st_edited: '수정됨',
     st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고, 남의 개인정보나 사진이 담긴 글은 지워질 수 있고, 신고가 3번 쌓이면 자동으로 숨겨져요.',
+    rv_photoLabel: '사진 (최대 4장, 선택)', rv_photoNote: '사진의 찍은 위치(GPS)·카메라 정보는 올릴 때 자동으로 지워져요.',
     pp_title: '어느 곳의 후기를 쓸까요?', pp_search: '장소 이름으로 찾기', pp_none: '찾는 곳이 없어요', pk_s: '관광지', pk_r: '맛집', pk_e: '체험', pf_all: '이 장소 후기 모두 보기',
     rv_err_short: '5자 이상 적어 주세요', rv_err_many: '오늘은 후기를 더 쓸 수 없어요', rv_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
     rv_loading: '불러오는 중…', rv_loadFail: '후기를 불러오지 못했어요',
@@ -403,12 +404,13 @@ var T = {
     st_bodyPh: 'Itinerary, where you stayed, food, getting around, tips and what you would skip. (at least 20 characters)',
     st_photoLabel: 'Photos (up to 6, optional)', st_photoAdd: 'Add photos', st_photoDel: 'Remove this photo',
     st_photoNote: 'Photos are resized on upload, and location (GPS) and camera data are removed automatically. Please do not post close-ups of other people or photos taken by someone else.',
-    st_photoFail: 'Could not upload that photo. Try another one.', st_photoMax: 'You can add up to 6 photos', st_photoWait: 'Please wait for the photos to finish uploading', st_photoMany: 'Photo limit for today reached',
+    st_photoFail: 'Could not upload that photo. Try another one.', st_photoMax: 'You can add up to {n} photos', st_photoWait: 'Please wait for the photos to finish uploading', st_photoMany: 'Photo limit for today reached',
     st_submit: 'Post', st_update: 'Save changes', st_edit: 'Edit', st_delete: 'Delete', st_deleteArmed: 'Tap again to delete', st_report: 'Report',
     st_saved: 'Story posted', st_updated: 'Story updated', st_deleted: 'Story deleted', st_reported: 'Reported. Stories are hidden after 3 reports.',
     st_err_title: 'Please write a title of at least 2 characters', st_err_body: 'Please write at least 20 characters', st_err_many: 'You can post up to 5 stories a day', st_err: 'Something went wrong. Please try again shortly.',
     st_newTitle: 'Write a trip story', st_editTitle: 'Edit your story', st_mine: 'Mine', st_hidden: 'Hidden after reports', st_edited: 'edited',
     st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos may be removed, and a post is hidden automatically after 3 reports.',
+    rv_photoLabel: 'Photos (up to 4, optional)', rv_photoNote: 'Location (GPS) and camera data are removed from photos automatically.',
     pp_title: 'Which place would you like to review?', pp_search: 'Search by place name', pp_none: 'No matching places', pk_s: 'Sight', pk_r: 'Eatery', pk_e: 'Experience', pf_all: 'All reviews of this place',
     rv_err_short: 'Please write at least 5 characters', rv_err_many: 'You cannot post more reviews today', rv_err: 'Something went wrong. Please try again shortly.',
     rv_loading: 'Loading…', rv_loadFail: 'Could not load reviews',
@@ -3364,7 +3366,8 @@ document.addEventListener('input', function (e) {
   }
 });
 document.addEventListener('change', function (e) {
-  if (e.target.id === 'st-files' && modal && modal.type === 'story-edit') { addStoryPhotos(Array.prototype.slice.call(e.target.files || [])); e.target.value = ''; }
+  var fid = e.target.id, pre = fid === 'st-files' && modal && modal.type === 'story-edit' ? 'st' : fid === 'rv-files' && modal && modal.type === 'reviews' ? 'rv' : '';
+  if (pre) { addPhotos(modal.data, pre, Array.prototype.slice.call(e.target.files || [])); e.target.value = ''; }
 });
 document.addEventListener('keydown', function (e) {
   if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.hasAttribute('data-action')) { e.preventDefault(); e.target.click(); return; }
@@ -3674,7 +3677,7 @@ function loadReviewCounts() {
   }, 120);
 }
 function openReviews(item, title) {
-  openModal('reviews', { item: item, title: title, list: null, rating: 5, body: '', armed: '' });
+  openModal('reviews', { item: item, title: title, list: null, rating: 5, body: '', photos: [], armed: '' });
   loadReviews();
 }
 function loadReviews() {
@@ -3683,7 +3686,7 @@ function loadReviews() {
     if (!modal || modal.data !== d) return;
     d.list = j; auth.counts[d.item] = { n: j.count, avg: j.avg }; updateReviewBtns(d.item);
     var mine = j.reviews.filter(function (r) { return r.mine; })[0];
-    if (mine && !d.touched) { d.rating = mine.rating; d.body = mine.body; d.mineId = mine.id; }
+    if (mine && !d.touched) { d.rating = mine.rating; d.body = mine.body; d.mineId = mine.id; d.photos = (mine.photos || []).map(function (p) { return { id: p.id, w: p.w, h: p.h }; }); }
     renderModal();
   }).catch(function () { if (modal && modal.data === d) { d.list = { error: true }; renderModal(); } });
 }
@@ -3706,7 +3709,7 @@ function reviewsModal() {
       '<span class="text-xs font-bold text-foreground-950">' + esc(r.nickname) + '</span><span class="text-[11px] text-foreground-400 tabular">' + fmtDate(r.createdAt) + (r.edited ? ' · ' + esc(t('rv_edited')) : '') + '</span>' +
       (r.mine ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-accent-500/15 text-accent-400">' + esc(t('rv_mine')) + '</span>' : '') +
       (r.hidden ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-primary-500/15 text-primary-400">' + esc(t('rv_hidden')) + '</span>' : '') + '</div>' +
-      '<p class="text-sm text-foreground-700 leading-relaxed break-words whitespace-pre-line">' + esc(r.body) + '</p>' +
+      '<p class="text-sm text-foreground-700 leading-relaxed break-words whitespace-pre-line">' + esc(r.body) + '</p>' + photoStrip(r.photos) +
       (acts ? '<div class="flex justify-end gap-1">' + acts + '</div>' : '') + '</article>';
   }).join('');
   var form;
@@ -3716,8 +3719,11 @@ function reviewsModal() {
     for (var i = 1; i <= 5; i++) starBtns += '<button type="button" data-action="review-star" data-value="' + i + '" aria-pressed="' + (i <= d.rating) + '" aria-label="' + esc(tf('rv_starsLabel', { n: i })) + '" class="text-2xl leading-none px-0.5 cursor-pointer ' + (i <= d.rating ? 'text-accent-400' : 'text-foreground-300') + '">' + (i <= d.rating ? '★' : '☆') + '</button>';
     form = '<div class="space-y-2"><div class="flex items-center justify-between gap-2"><p class="text-xs font-bold text-foreground-400">' + esc(t(d.mineId ? 'rv_editMine' : 'rv_write')) + '</p><div class="flex" role="group" aria-label="' + esc(t('rv_rating')) + '">' + starBtns + '</div></div>' +
       '<textarea id="review-body" rows="3" maxlength="500" placeholder="' + esc(t('rv_placeholder')) + '" class="w-full px-3 py-2 rounded-xl bg-background-50 border border-background-300 text-sm text-foreground-950 placeholder:text-foreground-400 focus:outline-none focus:border-accent-500 resize-y">' + esc(d.body) + '</textarea>' +
-      '<div class="flex items-center justify-between gap-3"><span id="review-count" class="text-[11px] text-foreground-400 tabular">' + d.body.length + ' / 500</span>' +
-      '<button type="button" data-action="review-submit" class="px-4 py-2 rounded-xl bg-accent-500 hover:bg-accent-400 text-background-50 text-sm font-bold cursor-pointer transition-colors">' + esc(t(d.mineId ? 'rv_update' : 'rv_submit')) + '</button></div></div>';
+      '<p id="review-count" class="text-[11px] text-foreground-400 tabular text-right -mt-1">' + d.body.length + ' / 500</p>' +
+      '<div><p class="text-xs font-bold text-foreground-400 mb-1.5">' + esc(t('rv_photoLabel')) + '</p><div id="rv-photos" class="grid grid-cols-4 gap-2">' + photoTiles(d, 'rv') + '</div>' +
+        '<p class="text-[11px] text-foreground-400 leading-relaxed mt-1.5 flex gap-1"><i class="ri-shield-check-line text-secondary-400 mt-px"></i><span>' + esc(t('rv_photoNote')) + '</span></p></div>' +
+      '<div class="flex justify-end"><button type="button" id="rv-submit" data-action="review-submit" class="px-4 py-2 rounded-xl bg-accent-500 hover:bg-accent-400 text-background-50 text-sm font-bold cursor-pointer transition-colors' +
+        (d.photos.some(function (p) { return p.uploading; }) ? ' opacity-60' : '') + '">' + esc(t(d.mineId ? 'rv_update' : 'rv_submit')) + '</button></div></div>';
   }
   var sum = j && !j.error && j.count ? ' <span class="text-xs font-semibold text-foreground-400">★ ' + esc(String(j.avg)) + ' · ' + esc(tf('rv_count', { n: j.count })) + '</span>' : '';
   return shell(modalHeader('ri-chat-smile-2-line', d.title, 'm-title', sum) +
@@ -3727,7 +3733,7 @@ function reviewsModal() {
 /* ================= 여행 후기 tab: 여행기 (trip stories with photos) + newest place reviews ================= */
 var RV_CITIES = CITIES.map(function (c) { return c.id; }).concat(['other']);
 var rv = { view: store.get('rvView', 'stories') === 'places' ? 'places' : 'stories', city: '', stories: null, next: null, feed: null, feedNext: null, loading: false, err: false, seq: 0, draft: null };
-var PHOTO_MAX = 6;
+var PHOTO_LIMIT = { st: 6, rv: 4 };  /* photos per 여행기 (st) and per place review (rv); the server checks the same numbers */
 function rvCityName(id) { return id === 'other' ? t('st_other') : L(cityById(id).name); }
 function photoUrl(id) { return '/api/photos/' + encodeURIComponent(id); }
 function tripLabel(trip) { if (!trip) return ''; var p = trip.split('-'); return tf('st_trip', { y: p[0], m: Number(p[1]) }); }
@@ -3830,7 +3836,7 @@ function placeReviewCard(r) {
     '<div class="flex items-start gap-2.5"><span class="text-2xl leading-none" aria-hidden="true">' + info.emoji + '</span>' +
       '<div class="min-w-0 flex-1"><p class="font-bold text-foreground-950 text-sm leading-snug">' + esc(info.name) + '</p><p class="text-[11px] text-foreground-400">' + esc(t('pk_' + info.kind)) + ' · ' + esc(rvCityName(info.city)) + '</p></div>' +
       '<span class="text-accent-400 text-sm leading-none tracking-tight flex-shrink-0" aria-label="' + esc(tf('rv_starsLabel', { n: r.rating })) + '">' + stars(r.rating) + '</span></div>' +
-    '<p class="text-sm text-foreground-700 leading-relaxed break-words whitespace-pre-line">' + esc(r.body) + '</p>' +
+    '<p class="text-sm text-foreground-700 leading-relaxed break-words whitespace-pre-line">' + esc(r.body) + '</p>' + photoStrip(r.photos) +
     '<div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-foreground-400"><span><span class="font-bold text-foreground-700">' + esc(r.nickname) + '</span> · <span class="tabular">' + fmtDate(r.createdAt) + '</span></span>' +
       '<button type="button" data-action="reviews" data-value="' + esc(r.item) + '" data-title="' + esc(info.name) + '" class="flex items-center gap-0.5 font-bold text-accent-400 hover:text-accent-300 cursor-pointer">' + esc(t('pf_all')) + '<i class="ri-arrow-right-s-line"></i></button></div>' +
   '</article>';
@@ -3875,16 +3881,17 @@ function openStoryEdit(s) {
   d.busy = false;
   openModal('story-edit', d);
 }
-function storyPhotoTiles(d) {
+/* photo picker shared by the 여행기 form (prefix "st") and the place review form ("rv") */
+function photoTiles(d, pre) {
   var tiles = d.photos.map(function (p, i) {
     var src = p.local || (p.id ? photoUrl(p.id) : '');
     return '<div class="relative aspect-square rounded-xl overflow-hidden bg-background-200">' +
       (src ? '<img src="' + src + '" alt="" class="w-full h-full object-cover">' : '') +
       (p.uploading ? '<span class="absolute inset-0 flex items-center justify-center bg-background-950/50 text-white"><i class="ri-loader-4-line animate-spin text-2xl"></i></span>' : '') +
-      '<button type="button" data-action="st-photo-del" data-value="' + i + '" aria-label="' + esc(t('st_photoDel')) + '" class="absolute top-1 right-1 w-7 h-7 rounded-full bg-background-950/70 hover:bg-background-950/90 text-white flex items-center justify-center cursor-pointer"><i class="ri-close-line"></i></button></div>';
+      '<button type="button" data-action="' + pre + '-photo-del" data-value="' + i + '" aria-label="' + esc(t('st_photoDel')) + '" class="absolute top-1 right-1 w-7 h-7 rounded-full bg-background-950/70 hover:bg-background-950/90 text-white flex items-center justify-center cursor-pointer"><i class="ri-close-line"></i></button></div>';
   }).join('');
-  if (d.photos.length < PHOTO_MAX) tiles += '<label class="aspect-square rounded-xl border-2 border-dashed border-background-300 hover:border-accent-500 hover:text-accent-400 flex flex-col items-center justify-center gap-1 text-foreground-400 text-xs font-semibold cursor-pointer transition-colors">' +
-    '<i class="ri-image-add-line text-2xl"></i>' + esc(t('st_photoAdd')) + '<input type="file" id="st-files" accept="image/*" multiple class="sr-only"></label>';
+  if (d.photos.length < PHOTO_LIMIT[pre]) tiles += '<label class="aspect-square rounded-xl border-2 border-dashed border-background-300 hover:border-accent-500 hover:text-accent-400 flex flex-col items-center justify-center gap-1 text-foreground-400 text-xs font-semibold text-center cursor-pointer transition-colors">' +
+    '<i class="ri-image-add-line text-2xl"></i>' + esc(t('st_photoAdd')) + '<input type="file" id="' + pre + '-files" accept="image/*" multiple class="sr-only"></label>';
   return tiles;
 }
 function storyEditModal() {
@@ -3910,17 +3917,17 @@ function storyEditModal() {
       '<div>' + label(t('st_titleLabel'), 'st-title') + '<input id="st-title" type="text" maxlength="60" value="' + esc(d.title) + '" placeholder="' + esc(t('st_titlePh')) + '" class="' + field + '" data-autofocus-main></div>' +
       '<div>' + label(t('st_bodyLabel'), 'st-body') + '<textarea id="st-body" rows="8" maxlength="3000" placeholder="' + esc(t('st_bodyPh')) + '" class="' + field + ' resize-y leading-relaxed">' + esc(d.body) + '</textarea>' +
         '<p id="st-count" class="text-[11px] text-foreground-400 tabular text-right mt-1">' + d.body.length + ' / 3000</p></div>' +
-      '<div>' + label(t('st_photoLabel')) + '<div id="st-photos" class="grid grid-cols-3 sm:grid-cols-6 gap-2">' + storyPhotoTiles(d) + '</div>' +
+      '<div>' + label(t('st_photoLabel')) + '<div id="st-photos" class="grid grid-cols-3 sm:grid-cols-6 gap-2">' + photoTiles(d, 'st') + '</div>' +
         '<p class="text-[11px] text-foreground-400 leading-relaxed mt-2 flex gap-1"><i class="ri-shield-check-line text-secondary-400 mt-px"></i><span>' + esc(t('st_photoNote')) + '</span></p></div>' +
       '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('st_rule')) + '</p>' +
       '<button type="button" id="st-submit" data-action="st-submit" class="w-full ' + BTN_MAIN + ' py-3' + (uploading || d.busy ? ' opacity-60' : '') + '"' + (d.busy ? ' disabled' : '') + '>' +
         (d.busy ? '<i class="ri-loader-4-line animate-spin"></i>' : '<i class="ri-send-plane-line"></i>') + esc(t(d.id ? 'st_update' : 'st_submit')) + '</button>' +
     '</div>', 'm-title', true);
 }
-function refreshStoryPhotos(d) {
+function refreshPhotos(d, pre) {
   if (!modal || modal.data !== d) return;
-  var box = $('#st-photos'); if (box) { box.innerHTML = storyPhotoTiles(d); hydrate(box); }
-  var b = $('#st-submit'); if (b) b.classList.toggle('opacity-60', d.busy || d.photos.some(function (p) { return p.uploading; }));
+  var box = $('#' + pre + '-photos'); if (box) { box.innerHTML = photoTiles(d, pre); hydrate(box); }
+  var b = $('#' + pre + '-submit'); if (b) b.classList.toggle('opacity-60', !!d.busy || d.photos.some(function (p) { return p.uploading; }));
 }
 /* shrink to at most 1280 px and re-encode (WebP, or JPEG where WebP can't be made): the camera's EXIF data, GPS included, is not copied */
 function shrinkPhoto(file) {
@@ -3940,25 +3947,33 @@ function shrinkPhoto(file) {
     img.src = url;
   });
 }
-function addStoryPhotos(files) {
-  var d = modal.data, room = PHOTO_MAX - d.photos.length;
-  if (files.length > room) toast(t('st_photoMax'), 'ri-information-line');
+function addPhotos(d, pre, files) {
+  var max = PHOTO_LIMIT[pre], room = max - d.photos.length;
+  d.touched = true;
+  if (files.length > room) toast(tf('st_photoMax', { n: max }), 'ri-information-line');
   files.slice(0, Math.max(0, room)).forEach(function (f) {
     var p = { id: null, uploading: true };
     d.photos.push(p);
     shrinkPhoto(f).then(function (r) {
-      p.local = URL.createObjectURL(r.blob); p.w = r.w; p.h = r.h; refreshStoryPhotos(d);
+      p.local = URL.createObjectURL(r.blob); p.w = r.w; p.h = r.h; refreshPhotos(d, pre);
       return fetch('/api/photos?w=' + r.w + '&h=' + r.h, { method: 'POST', credentials: 'same-origin', headers: { 'content-type': r.blob.type }, body: r.blob })
         .then(function (res) { return res.json().then(function (j) { if (!res.ok) { var er = new Error(j.error || 'upload'); er.status = res.status; throw er; } return j; }); });
-    }).then(function (j) { p.id = j.id; p.uploading = false; refreshStoryPhotos(d); })
+    }).then(function (j) { p.id = j.id; p.uploading = false; refreshPhotos(d, pre); })
       .catch(function (e) {
         var i = d.photos.indexOf(p); if (i >= 0) d.photos.splice(i, 1);
         toast(t(e && e.message === 'too_many' ? 'st_photoMany' : e && e.status === 401 ? 'acct_failed' : 'st_photoFail'), 'ri-error-warning-line');
         if (e && e.status === 401) setUser(null);
-        refreshStoryPhotos(d);
+        refreshPhotos(d, pre);
       });
   });
-  refreshStoryPhotos(d);
+  refreshPhotos(d, pre);
+}
+/* small photo strip under a review */
+function photoStrip(photos) {
+  if (!photos || !photos.length) return '';
+  return '<div class="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1">' + photos.map(function (p) {
+    return '<a href="' + photoUrl(p.id) + '" target="_blank" rel="noopener" class="flex-shrink-0"><img src="' + photoUrl(p.id) + '" alt="" loading="lazy" decoding="async" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg bg-background-200"></a>';
+  }).join('') + '</div>';
 }
 function submitStory() {
   var d = modal.data;
@@ -4026,9 +4041,9 @@ function rvAction(a, v, el) {
       return true;
     case 'st-city': modal.data.city = v; renderModal(); return true;
     case 'st-star': modal.data.rating = Number(v); renderModal(); return true;
-    case 'st-photo-del': {
-      var dd = modal.data, p = dd.photos[Number(v)];
-      if (p) { if (p.local) URL.revokeObjectURL(p.local); dd.photos.splice(Number(v), 1); refreshStoryPhotos(dd); }
+    case 'st-photo-del': case 'rv-photo-del': {
+      var dd = modal.data, p = dd.photos && dd.photos[Number(v)];
+      if (p) { if (p.local) URL.revokeObjectURL(p.local); dd.photos.splice(Number(v), 1); dd.touched = true; refreshPhotos(dd, a.slice(0, 2)); }
       return true;
     }
     case 'st-submit': submitStory(); return true;
@@ -4072,7 +4087,9 @@ function authAction(a, v, el) {
       var d = modal.data, text = (($('#review-body') || {}).value || '').trim();
       d.body = text;
       if (text.length < 5) { toast(t('rv_err_short'), 'ri-error-warning-line'); return true; }
-      api('POST', 'reviews', { item: d.item, rating: d.rating, body: text }).then(function () {
+      if (d.photos.some(function (p) { return p.uploading; })) { toast(t('st_photoWait'), 'ri-time-line'); return true; }
+      api('POST', 'reviews', { item: d.item, rating: d.rating, body: text, photos: d.photos.map(function (p) { return p.id; }) }).then(function () {
+        d.photos.forEach(function (p) { if (p.local) URL.revokeObjectURL(p.local); });
         d.touched = false; toast(t('rv_saved'), 'ri-check-line'); loadReviews();
         if (state.tab === 'reviews' && rv.view === 'places') { rvReset(); rvEnsure(); }
       }).catch(function (e) { toast(t(e.code === 'too_many' ? 'rv_err_many' : e.code === 'body_short' ? 'rv_err_short' : e.status === 401 ? 'acct_failed' : 'rv_err'), 'ri-error-warning-line'); if (e.status === 401) setUser(null); });
@@ -4080,7 +4097,7 @@ function authAction(a, v, el) {
     case 'review-delete':
       if (modal.data.armed !== v) { modal.data.armed = v; renderModal(); return true; }
       api('DELETE', 'reviews?id=' + encodeURIComponent(v)).then(function () {
-        var d2 = modal.data; d2.armed = ''; if (d2.mineId === v) { d2.mineId = null; d2.body = ''; d2.rating = 5; } toast(t('rv_deleted'), 'ri-delete-bin-line'); loadReviews();
+        var d2 = modal.data; d2.armed = ''; if (d2.mineId === v) { d2.mineId = null; d2.body = ''; d2.rating = 5; d2.photos = []; } toast(t('rv_deleted'), 'ri-delete-bin-line'); loadReviews();
         if (state.tab === 'reviews' && rv.view === 'places') { rvReset(); rvEnsure(); }
       }).catch(function () { toast(t('rv_err'), 'ri-error-warning-line'); });
       return true;

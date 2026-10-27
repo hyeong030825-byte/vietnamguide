@@ -95,13 +95,29 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS photos_user ON photos (user_id, created_at)`,
   `CREATE INDEX IF NOT EXISTS photos_story ON photos (story_id)`,
   `CREATE TABLE IF NOT EXISTS photo_parts (id TEXT NOT NULL, part INTEGER NOT NULL, data TEXT NOT NULL, PRIMARY KEY (id, part))`,
+  `CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v INTEGER NOT NULL)`,
+];
+/* changes to tables that already exist; meta.schema remembers how many have run. Never edit or reorder, only append. */
+const MIGRATIONS = [
+  /* 1: photos on place reviews */
+  [`ALTER TABLE reviews ADD COLUMN photos TEXT NOT NULL DEFAULT '[]'`, `ALTER TABLE photos ADD COLUMN review_id TEXT`,
+   `CREATE INDEX IF NOT EXISTS photos_review ON photos (review_id)`],
 ];
 let schemaReady = false;
-/* tables are created on first use, so no migration step is needed in the dashboard */
+/* tables are created and updated on first use, so no migration step is needed in the dashboard */
 export async function getDb(env) {
   if (!schemaReady) {
     const db = dbBinding(env);
     await db.batch(SCHEMA.map((s) => db.prepare(s)));
+    const row = await db.prepare("SELECT v FROM meta WHERE k = 'schema'").first();
+    for (let i = row ? row.v : 0; i < MIGRATIONS.length; i++) {
+      for (const sql of MIGRATIONS[i]) {
+        try { await db.prepare(sql).run(); } catch (e) {
+          if (!/duplicate column/i.test(String(e && e.message))) throw e;  // another request already ran it
+        }
+      }
+      await db.prepare("INSERT INTO meta (k, v) VALUES ('schema', ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(i + 1).run();
+    }
     schemaReady = true;
   }
   return dbBinding(env);

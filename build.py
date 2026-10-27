@@ -57,8 +57,8 @@ POLICY_HISTORY = {
 # "Web Analytics → Enable" switch adds the script (POLICY["analytics"] still has to be set in that case).
 CF_ANALYTICS_TOKEN = ""
 ADSENSE_CLIENT = ""  # "ca-pub-0000000000000000" from AdSense; also writes site/ads.txt
-PRIVACY_STARTED, PRIVACY_REVISED = "2026-10-22", "2026-10-26"  # when privacy.html itself last changed
-ABOUT_REVISED = "2026-10-26"
+PRIVACY_STARTED, PRIVACY_REVISED = "2026-10-22", "2026-10-27"  # when privacy.html itself last changed
+ABOUT_REVISED = "2026-10-27"
 
 # about / privacy / contact: (slug, title, description, date line); bodies in src/pages/<slug>.html
 # The about / privacy date lines depend on POLICY and are filled in by page_dates().

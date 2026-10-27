@@ -5,7 +5,7 @@
 // PUT    /api/stories?id=… (same body)       → edit my 여행기; photos left out of the list are deleted
 // DELETE /api/stories?id=…                   → delete mine (admins: any) with its photos
 import { json, currentUser, getDb, isAdmin, readJson, cleanText, randomToken, CITY_IDS, HttpError } from '../../server/lib.js';
-import { checkPhotoList, deletePhotosWhere } from '../../server/photos.js';
+import { checkPhotoList, checkOwnPhotos, deletePhotosWhere } from '../../server/photos.js';
 
 const PER_DAY = 5;
 const TITLE_MAX = 60, BODY_MIN = 20, BODY_MAX = 3000;
@@ -91,14 +91,6 @@ async function readStory(request) {
   return { city, trip, rating, title, body, photos: checkPhotoList(b.photos || []) };
 }
 
-/* every listed photo must be the member's own and either unattached or already on this 여행기 */
-async function checkOwnPhotos(db, userId, photos, storyId) {
-  if (!photos.length) return;
-  const rows = (await db.prepare(`SELECT id, user_id, story_id FROM photos WHERE id IN (${photos.map(() => '?').join(',')})`).bind(...photos).all()).results || [];
-  const ok = rows.filter((p) => p.user_id === userId && (p.story_id == null || p.story_id === storyId));
-  if (ok.length !== photos.length) throw new HttpError(400, 'bad_photos');
-}
-
 export async function onRequestPost(context) {
   const user = await currentUser(context);
   if (!user) throw new HttpError(401, 'login_required');
@@ -108,7 +100,7 @@ export async function onRequestPost(context) {
   const recent = await db.prepare('SELECT COUNT(*) AS n FROM stories WHERE user_id = ? AND created_at > ?').bind(user.id, now - 864e5).first();
   if (recent && recent.n >= PER_DAY) throw new HttpError(429, 'too_many');
   const id = randomToken(12);
-  await checkOwnPhotos(db, user.id, s.photos, id);
+  await checkOwnPhotos(db, user.id, s.photos, { storyId: id });
   const stmts = [db.prepare('INSERT INTO stories (id, user_id, city, trip, rating, title, body, photos, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
     .bind(id, user.id, s.city, s.trip, s.rating, s.title, s.body, JSON.stringify(s.photos), now, now)];
   if (s.photos.length) stmts.push(db.prepare(`UPDATE photos SET story_id = ? WHERE id IN (${s.photos.map(() => '?').join(',')})`).bind(id, ...s.photos));
@@ -130,7 +122,7 @@ export async function onRequestPut(context) {
   const { db, row } = await ownStory(context, user);
   if (row.user_id !== user.id) throw new HttpError(403, 'not_yours');
   const s = await readStory(context.request);
-  await checkOwnPhotos(db, user.id, s.photos, row.id);
+  await checkOwnPhotos(db, user.id, s.photos, { storyId: row.id });
   const stmts = [db.prepare('UPDATE stories SET city = ?, trip = ?, rating = ?, title = ?, body = ?, photos = ?, updated_at = ? WHERE id = ?')
     .bind(s.city, s.trip, s.rating, s.title, s.body, JSON.stringify(s.photos), Date.now(), row.id)];
   if (s.photos.length) stmts.push(db.prepare(`UPDATE photos SET story_id = ? WHERE id IN (${s.photos.map(() => '?').join(',')})`).bind(row.id, ...s.photos));
