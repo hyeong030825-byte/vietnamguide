@@ -1,5 +1,5 @@
 // GET /api/me → who is logged in · PATCH → change nickname · DELETE → delete the account and everything in it
-// (reviews, 여행기 and their photos, synced data, reports, sessions)
+// (reviews, 여행기 with their photos and comments, my comments, synced data, reports, sessions)
 import { json, currentUser, getDb, isAdmin, readJson, cleanText, clearSessionCookie, HttpError } from '../../server/lib.js';
 import { deletePhotosWhere } from '../../server/photos.js';
 
@@ -26,6 +26,9 @@ export async function onRequestDelete(context) {
   const db = await getDb(context.env);
   await deletePhotosWhere(context.env, db, 'user_id = ?', user.id);
   await db.batch([
+    db.prepare(`DELETE FROM comment_reports WHERE user_id = ? OR comment_id IN
+      (SELECT id FROM comments WHERE user_id = ? OR story_id IN (SELECT id FROM stories WHERE user_id = ?))`).bind(user.id, user.id, user.id),
+    db.prepare('DELETE FROM comments WHERE user_id = ? OR story_id IN (SELECT id FROM stories WHERE user_id = ?)').bind(user.id, user.id),
     db.prepare('DELETE FROM story_reports WHERE user_id = ? OR story_id IN (SELECT id FROM stories WHERE user_id = ?)').bind(user.id, user.id),
     db.prepare('DELETE FROM stories WHERE user_id = ?').bind(user.id),
     db.prepare('DELETE FROM review_reports WHERE user_id = ? OR review_id IN (SELECT id FROM reviews WHERE user_id = ?)').bind(user.id, user.id),

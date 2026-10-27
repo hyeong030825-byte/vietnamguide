@@ -96,6 +96,12 @@ const SCHEMA = [
   `CREATE INDEX IF NOT EXISTS photos_story ON photos (story_id)`,
   `CREATE TABLE IF NOT EXISTS photo_parts (id TEXT NOT NULL, part INTEGER NOT NULL, data TEXT NOT NULL, PRIMARY KEY (id, part))`,
   `CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v INTEGER NOT NULL)`,
+  /* comments on 여행기 */
+  `CREATE TABLE IF NOT EXISTS comments (id TEXT PRIMARY KEY, story_id TEXT NOT NULL, user_id TEXT NOT NULL, body TEXT NOT NULL,
+     created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, reports INTEGER NOT NULL DEFAULT 0, hidden INTEGER NOT NULL DEFAULT 0)`,
+  `CREATE INDEX IF NOT EXISTS comments_story ON comments (story_id, created_at)`,
+  `CREATE INDEX IF NOT EXISTS comments_user ON comments (user_id, created_at)`,
+  `CREATE TABLE IF NOT EXISTS comment_reports (comment_id TEXT NOT NULL, user_id TEXT NOT NULL, created_at INTEGER NOT NULL, PRIMARY KEY (comment_id, user_id))`,
 ];
 /* changes to tables that already exist; meta.schema remembers how many have run. Never edit or reorder, only append. */
 const MIGRATIONS = [

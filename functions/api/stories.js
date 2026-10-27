@@ -3,7 +3,7 @@
 // GET    /api/stories?id=…                   → one 여행기 in full
 // POST   /api/stories {city, trip, rating, title, body, photos: [photo ids]}
 // PUT    /api/stories?id=… (same body)       → edit my 여행기; photos left out of the list are deleted
-// DELETE /api/stories?id=…                   → delete mine (admins: any) with its photos
+// DELETE /api/stories?id=…                   → delete mine (admins: any) with its photos and comments
 import { json, currentUser, getDb, isAdmin, readJson, cleanText, randomToken, CITY_IDS, HttpError } from '../../server/lib.js';
 import { checkPhotoList, checkOwnPhotos, deletePhotosWhere } from '../../server/photos.js';
 
@@ -63,14 +63,14 @@ export async function onRequestGet(context) {
   }
   const rows = (await db.prepare(
     `SELECT s.id, s.city, s.trip, s.rating, s.title, substr(s.body, 1, 200) AS excerpt, length(s.body) AS len, s.photos, s.created_at,
-            s.updated_at, s.hidden, s.user_id, u.nickname
+            s.updated_at, s.hidden, s.user_id, u.nickname, (SELECT COUNT(*) FROM comments c WHERE c.story_id = s.id AND c.hidden = 0) AS comments
      FROM stories s JOIN users u ON u.id = s.user_id WHERE ${where.join(' AND ')} ORDER BY s.created_at DESC LIMIT ?`
   ).bind(...args, limit).all()).results || [];
   const lists = rows.map((r) => parse(r.photos));
   const info = await photosOf(db, lists.map((l) => l.slice(0, 1)));
   const stories = rows.map((r, i) => ({
     id: r.id, city: r.city, trip: r.trip, rating: r.rating, title: r.title, excerpt: r.excerpt, more: r.len > 200,
-    cover: photoInfo(info, lists[i].slice(0, 1))[0] || null, photoCount: lists[i].length, nickname: r.nickname,
+    cover: photoInfo(info, lists[i].slice(0, 1))[0] || null, photoCount: lists[i].length, comments: r.comments, nickname: r.nickname,
     createdAt: r.created_at, edited: r.updated_at !== r.created_at, mine: r.user_id === uid, hidden: !!r.hidden,
   }));
   return json({ stories, next: rows.length === limit ? rows[rows.length - 1].created_at : null });
@@ -139,6 +139,8 @@ export async function onRequestDelete(context) {
   if (row.user_id !== user.id && !isAdmin(context.env, user)) throw new HttpError(403, 'not_yours');
   await deletePhotosWhere(context.env, db, 'story_id = ?', row.id);
   await db.batch([
+    db.prepare('DELETE FROM comment_reports WHERE comment_id IN (SELECT id FROM comments WHERE story_id = ?)').bind(row.id),
+    db.prepare('DELETE FROM comments WHERE story_id = ?').bind(row.id),
     db.prepare('DELETE FROM story_reports WHERE story_id = ?').bind(row.id),
     db.prepare('DELETE FROM stories WHERE id = ?').bind(row.id),
   ]);

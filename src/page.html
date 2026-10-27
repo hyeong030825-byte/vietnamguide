@@ -233,6 +233,9 @@ var T = {
     st_newTitle: '여행기 쓰기', st_editTitle: '여행기 고치기', st_mine: '내 글', st_hidden: '신고가 쌓여 숨겨짐', st_edited: '수정됨',
     st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고, 남의 개인정보나 사진이 담긴 글은 지워질 수 있고, 신고가 3번 쌓이면 자동으로 숨겨져요.',
     rv_photoLabel: '사진 (최대 4장, 선택)', rv_photoNote: '사진의 찍은 위치(GPS)·카메라 정보는 올릴 때 자동으로 지워져요.',
+    cm_title: '댓글', cm_count: '댓글 {n}', cm_ph: '댓글을 남겨 주세요 (2~500자)', cm_submit: '등록', cm_login: '로그인하고 댓글 쓰기', cm_none: '아직 댓글이 없어요. 궁금한 점이나 응원을 남겨 보세요!',
+    cm_author: '글쓴이', cm_saved: '댓글을 남겼어요', cm_deleted: '댓글을 지웠어요', cm_reported: '신고했어요. 3번 쌓이면 자동으로 숨겨져요.',
+    cm_err_short: '댓글을 2자 이상 적어 주세요', cm_err_many: '댓글은 하루에 30개까지 쓸 수 있어요', cm_now: '방금', cm_min: '{n}분 전', cm_hour: '{n}시간 전',
     pp_title: '어느 곳의 후기를 쓸까요?', pp_search: '장소 이름으로 찾기', pp_none: '찾는 곳이 없어요', pk_s: '관광지', pk_r: '맛집', pk_e: '체험', pf_all: '이 장소 후기 모두 보기',
     rv_err_short: '5자 이상 적어 주세요', rv_err_many: '오늘은 후기를 더 쓸 수 없어요', rv_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
     rv_loading: '불러오는 중…', rv_loadFail: '후기를 불러오지 못했어요',
@@ -416,6 +419,9 @@ var T = {
     st_newTitle: 'Write a trip story', st_editTitle: 'Edit your story', st_mine: 'Mine', st_hidden: 'Hidden after reports', st_edited: 'edited',
     st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos may be removed, and a post is hidden automatically after 3 reports.',
     rv_photoLabel: 'Photos (up to 4, optional)', rv_photoNote: 'Location (GPS) and camera data are removed from photos automatically.',
+    cm_title: 'Comments', cm_count: '{n} comments', cm_ph: 'Leave a comment (2–500 characters)', cm_submit: 'Post', cm_login: 'Log in to comment', cm_none: 'No comments yet. Ask a question or cheer them on!',
+    cm_author: 'Author', cm_saved: 'Comment posted', cm_deleted: 'Comment deleted', cm_reported: 'Reported. Comments are hidden after 3 reports.',
+    cm_err_short: 'Please write at least 2 characters', cm_err_many: 'You can post up to 30 comments a day', cm_now: 'just now', cm_min: '{n} min ago', cm_hour: '{n} h ago',
     pp_title: 'Which place would you like to review?', pp_search: 'Search by place name', pp_none: 'No matching places', pk_s: 'Sight', pk_r: 'Eatery', pk_e: 'Experience', pf_all: 'All reviews of this place',
     rv_err_short: 'Please write at least 5 characters', rv_err_many: 'You cannot post more reviews today', rv_err: 'Something went wrong. Please try again shortly.',
     rv_loading: 'Loading…', rv_loadFail: 'Could not load reviews',
@@ -3459,6 +3465,7 @@ document.addEventListener('input', function (e) {
     if (id === 'st-body') { var sc = $('#st-count'); if (sc) sc.textContent = e.target.value.length + ' / 3000'; }
     return;
   }
+  if (id === 'cm-body' && modal && modal.type === 'story') { modal.data.cmBody = e.target.value; return; }
   if (id === 'pp-search' && modal && modal.type === 'place-pick') { modal.data.q = e.target.value; var pl = $('#pp-list'); if (pl) { pl.innerHTML = placePickList(); hydrate(pl); } return; }
   if (id === 'search') {
     state.query = e.target.value.trim(); updateSearchClear(); applyStatic(); renderMain();
@@ -3936,7 +3943,8 @@ function storyCard(s) {
       '<span class="block font-heading font-bold text-foreground-950 text-base leading-snug break-words">' + esc(s.title) + '</span>' +
       '<span class="block text-sm text-foreground-600 leading-relaxed line-clamp-3 break-words whitespace-pre-line">' + esc(s.excerpt) + (s.more ? '…' : '') + '</span>' +
       '<span class="flex flex-wrap items-center gap-x-2 text-[11px] text-foreground-400"><span class="font-bold text-foreground-700">' + esc(s.nickname) + '</span><span class="tabular">' + fmtDate(s.createdAt) + '</span>' +
-        (s.photoCount ? '<span class="flex items-center gap-0.5"><i class="ri-image-line"></i>' + esc(tf('st_photoCount', { n: s.photoCount })) + '</span>' : '') + '</span>' +
+        (s.photoCount ? '<span class="flex items-center gap-0.5"><i class="ri-image-line"></i>' + esc(tf('st_photoCount', { n: s.photoCount })) + '</span>' : '') +
+        (s.comments ? '<span class="flex items-center gap-0.5"><i class="ri-chat-3-line"></i>' + esc(tf('cm_count', { n: s.comments })) + '</span>' : '') + '</span>' +
     '</span></button>';
 }
 function placeReviewCard(r) {
@@ -3952,11 +3960,60 @@ function placeReviewCard(r) {
 }
 /* one 여행기 */
 function openStory(id) {
-  var d = { id: id, s: null, armed: false };
+  var d = { id: id, s: null, armed: false, cm: null, cmBody: '', cmArmed: '', cmBusy: false };
   openModal('story', d);
   api('GET', 'stories?id=' + encodeURIComponent(id)).then(function (j) {
-    if (modal && modal.data === d) { d.s = j.story; d.canDelete = j.canDelete; renderModal(); }
+    if (modal && modal.data === d) { d.s = j.story; d.canDelete = j.canDelete; renderModal(); loadComments(d); }
   }).catch(function () { if (modal && modal.data === d) { d.err = true; renderModal(); } });
+}
+/* comments under a 여행기 */
+function loadComments(d) {
+  api('GET', 'comments?story=' + encodeURIComponent(d.id)).then(function (j) {
+    d.cm = j; refreshComments(d);
+    var card = rv.stories && rv.stories.filter(function (x) { return x.id === d.id; })[0];
+    if (card) { var n = j.comments.filter(function (c) { return !c.hidden; }).length; if (card.comments !== n) { card.comments = n; rvRenderList(); } }
+  }).catch(function () { d.cm = { error: true }; refreshComments(d); });
+}
+function refreshComments(d) {
+  if (!modal || modal.data !== d) return;
+  var box = $('#cm-list'); if (box) { box.innerHTML = commentList(d); hydrate(box); }
+  var n = $('#cm-count'); if (n) n.textContent = d.cm && d.cm.comments ? d.cm.comments.filter(function (c) { return !c.hidden; }).length : '';
+}
+function whenText(ms) {
+  var m = Math.floor((Date.now() - ms) / 60000);
+  if (m < 1) return t('cm_now');
+  if (m < 60) return tf('cm_min', { n: m });
+  if (m < 24 * 60) return tf('cm_hour', { n: Math.floor(m / 60) });
+  return fmtDate(ms);
+}
+function commentList(d) {
+  var c = d.cm, u = auth.user, small = 'px-2 py-1 rounded-md text-[11px] font-semibold cursor-pointer transition-colors';
+  if (!c) return '<p class="text-xs text-foreground-500 py-3">' + esc(t('st_loading')) + '</p>';
+  if (c.error) return '<p class="text-xs text-primary-400 py-3">' + esc(t('st_loadFail')) + '</p>';
+  if (!c.comments.length) return '<p class="text-xs text-foreground-500 py-3">' + esc(t('cm_none')) + '</p>';
+  return c.comments.map(function (m) {
+    var del = '<button type="button" data-action="cm-delete" data-value="' + esc(m.id) + '" class="' + small + ' ' + (d.cmArmed === m.id ? 'bg-primary-500 text-background-50' : 'text-primary-400 hover:bg-primary-500/10') + '">' + esc(t(d.cmArmed === m.id ? 'rv_deleteArmed' : 'rv_delete')) + '</button>';
+    var acts = m.mine ? del : u ? (c.canDelete ? del : '') + '<button type="button" data-action="cm-report" data-value="' + esc(m.id) + '" class="' + small + ' text-foreground-500 hover:bg-background-200">' + esc(t('rv_report')) + '</button>' : '';
+    return '<div class="flex gap-2.5 py-3 border-b border-background-200 last:border-b-0">' +
+      '<span class="w-8 h-8 rounded-full ' + (m.author ? 'bg-accent-500/20 text-accent-400' : 'bg-background-200 text-foreground-700') + ' flex items-center justify-center text-xs font-bold flex-shrink-0" aria-hidden="true">' + esc(m.nickname.slice(0, 1)) + '</span>' +
+      '<div class="min-w-0 flex-1"><p class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[11px]"><span class="font-bold text-foreground-900">' + esc(m.nickname) + '</span>' +
+        (m.author ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-accent-500/15 text-accent-400">' + esc(t('cm_author')) + '</span>' : '') +
+        (m.hidden ? '<span class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-primary-500/15 text-primary-400">' + esc(t('rv_hidden')) + '</span>' : '') +
+        '<span class="text-foreground-400 tabular">' + esc(whenText(m.createdAt)) + '</span></p>' +
+      '<p class="text-sm text-foreground-800 leading-relaxed break-words whitespace-pre-line mt-0.5">' + esc(m.body) + '</p>' +
+      (acts ? '<div class="flex justify-end gap-1 -mb-1">' + acts + '</div>' : '') + '</div></div>';
+  }).join('');
+}
+function commentSection(d) {
+  var s = d.s, u = auth.user, form;
+  if (s.hidden) form = '';
+  else if (!u) form = '<button type="button" data-action="account" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border bg-accent-500/15 hover:bg-accent-500/25 border-accent-500/40 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><i class="ri-user-3-line"></i>' + esc(t('cm_login')) + '</button>';
+  else form = '<div class="flex items-end gap-2"><label for="cm-body" class="sr-only">' + esc(t('cm_title')) + '</label>' +
+    '<textarea id="cm-body" rows="2" maxlength="500" placeholder="' + esc(t('cm_ph')) + '" class="flex-1 min-w-0 px-3 py-2 rounded-xl bg-background-50 border border-background-300 text-sm text-foreground-950 placeholder:text-foreground-400 focus:outline-none focus:border-accent-500 resize-y">' + esc(d.cmBody) + '</textarea>' +
+    '<button type="button" id="cm-submit" data-action="cm-submit" class="flex-shrink-0 px-3.5 py-2.5 rounded-xl bg-accent-500 hover:bg-accent-400 text-background-50 text-sm font-bold cursor-pointer transition-colors' + (d.cmBusy ? ' opacity-60' : '') + '"' + (d.cmBusy ? ' disabled' : '') + '>' + esc(t('cm_submit')) + '</button></div>';
+  return '<div class="pt-3 border-t border-background-200 space-y-2">' +
+    '<h5 class="text-sm font-bold text-foreground-950 flex items-center gap-1.5"><i class="ri-chat-3-line text-accent-400"></i>' + esc(t('cm_title')) + ' <span id="cm-count" class="text-xs text-foreground-400 tabular"></span></h5>' +
+    '<div id="cm-list">' + commentList(d) + '</div>' + form + '</div>';
 }
 function storyModal() {
   var d = modal.data, s = d.s, u = auth.user, inner;
@@ -3977,8 +4034,10 @@ function storyModal() {
       '<h4 class="font-heading font-bold text-lg text-foreground-950 leading-snug break-words">' + esc(s.title) + '</h4>' +
       '<p class="flex flex-wrap items-center gap-x-2 text-xs text-foreground-400"><span class="font-bold text-foreground-700">' + esc(s.nickname) + '</span><span class="tabular">' + fmtDate(s.createdAt) + (s.edited ? ' · ' + esc(t('st_edited')) : '') + '</span></p></div>' +
       '<p class="text-[15px] text-foreground-800 leading-7 break-words whitespace-pre-line">' + esc(s.body) + '</p>' +
-      (acts ? '<div class="flex flex-wrap justify-end gap-1 pt-2 border-t border-background-200">' + acts + '</div>' : '');
+      (acts ? '<div class="flex flex-wrap justify-end gap-1 pt-2 border-t border-background-200">' + acts + '</div>' : '') +
+      commentSection(d);
   }
+  if (s && d.cm && d.cm.comments) setTimeout(function () { refreshComments(d); }, 0);
   return shell(modalHeader('ri-book-open-line', s ? rvCityName(s.city) : t('st_viewStories'), 'm-title') +
     '<div class="overflow-y-auto custom-scrollbar p-5 space-y-4">' + inner + '</div>', 'm-title', true);
 }
@@ -4146,6 +4205,31 @@ function rvAction(a, v, el) {
     }
     case 'story-report':
       api('POST', 'report', { type: 'story', id: modal.data.id }).then(function () { toast(t('st_reported'), 'ri-flag-line'); })
+        .catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
+      return true;
+    case 'cm-submit': {
+      var cd = modal.data, text = (($('#cm-body') || {}).value || '').trim();
+      if (cd.cmBusy) return true;
+      if (text.length < 2) { toast(t('cm_err_short'), 'ri-error-warning-line'); return true; }
+      cd.cmBusy = true; var sb = $('#cm-submit'); if (sb) { sb.disabled = true; sb.classList.add('opacity-60'); }
+      api('POST', 'comments', { story: cd.id, body: text }).then(function () {
+        cd.cmBody = ''; var ta = $('#cm-body'); if (ta && modal && modal.data === cd) ta.value = '';
+        toast(t('cm_saved'), 'ri-check-line'); loadComments(cd);
+      }).catch(function (e) {
+        toast(t(e.code === 'too_many' ? 'cm_err_many' : e.code === 'body_short' ? 'cm_err_short' : e.status === 401 ? 'acct_failed' : 'st_err'), 'ri-error-warning-line');
+        if (e.status === 401) setUser(null);
+      }).then(function () { cd.cmBusy = false; var b2 = $('#cm-submit'); if (b2 && modal && modal.data === cd) { b2.disabled = false; b2.classList.remove('opacity-60'); } });
+      return true;
+    }
+    case 'cm-delete': {
+      var dd2 = modal.data;
+      if (dd2.cmArmed !== v) { dd2.cmArmed = v; refreshComments(dd2); return true; }
+      api('DELETE', 'comments?id=' + encodeURIComponent(v)).then(function () { dd2.cmArmed = ''; toast(t('cm_deleted'), 'ri-delete-bin-line'); loadComments(dd2); })
+        .catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
+      return true;
+    }
+    case 'cm-report':
+      api('POST', 'report', { type: 'comment', id: v }).then(function () { toast(t('cm_reported'), 'ri-flag-line'); loadComments(modal.data); })
         .catch(function () { toast(t('st_err'), 'ri-error-warning-line'); });
       return true;
     case 'st-city': modal.data.city = v; renderModal(); return true;

@@ -1,4 +1,4 @@
-// POST /api/report {id, type?} → report a place review (default) or a 여행기 (type: "story").
+// POST /api/report {id, type?} → report a place review (default), a 여행기 (type: "story") or a comment (type: "comment").
 // Three reports from different people hide it until an admin looks.
 import { json, currentUser, getDb, readJson, HttpError } from '../../server/lib.js';
 
@@ -6,6 +6,7 @@ const HIDE_AT = 3;
 const KINDS = {
   review: { table: 'reviews', reports: 'review_reports', key: 'review_id' },
   story: { table: 'stories', reports: 'story_reports', key: 'story_id' },
+  comment: { table: 'comments', reports: 'comment_reports', key: 'comment_id' },
 };
 
 export async function onRequestPost(context) {

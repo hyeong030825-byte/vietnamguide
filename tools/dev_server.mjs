@@ -79,7 +79,7 @@ globalThis.fetch = async (input, init = {}) => {
 const ROUTES = [
   [/^\/api\/config$/, 'config.js'], [/^\/api\/me$/, 'me.js'], [/^\/api\/data$/, 'data.js'],
   [/^\/api\/reviews$/, 'reviews.js'], [/^\/api\/report$/, 'report.js'], [/^\/api\/auth\/logout$/, 'auth/logout.js'],
-  [/^\/api\/stories$/, 'stories.js'], [/^\/api\/photos$/, 'photos/index.js'], [/^\/api\/photos\/([^/]+)$/, 'photos/[id].js', 'id'],
+  [/^\/api\/stories$/, 'stories.js'], [/^\/api\/comments$/, 'comments.js'], [/^\/api\/photos$/, 'photos/index.js'], [/^\/api\/photos\/([^/]+)$/, 'photos/[id].js', 'id'],
   [/^\/api\/auth\/([^/]+)\/login$/, 'auth/[provider]/login.js', 'provider'],
   [/^\/api\/auth\/([^/]+)\/callback$/, 'auth/[provider]/callback.js', 'provider'],
 ];
