@@ -255,11 +255,16 @@ var T = {
     regionNote: '북부(하노이)는 d·gi·r을 ‘ㅈ’에 가깝게, 남부(호치민)는 d·gi를 ‘ㅇ’에 가깝게 발음해요. 이 가이드의 한글 발음은 북부 기준이에요.',
     aTip: 'ạ(아)는 어르신께 말할 때 문장 끝에 붙이면 더 공손해져요. 예: Em cảm ơn ạ.',
     pnTitle: '왜 존댓말엔 em, 반말엔 tôi일까요? 베트남어는 말끝 대신 ‘나와 상대를 부르는 말’로 높임을 나타내요.', pnNow: '지금 보는 말투',
-    pnEm: '나보다 나이가 많은 사람에게 말할 때 나를 em(동생)이라고 낮춰 불러요. 상대는 남자면 anh(아잉), 여자면 chị(찌)라고 불러요.',
+    pnEm: '나보다 나이가 많은 사람에게 말할 때 나를 em(동생)이라고 낮춰 불러요. 상대는 남자면 anh(아잉), 여자면 chị(찌)라고 불러요. 부모님뻘 이상 어른께는 아래 호칭 표처럼 말해요.',
     pnEmEx: '(언니·누나에게) 고맙습니다',
     pnToi: 'tôi는 나이나 관계를 따지지 않는 중립적인 ‘나’예요. 나를 낮추지도 상대를 높이지도 않아서 em보다 덜 공손하게 들려요. 친한 친구끼리는 mình(밍)도 써요.',
     pnToiEx: '나는 한국 사람이야',
     pnWarn: '나보다 확실히 어려 보이는 직원에게 em을 쓰면 어색해요. 그럴 땐 tôi를 쓰고, 직원을 부를 땐 “Em ơi!(앰 어이, 저기요!)”라고 해요.',
+    adTitle: '나이에 따라 부르는 말 (호칭 표)', adYou: '상대', adMe: '나',
+    adN1: '이 사이트의 존댓말 문장은 em(형·누나뻘에게 쓰는 말)으로 되어 있어요. 부모님뻘 이상 어른께는 em을 cháu로, anh·chị를 chú·cô·bác·ông·bà로 바꿔 말하면 돼요. 예: Em cảm ơn chị ạ → Cháu cảm ơn bác ạ.',
+    adN2: '부를 때는 뒤에 ơi(어이)를 붙여요: Chú ơi!(쭈 어이), Cô ơi!(꼬 어이), Bác ơi!(박 어이)',
+    adN3: '나이를 잘 모르겠으면 한 단계 높여 부르는 게 안전해요. 식당·가게 직원은 대부분 anh·chị나 em이면 충분해요.',
+    adN4: '남부에서는 어른께 cháu 대신 con(꼰)이라고 하는 경우가 많아요. 예: Con chào cô ạ(꼰 짜오 꼬 아).',
 
     calcTitle: '0 떼고 2 나누기 계산기', calcDesc: '동(VND) 가격을 원화로 바로 바꿔 보세요.',
     quickV2K: '간편 계산 · 0 떼고 ÷2', quickK2V: '간편 계산 · ×2 하고 0 붙이기', exactLive: '실시간 환율 적용', exactManual: '직접 입력한 환율 적용', exactDefault: '기본 환율 적용',
@@ -433,11 +438,16 @@ var T = {
     regionNote: 'Hanoi (north) says d, gi and r close to “z”; Saigon (south) says d and gi like “y”.',
     aTip: 'Add ạ at the end when speaking to elders for extra respect, e.g. Em cảm ơn ạ.',
     pnTitle: 'Why em for formal and tôi for casual? Vietnamese shows respect through the words for “I” and “you”, not verb endings.', pnNow: 'Showing now',
-    pnEm: 'Speaking to someone older, call yourself em (younger sibling) and them anh (older man) or chị (older woman).',
+    pnEm: 'Speaking to someone older, call yourself em (younger sibling) and them anh (older man) or chị (older woman). For people your parents’ age or older, see the chart below.',
     pnEmEx: 'Thank you (to an older woman)',
     pnToi: 'tôi is a neutral “I” that ignores age and relationship. It neither lowers you nor raises them, so it sounds less polite than em. Close friends also use mình.',
     pnToiEx: 'I am Korean',
     pnWarn: 'Calling yourself em to staff who are clearly younger sounds odd. Use tôi instead, and call them over with “Em ơi!” (excuse me).',
+    adTitle: 'Words for “you” and “I” by age', adYou: 'you', adMe: 'I',
+    adN1: 'The formal phrases on this site use em, for people a bit older than you. With people your parents’ age or older, swap em for cháu and anh / chị for chú, cô, bác, ông or bà, e.g. Em cảm ơn chị ạ → Cháu cảm ơn bác ạ.',
+    adN2: 'To call someone, add ơi: Chú ơi!, Cô ơi!, Bác ơi!',
+    adN3: 'If you are unsure of someone’s age, aim one step higher. For restaurant and shop staff, anh / chị or em is usually enough.',
+    adN4: 'In the south, people often say con instead of cháu to elders, e.g. Con chào cô ạ.',
 
     calcTitle: 'Drop-a-zero, halve-it calculator', calcDesc: 'Turn dong prices into won in a second.',
     quickV2K: 'Quick math · drop a zero, ÷2', quickK2V: 'Quick math · ×2, add a zero', exactLive: 'At the live rate', exactManual: 'At your rate', exactDefault: 'At the default rate',
@@ -512,7 +522,7 @@ var CATS = [
 
 /* ko/vi/pr: [polite, casual]; pr = Korean pronunciation (northern standard) */
 var PHRASES = [
-  { id: 'hello', cat: 'greet', ko: ['안녕하세요', '안녕'], en: 'Hello', vi: ['Xin chào', 'Chào bạn'], pr: ['씬 짜오', '짜오 반'], k: '인사 hi greeting', note: { ko: '일상에서는 Em chào anh ạ(앰 짜오 아잉 아, 남자에게), Em chào chị ạ(앰 짜오 찌 아, 여자에게)처럼 상대를 넣어 인사하는 경우가 많아요', en: 'In everyday speech people add who they greet: “Em chào anh ạ” (to a man), “Em chào chị ạ” (to a woman)' } },
+  { id: 'hello', cat: 'greet', ko: ['안녕하세요', '안녕'], en: 'Hello', vi: ['Xin chào', 'Chào bạn'], pr: ['씬 짜오', '짜오 반'], k: '인사 hi greeting', note: { ko: '일상에서는 Em chào anh ạ(앰 짜오 아잉 아, 남자에게), Em chào chị ạ(앰 짜오 찌 아, 여자에게)처럼 상대를 넣어 인사해요. 부모님뻘 이상 어른께는 Cháu chào cô ạ(짜우 짜오 꼬 아)처럼 나를 cháu라고 해요.', en: 'In everyday speech people add who they greet: “Em chào anh ạ” (to a man), “Em chào chị ạ” (to a woman). To someone your parents’ age or older, call yourself cháu: “Cháu chào cô ạ”.' } },
   { id: 'thanks', cat: 'greet', ko: ['감사합니다', '고마워'], en: 'Thank you', vi: ['Em cảm ơn', 'Cảm ơn nhé'], pr: ['앰 깜 언', '깜 언 녜'], k: '감사 고마워 thank' },
   { id: 'sorry', cat: 'greet', ko: ['죄송합니다', '미안해'], en: 'Sorry / Excuse me', vi: ['Em xin lỗi', 'Xin lỗi nhé'], pr: ['앰 씬 로이', '씬 로이 녜'], k: '실례 사과 excuse' },
   { id: 'yes', cat: 'greet', ko: ['네', '응'], en: 'Yes', vi: ['Vâng', 'Ừ'], pr: ['벙', '으'], k: '예 yes ok', note: { ko: '남부에서는 Dạ(야)라고 대답해요', en: 'In the south people answer “Dạ”' } },
@@ -520,7 +530,7 @@ var PHRASES = [
   { id: 'korean', cat: 'greet', ko: ['저는 한국 사람이에요', '나 한국 사람이야'], en: "I'm Korean", vi: ['Em là người Hàn Quốc', 'Tôi là người Hàn Quốc'], pr: ['앰 라 응으어이 한 꾸옥', '또이 라 응으어이 한 꾸옥'], k: '한국인 korea' },
   { id: 'novi', cat: 'greet', ko: ['베트남어를 못해요', '베트남어 못해'], en: "I don't speak Vietnamese", vi: ['Em không biết tiếng Việt', 'Tôi không biết tiếng Việt'], pr: ['앰 콩 비엣 띠엥 비엣', '또이 콩 비엣 띠엥 비엣'], k: '베트남어 language' },
   { id: 'photo', cat: 'greet', ko: ['사진 좀 찍어 주시겠어요?', '사진 좀 찍어 줄래?'], en: 'Could you take a photo of me?', vi: ['Chụp ảnh giúp em được không?', 'Chụp giúp tôi một tấm nhé?'], pr: ['쭙 아잉 줍 앰 드억 콩?', '쭙 줍 또이 못 떰 녜?'], k: '사진 촬영 camera picture' },
-  { id: 'bye', cat: 'greet', ko: ['안녕히 계세요', '잘 있어'], en: 'Goodbye', vi: ['Em chào anh ạ / Em chào chị ạ', 'Chào nhé!'], pr: ['앰 짜오 아잉 아 / 앰 짜오 찌 아', '짜오 녜!'], k: '작별 헤어질 안녕히 계세요 bye goodbye', note: { ko: '상대가 남자면 anh(아잉), 여자면 chị(찌)를 넣어요. 가게를 나설 때는 Em cảm ơn, chào chị ạ(앰 깜 언, 짜오 찌 아)처럼 고맙다는 말과 함께 하면 자연스러워요. Tạm biệt(땀 비엣)은 오래 헤어질 때 쓰는 딱딱한 말이라 평소엔 잘 안 써요.', en: 'Use anh for a man and chị for a woman. Leaving a shop, “Em cảm ơn, chào chị ạ” (thanks, bye) sounds natural. “Tạm biệt” is a stiff word for long partings and rarely used day to day.' } },
+  { id: 'bye', cat: 'greet', ko: ['안녕히 계세요', '잘 있어'], en: 'Goodbye', vi: ['Em chào anh ạ / Em chào chị ạ', 'Chào nhé!'], pr: ['앰 짜오 아잉 아 / 앰 짜오 찌 아', '짜오 녜!'], k: '작별 헤어질 안녕히 계세요 bye goodbye', note: { ko: '상대가 형·누나뻘이면 anh(아잉)·chị(찌)를 넣어요. 부모님뻘 이상 어른이면 chú(쭈)·cô(꼬)·bác(박)·ông(옹)·bà(바)를 넣고 나를 cháu(짜우)라고 해서 Cháu chào bác ạ(짜우 짜오 박 아)처럼 말해요. 가게를 나설 때는 Em cảm ơn, chào chị ạ(앰 깜 언, 짜오 찌 아)처럼 고맙다는 말과 함께 하면 자연스러워요. Tạm biệt(땀 비엣)은 오래 헤어질 때 쓰는 딱딱한 말이라 평소엔 잘 안 써요.', en: 'Use anh / chị for someone a bit older. For people your parents’ age or older, use chú, cô, bác, ông or bà and call yourself cháu: “Cháu chào bác ạ”. Leaving a shop, “Em cảm ơn, chào chị ạ” (thanks, bye) sounds natural. “Tạm biệt” is a stiff word for long partings and rarely used day to day.' } },
   { id: 'nicetomeet', cat: 'greet', ko: ['만나서 반가워요', '만나서 반가워'], en: 'Nice to meet you', vi: ['Rất vui được làm quen ạ', 'Rất vui được gặp bạn'], pr: ['젓 부이 드억 람 꾸앤 아', '젓 부이 드억 갑 반'], k: '반가워 처음 nice meet' },
   { id: 'dontknow', cat: 'greet', ko: ['잘 못 알아들었어요', '못 알아들었어'], en: "I don't understand", vi: ['Em không hiểu', 'Tôi không hiểu'], pr: ['앰 콩 히에우', '또이 콩 히에우'], k: '이해 모르겠 understand' },
   { id: 'again', cat: 'greet', ko: ['다시 한 번 말해 주세요', '다시 말해 줘'], en: 'Could you say that again?', vi: ['Nói lại giúp em được không?', 'Nói lại giúp tôi nhé'], pr: ['노이 라이 줍 앰 드억 콩?', '노이 라이 줍 또이 녜'], k: '다시 반복 repeat again' },
@@ -528,7 +538,7 @@ var PHRASES = [
   { id: 'english', cat: 'greet', ko: ['영어 할 줄 아세요?', '영어 할 줄 알아?'], en: 'Do you speak English?', vi: ['Có nói tiếng Anh được không ạ?', 'Bạn nói tiếng Anh được không?'], pr: ['꼬 노이 띠엥 아잉 드억 콩 아?', '반 노이 띠엥 아잉 드억 콩?'], k: '영어 english' },
   { id: 'wait', cat: 'greet', ko: ['잠깐만요', '잠깐만'], en: 'Just a moment', vi: ['Chờ em một chút', 'Đợi chút nhé'], pr: ['쩌 앰 못 쭛', '더이 쭛 녜'], k: '잠깐 기다려 wait moment' },
   { id: 'okay', cat: 'greet', ko: ['좋아요, 그렇게 할게요', '좋아'], en: 'Okay, sounds good', vi: ['Được ạ', 'Được rồi'], pr: ['드억 아', '드억 조이'], k: '좋아요 오케이 알겠 okay ok' },
-  { id: 'callstaff', cat: 'greet', ko: ['저기요! (직원을 부를 때)', '저기요!'], en: 'Excuse me! (calling staff)', vi: ['Anh ơi! / Chị ơi!', 'Em ơi!'], pr: ['아잉 어이! / 찌 어이!', '앰 어이!'], k: '저기요 직원 부르기 여기요 call staff waiter', note: { ko: '남자 직원은 Anh ơi(아잉 어이), 여자 직원은 Chị ơi(찌 어이), 나보다 어려 보이면 Em ơi(앰 어이)라고 불러요', en: 'Call a man “Anh ơi”, a woman “Chị ơi”, and someone younger than you “Em ơi”' } },
+  { id: 'callstaff', cat: 'greet', ko: ['저기요! (직원을 부를 때)', '저기요!'], en: 'Excuse me! (calling staff)', vi: ['Anh ơi! / Chị ơi!', 'Em ơi!'], pr: ['아잉 어이! / 찌 어이!', '앰 어이!'], k: '저기요 직원 부르기 여기요 call staff waiter', note: { ko: '남자 직원은 Anh ơi(아잉 어이), 여자 직원은 Chị ơi(찌 어이), 나보다 어려 보이면 Em ơi(앰 어이)라고 불러요. 부모님뻘이면 Chú ơi(쭈 어이)·Cô ơi(꼬 어이), 더 나이 드신 분은 Bác ơi(박 어이)라고 해요.', en: 'Call a man “Anh ơi”, a woman “Chị ơi”, and someone younger “Em ơi”. For someone your parents’ age, “Chú ơi” (man) or “Cô ơi” (woman); older still, “Bác ơi”.' } },
   { id: 'whatisthis', cat: 'greet', ko: ['이게 뭐예요?', '이거 뭐야?'], en: 'What is this?', vi: ['Cho em hỏi, cái này là gì?', 'Cái này là gì?'], pr: ['쪼 앰 호이, 까이 나이 라 지?', '까이 나이 라 지?'], k: '뭐예요 무엇 what' },
 
   { id: 'menu', cat: 'food', ko: ['메뉴판 좀 주세요', '메뉴판 좀 줘'], en: 'Menu, please', vi: ['Cho em xem thực đơn', 'Cho tôi xem thực đơn nhé'], pr: ['쪼 앰 쌤 특 던', '쪼 또이 쌤 특 던 녜'], k: '메뉴 주문 menu order' },
@@ -626,6 +636,18 @@ var PHRASES = [
   { id: 'stolen', cat: 'help', ko: ['가방을 도둑맞았어요', '가방 도둑맞았어'], en: 'My bag was stolen', vi: ['Em bị trộm mất túi rồi', 'Tôi bị trộm mất túi rồi'], pr: ['앰 비 쫌 멋 뚜이 조이', '또이 비 쫌 멋 뚜이 조이'], k: '도난 소매치기 날치기 stolen theft', note: { ko: '오토바이 날치기를 당했으면 bị giật(비 젓)이라고 해요: Em bị giật túi(앰 비 젓 뚜이)', en: 'If it was snatched from a motorbike, say “bị giật”: Em bị giật túi' } },
   { id: 'lostphone', cat: 'help', ko: ['휴대폰을 잃어버렸어요', '폰 잃어버렸어'], en: 'I lost my phone', vi: ['Em bị mất điện thoại', 'Tôi mất điện thoại rồi'], pr: ['앰 비 멋 디엔 토아이', '또이 멋 디엔 토아이 조이'], k: '휴대폰 핸드폰 분실 phone lost' },
   { id: 'embassy', cat: 'help', ko: ['한국 대사관에 연락하고 싶어요', '한국 대사관에 연락하고 싶어'], en: 'I want to contact the Korean Embassy', vi: ['Em muốn liên lạc với Đại sứ quán Hàn Quốc', 'Tôi muốn liên lạc với Đại sứ quán Hàn Quốc'], pr: ['앰 무온 리엔 락 버이 다이 쓰 꽌 한 꾸옥', '또이 무온 리엔 락 버이 다이 쓰 꽌 한 꾸옥'], k: '대사관 영사관 embassy consulate' }
+];
+
+/* who is who: the word for "you" and for "I" by the other person's age (northern standard) */
+var ADDRESS = [
+  { who: { ko: '형·오빠뻘 남자', en: 'A man a bit older than you' }, you: 'anh', youPr: '아잉', me: 'em', mePr: '앰', ex: 'Em chào anh ạ.', exPr: '앰 짜오 아잉 아' },
+  { who: { ko: '누나·언니뻘 여자', en: 'A woman a bit older than you' }, you: 'chị', youPr: '찌', me: 'em', mePr: '앰', ex: 'Em chào chị ạ.', exPr: '앰 짜오 찌 아' },
+  { who: { ko: '나보다 어린 사람', en: 'Someone younger than you' }, you: 'em', youPr: '앰', me: 'anh / chị', mePr: '아잉 / 찌', ex: 'Chào em.', exPr: '짜오 앰' },
+  { who: { ko: '아저씨 (부모님보다 젊은 남자)', en: 'A man around your parents’ age, younger than them' }, you: 'chú', youPr: '쭈', me: 'cháu', mePr: '짜우', ex: 'Cháu chào chú ạ.', exPr: '짜우 짜오 쭈 아' },
+  { who: { ko: '이모·아주머니 (부모님뻘 여자)', en: 'A woman around your parents’ age' }, you: 'cô', youPr: '꼬', me: 'cháu', mePr: '짜우', ex: 'Cháu chào cô ạ.', exPr: '짜우 짜오 꼬 아' },
+  { who: { ko: '부모님보다 나이 많은 어른', en: 'An adult older than your parents' }, you: 'bác', youPr: '박', me: 'cháu', mePr: '짜우', ex: 'Cháu chào bác ạ.', exPr: '짜우 짜오 박 아' },
+  { who: { ko: '할아버지', en: 'An elderly man' }, you: 'ông', youPr: '옹', me: 'cháu', mePr: '짜우', ex: 'Cháu chào ông ạ.', exPr: '짜우 짜오 옹 아' },
+  { who: { ko: '할머니', en: 'An elderly woman' }, you: 'bà', youPr: '바', me: 'cháu', mePr: '짜우', ex: 'Cháu chào bà ạ.', exPr: '짜우 짜오 바 아' }
 ];
 
 var TONES = [
@@ -2276,7 +2298,25 @@ function toneBox() {
     '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-information-line text-accent-400 mt-px"></i><span>' + esc(t('pnWhy')) + '</span></p>' +
     '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-error-warning-line text-primary-400 mt-px"></i><span>' + esc(t('pnWarn')) + '</span></p>' +
     '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + esc(t('aTip')) + '</span></p>' +
+    addressChart() +
     '</div>';
+}
+function addressChart() {
+  var ko = state.lang === 'ko';
+  var word = function (w, pr) { return '<span class="vi font-bold text-accent-400">' + esc(w) + '</span>' + (ko ? ' <span class="text-foreground-400">[' + esc(pr) + ']</span>' : ''); };
+  var rows = ADDRESS.map(function (a) {
+    return '<button type="button" data-action="speak" data-text="' + esc(a.ex) + '" class="w-full p-2.5 rounded-lg bg-background-50 border border-background-200 hover:border-accent-500/40 text-left cursor-pointer transition-colors min-w-0">' +
+      '<span class="block text-[11px] font-bold text-foreground-900">' + esc(L(a.who)) + '</span>' +
+      '<span class="block text-[11px] text-foreground-500 mt-0.5">' + esc(t('adYou')) + ' ' + word(a.you, a.youPr) + ' · ' + esc(t('adMe')) + ' ' + word(a.me, a.mePr) + '</span>' +
+      '<span class="flex flex-wrap items-center gap-x-1.5 text-[11px] mt-1"><i class="ri-volume-up-line text-primary-300"></i><span class="vi font-semibold text-accent-300">' + esc(a.ex) + '</span>' + (ko ? '<span class="text-foreground-400">[' + esc(a.exPr) + ']</span>' : '') + '</span></button>';
+  }).join('');
+  var note = function (icon, key) { return '<p class="text-[11px] text-foreground-500 leading-relaxed flex items-start gap-1.5"><i class="' + icon + ' mt-px"></i><span>' + esc(t(key)) + '</span></p>'; };
+  return '<details class="group rounded-xl border border-background-200 bg-background-100/60">' +
+    '<summary class="flex items-center justify-between gap-2 px-3 py-2.5 cursor-pointer text-xs font-bold text-foreground-900 list-none [&::-webkit-details-marker]:hidden">' +
+      '<span class="flex items-center gap-1.5"><i class="ri-team-line text-accent-400 text-sm"></i>' + esc(t('adTitle')) + '</span><i class="ri-arrow-down-s-line text-lg text-foreground-400 transition-transform group-open:rotate-180"></i></summary>' +
+    '<div class="px-3 pb-3 space-y-2"><div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">' + rows + '</div>' +
+      note('ri-information-line text-accent-400', 'adN1') + note('ri-chat-1-line text-accent-400', 'adN2') + note('ri-scales-3-line text-accent-400', 'adN3') + note('ri-map-pin-2-line text-secondary-400', 'adN4') +
+    '</div></details>';
 }
 function viewPhrases() {
   var list = state.phraseCat === 'all' ? PHRASES : PHRASES.filter(function (p) { return p.cat === state.phraseCat; });
