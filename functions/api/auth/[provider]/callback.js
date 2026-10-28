@@ -1,5 +1,5 @@
 // GET /api/auth/<provider>/callback?code=…&state=… → find or create the member, start a session, go back to the page
-import { configured, parseCookies, cookie, safeReturn, getDb, randomToken, createSession } from '../../../../server/lib.js';
+import { configured, parseCookies, cookie, safeReturn, getDb, randomToken, createSession, freeNickname, isUniqueError } from '../../../../server/lib.js';
 import { fetchProfile } from '../../../../server/oauth.js';
 
 function back(origin, ret, status, extraCookies = []) {
@@ -37,11 +37,17 @@ export async function onRequestGet({ request, env, params }) {
   if (user) {
     await db.prepare('UPDATE users SET last_login = ? WHERE id = ?').bind(now, user.id).run();
   } else {
-    /* never the real name from the login service: reviews are public, so everyone starts with a random nickname */
-    const nickname = '여행자' + Math.floor(1000 + Math.random() * 9000);
+    /* never the real name from the login service: reviews are public, so everyone starts with a random, unused nickname */
     user = { id: randomToken(12) };
-    await db.prepare('INSERT INTO users (id, provider, provider_uid, nickname, created_at, last_login) VALUES (?, ?, ?, ?, ?, ?)')
-      .bind(user.id, provider, profile.uid, nickname, now, now).run();
+    for (let attempt = 0; ; attempt++) {
+      try {
+        await db.prepare('INSERT INTO users (id, provider, provider_uid, nickname, created_at, last_login) VALUES (?, ?, ?, ?, ?, ?)')
+          .bind(user.id, provider, profile.uid, await freeNickname(db), now, now).run();
+        break;
+      } catch (e) {
+        if (!isUniqueError(e) || attempt >= 2) throw e;  // someone took the same name a moment ago: pick another
+      }
+    }
   }
   return back(url.origin, ret, 'ok', [await createSession(db, user.id)]);
 }

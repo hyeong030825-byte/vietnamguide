@@ -232,6 +232,8 @@ var T = {
     acct_age: '만 14세 이상이에요 (필수)', acct_ageNeed: '만 14세 이상인지 먼저 체크해 주세요', acct_privacy: '개인정보처리방침',
     acct_via: '{p} 계정으로 로그인했어요', acct_p_google: 'Google', acct_p_kakao: '카카오', acct_p_naver: '네이버',
     acct_nick: '닉네임 (후기에 보여요)', acct_nickSave: '저장', acct_nickSaved: '닉네임을 바꿨어요', acct_nickShort: '닉네임은 2~20자로 적어 주세요',
+    acct_nickHint: '다른 사람과 겹치지 않는 2~20자로 정해 주세요', acct_nickOk: '사용할 수 있는 닉네임이에요', acct_nickSame: '지금 쓰고 있는 닉네임이에요',
+    acct_nickTaken: '이미 다른 사람이 쓰는 닉네임이에요', acct_nickReserved: '운영자로 오해할 수 있는 닉네임은 쓸 수 없어요',
     acct_sync: '기기 간 동기화', acct_syncDesc: '북마크, 메모, 준비물 체크, 단어장 기록', acct_syncing: '동기화하는 중…', acct_synced: '동기화됨', acct_syncNow: '지금 동기화',
     acct_logout: '로그아웃', acct_loggedOut: '로그아웃했어요', acct_delete: '회원 탈퇴',
     acct_deleteArmed: '한 번 더 누르면 계정과 내가 쓴 후기, 동기화된 자료가 모두 바로 삭제돼요. 이 기기에 저장된 자료는 그대로 남아요.',
@@ -314,7 +316,7 @@ var T = {
     region_all: '전국', region_south: '남부', region_north: '북부',
     veNote: '1 vé는 동이 아니라 미화 100달러(USD)를 뜻해요. 헷갈리지 않게 조심하세요.',
 
-    swTitle: '고수 빼기 스위치', swDesc: '필요한 요청만 켜면 주문 문장을 만들어 줘요.',
+    swTitle: '고수 빼기 스위치', swDesc: '필요한 요청만 켜면 주문 문장을 만들어 줘요. 빼 달라고 할 때 북부는 Đừng cho(넣지 마세요), 남부는 Đừng bỏ를 써요. bỏ는 북부에서 "빼다"라는 뜻이라 지역에 맞춰 바꿔 보여 줘요.',
     north: '북부 (하노이)', south: '남부 (호치민)', regionLabel: '지역 표현',
     showStaff: '직원에게 이 화면을 보여주세요', allOff: '켜진 스위치가 없어요. 필요한 요청을 켜 보세요.', bigView: '크게 보기',
     menuTitle: '메뉴판 해독', menuDesc: '대표 메뉴의 이름과 맛을 미리 알아 두세요.',
@@ -419,6 +421,8 @@ var T = {
     acct_age: 'I am 14 or older (required)', acct_ageNeed: 'Please confirm you are 14 or older first', acct_privacy: 'Privacy policy (Korean)',
     acct_via: 'Logged in with {p}', acct_p_google: 'Google', acct_p_kakao: 'Kakao', acct_p_naver: 'Naver',
     acct_nick: 'Nickname (shown on reviews)', acct_nickSave: 'Save', acct_nickSaved: 'Nickname updated', acct_nickShort: 'Use 2–20 characters',
+    acct_nickHint: 'Pick 2–20 characters nobody else is using', acct_nickOk: 'This nickname is available', acct_nickSame: 'This is your current nickname',
+    acct_nickTaken: 'Someone else already uses this nickname', acct_nickReserved: 'Names that look like the site’s staff are not allowed',
     acct_sync: 'Sync across devices', acct_syncDesc: 'Bookmarks, notes, checklist, flashcards', acct_syncing: 'Syncing…', acct_synced: 'Synced', acct_syncNow: 'Sync now',
     acct_logout: 'Log out', acct_loggedOut: 'Logged out', acct_delete: 'Delete account',
     acct_deleteArmed: 'Tap again to delete your account, your reviews and synced data right away. Data saved on this device stays.',
@@ -501,7 +505,7 @@ var T = {
     region_all: 'Nationwide', region_south: 'South', region_north: 'North',
     veNote: '1 vé means 100 US dollars, not dong. Do not mix them up.',
 
-    swTitle: 'No-cilantro switch', swDesc: 'Switch on what you need and get a ready-to-show order note.',
+    swTitle: 'No-cilantro switch', swDesc: 'Switch on what you need and get a ready-to-show order note. To leave something out, the north says “Đừng cho” and the south “Đừng bỏ”; in the north bỏ means “take out”, so the note follows the region you pick.',
     north: 'North (Hanoi)', south: 'South (HCMC)', regionLabel: 'Regional words',
     showStaff: 'Show this screen to the staff', allOff: 'All switches are off. Turn on what you need.', bigView: 'Full screen',
     menuTitle: 'Menu decoder', menuDesc: 'Know the classics before you order.',
@@ -577,7 +581,7 @@ var PHRASES = [
 
   { id: 'menu', cat: 'food', ko: ['메뉴판 좀 주세요', '메뉴판 좀 줘'], en: 'Menu, please', vi: ['Cho em xem thực đơn', 'Cho tôi xem thực đơn nhé'], pr: ['쪼 앰 쌤 특 던', '쪼 또이 쌤 특 던 녜'], k: '메뉴 주문 menu order' },
   { id: 'nocilantro', cat: 'food', ko: ['고수 못 먹어요, 넣지 말아 주세요', '고수 넣지 마'], en: "I can't eat cilantro, please leave it out", vi: ['Em không ăn được rau mùi, đừng cho nhé', 'Đừng cho rau mùi nhé'], pr: ['앰 콩 안 드억 자우 무이, 등 쪼 녜', '등 쪼 자우 무이 녜'], k: '고수 빼 주세요 빼줘 넣지 마 향채 허브 cilantro coriander herb rau mui ngo dung cho', note: { ko: '남부(호치민)에서는 고수를 ngò(응오)라고 하고 Đừng bỏ ngò nha(등 보 응오 냐)라고 해요. bỏ는 남부에선 "넣다"지만 북부에선 "빼다"라서, Không bỏ rau mùi는 하노이에선 "고수 빼지 마세요"로 들릴 수 있어요. cho(넣다)는 어디서나 통해요.', en: 'In the south cilantro is “ngò”: Đừng bỏ ngò nha. “Bỏ” means “put in” in the south but “take out” in the north, so “Không bỏ rau mùi” can sound like “don’t take out the cilantro” in Hanoi. “Cho” (put in) works everywhere.' } },
-  { id: 'noice', cat: 'food', ko: ['얼음 빼 주세요', '얼음 빼 줘'], en: 'No ice, please', vi: ['Cho em không đá', 'Cho tôi không đá nhé'], pr: ['쪼 앰 콩 다', '쪼 또이 콩 다 녜'], k: '얼음 ice' },
+  { id: 'noice', cat: 'food', ko: ['얼음 빼 주세요', '얼음 빼 줘'], en: 'No ice, please', vi: ['Đừng cho đá giúp em', 'Đừng cho đá nhé'], pr: ['등 쪼 다 줍 앰', '등 쪼 다 녜'], k: '얼음 ice', note: { ko: '남부(호치민)에서는 Đừng bỏ đá nha(등 보 다 냐)라고 많이 해요. bỏ는 북부에서 "빼다"라는 뜻이라, 하노이에서는 cho(넣다)를 쓰는 게 안전해요. 음료를 시킬 때 Một cà phê sữa, không đá(얼음 없이 연유 커피 하나)처럼 뒤에 붙여도 돼요.', en: 'In the south people often say “Đừng bỏ đá nha”. In the north bỏ means “take out”, so “cho” is the safe choice in Hanoi. You can also tag it onto a drink order: “Một cà phê sữa, không đá”.' } },
   { id: 'lesssweet', cat: 'food', ko: ['덜 달게 해 주세요', '덜 달게 해 줘'], en: 'Less sugar, please', vi: ['Cho em ít đường', 'Cho tôi ít đường nhé'], pr: ['쪼 앰 잇 드엉', '쪼 또이 잇 드엉 녜'], k: '설탕 단맛 당도 sugar sweet' },
   { id: 'nospicy', cat: 'food', ko: ['안 맵게 해 주세요', '안 맵게 해 줘'], en: 'Not spicy, please', vi: ['Cho em không cay', 'Cho tôi không cay nhé'], pr: ['쪼 앰 콩 까이', '쪼 또이 콩 까이 녜'], k: '매운 고추 spicy chili' },
   { id: 'water', cat: 'food', ko: ['물 한 병 주세요', '물 한 병 줘'], en: 'A bottle of water, please', vi: ['Cho em một chai nước', 'Cho tôi một chai nước nhé'], pr: ['쪼 앰 못 짜이 느억', '쪼 또이 못 짜이 느억 녜'], k: '물 생수 water' },
@@ -725,12 +729,12 @@ var MONEY_UNITS = [
 ];
 
 var SWITCHES = [
-  { id: 'cilantro', emoji: '🌿', ko: '고수 빼기', en: 'No cilantro', vi: { north: 'không rau mùi', south: 'không ngò' }, kp: '고수 빼고', ep: 'no cilantro' },
-  { id: 'ice', emoji: '🧊', ko: '얼음 빼기', en: 'No ice', vi: { north: 'không đá', south: 'không đá' }, kp: '얼음 빼고', ep: 'no ice' },
+  { id: 'cilantro', emoji: '🌿', ko: '고수 빼기', en: 'No cilantro', noun: { north: 'rau mùi', south: 'ngò' }, kp: '고수 빼고', ep: 'no cilantro' },
+  { id: 'ice', emoji: '🧊', ko: '얼음 빼기', en: 'No ice', noun: { north: 'đá', south: 'đá' }, kp: '얼음 빼고', ep: 'no ice' },
   { id: 'sugar', emoji: '🍬', ko: '덜 달게', en: 'Less sugar', vi: { north: 'ít đường', south: 'ít đường' }, kp: '덜 달게', ep: 'less sugar' },
   { id: 'spicy', emoji: '🌶️', ko: '안 맵게', en: 'Not spicy', vi: { north: 'không cay', south: 'không cay' }, kp: '안 맵게', ep: 'not spicy' },
-  { id: 'msg', emoji: '🧂', ko: 'MSG 빼기', en: 'No MSG', vi: { north: 'không mì chính', south: 'không bột ngọt' }, kp: 'MSG 빼고', ep: 'no MSG' },
-  { id: 'peanut', emoji: '🥜', ko: '땅콩 빼기', en: 'No peanuts', vi: { north: 'không lạc', south: 'không đậu phộng' }, kp: '땅콩 빼고', ep: 'no peanuts' }
+  { id: 'msg', emoji: '🧂', ko: 'MSG 빼기', en: 'No MSG', noun: { north: 'mì chính', south: 'bột ngọt' }, kp: 'MSG 빼고', ep: 'no MSG' },
+  { id: 'peanut', emoji: '🥜', ko: '땅콩 빼기', en: 'No peanuts', noun: { north: 'lạc', south: 'đậu phộng' }, kp: '땅콩 빼고', ep: 'no peanuts' }
 ];
 
 var DCATS = ['noodle', 'rice', 'snack', 'drink'];
@@ -2576,12 +2580,21 @@ function viewCalc() {
     '</section>';
 }
 
+/* "leave X out" is đừng cho X in the north and đừng bỏ X in the south: bỏ means "put in" in the south
+   but "take out" in the north, so each region gets the verb that cannot be misread there */
+function swLeaveOut(region) { return region === 'south' ? 'Đừng bỏ ' : 'Đừng cho '; }
+function swLabel(s, region) { return s.noun ? swLeaveOut(region).toLowerCase() + s.noun[region] : s.vi[region]; }
 function orderSentence() {
   var on = SWITCHES.filter(function (s) { return state.food.sw[s.id]; });
   if (!on.length) return null;
-  var polite = state.tone === 'polite';
-  var list = on.map(function (s) { return s.vi[state.food.region]; }).join(', ');
-  var vi = polite ? 'Cho em: ' + list + '. Em cảm ơn!' : 'Cho tôi: ' + list + ' nhé! Cảm ơn!';
+  var polite = state.tone === 'polite', region = state.food.region, fin = region === 'south' ? 'nha' : 'nhé';
+  var adjust = on.filter(function (s) { return !s.noun; }).map(function (s) { return s.vi[region]; });
+  var leave = on.filter(function (s) { return s.noun; }).map(function (s) { return s.noun[region]; });
+  var list = function (a) { return a.length > 1 ? a.slice(0, -1).join(', ') + ' với ' + a[a.length - 1] : a[0]; };
+  var parts = [];
+  if (adjust.length) parts.push('Cho ' + (polite ? 'em ' : 'tôi ') + adjust.join(', ') + (leave.length ? '.' : ' ' + fin + '.'));
+  if (leave.length) parts.push(swLeaveOut(region) + list(leave) + (polite ? ' giúp em ' : ' ') + fin + '.');
+  var vi = parts.join(' ') + (polite ? ' Em cảm ơn!' : ' Cảm ơn!');
   var meaning;
   if (state.lang === 'en') {
     var e = on.map(function (s) { return s.ep; }).join(', ');
@@ -2600,7 +2613,7 @@ function viewFood() {
     var on = !!f.sw[s.id];
     return '<button type="button" data-action="sw" data-value="' + s.id + '" role="switch" aria-checked="' + on + '" class="flex items-center gap-3 p-3 bg-background-50 rounded-xl border text-left cursor-pointer transition-colors ' + (on ? 'border-secondary-500/40' : 'border-background-200 hover:border-background-300') + '">' +
       '<span class="text-xl" aria-hidden="true">' + s.emoji + '</span><span class="flex-1 min-w-0"><span class="block text-sm font-bold text-foreground-950">' + esc(state.lang === 'en' ? s.en : s.ko) + '</span>' +
-      '<span class="vi block text-xs text-accent-400 truncate">' + esc(s.vi[f.region]) + '</span></span><span class="switch' + (on ? ' on' : '') + '"></span></button>';
+      '<span class="vi block text-xs text-accent-400 truncate">' + esc(swLabel(s, f.region)) + '</span></span><span class="switch' + (on ? ' on' : '') + '"></span></button>';
   }).join('');
   var order = o ? '<p class="vi text-xl md:text-2xl font-bold text-foreground-950 leading-snug break-words">' + esc(o.vi) + '</p><p class="text-xs text-foreground-500">' + esc(o.meaning) + '</p>' +
       '<div class="flex flex-wrap gap-2 pt-1">' + speakBtn(o.vi) +
@@ -3512,7 +3525,7 @@ var noteTimer = null;
 document.addEventListener('input', function (e) {
   var id = e.target.id;
   if (id === 'review-body' && modal && modal.type === 'reviews') { modal.data.body = e.target.value; modal.data.touched = true; var rc = $('#review-count'); if (rc) rc.textContent = e.target.value.length + ' / 500'; return; }
-  if (id === 'acct-nick' && modal && modal.type === 'acct') { modal.data.nick = e.target.value; return; }
+  if (id === 'acct-nick' && modal && modal.type === 'acct') { modal.data.nick = e.target.value; clearTimeout(auth.nickTimer); auth.nickTimer = setTimeout(checkNickname, 350); return; }
   if (id === 'acct-age' && modal && modal.type === 'acct') { modal.data.age = e.target.checked; return; }
   if (modal && modal.type === 'story-edit' && (id === 'st-title' || id === 'st-body' || id === 'st-trip')) {
     modal.data[id.slice(3)] = e.target.value;
@@ -3817,7 +3830,8 @@ function acctModal() {
     '<div class="min-w-0"><p class="font-heading font-bold text-foreground-950 truncate">' + esc(u.nickname) + '</p><p class="text-xs text-foreground-500">' + esc(tf('acct_via', { p: t('acct_p_' + u.provider) })) + '</p></div></div>' +
     '<div class="space-y-1.5"><label for="acct-nick" class="text-xs font-bold text-foreground-400">' + esc(t('acct_nick')) + '</label>' +
     '<div class="flex gap-2"><input id="acct-nick" type="text" maxlength="20" value="' + esc(nick) + '" class="flex-1 min-w-0 px-3 py-2 rounded-xl bg-background-50 border border-background-300 text-sm text-foreground-950 focus:outline-none focus:border-accent-500">' +
-    '<button type="button" data-action="acct-nick-save" class="' + small + ' bg-accent-500/15 hover:bg-accent-500/25 border-accent-500/40 text-accent-400">' + esc(t('acct_nickSave')) + '</button></div></div>' +
+    '<button type="button" data-action="acct-nick-save" class="' + small + ' bg-accent-500/15 hover:bg-accent-500/25 border-accent-500/40 text-accent-400">' + esc(t('acct_nickSave')) + '</button></div>' +
+    '<p id="acct-nick-msg" class="text-[11px] text-foreground-400" aria-live="polite">' + esc(t('acct_nickHint')) + '</p></div>' +
     '<div class="flex items-center justify-between gap-3 p-3 rounded-xl bg-background-50 border border-background-200"><div class="min-w-0"><p class="text-xs font-bold text-foreground-950">' + esc(t('acct_sync')) + '</p><p class="text-[11px] text-foreground-500">' + esc(t('acct_syncDesc')) + '</p><p id="acct-sync" class="text-[11px] text-accent-400 mt-0.5"></p></div>' +
     '<button type="button" data-action="acct-sync" class="' + small + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900 flex-shrink-0"><i class="ri-refresh-line"></i>' + esc(t('acct_syncNow')) + '</button></div>' +
     '<div class="grid grid-cols-2 gap-2">' +
@@ -4370,6 +4384,24 @@ function rvAction(a, v, el) {
   }
   return false;
 }
+/* nickname box in 내 계정: says right away whether the name is free */
+var NICK_ERR = { nickname_taken: 'acct_nickTaken', nickname_reserved: 'acct_nickReserved', nickname_short: 'acct_nickShort' };
+function nickMsg(key, tone) {
+  var el = $('#acct-nick-msg'); if (!el) return;
+  el.textContent = t(key);
+  el.className = 'text-[11px] ' + (tone === 'ok' ? 'text-secondary-400' : tone === 'bad' ? 'text-primary-400' : 'text-foreground-400');
+}
+function checkNickname() {
+  var box = $('#acct-nick'); if (!box || !auth.user) return;
+  var name = box.value.trim();
+  if (name.length < 2) { nickMsg(name ? 'acct_nickShort' : 'acct_nickHint', name ? 'bad' : ''); return; }
+  api('GET', 'me?check=' + encodeURIComponent(name)).then(function (j) {
+    var now = $('#acct-nick'); if (!now || now.value.trim() !== name) return;  /* typed on since */
+    if (j.same) nickMsg('acct_nickSame', '');
+    else if (j.ok) nickMsg('acct_nickOk', 'ok');
+    else nickMsg(NICK_ERR[j.error] || 'acct_nickShort', 'bad');
+  }).catch(function () { /* the save button checks again */ });
+}
 /* clicks for the parts above; returns true when handled */
 function authAction(a, v, el) {
   if (rvAction(a, v, el)) return true;
@@ -4387,7 +4419,7 @@ function authAction(a, v, el) {
       var nn = ($('#acct-nick') || {}).value || '';
       if (nn.trim().length < 2) { toast(t('acct_nickShort'), 'ri-error-warning-line'); return true; }
       api('PATCH', 'me', { nickname: nn }).then(function (j) { auth.user.nickname = j.nickname; modal.data.nick = null; renderAcctBtn(); renderModal(); toast(t('acct_nickSaved'), 'ri-check-line'); })
-        .catch(function () { toast(t('acct_nickShort'), 'ri-error-warning-line'); });
+        .catch(function (e) { var k = NICK_ERR[e.code] || (e.status === 401 ? 'acct_failed' : 'acct_nickShort'); toast(t(k), 'ri-error-warning-line'); if (NICK_ERR[e.code]) nickMsg(k, 'bad'); if (e.status === 401) setUser(null); });
       return true;
     case 'acct-logout':
       push().then(function () { return api('POST', 'auth/logout'); }).catch(function () { /* ignore */ }).then(function () {

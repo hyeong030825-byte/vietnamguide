@@ -108,6 +108,12 @@ const MIGRATIONS = [
   /* 1: photos on place reviews */
   [`ALTER TABLE reviews ADD COLUMN photos TEXT NOT NULL DEFAULT '[]'`, `ALTER TABLE photos ADD COLUMN review_id TEXT`,
    `CREATE INDEX IF NOT EXISTS photos_review ON photos (review_id)`],
+  /* 2: nicknames are unique (ignoring upper/lower case). Older duplicates keep the name for whoever had it first;
+        the others get a short suffix from their member id, then the unique index makes the rule permanent. */
+  [`UPDATE users SET nickname = substr(nickname, 1, 14) || '_' || substr(id, 1, 5) WHERE EXISTS (
+      SELECT 1 FROM users u2 WHERE lower(u2.nickname) = lower(users.nickname)
+      AND (u2.created_at < users.created_at OR (u2.created_at = users.created_at AND u2.id < users.id)))`,
+   `CREATE UNIQUE INDEX IF NOT EXISTS users_nickname ON users (lower(nickname))`],
 ];
 let schemaReady = false;
 /* tables are created and updated on first use, so no migration step is needed in the dashboard */
@@ -128,6 +134,33 @@ export async function getDb(env) {
   }
   return dbBinding(env);
 }
+
+/* ---- nicknames: 2–20 characters, unique, and not posing as the site ---- */
+const RESERVED = ['운영자', '관리자', '운영팀', '고객센터', 'admin', 'vietnamguide', '베트남여행스마트가이드'];
+export function cleanNickname(s) {
+  return cleanText(s, 20).replace(/\n/g, ' ');
+}
+/* null when the name can be used, otherwise the error code */
+export function nicknameProblem(name) {
+  if (name.length < 2) return 'nickname_short';
+  const flat = name.toLowerCase().replace(/\s+/g, '');
+  if (RESERVED.some((w) => flat.includes(w))) return 'nickname_reserved';
+  return null;
+}
+export async function nicknameTaken(db, name, exceptUserId = '') {
+  return !!(await db.prepare('SELECT 1 FROM users WHERE lower(nickname) = lower(?) AND id != ?').bind(name, exceptUserId).first());
+}
+/* a free "여행자1234"-style name: four digits first, longer if those keep colliding */
+export async function freeNickname(db) {
+  for (let digits = 4; digits <= 8; digits++) {
+    for (let tries = 0; tries < 3; tries++) {
+      const name = '여행자' + Math.floor(10 ** (digits - 1) + Math.random() * 9 * 10 ** (digits - 1));
+      if (!(await nicknameTaken(db, name))) return name;
+    }
+  }
+  return '여행자' + randomToken(6);
+}
+export const isUniqueError = (e) => /UNIQUE/i.test(String(e && e.message));
 
 export async function currentUser(context) {
   const { request, env } = context;
