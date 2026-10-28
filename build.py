@@ -39,7 +39,7 @@ BUILD = ROOT / "build"
 # change history and a new revision date. A date after the build day shows an "예정된 변경" notice instead, and the
 # matching script is only added from that day, so the site never runs something the policy doesn't describe yet.
 POLICY = {
-    "analytics": "",  # Cloudflare Web Analytics: visit counts without cookies
+    "analytics": "2026-10-28",  # Cloudflare Web Analytics: visit counts without cookies
     "ads": "",        # Google AdSense
     "affiliate": "",  # booking links that pay a commission
 }
@@ -55,7 +55,7 @@ POLICY_HISTORY = {
 }
 # Cloudflare → Web Analytics → this site → the token in the JS snippet. Leave "" if the Pages project's own
 # "Web Analytics → Enable" switch adds the script (POLICY["analytics"] still has to be set in that case).
-CF_ANALYTICS_TOKEN = ""
+CF_ANALYTICS_TOKEN = "e6556d397a5344ed916380f7d1abe626"  # public: it is in every page's HTML
 ADSENSE_CLIENT = ""  # "ca-pub-0000000000000000" from AdSense; also writes site/ads.txt
 PRIVACY_STARTED, PRIVACY_REVISED = "2026-10-22", "2026-10-27"  # when privacy.html itself last changed
 ABOUT_REVISED = "2026-10-27"

@@ -92,6 +92,8 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 4. 제휴 링크: 링크 옆에 "제휴" 표시를 꼭 넣어요(방침과 사이트 소개에 그렇게 적혀 있어요).
 5. 스위치가 꺼져 있는데 토큰이나 `ca-pub`를 넣으면 빌드가 멈춰요. 방침보다 스크립트가 먼저 나가는 일을 막기 위해서예요.
 
+지금 켜진 것: 방문 통계 (2026-10-28부터, 토큰은 build.py에 직접 넣는 방식). Pages 프로젝트 설정의 Web Analytics 자동 켜기는 쓰지 않아요. 같이 켜면 스크립트가 두 번 들어가요.
+
 ## 로그인 · 동기화 · 후기 (Cloudflare Pages Functions + D1)
 
 - 서버 코드: `functions/api/*` (Cloudflare Pages가 GitHub에서 자동 배포), 공용 코드 `server/lib.js`, `server/oauth.js`.
