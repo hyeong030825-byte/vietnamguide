@@ -273,14 +273,16 @@ var T = {
     adN4: '남부에서는 어른께 cháu 대신 con(꼰)이라고 하는 경우가 많아요. 예: Con chào cô ạ(꼰 짜오 꼬 아).',
 
     calcTitle: '0 떼고 2 나누기 계산기', calcDesc: '동(VND) 가격을 원화로 바로 바꿔 보세요.',
-    quickV2K: '간편 계산 · 0 떼고 ÷2', quickK2V: '간편 계산 · ×2 하고 0 붙이기', exactLive: '실시간 환율 적용', exactManual: '직접 입력한 환율 적용', exactDefault: '기본 환율 적용',
+    calcTitleFx: '동 환율 계산기', calcDescFx: '동(VND) 가격을 고른 나라 돈으로 바로 바꿔 보세요.', curLabel: '통화', quickPre: '간편 계산 · ',
+    rateLineFx: '{n} {cur} = {r}동 기준',
+    exactLive: '실시간 환율 적용', exactManual: '직접 입력한 환율 적용', exactDefault: '기본 환율 적용',
     rateLine: '1,000동 = {r}원 기준', unitK: '원', unitV: '동', clear: '지우기', amountLabel: '금액',
     noteLow: '간편 계산은 실제보다 약 {p}% 적게 나와요. 결과에 {p}%쯤 더하면 거의 정확해요.',
     noteHigh: '간편 계산은 실제보다 약 {p}% 많게 나와요. 결과에서 {p}%쯤 빼면 거의 정확해요.',
     noteEven: '지금 환율에서는 간편 계산이 거의 정확해요.',
     rateTitle: '실시간 환율', rateDesc: '최신 시장 환율이 자동으로 적용돼요. 환전한 환율을 직접 넣어도 돼요.',
     rateLive: '실시간 · {time} 기준 · {src}', rateLoading: '최신 환율을 불러오는 중이에요…',
-    rateFallback: '최신 환율을 불러오지 못해 2026년 10월 1일 환율을 쓰고 있어요.', rateManual: '직접 입력한 환율을 쓰고 있어요.',
+    rateFallback: '최신 환율을 불러오지 못해 2026년 10월 28일 환율을 쓰고 있어요.', rateManual: '직접 입력한 환율을 쓰고 있어요.',
     rateUseLive: '실시간 환율로', rateNote: '환전소·카드 결제는 수수료 때문에 이 값과 조금 다를 수 있어요.',
     billsTitle: '지폐 색깔로 구분하기', billsDesc: '0이 많아 헷갈리니 색으로 먼저 기억하세요.',
     billsWarn: '20,000동(파랑)과 500,000동(청록)은 색이 비슷해요. 거스름돈을 받을 때 0의 개수를 꼭 세어 보세요.',
@@ -462,14 +464,16 @@ var T = {
     adN4: 'In the south, people often say con instead of cháu to elders, e.g. Con chào cô ạ.',
 
     calcTitle: 'Drop-a-zero, halve-it calculator', calcDesc: 'Turn dong prices into won in a second.',
-    quickV2K: 'Quick math · drop a zero, ÷2', quickK2V: 'Quick math · ×2, add a zero', exactLive: 'At the live rate', exactManual: 'At your rate', exactDefault: 'At the default rate',
+    calcTitleFx: 'Dong exchange calculator', calcDescFx: 'Turn dong prices into the currency you pick.', curLabel: 'Currency', quickPre: 'Quick math · ',
+    rateLineFx: 'At {n} {cur} = {r} VND',
+    exactLive: 'At the live rate', exactManual: 'At your rate', exactDefault: 'At the default rate',
     rateLine: 'At 1,000 VND = {r} KRW', unitK: ' KRW', unitV: ' VND', clear: 'Clear', amountLabel: 'Amount',
     noteLow: 'Quick math comes out about {p}% low. Add about {p}% and you are close.',
     noteHigh: 'Quick math comes out about {p}% high. Take off about {p}% and you are close.',
     noteEven: 'At the current rate, quick math is almost exact.',
     rateTitle: 'Live exchange rate', rateDesc: 'The latest market rate is applied automatically. You can also enter the rate you got.',
     rateLive: 'Live · as of {time} · {src}', rateLoading: 'Loading the latest rate…',
-    rateFallback: "Couldn't load the latest rate, so the 1 Oct 2026 rate is in use.", rateManual: 'Using the rate you entered.',
+    rateFallback: "Couldn't load the latest rate, so the 28 Oct 2026 rate is in use.", rateManual: 'Using the rate you entered.',
     rateUseLive: 'Use live rate', rateNote: 'Exchange booths and card payments add fees, so your rate may differ a little.',
     billsTitle: 'Tell the notes apart', billsDesc: 'Every note has lots of zeros, so learn them by color.',
     billsWarn: 'The 20,000 (blue) and 500,000 (teal) notes look alike. Count the zeros when you get change.',
@@ -668,7 +672,25 @@ var TONES = [
   { w: 'mã', ko: '말 (馬)', en: 'horse', n: 'ngã' }, { w: 'mạ', ko: '볏모', en: 'rice seedling', n: 'nặng' }
 ];
 
-var DEFAULT_RATE = 52.35; /* KRW per 1,000 VND, market rate on 2026-10-01 */
+/* Currencies for the exchange calculator. def: VND per 1 unit, market rate on 2026-10-28 (used until the
+   live rate loads; keep rateFallback's date in step). per: how many units the rate is quoted for (won is
+   quoted the Korean way instead, per 1,000 dong). dec: decimals shown. chips/start: quick-add amounts and
+   the starting amount when converting into dong. */
+var CURRENCIES = [
+  { id: 'KRW', ko: '한국 원', en: 'Korean won', def: 19.45, dec: 0, chips: [1000, 5000, 10000, 50000], start: 10000 },
+  { id: 'USD', ko: '미국 달러', en: 'US dollar', def: 25806, per: 1, dec: 2, chips: [1, 5, 20, 100], start: 10 },
+  { id: 'EUR', ko: '유로', en: 'Euro', def: 28755, per: 1, dec: 2, chips: [5, 10, 20, 50], start: 10 },
+  { id: 'JPY', ko: '일본 엔', en: 'Japanese yen', def: 163.4, per: 100, dec: 0, chips: [100, 1000, 5000, 10000], start: 1000 },
+  { id: 'CNY', ko: '중국 위안', en: 'Chinese yuan', def: 3863, per: 1, dec: 2, chips: [10, 20, 50, 100], start: 100 },
+  { id: 'TWD', ko: '대만 달러', en: 'Taiwan dollar', def: 795.5, per: 1, dec: 1, chips: [100, 500, 1000], start: 500 },
+  { id: 'HKD', ko: '홍콩 달러', en: 'Hong Kong dollar', def: 3290, per: 1, dec: 2, chips: [10, 20, 50, 100], start: 100 },
+  { id: 'SGD', ko: '싱가포르 달러', en: 'Singapore dollar', def: 20142, per: 1, dec: 2, chips: [2, 5, 10, 50], start: 10 },
+  { id: 'THB', ko: '태국 바트', en: 'Thai baht', def: 764.1, per: 1, dec: 1, chips: [20, 100, 500, 1000], start: 100 },
+  { id: 'AUD', ko: '호주 달러', en: 'Australian dollar', def: 18140, per: 1, dec: 2, chips: [5, 10, 20, 50], start: 10 },
+  { id: 'GBP', ko: '영국 파운드', en: 'British pound', def: 34359, per: 1, dec: 2, chips: [5, 10, 20, 50], start: 10 },
+  { id: 'CAD', ko: '캐나다 달러', en: 'Canadian dollar', def: 18379, per: 1, dec: 2, chips: [5, 10, 20, 50], start: 10 }
+];
+var CUR = {}; CURRENCIES.forEach(function (c) { CUR[c.id] = c; });
 var BILLS = [
   { v: 10000, c1: '#8a6528', c2: '#c39a4c', ko: '갈색', en: 'brown' },
   { v: 20000, c1: '#23498c', c2: '#4176c2', ko: '파랑', en: 'blue' },
@@ -677,7 +699,6 @@ var BILLS = [
   { v: 200000, c1: '#8f361c', c2: '#c85e3e', ko: '주황', en: 'orange-red' },
   { v: 500000, c1: '#136a79', c2: '#33a2b3', ko: '청록', en: 'teal' }
 ];
-var KRW_CHIPS = [1000, 5000, 10000, 50000];
 var NUMS = [
   { n: '0', vi: 'không', pr: '콩' }, { n: '1', vi: 'một', pr: '못' }, { n: '2', vi: 'hai', pr: '하이' }, { n: '3', vi: 'ba', pr: '바' },
   { n: '4', vi: 'bốn', pr: '본' }, { n: '5', vi: 'năm', pr: '남' }, { n: '6', vi: 'sáu', pr: '싸우' }, { n: '7', vi: 'bảy', pr: '바이' },
@@ -2152,7 +2173,7 @@ var PREP_ITEMS = []; PREP_CHECK.forEach(function (g) { g.items.forEach(function 
 
 var TAB_KEYS = {
   gift: '기념품 선물 쇼핑 특산품 면세 반입 souvenir gift shopping',
-  calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 exchange rate money dong won number price calculator slang lít lốp chai xị củ vé',
+  calc: '환율 계산 계산기 동 원 지폐 돈 숫자 가격 은어 돈부르는말 외화 통화 달러 유로 엔화 위안 바트 파운드 exchange rate money dong won number price calculator slang currency dollar usd euro eur jpy yuan cny twd hkd sgd baht thb pound gbp lít lốp chai xị củ vé',
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 전통시장 재래시장 흥정 바가지 저울 거스름돈 tip etiquette manners temple dress scam massage haggle bargain overcharge',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 embassy consulate police hospital ambulance emergency',
   exp: '문화체험 체험 투어 도시 여행정보 관광지 명소 맛집 노점 길거리 호이안 다낭 나트랑 푸꾸옥 하노이 하롱베이 호치민 사이공 달랏 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour city guide sights hoi an da nang nha trang phu quoc hanoi ha long ho chi minh saigon da lat',
@@ -2180,7 +2201,7 @@ var state = {
   query: '',
   phraseCat: 'all',
   slow: !!store.get('slow', false),
-  calc: { dir: 'v2k', amount: 150000, manual: Number(store.get('rateManual', 0)) > 0 ? Number(store.get('rateManual', 0)) : null, live: null, status: 'loading' },
+  calc: { dir: 'v2k', cur: CUR[store.get('calcCur', 'KRW')] ? store.get('calcCur', 'KRW') : 'KRW', amount: 150000, manual: loadManual(), live: null, status: 'loading' },
   food: { cat: 'all', region: store.get('region', 'north') === 'south' ? 'south' : 'north', sw: store.get('sw', { cilantro: true, ice: false, sugar: false, spicy: false, msg: false, peanut: false }) },
   notes: store.get('notes', { name: '', addr: '', memo: '' }),
   prep: { checks: (function () { var c = store.get('prepChecks', {}); return c && typeof c === 'object' && !Array.isArray(c) ? c : {}; })(), resetArmed: false },
@@ -2289,7 +2310,7 @@ function unitRow(m) {
     '<span class="flex-1 min-w-0"><span class="block text-sm font-bold text-foreground-950 tabular">' + fmt(m.v) + t('unitV') + '</span>' +
     '<span class="block text-[11px] text-foreground-500">' + (state.lang === 'ko' ? '[' + esc(m.pr) + '] · ' : '') + '<span class="whitespace-nowrap">' + esc(t('exLabel')) + ' ' + esc(m.ex) + ' = ' + fmt(m.exV) + t('unitV') + '</span></span></span>' +
     '<span class="flex flex-col items-end gap-1 flex-shrink-0"><span class="text-[10px] font-semibold px-2 py-0.5 rounded-full border ' + REGION_CLS[m.region] + '">' + esc(t('region_' + m.region)) + '</span>' +
-    '<span class="text-[11px] text-foreground-400 tabular" data-bill-krw="' + m.v + '">≈ ' + fmt(m.v * effRate() / 1000) + t('unitK') + '</span></span></button>';
+    '<span class="text-[11px] text-foreground-400 tabular" data-bill="' + m.v + '">≈ ' + inCur(m.v) + '</span></span></button>';
 }
 
 /* ================= views ================= */
@@ -2370,10 +2391,31 @@ function viewPhrases() {
 }
 
 /* ================= exchange rate (live) ================= */
-var RATE_MIN = 25, RATE_MAX = 100; /* sane band for KRW per 1,000 VND */
+/* the calculator's own rate (manual) per currency, in the units people quote it (see toShown); older
+   versions stored a single number for won */
+function loadManual() {
+  var m = store.get('rateManual', null), out = {};
+  if (typeof m === 'number') m = { KRW: m };
+  if (m && typeof m === 'object') Object.keys(m).forEach(function (k) { if (CUR[k] && Number(m[k]) > 0) out[k] = Number(m[k]); });
+  return out;
+}
 var round2 = function (n) { return Math.round(n * 100) / 100; };
-function effRate() { var c = state.calc; return c.manual || (c.live && c.live.rate) || DEFAULT_RATE; }
-function exactLabel() { var c = state.calc; return t(c.manual ? 'exactManual' : c.live ? 'exactLive' : 'exactDefault'); }
+function curNow() { return CUR[state.calc.cur] || CUR.KRW; }
+/* rates as people quote them: won per 1,000 dong, or dong per `per` units of the other currencies */
+function toShown(c, vnd) { return c.id === 'KRW' ? 1000 / vnd : vnd * (c.per || 1); }
+function fromShown(c, s) { return c.id === 'KRW' ? 1000 / s : s / (c.per || 1); }
+function shownText(c, s) { return c.id === 'KRW' || s < 100 ? String(round2(s)) : fmt(s); }
+function saneVnd(id, v) { var d = CUR[id] && CUR[id].def; return d > 0 && v > d / 2 && v < d * 2; }
+function liveVnd(id) { var l = state.calc.live; return (l && l.vnd && l.vnd[id]) || 0; }
+/* dong per 1 unit of a currency: the rate typed in, else the live rate, else the built-in default */
+function vndPer(id) { var c = CUR[id], m = state.calc.manual[id]; return m ? fromShown(c, m) : liveVnd(id) || c.def; }
+/* won per 1,000 dong, for the won hints elsewhere on the site (they stay in won whatever the calculator shows) */
+function effRate() { return 1000 / vndPer('KRW'); }
+function exactLabel() { var c = state.calc; return t(c.manual[c.cur] ? 'exactManual' : liveVnd(c.cur) ? 'exactLive' : 'exactDefault'); }
+function curUnit(c) { return c.id === 'KRW' ? t('unitK') : ' ' + c.id; }
+var fmtDec = function (n, max, min) { return Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: min || 0, maximumFractionDigits: max }); };
+/* a dong amount in the calculator's currency, e.g. "≈ 0.39 USD" on the banknote tiles */
+function inCur(vnd) { var c = curNow(); return fmtDec(vnd / vndPer(c.id), c.dec, c.dec) + curUnit(c); }
 function fmtAsOf(s) {
   if (!s) return '';
   var dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(s);
@@ -2384,10 +2426,10 @@ function fmtAsOf(s) {
 }
 function rateStatusHtml() {
   var c = state.calc, dot, text, extra = '';
-  if (c.manual) {
+  if (c.manual[c.cur]) {
     dot = 'bg-accent-400'; text = t('rateManual');
     extra = '<button type="button" data-action="rate-live" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-500/15 hover:bg-secondary-500/25 border border-secondary-500/30 text-[11px] font-bold text-secondary-300 cursor-pointer transition-colors"><i class="ri-refresh-line"></i>' + esc(t('rateUseLive')) + '</button>';
-  } else if (c.live) {
+  } else if (liveVnd(c.cur)) {
     dot = 'bg-secondary-400 animate-pulse'; text = tf('rateLive', { time: fmtAsOf(c.live.asOf) || '—', src: c.live.source || '' });
   } else if (c.status === 'loading') {
     dot = 'bg-foreground-400 animate-pulse'; text = t('rateLoading');
@@ -2398,7 +2440,7 @@ function rateStatusHtml() {
 }
 function updateRateUI() {
   var s = document.getElementById('rate-status'); if (s) { s.innerHTML = rateStatusHtml(); hydrate(s); }
-  var inp = document.getElementById('rate-input'); if (inp && document.activeElement !== inp) inp.value = round2(effRate());
+  var inp = document.getElementById('rate-input'); if (inp && document.activeElement !== inp) { var cur = curNow(); inp.value = shownText(cur, toShown(cur, vndPer(cur.id))); }
   updateCalc();
 }
 function setLive(live, status) {
@@ -2408,20 +2450,26 @@ function setLive(live, status) {
 function fetchLiveRate() {
   if (typeof fetch !== 'function') { if (!state.calc.live) setLive(null, 'fallback'); return; }
   var getJson = function (url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); }); };
-  getJson('https://open.er-api.com/v6/latest/KRW').then(function (j) {
-    var v = j && j.result === 'success' && j.rates ? Number(j.rates.VND) : 0;
+  /* Both sources are read in US dollars (a dong base rounds the tiny rates away) and cross-converted;
+     a currency whose rate looks wrong keeps its default. */
+  var cross = function (vndPerUsd, perUsd) {
+    var vnd = {};
+    CURRENCIES.forEach(function (c) { var u = Number(perUsd(c.id)), v = u > 0 ? vndPerUsd / u : 0; if (saneVnd(c.id, v)) vnd[c.id] = v; });
+    return vnd;
+  };
+  getJson('https://open.er-api.com/v6/latest/USD').then(function (j) {
+    var r = j && j.result === 'success' && j.rates, v = r ? Number(r.VND) : 0;
     if (!v) throw new Error('bad payload');
-    return { vnd: v, asOf: j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000).toISOString() : '', source: 'ExchangeRate-API' };
+    return { vnd: cross(v, function (id) { return r[id]; }), asOf: j.time_last_update_unix ? new Date(j.time_last_update_unix * 1000).toISOString() : '', source: 'ExchangeRate-API' };
   }).catch(function () {
-    return getJson('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/krw.json').then(function (j) {
-      var v = j && j.krw ? Number(j.krw.vnd) : 0;
+    return getJson('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json').then(function (j) {
+      var r = j && j.usd, v = r ? Number(r.vnd) : 0;
       if (!v) throw new Error('bad payload');
-      return { vnd: v, asOf: j.date || '', source: 'Currency API' };
+      return { vnd: cross(v, function (id) { return r[id.toLowerCase()]; }), asOf: j.date || '', source: 'Currency API' };
     });
   }).then(function (o) {
-    var rate = 1000 / o.vnd;
-    if (!(rate > RATE_MIN && rate < RATE_MAX)) throw new Error('out of range');
-    setLive({ rate: rate, asOf: o.asOf, source: o.source, at: Date.now() });
+    if (!o.vnd.KRW) throw new Error('out of range');
+    setLive({ vnd: o.vnd, asOf: o.asOf, source: o.source, at: Date.now() });
   }).catch(function () { if (!state.calc.live) setLive(null, 'fallback'); });
 }
 function startLiveRate() {
@@ -2433,9 +2481,12 @@ function startLiveRate() {
       if (!db) { fail(); return; }
       try {
         db.doc('rates/krw_vnd').onSnapshot(function (snap) {
-          var d = snap && snap.exists ? snap.data() : null;
+          /* krwPer1000Vnd for won; vndPer (dong per 1 unit, by currency code) for the others */
+          var d = snap && snap.exists ? snap.data() : null, vnd = {};
           var r = d ? Number(d.krwPer1000Vnd) : 0;
-          if (r > RATE_MIN && r < RATE_MAX) setLive({ rate: r, asOf: d.asOf || d.updatedAt || '', source: d.source || '' });
+          if (r > 0 && saneVnd('KRW', 1000 / r)) vnd.KRW = 1000 / r;
+          if (d && d.vndPer && typeof d.vndPer === 'object') CURRENCIES.forEach(function (c) { var v = Number(d.vndPer[c.id]); if (c.id !== 'KRW' && saneVnd(c.id, v)) vnd[c.id] = v; });
+          if (vnd.KRW) setLive({ vnd: vnd, asOf: d.asOf || d.updatedAt || '', source: d.source || '' });
           else fail();
         }, fail);
       } catch (e) { fail(); }
@@ -2451,42 +2502,70 @@ function startLiveRate() {
   }
 }
 
+/* Mental math for dong -> another currency: drop z zeros, then ÷m or ×m. The rule closest to the rate wins;
+   multipliers above 5 must be clearly better to be picked. For won this is the classic "drop a zero, halve". */
+var KO_N = ['', '한', '두', '세', '네', '다섯', '여섯', '일곱'], EN_N = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'];
+function quickRule(R) {
+  var best = null;
+  for (var m = 1; m <= 9; m++) ['div', 'mul'].forEach(function (op) {
+    if (op === 'mul' && m === 1) return;
+    for (var z = 0; z <= 7; z++) {
+      var D = op === 'div' ? Math.pow(10, z) * m : Math.pow(10, z) / m;
+      var score = Math.abs(Math.log(D / R)) + (m > 5 ? 0.03 : 0);
+      if (!best || score < best.score - 1e-9) best = { z: z, m: m, op: op, D: D, score: score };
+    }
+  });
+  return best;
+}
+function quickLabel(q, v2k) {
+  var fwd = (q.op === 'div' ? '÷' : '×') + q.m, back = (q.op === 'div' ? '×' : '÷') + q.m, z = q.z, s;
+  if (state.lang === 'en') {
+    var zw = z === 1 ? 'a zero' : EN_N[z] + ' zeros';
+    if (v2k) s = !z ? fwd : 'drop ' + zw + (q.m > 1 ? ', ' + fwd : '');
+    else s = !z ? back : (q.m > 1 ? back + ', ' : '') + 'add ' + zw;
+  } else {
+    var zeros = function (verb) { return z === 1 ? '0 ' + verb : '0 ' + KO_N[z] + ' 개 ' + verb; };
+    if (v2k) s = !z ? fwd : q.m > 1 ? zeros('떼고') + ' ' + fwd : zeros('떼기');
+    else s = !z ? back : (q.m > 1 ? back + ' 하고 ' : '') + zeros('붙이기');
+  }
+  return t('quickPre') + s;
+}
 function calcNumbers() {
-  var c = state.calc, rate = effRate(), r = rate / 1000, a = c.amount, out = {};
+  var c = state.calc, cur = curNow(), R = vndPer(cur.id), q = quickRule(R), a = c.amount, out = { rule: q };
+  var step = function (n) { return fmtDec(n, n >= 1000 ? 0 : n >= 100 ? 1 : 2); };
   if (c.dir === 'v2k') {
-    var quick = a / 20, exact = a * r;
-    out.steps = fmt(a) + ' → ' + fmt(a / 10) + ' → ÷2';
-    out.quick = '≈ ' + fmt(quick) + t('unitK');
-    out.exact = fmt(exact) + t('unitK');
-    out.diff = exact > 0 ? (exact - quick) / exact * 100 : (r * 1000 - 50) / (r * 1000) * 100;
+    out.steps = fmt(a) + (q.z ? ' → ' + step(a / Math.pow(10, q.z)) : '') + (q.m > 1 ? ' → ' + (q.op === 'div' ? '÷' : '×') + q.m : '');
+    out.quick = '≈ ' + fmtDec(a / q.D, cur.dec) + curUnit(cur);
+    out.exact = fmtDec(a / R, cur.dec, cur.dec) + curUnit(cur);
+    out.diff = (1 - R / q.D) * 100; /* > 0: quick math comes out low */
     out.under = out.diff > 0;
   } else {
-    var quick2 = a * 20, exact2 = r > 0 ? a / r : 0;
-    out.steps = fmt(a) + ' → ×2 → ' + fmt(a * 2) + ' → +0';
-    out.quick = '≈ ' + fmt(quick2) + t('unitV');
-    out.exact = fmt(exact2) + t('unitV');
-    var base = 1000 / (r * 1000) * 1000; /* VND per 1,000 KRW at real rate */
-    out.diff = exact2 > 0 ? (quick2 - exact2) / exact2 * 100 : (20000 - base) / base * 100;
+    var mid = q.op === 'div' ? a * q.m : a / q.m;
+    out.steps = fmt(a) + (q.m > 1 ? ' → ' + (q.op === 'div' ? '×' : '÷') + q.m + ' → ' + step(mid) : '') + (q.z ? ' → +' + new Array(q.z + 1).join('0') : '');
+    out.quick = '≈ ' + fmt(a * q.D) + t('unitV');
+    out.exact = fmt(a * R) + t('unitV');
+    out.diff = (q.D - R) / R * 100;
     out.under = out.diff < 0;
   }
   var p = Math.abs(out.diff);
   out.note = p < 0.5 ? t('noteEven') : tf(out.under ? 'noteLow' : 'noteHigh', { p: (Math.round(p * 10) / 10).toString() });
-  out.rateLine = tf('rateLine', { r: round2(rate).toString() });
+  out.rateLine = cur.id === 'KRW' ? tf('rateLine', { r: round2(1000 / R).toString() }) : tf('rateLineFx', { n: fmt(cur.per || 1), cur: cur.id, r: fmt(R * (cur.per || 1)) });
+  out.quickLabel = quickLabel(q, c.dir === 'v2k');
   return out;
 }
 function updateCalc() {
   var o = calcNumbers();
   var set = function (id, v) { var el = document.getElementById(id); if (el) el.textContent = v; };
-  set('calc-steps', o.steps); set('calc-quick', o.quick); set('calc-exact', o.exact); set('calc-note-text', o.note); set('calc-rate-line', o.rateLine); set('calc-exact-label', exactLabel());
+  set('calc-steps', o.steps); set('calc-quick', o.quick); set('calc-exact', o.exact); set('calc-note-text', o.note); set('calc-rate-line', o.rateLine); set('calc-exact-label', exactLabel()); set('calc-quick-label', o.quickLabel);
   $$('[data-krw]').forEach(function (el) { el.textContent = fmt(Number(el.getAttribute('data-krw')) * effRate() / 1000) + t('unitK'); });
-  $$('[data-bill-krw]').forEach(function (el) { el.textContent = '≈ ' + fmt(Number(el.getAttribute('data-bill-krw')) * effRate() / 1000) + t('unitK'); });
+  $$('[data-bill]').forEach(function (el) { el.textContent = '≈ ' + inCur(Number(el.getAttribute('data-bill'))); });
 }
 function viewCalc() {
-  var c = state.calc, o = calcNumbers(), v2k = c.dir === 'v2k';
+  var c = state.calc, o = calcNumbers(), v2k = c.dir === 'v2k', cur = curNow(), won = cur.id === 'KRW';
   var chips = v2k ? BILLS.map(function (b) {
     return '<button type="button" data-action="calc-add" data-value="' + b.v + '" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background-50 hover:bg-background-200 border border-background-200 text-xs font-bold text-foreground-900 cursor-pointer transition-colors tabular"><span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:' + b.c2 + '"></span>+' + fmt(b.v / 1000) + 'K</button>';
-  }).join('') : KRW_CHIPS.map(function (v) {
-    return '<button type="button" data-action="calc-add" data-value="' + v + '" class="px-3 py-1.5 rounded-full bg-background-50 hover:bg-background-200 border border-background-200 text-xs font-bold text-foreground-900 cursor-pointer transition-colors tabular">+' + fmt(v) + t('unitK') + '</button>';
+  }).join('') : cur.chips.map(function (v) {
+    return '<button type="button" data-action="calc-add" data-value="' + v + '" class="px-3 py-1.5 rounded-full bg-background-50 hover:bg-background-200 border border-background-200 text-xs font-bold text-foreground-900 cursor-pointer transition-colors tabular">+' + fmt(v) + curUnit(cur) + '</button>';
   }).join('');
   chips += '<button type="button" data-action="calc-clear" class="px-3 py-1.5 rounded-full bg-primary-500/10 hover:bg-primary-500/20 border border-primary-500/30 text-xs font-bold text-primary-300 cursor-pointer transition-colors">' + esc(t('clear')) + '</button>';
 
@@ -2494,7 +2573,7 @@ function viewCalc() {
     return '<div class="bill theme-dark rounded-lg p-2.5 border border-background-300" style="background:linear-gradient(135deg,' + b.c1 + ',' + b.c2 + ')">' +
       '<p class="vi text-sm font-extrabold text-foreground-950 tabular leading-none">' + fmt(b.v) + '</p>' +
       '<p class="text-[10px] font-semibold text-foreground-900 mt-1.5">' + esc(state.lang === 'en' ? b.en : b.ko) + '</p>' +
-      '<p class="text-[10px] text-foreground-900/80 tabular" data-bill-krw="' + b.v + '">≈ ' + fmt(b.v * effRate() / 1000) + t('unitK') + '</p></div>';
+      '<p class="text-[10px] text-foreground-900/80 tabular" data-bill="' + b.v + '">≈ ' + inCur(b.v) + '</p></div>';
   }).join('');
 
   var nums = NUMS.map(function (x) {
@@ -2519,14 +2598,18 @@ function viewCalc() {
     '<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">' +
     '<div class="lg:col-span-3 space-y-6 min-w-0">' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
-    cardHead('🧮', 'secondary', t('calcTitle'), t('calcDesc')) +
-    seg('calc-dir', [{ v: 'v2k', label: 'VND → KRW' }, { v: 'k2v', label: 'KRW → VND' }], c.dir) +
+    cardHead('🧮', 'secondary', t(won ? 'calcTitle' : 'calcTitleFx'), t(won ? 'calcDesc' : 'calcDescFx')) +
+    '<div class="flex flex-wrap items-center gap-2"><label for="calc-cur" class="sr-only">' + esc(t('curLabel')) + '</label>' +
+    '<span class="relative"><select id="calc-cur" class="appearance-none pl-3 pr-8 py-2 rounded-full bg-background-50 border border-background-300 text-xs font-bold text-foreground-950 cursor-pointer focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30">' +
+    CURRENCIES.map(function (x) { return '<option value="' + x.id + '"' + (x.id === cur.id ? ' selected' : '') + '>' + x.id + ' · ' + esc(L(x)) + '</option>'; }).join('') +
+    '</select><i class="ri-arrow-down-s-line absolute right-2.5 top-1/2 -translate-y-1/2 text-base text-foreground-400 pointer-events-none"></i></span>' +
+    seg('calc-dir', [{ v: 'v2k', label: 'VND → ' + cur.id }, { v: 'k2v', label: cur.id + ' → VND' }], c.dir) + '</div>' +
     '<div class="relative"><label for="calc-input" class="sr-only">' + esc(t('amountLabel')) + '</label>' +
     '<input id="calc-input" type="text" inputmode="numeric" autocomplete="off" value="' + (c.amount ? fmt(c.amount) : '') + '" placeholder="0" class="w-full pl-4 pr-16 py-4 text-2xl md:text-3xl font-extrabold tabular bg-background-50 border border-background-300 rounded-2xl text-foreground-950 placeholder-foreground-400 focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30 transition">' +
-    '<span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-foreground-400">' + (v2k ? 'VND' : 'KRW') + '</span></div>' +
+    '<span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-foreground-400">' + (v2k ? 'VND' : cur.id) + '</span></div>' +
     '<div class="flex flex-wrap gap-2">' + chips + '</div>' +
     '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' +
-    '<div class="p-4 rounded-xl bg-accent-500/10 border border-accent-500/30 min-w-0"><p class="text-[11px] font-bold text-accent-400">' + esc(t(v2k ? 'quickV2K' : 'quickK2V')) + '</p>' +
+    '<div class="p-4 rounded-xl bg-accent-500/10 border border-accent-500/30 min-w-0"><p id="calc-quick-label" class="text-[11px] font-bold text-accent-400">' + esc(o.quickLabel) + '</p>' +
     '<p id="calc-steps" class="text-xs text-foreground-500 mt-1 tabular break-words">' + esc(o.steps) + '</p>' +
     '<p id="calc-quick" class="text-2xl font-extrabold text-foreground-950 mt-1 tabular break-words">' + esc(o.quick) + '</p></div>' +
     '<div class="p-4 rounded-xl bg-secondary-500/10 border border-secondary-500/30 min-w-0"><p id="calc-exact-label" class="text-[11px] font-bold text-secondary-400">' + esc(exactLabel()) + '</p>' +
@@ -2540,9 +2623,9 @@ function viewCalc() {
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     cardHead('💱', 'accent', t('rateTitle'), t('rateDesc')) +
     '<p id="rate-status" class="text-xs text-foreground-500 flex items-start gap-2 flex-wrap" aria-live="polite">' + rateStatusHtml() + '</p>' +
-    '<div class="flex flex-wrap items-center gap-2 text-sm"><label for="rate-input" class="text-foreground-500 whitespace-nowrap tabular">1,000 VND =</label>' +
-    '<input id="rate-input" type="text" inputmode="decimal" autocomplete="off" value="' + round2(effRate()) + '" class="w-24 px-3 py-2 bg-background-50 border border-background-300 rounded-lg text-foreground-950 font-bold tabular focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30">' +
-    '<span class="text-foreground-500">KRW</span></div>' +
+    '<div class="flex flex-wrap items-center gap-2 text-sm"><label for="rate-input" class="text-foreground-500 whitespace-nowrap tabular">' + (won ? '1,000 VND' : fmt(cur.per || 1) + ' ' + cur.id) + ' =</label>' +
+    '<input id="rate-input" type="text" inputmode="decimal" autocomplete="off" value="' + shownText(cur, toShown(cur, vndPer(cur.id))) + '" class="w-24 px-3 py-2 bg-background-50 border border-background-300 rounded-lg text-foreground-950 font-bold tabular focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30">' +
+    '<span class="text-foreground-500">' + (won ? 'KRW' : 'VND') + '</span></div>' +
     '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('rateNote')) + '</p></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     cardHead('💴', 'primary', t('billsTitle'), t('billsDesc')) +
@@ -3451,10 +3534,10 @@ document.addEventListener('click', function (e) {
       break;
     case 'slow': state.slow = !state.slow; store.set('slow', state.slow); renderMain(); break;
     case 'calc-dir':
-      if (state.calc.dir !== v) { state.calc.dir = v; state.calc.amount = v === 'v2k' ? 150000 : 10000; renderMain(); } break;
+      if (state.calc.dir !== v) { state.calc.dir = v; state.calc.amount = v === 'v2k' ? 150000 : curNow().start; renderMain(); } break;
     case 'calc-add': state.calc.amount = Math.min(state.calc.amount + Number(v), 999999999999); renderMain(); break;
     case 'calc-clear': state.calc.amount = 0; renderMain(); var ci = $('#calc-input'); if (ci) ci.focus(); break;
-    case 'rate-live': state.calc.manual = null; store.set('rateManual', null); updateRateUI(); break;
+    case 'rate-live': delete state.calc.manual[state.calc.cur]; store.set('rateManual', state.calc.manual); updateRateUI(); break;
     case 'region': state.food.region = v; store.set('region', v); renderMain(); break;
     case 'sw': state.food.sw[v] = !state.food.sw[v]; store.set('sw', state.food.sw); renderMain(); break;
     case 'food-cat': state.food.cat = v; renderMain(); break;
@@ -3514,8 +3597,9 @@ document.addEventListener('input', function (e) {
     var n = Math.min(parseNum(e.target.value), 999999999999); state.calc.amount = n;
     e.target.value = n ? fmt(n) : ''; updateCalc();
   } else if (id === 'rate-input') {
-    var r = parseFloat(String(e.target.value).replace(',', '.'));
-    if (r > 0 && r < 100000) { state.calc.manual = r; store.set('rateManual', r); updateRateUI(); }
+    /* won is quoted with decimals (52,35 or 52.35); the others in whole dong, where commas group thousands */
+    var raw = String(e.target.value), r = parseFloat(state.calc.cur === 'KRW' ? raw.replace(',', '.') : raw.replace(/,/g, ''));
+    if (r > 0 && r < 10000000) { state.calc.manual[state.calc.cur] = r; store.set('rateManual', state.calc.manual); updateRateUI(); }
   } else if (id === 'note-name' || id === 'note-addr' || id === 'note-memo') {
     state.notes[id.replace('note-', '')] = e.target.value; store.set('notes', state.notes);
     clearTimeout(noteTimer);
@@ -3525,6 +3609,11 @@ document.addEventListener('input', function (e) {
 document.addEventListener('change', function (e) {
   var fid = e.target.id, pre = fid === 'st-files' && modal && modal.type === 'story-edit' ? 'st' : fid === 'rv-files' && modal && modal.type === 'reviews' ? 'rv' : '';
   if (pre) { addPhotos(modal.data, pre, Array.prototype.slice.call(e.target.files || [])); e.target.value = ''; }
+  if (fid === 'calc-cur' && CUR[e.target.value]) {
+    state.calc.cur = e.target.value; store.set('calcCur', state.calc.cur);
+    if (state.calc.dir === 'k2v') state.calc.amount = curNow().start;
+    renderMain(); var cs = $('#calc-cur'); if (cs) cs.focus();
+  }
 });
 document.addEventListener('keydown', function (e) {
   if ((e.key === ' ' || e.key === 'Enter') && e.target && e.target.getAttribute && e.target.getAttribute('role') === 'radio' && e.target.hasAttribute('data-action')) { e.preventDefault(); e.target.click(); return; }

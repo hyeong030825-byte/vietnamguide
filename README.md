@@ -48,11 +48,11 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - `PHRASES` : 실전 회화 (존댓말/반말, 한글 발음)
 - `DISHES`, `WORDS`, `SWITCHES` : 음식 메뉴, 메뉴판 단어, 고수 빼기 스위치
 - `MISSIONS`, `CALL_CENTER` : 대사관·총영사관·영사콜센터 연락처
-- `DEFAULT_RATE` : 실시간 환율을 못 불러올 때 쓰는 기본 환율 (1,000동당 원)
+- `CURRENCIES` : 환율 계산기에서 고를 수 있는 통화 (원, 달러, 유로, 엔, 위안 등 12개). `def`는 실시간 환율을 못 불러올 때 쓰는 기본 환율(1단위당 동, 2026-10-28 기준)이에요. 바꾸면 문구 `rateFallback`의 날짜도 같이 고쳐요. 간편 계산 규칙(0 몇 개 떼고 ÷/× 몇)은 환율에 맞춰 자동으로 골라져요. 계산기에서 다른 통화를 골라도 사이트의 다른 가격 표시(`{krw:…}`)는 원화로 남아요.
 
 ## 환율
 
-공개 사이트는 열 때마다 공개 환율 API(ExchangeRate-API, 실패 시 Currency API)에서 최신 원/동 환율을 직접 불러옵니다.
+공개 사이트는 열 때마다 공개 환율 API(ExchangeRate-API, 실패 시 Currency API)에서 달러 기준 환율을 한 번에 불러와, 계산기의 모든 통화를 동으로 환산합니다 (동 기준으로 받으면 작은 값이 반올림돼 부정확해요).
 
 ---
 
@@ -64,7 +64,7 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - Hosting: Cloudflare Pages project `vietnamguide` (https://vietnamguide.pages.dev), output dir `site`, no build command. Netlify (vietnamguides.netlify.app) is retired; its netlify.toml only 301-redirects to the new URL. Netlify free credits ran out in Oct 2026, so avoid relying on it.
 - Site name in Google results: `SITE_NAME` / `SITE_ALT_NAMES` in build.py feed `og:site_name` and the home page's `WebSite` JSON-LD. Without it Google labels pages.dev results "Cloudflare". Check the JSON-LD with validator.schema.org (the Rich Results Test does not support site names).
 - Google Search Console / Naver: use the HTML meta-tag method (put tags in `HEAD_META` in build.py). Cloudflare Pages 308-redirects `/x.html` to `/x`, so file-based verification can fail.
-- The Claude page version is written to `build/claude-page.html` (git-ignored). Claude page: https://claude.ai/artifact/CTnwBVkGrjGXhuVpcU2zB3 — publish it with the Artifact tool; it reads the live rate from its db doc `rates/krw_vnd`, refreshed by the scheduled task "베트남 가이드 환율 갱신".
+- The Claude page version is written to `build/claude-page.html` (git-ignored). Claude page: https://claude.ai/artifact/CTnwBVkGrjGXhuVpcU2zB3 — publish it with the Artifact tool; it reads the live rate from its db doc `rates/krw_vnd` (`krwPer1000Vnd` for won, `vndPer` = dong per 1 unit by currency code for the other calculator currencies; a missing currency uses its default), refreshed by the scheduled task "베트남 가이드 환율 갱신".
 - Original culture & etiquette copy comes from the owner's earlier Readdy site; keep its Korean text unchanged unless asked.
 - Themes (Oct 2026): dark is the default; `<html data-theme="light">` swaps the token values in `src/input.css` (300/400 of the colour scales become darker text inks in light, 500 stays the fill). Elements with class `theme-dark` (hero painting, footer, logo, banknote tiles) keep dark tokens in both themes. A tiny `<script data-boot="theme">` in the head applies the saved theme before first paint; build.py splits on the exact string `<script>`, so any extra head script must carry an attribute.
 - 문화체험 views: `state.expView` = 'city' | 'culture' | 'gift'; `#culture` and `#gift` (and `setTab('culture'|'gift')`) open those views. Souvenir prices and Korea import rules were checked Oct 2026; recheck yearly (the 2025 alcohol rule change: 2 L / USD 400, no bottle limit).
