@@ -44,7 +44,7 @@
   --ac-300: 136 88 6;  --ac-400: 146 94 6;
 }
 
-/* Hanoi shop signs (biển hiệu): flat enamel boards with painted lettering. --sb board, --si lettering,
+/* Hanoi shop signs (biển hiệu): flat enamel colours with painted lettering. --sb board, --si lettering,
    --st the board colour as text on the page (lighter on the dark page, deeper on the light one). */
 :root, .theme-dark {
   --sign-red: 196 38 28;  --sign-green: 16 102 70; --sign-blue: 26 74 148; --sign-yellow: 255 204 41; --sign-cream: 255 246 222;
@@ -123,7 +123,7 @@ i > svg.ico.fa { width: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-bob, .animate-float, .animate-pulse, .speaking { animation: none !important; }
-  .hero-sign { transition: none; animation: none; }
+  .hero-title .ht { animation: none; }
   .flip-inner { transition: none; }
 }
 
@@ -167,41 +167,34 @@ i > svg.ico.fa { width: auto; }
 .sheet-h { max-height: 88vh; max-height: 88dvh; }
 .sheet-h90 { max-height: 90vh; max-height: 90dvh; }
 
-/* ---- shop signs ---- */
+/* ---- shop-sign colours (tabs and the hero tagline) ---- */
 .sign-red    { --sb: var(--sign-red);    --si: var(--sign-yellow); --st: var(--st-red); }
 .sign-green  { --sb: var(--sign-green);  --si: var(--sign-cream);  --st: var(--st-green); }
 .sign-blue   { --sb: var(--sign-blue);   --si: var(--sign-cream);  --st: var(--st-blue); }
 .sign-yellow { --sb: var(--sign-yellow); --si: var(--sign-red);    --st: var(--st-yellow); }
 
-/* a board: painted inner frame and four screws */
-.sign { position: relative; background: rgb(var(--sb)); color: rgb(var(--si)); border-radius: 3px;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / .14), 0 14px 26px -14px rgb(0 0 0 / .8); }
-.sign::before { content: ""; position: absolute; inset: 6px; border: 1.5px solid rgb(var(--si) / .6); border-radius: 2px; pointer-events: none; }
-.sign::after { content: ""; position: absolute; inset: 2px; pointer-events: none;
-  --screw: radial-gradient(circle, rgb(var(--si) / .75) 0 1.4px, transparent 1.9px);
-  background: var(--screw) left top / 4px 4px no-repeat, var(--screw) right top / 4px 4px no-repeat,
-              var(--screw) left bottom / 4px 4px no-repeat, var(--screw) right bottom / 4px 4px no-repeat; }
+/* hero: the painting (night lanterns in dark, a day street in light) under a veil that fades into the page */
+.hero-veil { background: linear-gradient(to bottom, rgb(5 4 3 / .62), rgb(5 4 3 / .5) 55%, rgb(var(--bg-50))); }
+:root[data-theme="light"] .hero-veil { background: linear-gradient(to bottom, rgb(255 255 255 / .16), rgb(255 252 245 / .34) 55%, rgb(var(--bg-50))); }
+.hero-desc { text-shadow: 0 1px 10px rgb(0 0 0 / .9); }
+:root[data-theme="light"] .hero-desc { text-shadow: 0 0 10px rgb(255 255 255), 0 0 3px rgb(255 255 255); }
 
-/* hero: the tagline as three signs hung at different heights along a street */
-.hero-signs { display: flex; flex-direction: column; gap: .5rem; margin: 0 auto 1.1rem; max-width: 40rem; }
-@media (min-width: 768px) { .hero-signs { gap: .7rem; margin-bottom: 1.4rem; } }
-.hero-sign { display: flex; flex-direction: column; align-items: center; padding: .7rem 1.3rem .6rem; cursor: pointer;
-  transition: transform .2s ease, filter .2s ease; }
-.hero-sign { --r: 0deg; transform: rotate(var(--r)); transform-origin: 50% -60%; animation: sign-in .9s cubic-bezier(.2, .9, .3, 1.2) both; }
-.hero-sign:hover { filter: brightness(1.08); }
-@media (min-width: 768px) { .hero-sign { padding: .85rem 1.6rem .75rem; } }
-.hero-sign:nth-child(1) { align-self: flex-start; --r: -1.2deg; animation-delay: .05s; }
-.hero-sign:nth-child(2) { align-self: flex-end; --r: .9deg; animation-delay: .2s; }
-.hero-sign:nth-child(3) { align-self: center; --r: -.4deg; animation-delay: .35s; }
-/* the one entrance on the page: the signs swing into place once, like boards settling on their hooks */
-@keyframes sign-in {
-  0% { opacity: 0; transform: translateY(-16px) rotate(calc(var(--r) - 7deg)); }
-  60% { opacity: 1; transform: translateY(0) rotate(calc(var(--r) + 1.6deg)); }
-  100% { transform: rotate(var(--r)); }
-}
-.hero-sign .hs-main { font-family: Anton, "Black Han Sans", "Noto Sans KR", sans-serif; font-size: clamp(1.35rem, 4.6vw, 2.6rem); line-height: 1.1; letter-spacing: .01em; }
-.hero-sign .hs-vi { font-family: Anton, "Be Vietnam Pro", sans-serif; font-size: clamp(.7rem, 1.6vw, .85rem); letter-spacing: .14em; margin-top: .35rem;
-  padding-top: .3rem; border-top: 1.5px solid rgb(var(--si) / .45); }
+/* the tagline in the sign face; each promise stays on one line */
+.hero-title { font-family: Anton, "Black Han Sans", "Noto Sans KR", sans-serif; font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+  line-height: 1.16; letter-spacing: .01em; margin: 0 0 .9rem; color: rgb(var(--sign-cream));
+  text-shadow: 0 0 20px rgb(255 190 90 / .35), 0 2px 0 rgb(0 0 0 / .55); }
+.hero-title .ht { display: inline-block; white-space: nowrap; }
+:root[data-theme="light"] .hero-title { color: rgb(var(--fg-950)); text-shadow: 0 0 16px rgb(255 255 255), 0 0 4px rgb(255 255 255); }
+/* neon: each promise lights up in the colour of its tab (회화 red, 동 계산기 green, 긴급 상황 blue) */
+.hero-title.is-neon .ht-1 { --c: var(--st-red); }
+.hero-title.is-neon .ht-2 { --c: var(--st-green); }
+.hero-title.is-neon .ht-3 { --c: var(--st-blue); }
+.hero-title.is-neon .ht { color: rgb(var(--c)); text-shadow: 0 0 6px rgb(var(--c) / .55), 0 0 22px rgb(var(--c) / .45), 0 2px 0 rgb(0 0 0 / .6); }
+:root[data-theme="light"] .hero-title.is-neon .ht { text-shadow: 0 0 16px rgb(255 255 255), 0 0 4px rgb(255 255 255), 0 2px 0 rgb(255 255 255 / .7); }
+/* the one entrance on the page: the three promises switch on in turn, like signs at dusk */
+.hero-title .ht { animation: sign-on .9s steps(1, end) both; }
+.hero-title .ht-1 { animation-delay: .15s; } .hero-title .ht-2 { animation-delay: .45s; } .hero-title .ht-3 { animation-delay: .75s; }
+@keyframes sign-on { 0% { opacity: 0; } 18% { opacity: .55; } 30% { opacity: .1; } 45% { opacity: .85; } 58% { opacity: .35; } 70%, 100% { opacity: 1; } }
 
 /* desktop tabs: small signs, lit when open */
 .tab-sign { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: .35rem .95rem .45rem; border-radius: 3px;
