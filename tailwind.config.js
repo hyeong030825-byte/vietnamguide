@@ -23,7 +23,10 @@ module.exports = {
         sans: ['"Be Vietnam Pro"', '"Noto Sans KR"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         heading: ['"Be Vietnam Pro"', '"Noto Sans KR"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         vi: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
+        sign: ['Anton', '"Black Han Sans"', '"Noto Sans KR"', 'sans-serif'],
       },
+      /* squarer than Tailwind's defaults: boards and plates, not bubbles */
+      borderRadius: { lg: '0.3125rem', xl: '0.375rem', '2xl': '0.5rem', '3xl': '0.75rem' },
       animation: {
         bob: 'bob 7s ease-in-out infinite',
         float: 'float 5s ease-in-out infinite',

@@ -2,7 +2,7 @@
 <meta name="description" content="다낭·호이안, 나트랑, 푸꾸옥, 하노이·하롱베이, 호치민, 달랏 도시별 여행 정보와 문화체험(소원배, 바구니배, 수상인형극, 구찌 터널)부터 베트남 여행 필수 회화, 동 환율 계산기, 음식 메뉴판 해독, 팁·사원 예절, 입국 규정과 준비물 체크리스트, 대사관 긴급 연락처까지 한 번에. 현지에서 바로 쓰는 실전 가이드.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;800;900&family=Anton&family=Black+Han+Sans&display=swap">
 <style>/*__TAILWIND__*/</style>
 <script data-boot="theme">try { if (JSON.parse(localStorage.getItem('vnguide:theme')) === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) { /* storage blocked: dark */ }</script>
 <!-- Icons: Remix Icon (remixicon.com) and Font Awesome Free 6 (fontawesome.com, CC BY 4.0), inlined as SVG -->
@@ -16,8 +16,7 @@
         <span class="theme-dark w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-accent-400 font-black text-xl border border-accent-500/40 flex-shrink-0">★</span>
         <span class="min-w-0 max-[399px]:hidden">
           <span class="flex items-center gap-2">
-            <span class="font-heading font-bold text-base md:text-xl tracking-tight leading-none text-foreground-950 truncate" data-i18n="brand">베트남 여행 스마트 가이드</span>
-            <span class="hidden sm:inline text-[11px] font-medium px-2 py-0.5 rounded-full bg-primary-500/25 text-accent-400 border border-accent-500/30 whitespace-nowrap">VN 2026</span>
+            <span class="font-sign text-lg md:text-2xl leading-none text-foreground-950 truncate" data-i18n="brand">베트남 여행 스마트 가이드</span>
           </span>
           <span class="hidden md:block text-xs text-foreground-400 mt-0.5" data-i18n="brandSub">실전 회화 · 환율 계산 · 메뉴판 · 매너</span>
         </span>
@@ -36,14 +35,14 @@
     </div>
   </header>
   <nav class="hidden md:block glass-effect border-b border-background-200">
-    <div class="w-full px-4 flex justify-center gap-3 overflow-x-auto custom-scrollbar py-2">
-      <button type="button" data-action="tab" data-value="exp" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-compass-3-line text-base"></i><span data-i18n="tab_exp">문화체험</span></button>
-      <button type="button" data-action="tab" data-value="phrases" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-accent-400 bg-accent-500/10 border border-accent-500/30 font-bold"><i class="ri-chat-3-line text-base"></i><span data-i18n="tab_phrases">실전 회화</span></button>
-      <button type="button" data-action="tab" data-value="calc" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-calculator-line text-base"></i><span data-i18n="tab_calc">동 계산기</span></button>
-      <button type="button" data-action="tab" data-value="food" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-restaurant-2-line text-base"></i><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
-      <button type="button" data-action="tab" data-value="emergency" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-shield-star-line text-base"></i><span data-i18n="tab_emergency">긴급 상황</span></button>
-      <button type="button" data-action="tab" data-value="prep" class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-suitcase-line text-base"></i><span data-i18n="tab_prep">여행 준비</span></button>
-      <button type="button" data-action="tab" data-value="reviews" hidden class="tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer text-foreground-400 hover:text-foreground-950 border border-transparent"><i class="ri-quill-pen-line text-base"></i><span data-i18n="tab_reviews">여행 후기</span></button>
+    <div class="w-full px-4 flex justify-center gap-2.5 overflow-x-auto custom-scrollbar py-2.5">
+      <button type="button" data-action="tab" data-value="exp" data-sign="blue" class="tab-d tab-sign sign-blue whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">DU LỊCH</span><span data-i18n="tab_exp">문화체험</span></button>
+      <button type="button" data-action="tab" data-value="phrases" data-sign="red" class="tab-d tab-sign sign-red whitespace-nowrap cursor-pointer transition-colors is-on"><span class="tab-vi" aria-hidden="true">GIAO TIẾP</span><span data-i18n="tab_phrases">실전 회화</span></button>
+      <button type="button" data-action="tab" data-value="calc" data-sign="green" class="tab-d tab-sign sign-green whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">ĐỔI TIỀN</span><span data-i18n="tab_calc">동 계산기</span></button>
+      <button type="button" data-action="tab" data-value="food" data-sign="yellow" class="tab-d tab-sign sign-yellow whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">QUÁN ĂN</span><span data-i18n="tab_food">음식 &amp; 메뉴판</span></button>
+      <button type="button" data-action="tab" data-value="emergency" data-sign="blue" class="tab-d tab-sign sign-blue whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">CẤP CỨU</span><span data-i18n="tab_emergency">긴급 상황</span></button>
+      <button type="button" data-action="tab" data-value="prep" data-sign="red" class="tab-d tab-sign sign-red whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">HÀNH TRANG</span><span data-i18n="tab_prep">여행 준비</span></button>
+      <button type="button" data-action="tab" data-value="reviews" data-sign="green" hidden class="tab-d tab-sign sign-green whitespace-nowrap cursor-pointer transition-colors"><span class="tab-vi" aria-hidden="true">NHẬT KÝ</span><span data-i18n="tab_reviews">여행 후기</span></button>
     </div>
   </nav>
 </div>
@@ -66,9 +65,12 @@
   </div>
   <div class="absolute left-6 bottom-8 text-accent-400/20 text-5xl pointer-events-none hidden md:block animate-float" aria-hidden="true">🏮</div>
   <div class="relative z-10 w-full max-w-3xl mx-auto text-center px-4 py-12 md:py-16">
-    <span class="inline-block px-3 py-1 bg-accent-500/10 text-accent-400 text-xs font-bold rounded-full mb-3 border border-accent-500/30" data-i18n="heroBadge">🇻🇳 현지에서 바로 쓰는 단 한 권의 가이드</span>
-    <h1 class="font-heading text-2xl md:text-4xl font-extrabold text-foreground-950 mb-3 leading-tight" data-i18n="heroTitle">말은 통하게, 계산은 신속하게, 여행은 안전하게!</h1>
-    <p class="text-sm md:text-base text-foreground-500 mb-7 max-w-xl mx-auto" data-i18n="heroDesc">음성 발음 지원, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치까지 한눈에 확인하세요.</p>
+    <h1 class="hero-signs">
+      <button type="button" data-action="tab" data-value="phrases" data-i18n-title="tab_phrases" title="실전 회화" class="sign sign-red hero-sign"><span class="hs-main" data-i18n="heroS1">말은 통하게,</span><span class="hs-vi" aria-hidden="true">GIAO TIẾP</span></button>
+      <button type="button" data-action="tab" data-value="calc" data-i18n-title="tab_calc" title="동 계산기" class="sign sign-green hero-sign"><span class="hs-main" data-i18n="heroS2">계산은 신속하게,</span><span class="hs-vi" aria-hidden="true">ĐỔI TIỀN</span></button>
+      <button type="button" data-action="tab" data-value="emergency" data-i18n-title="tab_emergency" title="긴급 상황" class="sign sign-blue hero-sign"><span class="hs-main" data-i18n="heroS3">여행은 안전하게!</span><span class="hs-vi" aria-hidden="true">AN TOÀN</span></button>
+    </h1>
+    <p class="text-sm md:text-base text-foreground-600 mb-7 max-w-xl mx-auto [text-shadow:0_1px_10px_rgb(0_0_0/.9)]" data-i18n="heroDesc">음성 발음 지원, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치까지 한눈에 확인하세요.</p>
     <div class="relative max-w-xl mx-auto">
       <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-foreground-400 text-lg"></i>
       <label for="search" class="sr-only" data-i18n="searchLabel">검색</label>
@@ -99,13 +101,13 @@
 </footer>
 
 <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 glass-effect border-t border-background-200 px-2 pt-2 safe-bottom-pad flex justify-around">
-  <button type="button" data-action="tab" data-value="exp" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-compass-3-line text-lg"></i><span data-i18n="mtab_exp">문화체험</span></button>
-  <button type="button" data-action="tab" data-value="phrases" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-accent-400"><i class="ri-chat-3-line text-lg"></i><span data-i18n="mtab_phrases">회화</span></button>
-  <button type="button" data-action="tab" data-value="calc" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-calculator-line text-lg"></i><span data-i18n="mtab_calc">동계산</span></button>
-  <button type="button" data-action="tab" data-value="food" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-restaurant-2-line text-lg"></i><span data-i18n="mtab_food">음식</span></button>
-  <button type="button" data-action="tab" data-value="emergency" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-shield-star-line text-lg"></i><span data-i18n="mtab_emergency">긴급</span></button>
-  <button type="button" data-action="tab" data-value="prep" class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-suitcase-line text-lg"></i><span data-i18n="mtab_prep">준비</span></button>
-  <button type="button" data-action="tab" data-value="reviews" hidden class="tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-quill-pen-line text-lg"></i><span data-i18n="mtab_reviews">후기</span></button>
+  <button type="button" data-action="tab" data-value="exp" data-sign="blue" class="tab-m sign-blue flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-compass-3-line text-lg"></i><span data-i18n="mtab_exp">문화체험</span></button>
+  <button type="button" data-action="tab" data-value="phrases" data-sign="red" class="tab-m sign-red flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-accent-400"><i class="ri-chat-3-line text-lg"></i><span data-i18n="mtab_phrases">회화</span></button>
+  <button type="button" data-action="tab" data-value="calc" data-sign="green" class="tab-m sign-green flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-calculator-line text-lg"></i><span data-i18n="mtab_calc">동계산</span></button>
+  <button type="button" data-action="tab" data-value="food" data-sign="yellow" class="tab-m sign-yellow flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-restaurant-2-line text-lg"></i><span data-i18n="mtab_food">음식</span></button>
+  <button type="button" data-action="tab" data-value="emergency" data-sign="blue" class="tab-m sign-blue flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-shield-star-line text-lg"></i><span data-i18n="mtab_emergency">긴급</span></button>
+  <button type="button" data-action="tab" data-value="prep" data-sign="red" class="tab-m sign-red flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-suitcase-line text-lg"></i><span data-i18n="mtab_prep">준비</span></button>
+  <button type="button" data-action="tab" data-value="reviews" data-sign="green" hidden class="tab-m sign-green flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer text-foreground-400"><i class="ri-quill-pen-line text-lg"></i><span data-i18n="mtab_reviews">후기</span></button>
 </nav>
 
 </div>
@@ -203,7 +205,7 @@ var T = {
     prep_resetConfirm: '한 번 더 누르면 체크가 모두 지워져요', prep_resetDone: '체크를 모두 지웠어요',
     pg_docs: '서류', pg_money: '돈', pg_tech: '통신 · 전자기기', pg_health: '건강', pg_clothes: '옷', pg_etc: '기타',
     heroAlt: '베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트',
-    heroBadge: '🇻🇳 현지에서 바로 쓰는 단 한 권의 가이드',
+    heroS1: '말은 통하게,', heroS2: '계산은 신속하게,', heroS3: '여행은 안전하게!',
     heroTitle: '말은 통하게, 계산은 신속하게, 여행은 안전하게!',
     heroDesc: '음성 발음 지원, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치까지 한눈에 확인하세요.',
     searchLabel: '검색', searchPh: '단어, 메뉴명, 표현, 도시 검색 (예: 고수, 얼음, 계산, 택시, 나트랑)...', clearSearch: '검색 지우기',
@@ -394,7 +396,7 @@ var T = {
     prep_resetConfirm: 'Tap again to clear all checks', prep_resetDone: 'All checks cleared',
     pg_docs: 'Documents', pg_money: 'Money', pg_tech: 'Phone & gadgets', pg_health: 'Health', pg_clothes: 'Clothing', pg_etc: 'Other',
     heroAlt: 'Stylized night illustration of a Vietnamese lantern festival',
-    heroBadge: '🇻🇳 The one guide you will actually use on the ground',
+    heroS1: 'Speak with ease,', heroS2: 'count in a flash,', heroS3: 'travel safely!',
     heroTitle: 'Speak with ease, count in a flash, travel safely!',
     heroDesc: 'Audio pronunciation, a drop-a-zero-and-halve currency calculator and a no-cilantro switch, all in one place.',
     searchLabel: 'Search', searchPh: 'Search words, dishes, phrases, cities (e.g. cilantro, ice, bill, taxi, Hanoi)...', clearSearch: 'Clear search',
@@ -2243,7 +2245,7 @@ var HEAD_TONE = {
 function cardHead(emoji, tone, title, desc, right) {
   return '<div class="flex items-center gap-3 border-b border-background-200 pb-3">' +
     '<div class="p-2.5 ' + HEAD_TONE[tone] + ' rounded-xl text-xl flex items-center justify-center w-12 h-12 flex-shrink-0" aria-hidden="true">' + emoji + '</div>' +
-    '<div class="min-w-0 flex-1"><h3 class="font-heading font-bold text-foreground-950 text-base">' + esc(title) + '</h3><p class="text-xs text-foreground-400">' + esc(desc) + '</p></div>' +
+    '<div class="min-w-0 flex-1"><h3 class="font-sign text-foreground-950 text-lg md:text-xl leading-tight">' + esc(title) + '</h3><p class="text-xs text-foreground-400">' + esc(desc) + '</p></div>' +
     (right || '') + '</div>';
 }
 function bmBtn(id) {
@@ -3186,11 +3188,9 @@ var CLS = {
   pill: 'px-2 sm:px-2.5 py-1 rounded-full text-[11px] font-bold whitespace-nowrap transition-colors cursor-pointer',
   pillOff: 'text-foreground-500 hover:text-foreground-900',
   toneOn: 'bg-primary-500 text-background-50', langOn: 'bg-accent-500 text-background-50',
-  tab: 'tab-d px-4 py-2 rounded-xl flex items-center gap-1.5 text-sm font-medium transition-colors whitespace-nowrap cursor-pointer',
-  tabOn: 'text-accent-400 bg-accent-500/10 border border-accent-500/30 font-bold',
-  tabOff: 'text-foreground-400 hover:text-foreground-950 border border-transparent',
+  tab: 'tab-d tab-sign whitespace-nowrap cursor-pointer transition-colors', tabOn: 'is-on', tabOff: '',
   mtab: 'tab-m flex flex-col items-center gap-1 text-[10px] px-2 py-0.5 rounded-lg transition-colors cursor-pointer',
-  mOn: 'text-accent-400', mOff: 'text-foreground-400'
+  mOn: 'is-on', mOff: 'text-foreground-400'
 };
 /* dark (default) or light colours: the tokens in input.css switch on <html data-theme> */
 function applyTheme() {
@@ -3210,8 +3210,8 @@ function applyStatic() {
   $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = t(el.getAttribute('data-i18n-ph')); });
   $$('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria'))); });
   $$('[data-action="lang"]').forEach(function (b) { var on = b.getAttribute('data-value') === state.lang; b.className = CLS.pill + ' ' + (on ? CLS.langOn : CLS.pillOff); b.setAttribute('aria-pressed', on); });
-  $$('.tab-d').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.tab + ' ' + (on ? CLS.tabOn : CLS.tabOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
-  $$('.tab-m').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.mtab + ' ' + (on ? CLS.mOn : CLS.mOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  $$('.tab-d').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.tab + ' sign-' + b.getAttribute('data-sign') + ' ' + (on ? CLS.tabOn : CLS.tabOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  $$('.tab-m').forEach(function (b) { var on = b.getAttribute('data-value') === state.tab && !state.query; b.className = CLS.mtab + ' sign-' + b.getAttribute('data-sign') + ' ' + (on ? CLS.mOn : CLS.mOff); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
   updateBmCount();
   if (typeof auth !== 'undefined') renderAcctBtn();
 }

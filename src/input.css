@@ -44,6 +44,16 @@
   --ac-300: 136 88 6;  --ac-400: 146 94 6;
 }
 
+/* Hanoi shop signs (biển hiệu): flat enamel boards with painted lettering. --sb board, --si lettering,
+   --st the board colour as text on the page (lighter on the dark page, deeper on the light one). */
+:root, .theme-dark {
+  --sign-red: 196 38 28;  --sign-green: 16 102 70; --sign-blue: 26 74 148; --sign-yellow: 255 204 41; --sign-cream: 255 246 222;
+  --st-red: 255 124 104;  --st-green: 92 206 152;  --st-blue: 132 172 245; --st-yellow: 255 204 41;
+}
+:root[data-theme="light"] {
+  --st-red: 176 30 22;    --st-green: 12 104 70;   --st-blue: 26 74 160;  --st-yellow: 150 96 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -113,6 +123,7 @@ i > svg.ico.fa { width: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-bob, .animate-float, .animate-pulse, .speaking { animation: none !important; }
+  .hero-sign { transition: none; animation: none; }
   .flip-inner { transition: none; }
 }
 
@@ -155,3 +166,54 @@ i > svg.ico.fa { width: auto; }
    which pushed the top of bottom sheets (and their ✕ button) off screen; dvh is the visible height */
 .sheet-h { max-height: 88vh; max-height: 88dvh; }
 .sheet-h90 { max-height: 90vh; max-height: 90dvh; }
+
+/* ---- shop signs ---- */
+.sign-red    { --sb: var(--sign-red);    --si: var(--sign-yellow); --st: var(--st-red); }
+.sign-green  { --sb: var(--sign-green);  --si: var(--sign-cream);  --st: var(--st-green); }
+.sign-blue   { --sb: var(--sign-blue);   --si: var(--sign-cream);  --st: var(--st-blue); }
+.sign-yellow { --sb: var(--sign-yellow); --si: var(--sign-red);    --st: var(--st-yellow); }
+
+/* a board: painted inner frame and four screws */
+.sign { position: relative; background: rgb(var(--sb)); color: rgb(var(--si)); border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .14), 0 14px 26px -14px rgb(0 0 0 / .8); }
+.sign::before { content: ""; position: absolute; inset: 6px; border: 1.5px solid rgb(var(--si) / .6); border-radius: 2px; pointer-events: none; }
+.sign::after { content: ""; position: absolute; inset: 2px; pointer-events: none;
+  --screw: radial-gradient(circle, rgb(var(--si) / .75) 0 1.4px, transparent 1.9px);
+  background: var(--screw) left top / 4px 4px no-repeat, var(--screw) right top / 4px 4px no-repeat,
+              var(--screw) left bottom / 4px 4px no-repeat, var(--screw) right bottom / 4px 4px no-repeat; }
+
+/* hero: the tagline as three signs hung at different heights along a street */
+.hero-signs { display: flex; flex-direction: column; gap: .5rem; margin: 0 auto 1.1rem; max-width: 40rem; }
+@media (min-width: 768px) { .hero-signs { gap: .7rem; margin-bottom: 1.4rem; } }
+.hero-sign { display: flex; flex-direction: column; align-items: center; padding: .7rem 1.3rem .6rem; cursor: pointer;
+  transition: transform .2s ease, filter .2s ease; }
+.hero-sign { --r: 0deg; transform: rotate(var(--r)); transform-origin: 50% -60%; animation: sign-in .9s cubic-bezier(.2, .9, .3, 1.2) both; }
+.hero-sign:hover { filter: brightness(1.08); }
+@media (min-width: 768px) { .hero-sign { padding: .85rem 1.6rem .75rem; } }
+.hero-sign:nth-child(1) { align-self: flex-start; --r: -1.2deg; animation-delay: .05s; }
+.hero-sign:nth-child(2) { align-self: flex-end; --r: .9deg; animation-delay: .2s; }
+.hero-sign:nth-child(3) { align-self: center; --r: -.4deg; animation-delay: .35s; }
+/* the one entrance on the page: the signs swing into place once, like boards settling on their hooks */
+@keyframes sign-in {
+  0% { opacity: 0; transform: translateY(-16px) rotate(calc(var(--r) - 7deg)); }
+  60% { opacity: 1; transform: translateY(0) rotate(calc(var(--r) + 1.6deg)); }
+  100% { transform: rotate(var(--r)); }
+}
+.hero-sign .hs-main { font-family: Anton, "Black Han Sans", "Noto Sans KR", sans-serif; font-size: clamp(1.35rem, 4.6vw, 2.6rem); line-height: 1.1; letter-spacing: .01em; }
+.hero-sign .hs-vi { font-family: Anton, "Be Vietnam Pro", sans-serif; font-size: clamp(.7rem, 1.6vw, .85rem); letter-spacing: .14em; margin-top: .35rem;
+  padding-top: .3rem; border-top: 1.5px solid rgb(var(--si) / .45); }
+
+/* desktop tabs: small signs, lit when open */
+.tab-sign { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: .35rem .95rem .45rem; border-radius: 3px;
+  border: 1.5px solid rgb(var(--st) / .35); color: rgb(var(--fg-600)); font-size: .8rem; font-weight: 700; line-height: 1.15; }
+.tab-sign .tab-vi { font-family: Anton, "Be Vietnam Pro", sans-serif; font-weight: 400; font-size: .72rem; letter-spacing: .1em; color: rgb(var(--st)); }
+.tab-sign:hover { background: rgb(var(--st) / .1); border-color: rgb(var(--st) / .7); color: rgb(var(--fg-950)); }
+.tab-sign.is-on { position: relative; background: rgb(var(--sb)); border-color: rgb(var(--sb)); color: rgb(var(--si));
+  box-shadow: 0 0 0 3px rgb(var(--sb) / .22), 0 8px 18px -10px rgb(var(--sb)); }
+.tab-sign.is-on .tab-vi { color: rgb(var(--si) / .85); }
+.tab-sign.is-on::before { content: ""; position: absolute; inset: 3px; border: 1px solid rgb(var(--si) / .5); border-radius: 2px; pointer-events: none; }
+
+/* phone tab bar: the open tab takes its sign colour, with a painted bar on top */
+.tab-m { position: relative; }
+.tab-m.is-on { color: rgb(var(--st)); font-weight: 700; }
+.tab-m.is-on::before { content: ""; position: absolute; top: -7px; left: 22%; right: 22%; height: 3px; border-radius: 0 0 2px 2px; background: rgb(var(--sb)); }
