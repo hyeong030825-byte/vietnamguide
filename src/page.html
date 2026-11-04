@@ -53,7 +53,17 @@
     <canvas id="hero-canvas" role="img" data-i18n-aria="heroAlt" aria-label="베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트" title="말은 통하게, 계산은 신속하게, 여행은 안전하게!" class="w-full h-full block"></canvas>
     <div class="absolute inset-0 bg-gradient-to-b from-background-950/70 via-background-950/60 to-background-50"></div>
   </div>
-  <div class="absolute right-4 top-6 opacity-20 pointer-events-none hidden md:block"><i class="ri-loader-4-line text-8xl text-accent-400 animate-spin-slow"></i></div>
+  <div class="absolute right-8 bottom-6 opacity-50 pointer-events-none hidden md:block animate-bob" aria-hidden="true">
+    <svg viewBox="0 0 100 84" class="w-28 h-24 text-accent-400" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+      <defs><linearGradient id="lotus-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:rgb(var(--pr-400));stop-opacity:.55"/><stop offset="1" style="stop-color:rgb(var(--ac-400));stop-opacity:.15"/></linearGradient></defs>
+      <g fill="url(#lotus-fill)">
+        <path d="M50 64C34 67 15 58 8 41C25 40 42 50 50 64Z"/><path d="M50 64C66 67 85 58 92 41C75 40 58 50 50 64Z"/>
+        <path d="M50 63C35 57 25 40 27 21C42 27 50 44 50 63Z"/><path d="M50 63C65 57 75 40 73 21C58 27 50 44 50 63Z"/>
+        <path d="M50 63C39 49 39 26 50 8C61 26 61 49 50 63Z"/>
+      </g>
+      <path d="M14 72Q32 67 50 72T86 72" opacity=".7"/><path d="M28 79Q41 75 54 79T78 79" opacity=".45"/>
+    </svg>
+  </div>
   <div class="absolute left-6 bottom-8 text-accent-400/20 text-5xl pointer-events-none hidden md:block animate-float" aria-hidden="true">🏮</div>
   <div class="relative z-10 w-full max-w-3xl mx-auto text-center px-4 py-12 md:py-16">
     <span class="inline-block px-3 py-1 bg-accent-500/10 text-accent-400 text-xs font-bold rounded-full mb-3 border border-accent-500/30" data-i18n="heroBadge">🇻🇳 현지에서 바로 쓰는 단 한 권의 가이드</span>

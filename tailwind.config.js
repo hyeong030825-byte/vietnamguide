@@ -25,11 +25,15 @@ module.exports = {
         vi: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'spin-slow': 'spin 14s linear infinite',
+        bob: 'bob 7s ease-in-out infinite',
         float: 'float 5s ease-in-out infinite',
         'toast-in': 'toastIn .25s ease-out',
       },
       keyframes: {
+        bob: {
+          '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
+          '50%': { transform: 'translateY(-6px) rotate(2deg)' },
+        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-12px)' },
