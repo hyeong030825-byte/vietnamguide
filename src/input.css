@@ -123,7 +123,7 @@ i > svg.ico.fa { width: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-bob, .animate-float, .animate-pulse, .speaking { animation: none !important; }
-  .banner-wrap { animation: none; }
+  .banner-wrap, #hero-ropes { animation: none; }
   .flip-inner { transition: none; }
 }
 
@@ -181,18 +181,26 @@ i > svg.ico.fa { width: auto; }
 
 /* the tagline on a red cloth banner (băng rôn) tied between the lantern lines; the same in both themes */
 .banner-wrap { position: relative; width: fit-content; max-width: 100%; margin: .4rem auto 1.3rem; animation: unfurl .7s cubic-bezier(.2, .8, .2, 1) .1s both; }
-.banner-wrap::before, .banner-wrap::after { content: ""; position: absolute; top: 1.1rem; width: 72px; height: 2px; background: rgb(214 184 140 / .8); }
-:root[data-theme="light"] .banner-wrap::before, :root[data-theme="light"] .banner-wrap::after { background: rgb(128 92 60 / .7); }
-.banner-wrap::before { right: 100%; transform: rotate(-24deg); transform-origin: right center; }
-.banner-wrap::after { left: 100%; transform: rotate(24deg); transform-origin: left center; }
 .banner { display: block; padding: .85rem 2rem .8rem; font-family: "Black Han Sans", "Noto Sans KR", sans-serif; font-weight: 400;
   font-size: clamp(1.3rem, 3vw, 2.25rem); line-height: 1.25; letter-spacing: .01em; color: rgb(var(--sign-yellow)); text-shadow: 0 2px 0 rgb(90 10 5 / .45);
-  background: repeating-linear-gradient(90deg, rgb(0 0 0 / .07) 0 1px, transparent 1px 38px, rgb(255 255 255 / .05) 38px 40px, transparent 40px 76px), linear-gradient(#d22c20, #b51d15);
+  --eyelet: radial-gradient(circle, #f1e3b8 0 2.2px, rgb(90 10 5) 2.4px 3.4px, transparent 3.6px);
+  background: var(--eyelet) left 6px top 10px / 8px 8px no-repeat, var(--eyelet) right 6px top 10px / 8px 8px no-repeat,
+    var(--eyelet) left 6px bottom 6px / 8px 8px no-repeat, var(--eyelet) right 6px bottom 6px / 8px 8px no-repeat,
+    repeating-linear-gradient(90deg, rgb(0 0 0 / .07) 0 1px, transparent 1px 38px, rgb(255 255 255 / .05) 38px 40px, transparent 40px 76px), linear-gradient(#d22c20, #b51d15);
   clip-path: polygon(0 6px, 50% 0, 100% 6px, 100% calc(100% - 2px), 50% 100%, 0 calc(100% - 2px));
   filter: drop-shadow(0 10px 14px rgb(0 0 0 / .45)); }
 :root[data-theme="light"] .banner { filter: drop-shadow(0 8px 12px rgb(80 40 20 / .28)); }
 html[lang="en"] .banner { font-family: Anton, "Be Vietnam Pro", sans-serif; letter-spacing: .02em; }
 .banner .ht { display: inline-block; white-space: nowrap; }
+/* ropes and posts (drawRopes) */
+#hero-ropes { animation: ropes-in .4s ease .65s both; }
+#hero-ropes .rope { fill: none; stroke: rgb(214 184 140 / .85); stroke-width: 1.6; stroke-linecap: round; }
+#hero-ropes .post { fill: rgb(74 64 60); stroke: rgb(255 220 170 / .12); }
+#hero-ropes .knot { fill: rgb(214 184 140); }
+:root[data-theme="light"] #hero-ropes .rope { stroke: rgb(110 80 50 / .8); }
+:root[data-theme="light"] #hero-ropes .post { fill: rgb(148 138 126); stroke: rgb(255 255 255 / .35); }
+:root[data-theme="light"] #hero-ropes .knot { fill: rgb(110 80 50); }
+@keyframes ropes-in { from { opacity: 0; } to { opacity: 1; } }
 /* the one entrance on the page: the banner unrolls once */
 @keyframes unfurl { from { opacity: 0; transform: scaleX(.15); } to { opacity: 1; transform: none; } }
 

@@ -52,6 +52,7 @@
     <canvas id="hero-canvas" role="img" aria-label="베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트" title="말은 통하게, 계산은 신속하게, 여행은 안전하게!" class="w-full h-full block"></canvas>
     <div class="hero-veil absolute inset-0"></div>
   </div>
+  <svg id="hero-ropes" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></svg>
   <div class="absolute right-8 bottom-6 opacity-50 pointer-events-none hidden md:block animate-bob" aria-hidden="true">
     <svg viewBox="0 0 100 84" class="w-28 h-24 text-accent-400" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
       <defs><linearGradient id="lotus-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:rgb(var(--pr-400));stop-opacity:.55"/><stop offset="1" style="stop-color:rgb(var(--ac-400));stop-opacity:.15"/></linearGradient></defs>
@@ -3793,6 +3794,34 @@ function drawHero() {
     vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.45)');
     g.fillStyle = vg; g.fillRect(0, 0, w, h);
   }
+  drawRopes();
+}
+/* The banner is tied at its four corners to a post on each side of the street (to the frame edges on phones),
+   so it hangs across the street instead of floating. Drawn over the painting, measured from the layout. */
+function drawRopes() {
+  var svg = document.getElementById('hero-ropes'), wrap = document.querySelector('.banner-wrap');
+  if (!svg || !wrap || !wrap.offsetParent) return;
+  var sec = svg.parentNode.getBoundingClientRect(), box = wrap.offsetParent.getBoundingClientRect();
+  var W = Math.round(sec.width), H = Math.round(sec.height);
+  var l = box.left - sec.left + wrap.offsetLeft, t = box.top - sec.top + wrap.offsetTop, r = l + wrap.offsetWidth, b = t + wrap.offsetHeight;
+  var px = Math.max(18, W * 0.035), posts = W >= 640 && l - px > 48;
+  var L = posts ? px : 0, R = posts ? W - px : W;
+  var f = function (n) { return Math.round(n * 10) / 10; };
+  var rope = function (x1, y1, x2, y2) {
+    var sag = 4 + Math.abs(x2 - x1) * 0.035;
+    return '<path class="rope" d="M' + f(x1) + ' ' + f(y1) + ' Q' + f((x1 + x2) / 2) + ' ' + f(Math.max(y1, y2) + sag) + ' ' + f(x2) + ' ' + f(y2) + '"/>';
+  };
+  var out = '';
+  if (posts) {
+    var top = Math.max(6, t - 48), foot = H * 0.72; /* down to the street, where the painting's houses stand */
+    [L, R].forEach(function (x) {
+      out += '<rect class="post" x="' + f(x - 3.5) + '" y="' + f(top) + '" width="7" height="' + f(foot - top) + '" rx="2"/>' +
+        '<rect class="post" x="' + f(x - 17) + '" y="' + f(top + 12) + '" width="34" height="4" rx="1"/>' +
+        '<circle class="knot" cx="' + f(x) + '" cy="' + f(t - 14) + '" r="2.6"/><circle class="knot" cx="' + f(x) + '" cy="' + f(b + 12) + '" r="2.6"/>';
+    });
+  }
+  out += rope(l + 10, t + 14, L, t - 14) + rope(l + 10, b - 10, L, b + 12) + rope(r - 10, t + 14, R, t - 14) + rope(r - 10, b - 10, R, b + 12);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = out;
 }
 var heroRaf = 0, lastSize = '';
 function drawHeroSoon() {
@@ -4579,6 +4608,7 @@ applyStatic();
 renderMain();
 updateSearchClear();
 drawHero(); lastSize = Math.round($('#hero-canvas').clientWidth) + 'x' + Math.round($('#hero-canvas').clientHeight);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawRopes);
 startLiveRate();
 authInit();
 $('#hero-canvas').addEventListener('contextrestored', drawHero); /* a browser may drop a canvas it has to free; paint it again */
