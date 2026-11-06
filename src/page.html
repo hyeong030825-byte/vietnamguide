@@ -67,7 +67,7 @@
   <div class="absolute left-6 bottom-8 text-accent-400/20 text-5xl pointer-events-none hidden md:block animate-float" aria-hidden="true">🏮</div>
   <div class="relative z-10 w-full max-w-5xl mx-auto text-center px-4 py-12 md:py-16">
     <div class="banner-wrap"><h1 class="banner"><span class="ht" data-i18n="heroS1">말은 통하게,</span> <span class="ht" data-i18n="heroS2">계산은 신속하게,</span> <span class="ht" data-i18n="heroS3">여행은 안전하게!</span></h1></div>
-    <p class="hero-desc text-sm md:text-base text-foreground-600 mb-7 max-w-xl mx-auto" data-i18n="heroDesc">음성 발음 지원, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치까지 한눈에 확인하세요.</p>
+    <p class="hero-desc text-sm md:text-base text-foreground-600 mb-7 max-w-xl mx-auto" data-i18n="heroDesc">베트남어 발음 듣기부터 간편 환율 계산, '고수 빼기' 기능까지 한곳에서 이용해 보세요.</p>
     <div class="relative max-w-xl mx-auto">
       <i class="ri-search-line absolute left-4 top-1/2 -translate-y-1/2 text-foreground-400 text-lg"></i>
       <label for="search" class="sr-only" data-i18n="searchLabel">검색</label>
@@ -172,7 +172,7 @@ var T = {
     gift_where: '살 곳', gift_from: '{city} 특산', gift_customsTitle: '한국 들어올 때 확인하세요', gift_customsDesc: '면세 한도와 들여올 수 없는 물건이에요.',
     gift_banned: '반입 금지 · 검역 대상', gift_carry: '짐 쌀 때',
     gift_note: '가격은 2025~2026년 마트·브랜드 매장 가격이고, 관광지 상점이나 공항은 더 비싸요. 면세 한도와 반입 규정은 2026년 10월 기준이니 출국 전에 관세청·농림축산검역본부 안내를 한 번 더 확인하세요.',
-    spot_list: '{city} 유명 관광지', spot_desc: '주소는 복사해서 Grab이나 지도 앱에 붙여 넣거나, 택시 기사님께 크게 보여 주세요.',
+    spot_list: '{city} 유명 관광지', spot_desc: '주소를 복사해 Grab이나 지도 앱에 붙여 넣어 보세요. \'기사님께 보여주기\'를 누르면 목적지 정보를 크게 보여줄 수 있어요.',
     spot_note: '주소는 2025년 7월 행정구역 개편 뒤의 새 동 이름으로 적었어요. 지도 앱에 옛 주소가 보여도 같은 곳이에요. 운영 시간과 입장료는 2026년 10월에 확인했고, 확인되지 않은 곳은 비워 뒀어요.',
     spot_dress: '복장 예절 보기', copyAddr: '주소 복사', spotDriverMeaning: '이곳으로 데려다 주세요',
     eat_list: '{city} 현지인 맛집', eat_desc: '현지 사람들이 줄 서서 먹는 길거리 식당이에요. 미쉐린 가이드 2026에 오른 곳은 따로 표시했어요.',
@@ -190,21 +190,21 @@ var T = {
     money_note: '카드 조건은 2026년 기준이에요. 혜택과 수수료는 자주 바뀌니 출발 전에 카드 앱에서 꼭 확인하세요.',
     tab_phrases: '실전 회화', tab_calc: '동 계산기', tab_food: '음식 & 메뉴판', tab_culture: '문화 & 에티켓', tab_emergency: '긴급 상황', tab_prep: '여행 준비',
     mtab_phrases: '회화', mtab_calc: '동계산', mtab_food: '음식', mtab_culture: '문화', mtab_emergency: '긴급', mtab_prep: '준비',
-    prep_entryTitle: '출국 전 꼭 확인할 입국 규정', prep_entryDesc: '공항에서 막히지 않으려면 이것부터 확인하세요.',
+    prep_entryTitle: '출국 전 꼭 확인할 입국 규정', prep_entryDesc: '출발 전, 입국 조건과 필요한 서류부터 확인하세요.',
     prep_source: '출처: 외교부 해외안전여행, 베트남 대사관·중앙은행 안내 등 (2026년 10월 확인). 규정은 바뀔 수 있으니 출발 전에 한 번 더 확인하세요.',
-    prep_banTitle: '가져가면 안 되는 것 & 면세 한도', prep_banDesc: '모르고 가져갔다가 벌금을 내는 경우가 많아요.',
+    prep_banTitle: '반입 금지 품목·수하물 규정·면세 한도', prep_banDesc: '반입 금지 품목과 면세 한도를 미리 확인하세요.',
     prep_fine: '개인이 사용하다 걸리면 벌금 300만~500만 동(약 {a}~{b})이에요.',
     prep_lifeTitle: '현지 생활 기본 정보', prep_lifeDesc: '도착하자마자 필요한 것들이에요.', prep_open: '탭 열기',
     prep_weatherTitle: '지역별 날씨 & 옷차림', prep_weatherDesc: '베트남은 남북으로 길어서 지역마다 날씨가 달라요.',
     prep_weatherNote: '날씨는 해마다 조금씩 달라요. 출발 전에 일기예보를 꼭 확인하세요.', region_central: '중부',
     prep_checkTitle: '준비물 체크리스트', prep_checkDesc: '챙긴 건 눌러서 체크하세요. 이 기기 브라우저에 저장돼요.',
-    prep_progress: '{n} / {total}개 챙겼어요', prep_done: '준비 끝! 즐거운 여행 되세요', prep_reset: '체크 초기화',
+    prep_progress: '{n} / {total}개 확인했어요', prep_cond: '해당 시', prep_na: '해당 없음', prep_naUndo: '해당 없음 취소', prep_done: '준비 끝! 즐거운 여행 되세요', prep_reset: '체크 초기화',
     prep_resetConfirm: '한 번 더 누르면 체크가 모두 지워져요', prep_resetDone: '체크를 모두 지웠어요',
     pg_docs: '서류', pg_money: '돈', pg_tech: '통신 · 전자기기', pg_health: '건강', pg_clothes: '옷', pg_etc: '기타',
     heroAlt: '베트남 등불 축제를 표현한 스타일리시한 밤 풍경 일러스트', heroAltDay: '등불이 걸린 베트남 옛 거리의 낮 풍경 일러스트',
     heroS1: '말은 통하게,', heroS2: '계산은 신속하게,', heroS3: '여행은 안전하게!',
     heroTitle: '말은 통하게, 계산은 신속하게, 여행은 안전하게!',
-    heroDesc: '음성 발음 지원, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치까지 한눈에 확인하세요.',
+    heroDesc: '베트남어 발음 듣기부터 간편 환율 계산, \'고수 빼기\' 기능까지 한곳에서 이용해 보세요.',
     searchLabel: '검색', searchPh: '단어, 메뉴명, 표현, 도시 검색 (예: 고수, 얼음, 계산, 택시, 나트랑)...', clearSearch: '검색 지우기',
     footerTag: '회화 · 환율 계산 · 메뉴판 해독 · 매너와 안전까지 한곳에',
     ft_about: '사이트 소개', ft_privacy: '개인정보처리방침', ft_contact: '문의',
@@ -228,7 +228,7 @@ var T = {
     rv_report: '신고', rv_reported: '신고했어요. 확인할게요.', rv_mine: '내 후기', rv_hidden: '신고가 쌓여 숨겨짐', rv_edited: '수정됨', rv_rating: '별점',
     rv_starsLabel: '별 {n}개', rv_rule: '욕설·광고·개인정보가 담긴 후기는 지워질 수 있어요. 신고가 3번 쌓이면 자동으로 숨겨져요.',
     st_desc: '베트남에 다녀온 여행자들이 직접 남긴 이야기예요', st_viewStories: '여행기', st_viewPlaces: '장소 후기',
-    st_write: '여행기 쓰기', st_writePlace: '장소 후기 쓰기', st_loginHint: '읽기는 누구나, 쓰기는 로그인하면 할 수 있어요.', st_other: '기타 지역',
+    st_write: '여행기 쓰기', st_writePlace: '장소 후기 쓰기', st_loginHint: '후기는 누구나 읽을 수 있고, 로그인하면 직접 남길 수 있어요.', st_other: '기타 지역',
     st_empty: '아직 여행기가 없어요. 첫 여행기를 남겨 주세요!', st_emptyPlaces: '아직 장소 후기가 없어요. 다녀온 곳에 첫 후기를 남겨 주세요!',
     st_loading: '불러오는 중…', st_loadFail: '불러오지 못했어요. 잠시 뒤 다시 해 주세요.', st_retry: '다시 불러오기', st_more: '더 보기',
     st_trip: '{y}년 {m}월 여행', st_tripOpt: '{y}년 {m}월', st_photoCount: '사진 {n}장',
@@ -242,7 +242,7 @@ var T = {
     st_saved: '여행기를 올렸어요', st_updated: '여행기를 고쳤어요', st_deleted: '여행기를 지웠어요', st_reported: '신고했어요. 3번 쌓이면 자동으로 숨겨져요.',
     st_err_title: '제목을 2자 이상 적어 주세요', st_err_body: '내용을 20자 이상 적어 주세요', st_err_many: '여행기는 하루에 5개까지 쓸 수 있어요', st_err: '처리하지 못했어요. 잠시 뒤 다시 해 주세요.',
     st_newTitle: '여행기 쓰기', st_editTitle: '여행기 고치기', st_mine: '내 글', st_hidden: '신고가 쌓여 숨겨짐', st_edited: '수정됨',
-    st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고, 남의 개인정보나 사진이 담긴 글은 지워질 수 있고, 신고가 3번 쌓이면 자동으로 숨겨져요.',
+    st_rule: '여행기와 사진은 누구나 볼 수 있어요. 욕설·광고나, 동의 없이 공개한 타인의 개인정보나 사진이 포함된 게시물은 삭제될 수 있어요. 신고가 3번 쌓이면 자동으로 숨겨져요.',
     rv_photoLabel: '사진 (최대 4장, 선택)', rv_photoNote: '사진의 찍은 위치(GPS)·카메라 정보는 올릴 때 자동으로 지워져요.',
     pv_title: '사진 보기', pv_prev: '이전 사진', pv_next: '다음 사진', pv_open: '사진 크게 보기 ({n}/{total})',
     cm_title: '댓글', cm_count: '댓글 {n}', cm_ph: '댓글을 남겨 주세요 (2~500자)', cm_submit: '등록', cm_login: '로그인하고 댓글 쓰기', cm_none: '아직 댓글이 없어요. 궁금한 점이나 응원을 남겨 보세요!',
@@ -259,17 +259,18 @@ var T = {
     close: '닫기', remove: '삭제',
 
     phrasesTitle: '상황별 실전 회화',
-    phrasesDesc: '🔊를 누르면 베트남어 발음이 나와요.',
+    phrasesDesc: '듣기 버튼을 누르면 베트남어 발음을 들을 수 있어요.',
+    vtHint: '베트남어의 자기 지칭은 상대와의 나이·관계에 따라 달라져요.',
     vtLabel: '베트남어 말투', vtHelp: '아래 베트남어 문장을 존댓말로 볼지 반말로 볼지 골라요. 한국어 설명은 바뀌지 않아요.',
     vtToast_polite: '베트남어 문장을 존댓말(em)로 바꿨어요', vtToast_casual: '베트남어 문장을 반말(tôi)로 바꿨어요',
     vtFeel: '반말 느낌',
-    pnWhy: '베트남어는 말끝 대신 ‘나’와 ‘상대’를 부르는 말로 높임을 나타내요. 그래서 존댓말에는 em, 반말에는 tôi를 써요.',
+    pnWhy: '베트남어의 공손함은 나와 상대를 부르는 말, ạ·dạ 같은 표현, 부탁하는 방식과 말투가 함께 만들어 내요. 이 가이드에서는 존댓말에 em, 반말에 tôi를 써요.',
     slow: '천천히 듣기', all: '전체',
     cat_greet: '기본 표현', cat_food: '식당 & 카페', cat_shop: '쇼핑 & 흥정', cat_move: '교통 & 이동', cat_stay: '숙소', cat_spa: '마사지 & 스파', cat_help: '긴급 상황',
-    tonesTitle: '성조 6개 맛보기', tonesDesc: '같은 ma도 성조에 따라 뜻이 달라져요. 눌러서 들어 보세요.',
-    regionNote: '북부(하노이)는 d·gi·r을 ‘ㅈ’에 가깝게, 남부(호치민)는 d·gi를 ‘ㅇ’에 가깝게 발음해요. 이 가이드의 한글 발음은 북부 기준이에요.',
-    aTip: 'ạ(아)는 어르신께 말할 때 문장 끝에 붙이면 더 공손해져요. 예: Em cảm ơn ạ.',
-    pnTitle: '왜 존댓말엔 em, 반말엔 tôi일까요? 베트남어는 말끝 대신 ‘나와 상대를 부르는 말’로 높임을 나타내요.', pnNow: '지금 보는 말투',
+    tonesTitle: '성조 6개 맛보기', tonesDesc: '성조에 따라 소리의 높낮이와 발음이 달라지고, 단어의 뜻도 달라질 수 있어요. 여섯 가지 예를 눌러 비교해 보세요.',
+    regionNote: '한글 표기는 발음을 따라 읽기 위한 참고용이며, 베트남어의 성조와 소리를 정확하게 옮기지는 못해요. 지역에 따라 발음이 달라질 수 있으니 음성을 함께 들어 보세요. 이 가이드의 한글 표기는 북부(하노이) 발음을 기준으로 했어요.',
+    aTip: 'ạ(아)는 문장 끝에서 공손함을 더하는 표현이에요. 상대와의 관계에 맞춰 사용해 주세요. 예: Em cảm ơn ạ.',
+    pnTitle: '왜 존댓말엔 em, 반말엔 tôi일까요? 나와 상대를 부르는 말이 공손함을 만드는 큰 부분이기 때문이에요.', pnNow: '지금 보는 말투',
     pnEm: '나보다 나이가 많은 사람에게 말할 때 나를 em(동생)이라고 낮춰 불러요. 상대는 남자면 anh(아잉), 여자면 chị(찌)라고 불러요. 부모님뻘 이상 어른께는 아래 호칭 표처럼 말해요.',
     pnEmEx: '(언니·누나에게) 고맙습니다',
     pnToi: 'tôi는 나이나 관계를 따지지 않는 중립적인 ‘나’예요. 나를 낮추지도 상대를 높이지도 않아서 em보다 덜 공손하게 들려요. 친한 친구끼리는 mình(밍)도 써요.',
@@ -281,7 +282,7 @@ var T = {
     adN3: '나이를 잘 모르겠으면 한 단계 높여 부르는 게 안전해요. 식당·가게 직원은 대부분 anh·chị나 em이면 충분해요.',
     adN4: '남부에서는 어른께 cháu 대신 con(꼰)이라고 하는 경우가 많아요. 예: Con chào cô ạ(꼰 짜오 꼬 아).',
 
-    calcTitle: '0 떼고 2 나누기 계산기', calcDesc: '동(VND) 가격을 원화로 바로 바꿔 보세요.',
+    calcTitle: '0 하나 떼고, 2로 나누기', calcDesc: '동 금액을 10으로 나눈 뒤, 다시 2로 나누면 원화 금액을 대략 가늠할 수 있어요.',
     calcTitleFx: '동 환율 계산기', calcDescFx: '동(VND) 가격을 고른 나라 돈으로 바로 바꿔 보세요.', curLabel: '통화', quickPre: '간편 계산 · ',
     rateLineFx: '{n} {cur} = {r}동 기준',
     exactLive: '실시간 환율 적용', exactManual: '직접 입력한 환율 적용', exactDefault: '기본 환율 적용',
@@ -294,14 +295,14 @@ var T = {
     rateFallback: '최신 환율을 불러오지 못해 2026년 10월 28일 환율을 쓰고 있어요.', rateManual: '직접 입력한 환율을 쓰고 있어요.',
     rateUseLive: '실시간 환율로', rateNote: '환전소·카드 결제는 수수료 때문에 이 값과 조금 다를 수 있어요.',
     billsTitle: '지폐 색깔로 구분하기', billsDesc: '0이 많아 헷갈리니 색으로 먼저 기억하세요.',
-    billsWarn: '20,000동(파랑)과 500,000동(청록)은 색이 비슷해요. 거스름돈을 받을 때 0의 개수를 꼭 세어 보세요.',
-    numbersTitle: '가격 읽는 숫자', numbersDesc: '숫자를 누르면 발음을 들려줘요.',
+    billsWarn: '20,000동권과 500,000동권은 어두운 곳에서 헷갈릴 수 있어요. 색만 보고 판단하지 말고, 지폐의 액면 숫자를 확인한 뒤 건네세요.',
+    numbersTitle: '금액 읽는 법', numbersDesc: '숫자를 누르면 발음을 들려줘요.',
     slangTitle: '돈 부르는 말', slangDesc: '시장·택시에서는 숫자 대신 이렇게 말하기도 해요. 누르면 발음을 들려줘요.',
     spokenLabel: '말로 부르는 단위', writtenLabel: '가격표 표기', exLabel: '예:', secUnits: '돈 부르는 말',
     region_all: '전국', region_south: '남부', region_north: '북부',
     veNote: '1 vé는 동이 아니라 미화 100달러(USD)를 뜻해요. 헷갈리지 않게 조심하세요.',
 
-    swTitle: '고수 빼기 스위치', swDesc: '필요한 요청만 켜면 주문 문장을 만들어 줘요. 빼 달라고 할 때 북부는 Đừng cho(넣지 마세요), 남부는 Đừng bỏ를 써요. bỏ는 북부에서 "빼다"라는 뜻이라 지역에 맞춰 바꿔 보여 줘요.',
+    swTitle: '고수 빼기 스위치', swDesc: '필요한 요청만 켜면 주문 문장을 만들어 줘요. 넣지 말아 달라고 할 때는 Đừng cho...(넣지 마세요)가 가장 분명해요. 남부를 고르면 그곳에서 자주 쓰는 Đừng bỏ... nha로 보여 줘요.',
     north: '북부 (하노이)', south: '남부 (호치민)', regionLabel: '지역 표현',
     showStaff: '직원에게 이 화면을 보여주세요', allOff: '켜진 스위치가 없어요. 필요한 요청을 켜 보세요.', bigView: '크게 보기',
     menuTitle: '메뉴판 해독', menuDesc: '대표 메뉴의 이름과 맛을 미리 알아 두세요.',
@@ -322,11 +323,11 @@ var T = {
     c_s3T: '신발 수리 / 어깨지게 호객', c_s3: '갑자기 신발에 본드를 바르거나 어깨지게를 올려준 뒤 거액을 요구하면 단호하게 "Không(콩)" 하세요.',
 
     police: '경찰 · 범죄 신고', fire: '화재 신고', ambulance: '구급차 · 응급',
-    localNote: '현지 긴급전화는 베트남어로만 통화할 수 있고, 구급차는 이용료가 나올 수 있어요. 말이 안 통하면 영사콜센터에 먼저 연락하세요.',
-    embassyTitle: '한국 공관 & 영사콜센터', callDesc: '해외에서 사건·사고가 나면 24시간 한국어로 도움을 받을 수 있어요.',
-    main: '대표', emergency: '긴급', phone: '전화', call: '전화 걸기',
+    localNote: '현지 긴급전화는 대부분 베트남어로 응대하며, 구급차 이용료가 발생할 수 있어요. 생명이나 신체가 위험한 상황에서는 현지 긴급전화로 구조를 요청하거나 주변 사람에게 신고를 부탁하세요. 의사소통이 어렵다면 영사안전콜센터의 통역 지원도 요청할 수 있어요.',
+    embassyTitle: '한국 공관과 영사안전콜센터', callDesc: '24시간 사건·사고 상담과 긴급상황 통역을 지원해요.',
+    main: '대표전화 (근무시간 중)', emergency: '사건·사고 긴급전화', afterHours: '근무시간 외 사건·사고 (영사안전콜센터 연결)', phone: '전화', call: '전화 걸기',
     embassySource: '출처: 외교부 해외안전여행 (2026년 10월 확인) ·',
-    emPhrasesTitle: '위급할 때 바로 쓰는 말', emPhrasesDesc: '말이 안 나오면 화면을 그대로 보여주세요.',
+    emPhrasesTitle: '위급할 때 바로 쓰는 말', emPhrasesDesc: '말로 설명하기 어렵다면 이 화면을 보여 주세요.',
     notesTitle: '내 여행 노트', notesDesc: '숙소 주소를 베트남어로 적어 두면 택시 기사님께 바로 크게 보여줄 수 있어요. 입력한 내용은 이 기기 브라우저에만 저장돼요.',
     hotelName: '숙소 이름', hotelNamePh: '예: Hoa Mai Hotel', hotelAddr: '숙소 주소 (베트남어 그대로)', hotelAddrPh: '예: 12 Hàng Bạc, Hoàn Kiếm, Hà Nội',
     showDriver: '기사님께 보여주기', needAddr: '숙소 주소를 먼저 입력해 주세요', driverMeaning: '이 주소로 데려다 주세요',
@@ -363,7 +364,7 @@ var T = {
     gift_where: 'Where to buy', gift_from: 'From {city}', gift_customsTitle: 'Before you fly home to Korea', gift_customsDesc: 'Duty-free allowance and what you cannot bring in.',
     gift_banned: 'Banned or needs quarantine', gift_carry: 'Packing',
     gift_note: 'Prices are 2025–2026 supermarket or brand-store prices; tourist shops and airports charge more. Allowances and import rules are as of October 2026, so check Korea Customs and the quarantine agency before you fly.',
-    spot_list: 'Famous sights in {city}', spot_desc: 'Copy an address into Grab or a maps app, or show it to your taxi driver in large type.',
+    spot_list: 'Famous sights in {city}', spot_desc: 'Copy an address into Grab or a maps app. Tap "Show the driver" to show the destination in large type.',
     spot_note: 'Addresses use the new ward names from the July 2025 reorganization; maps may still show the old address for the same place. Hours and fees were checked in October 2026 and are left blank where they could not be confirmed.',
     spot_dress: 'Dress code', copyAddr: 'Copy address', spotDriverMeaning: 'Please take me here',
     eat_list: 'Where locals eat in {city}', eat_desc: 'Street-food spots that locals queue for. Places in the 2026 MICHELIN Guide are marked.',
@@ -381,21 +382,21 @@ var T = {
     money_note: 'Card terms are as of 2026. Perks and fees change often, so check your card app before you go.',
     tab_phrases: 'Phrases', tab_calc: 'Dong Calculator', tab_food: 'Food & Menus', tab_culture: 'Culture & Etiquette', tab_emergency: 'Emergency', tab_prep: 'Trip Prep',
     mtab_phrases: 'Phrases', mtab_calc: 'Dong', mtab_food: 'Food', mtab_culture: 'Culture', mtab_emergency: 'SOS', mtab_prep: 'Prep',
-    prep_entryTitle: 'Entry rules to check before you fly', prep_entryDesc: 'Check these first so nothing stops you at the airport.',
+    prep_entryTitle: 'Entry rules to check before you fly', prep_entryDesc: 'Before you leave, check the entry conditions and the documents you need.',
     prep_source: 'Sources: Korean MOFA Safe Travel, Vietnamese embassy and central bank guidance (checked Oct 2026). Rules can change, so check again before you leave.',
-    prep_banTitle: "What not to bring & duty-free limits", prep_banDesc: 'Travelers often get fined for things they did not know about.',
+    prep_banTitle: 'Banned items, baggage rules & duty-free limits', prep_banDesc: 'Check banned items and duty-free limits before you pack.',
     prep_fine: 'Individuals caught using them face fines of VND 3–5 million (about {a}–{b}).',
     prep_lifeTitle: 'Everyday basics', prep_lifeDesc: 'What you need the moment you land.', prep_open: 'Open tab',
     prep_weatherTitle: 'Weather & what to wear by region', prep_weatherDesc: 'Vietnam is long from north to south, so the weather differs a lot by region.',
     prep_weatherNote: 'Weather varies from year to year. Check the forecast before you go.', region_central: 'Central',
     prep_checkTitle: 'Packing checklist', prep_checkDesc: 'Tap items as you pack. Saved in this browser.',
-    prep_progress: '{n} of {total} packed', prep_done: 'All packed! Have a great trip', prep_reset: 'Clear checks',
+    prep_progress: '{n} of {total} checked', prep_cond: 'If needed', prep_na: 'Not needed', prep_naUndo: 'Undo not needed', prep_done: 'All packed! Have a great trip', prep_reset: 'Clear checks',
     prep_resetConfirm: 'Tap again to clear all checks', prep_resetDone: 'All checks cleared',
     pg_docs: 'Documents', pg_money: 'Money', pg_tech: 'Phone & gadgets', pg_health: 'Health', pg_clothes: 'Clothing', pg_etc: 'Other',
     heroAlt: 'Stylized night illustration of a Vietnamese lantern festival', heroAltDay: 'Daytime illustration of an old Vietnamese street hung with lanterns',
     heroS1: 'Speak with ease,', heroS2: 'count in a flash,', heroS3: 'travel safely!',
     heroTitle: 'Speak with ease, count in a flash, travel safely!',
-    heroDesc: 'Audio pronunciation, a drop-a-zero-and-halve currency calculator and a no-cilantro switch, all in one place.',
+    heroDesc: 'Listen to Vietnamese pronunciation, convert prices in a tap and use the no-cilantro switch, all in one place.',
     searchLabel: 'Search', searchPh: 'Search words, dishes, phrases, cities (e.g. cilantro, ice, bill, taxi, Hanoi)...', clearSearch: 'Clear search',
     footerTag: 'Phrases · currency · menu decoding · manners and safety in one place',
     ft_about: 'About', ft_privacy: 'Privacy policy (Korean)', ft_contact: 'Contact',
@@ -419,7 +420,7 @@ var T = {
     rv_report: 'Report', rv_reported: 'Reported. We will take a look.', rv_mine: 'Mine', rv_hidden: 'Hidden after reports', rv_edited: 'edited', rv_rating: 'Rating',
     rv_starsLabel: '{n} stars', rv_rule: 'Reviews with abuse, ads or personal information may be removed. A review is hidden automatically after 3 reports.',
     st_desc: 'Stories from travelers who have been to Vietnam', st_viewStories: 'Trip stories', st_viewPlaces: 'Place reviews',
-    st_write: 'Write a story', st_writePlace: 'Review a place', st_loginHint: 'Anyone can read. Log in to write.', st_other: 'Elsewhere',
+    st_write: 'Write a story', st_writePlace: 'Review a place', st_loginHint: 'Anyone can read reviews; log in to write your own.', st_other: 'Elsewhere',
     st_empty: 'No trip stories yet. Be the first to share yours!', st_emptyPlaces: 'No place reviews yet. Review a place you visited!',
     st_loading: 'Loading…', st_loadFail: 'Could not load. Please try again shortly.', st_retry: 'Try again', st_more: 'Load more',
     st_trip: 'Trip: {m}/{y}', st_tripOpt: '{m}/{y}', st_photoCount: '{n} photos',
@@ -433,7 +434,7 @@ var T = {
     st_saved: 'Story posted', st_updated: 'Story updated', st_deleted: 'Story deleted', st_reported: 'Reported. Stories are hidden after 3 reports.',
     st_err_title: 'Please write a title of at least 2 characters', st_err_body: 'Please write at least 20 characters', st_err_many: 'You can post up to 5 stories a day', st_err: 'Something went wrong. Please try again shortly.',
     st_newTitle: 'Write a trip story', st_editTitle: 'Edit your story', st_mine: 'Mine', st_hidden: 'Hidden after reports', st_edited: 'edited',
-    st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos may be removed, and a post is hidden automatically after 3 reports.',
+    st_rule: 'Stories and photos are public. Posts with abuse, ads, or other people\'s personal details or photos shared without their consent may be removed, and a post is hidden automatically after 3 reports.',
     rv_photoLabel: 'Photos (up to 4, optional)', rv_photoNote: 'Location (GPS) and camera data are removed from photos automatically.',
     pv_title: 'Photo viewer', pv_prev: 'Previous photo', pv_next: 'Next photo', pv_open: 'View photo {n} of {total}',
     cm_title: 'Comments', cm_count: '{n} comments', cm_ph: 'Leave a comment (2–500 characters)', cm_submit: 'Post', cm_login: 'Log in to comment', cm_none: 'No comments yet. Ask a question or cheer them on!',
@@ -450,17 +451,18 @@ var T = {
     close: 'Close', remove: 'Remove',
 
     phrasesTitle: 'Phrases by situation',
-    phrasesDesc: 'Tap 🔊 to hear the Vietnamese.',
+    phrasesDesc: 'Tap Listen to hear the Vietnamese.',
+    vtHint: 'In Vietnamese, the word for “I” changes with the other person’s age and your relationship.',
     vtLabel: 'Vietnamese tone', vtHelp: 'Choose formal or casual wording for the Vietnamese phrases below. The rest of the site stays the same.',
     vtToast_polite: 'Vietnamese phrases now use formal em', vtToast_casual: 'Vietnamese phrases now use casual tôi',
     vtFeel: 'casual feel',
-    pnWhy: 'Vietnamese shows respect through the words for “I” and “you”, not verb endings. That is why formal uses em and casual uses tôi.',
+    pnWhy: 'Politeness in Vietnamese comes from the words for “I” and “you”, little words like ạ and dạ, and how you phrase a request. Here formal uses em and casual uses tôi.',
     slow: 'Slow audio', all: 'All',
     cat_greet: 'Basics', cat_food: 'Eating out', cat_shop: 'Shopping', cat_move: 'Getting around', cat_stay: 'Hotel', cat_spa: 'Massage & spa', cat_help: 'Emergencies',
-    tonesTitle: 'Six tones in one syllable', tonesDesc: 'The same “ma” changes meaning with each tone. Tap to listen.',
-    regionNote: 'Hanoi (north) says d, gi and r close to “z”; Saigon (south) says d and gi like “y”.',
-    aTip: 'Add ạ at the end when speaking to elders for extra respect, e.g. Em cảm ơn ạ.',
-    pnTitle: 'Why em for formal and tôi for casual? Vietnamese shows respect through the words for “I” and “you”, not verb endings.', pnNow: 'Showing now',
+    tonesTitle: 'Six tones in one syllable', tonesDesc: 'Tones change the pitch and sound of a syllable, and the meaning can change with them. Tap the six examples to compare.',
+    regionNote: 'Pronunciation varies by region (Hanoi and Saigon differ), so listen to the audio as well.',
+    aTip: 'ạ at the end of a sentence adds politeness; use it to suit who you are talking to, e.g. Em cảm ơn ạ.',
+    pnTitle: 'Why em for formal and tôi for casual? The words for “I” and “you” carry much of the politeness.', pnNow: 'Showing now',
     pnEm: 'Speaking to someone older, call yourself em (younger sibling) and them anh (older man) or chị (older woman). For people your parents’ age or older, see the chart below.',
     pnEmEx: 'Thank you (to an older woman)',
     pnToi: 'tôi is a neutral “I” that ignores age and relationship. It neither lowers you nor raises them, so it sounds less polite than em. Close friends also use mình.',
@@ -472,7 +474,7 @@ var T = {
     adN3: 'If you are unsure of someone’s age, aim one step higher. For restaurant and shop staff, anh / chị or em is usually enough.',
     adN4: 'In the south, people often say con instead of cháu to elders, e.g. Con chào cô ạ.',
 
-    calcTitle: 'Drop-a-zero, halve-it calculator', calcDesc: 'Turn dong prices into won in a second.',
+    calcTitle: 'Drop a zero, then halve it', calcDesc: 'Divide a dong price by 10, then by 2, for a rough figure in won.',
     calcTitleFx: 'Dong exchange calculator', calcDescFx: 'Turn dong prices into the currency you pick.', curLabel: 'Currency', quickPre: 'Quick math · ',
     rateLineFx: 'At {n} {cur} = {r} VND',
     exactLive: 'At the live rate', exactManual: 'At your rate', exactDefault: 'At the default rate',
@@ -485,14 +487,14 @@ var T = {
     rateFallback: "Couldn't load the latest rate, so the 28 Oct 2026 rate is in use.", rateManual: 'Using the rate you entered.',
     rateUseLive: 'Use live rate', rateNote: 'Exchange booths and card payments add fees, so your rate may differ a little.',
     billsTitle: 'Tell the notes apart', billsDesc: 'Every note has lots of zeros, so learn them by color.',
-    billsWarn: 'The 20,000 (blue) and 500,000 (teal) notes look alike. Count the zeros when you get change.',
-    numbersTitle: 'Numbers for prices', numbersDesc: 'Tap a number to hear it.',
+    billsWarn: 'The 20,000 and 500,000 notes are easy to mix up in dim light. Don’t go by colour alone; check the number on the note before you hand it over.',
+    numbersTitle: 'Reading prices', numbersDesc: 'Tap a number to hear it.',
     slangTitle: 'Money slang', slangDesc: 'At markets and in taxis people often say amounts like this. Tap to hear it.',
     spokenLabel: 'Spoken units', writtenLabel: 'On price tags', exLabel: 'e.g.', secUnits: 'Money slang',
     region_all: 'Nationwide', region_south: 'South', region_north: 'North',
     veNote: '1 vé means 100 US dollars, not dong. Do not mix them up.',
 
-    swTitle: 'No-cilantro switch', swDesc: 'Switch on what you need and get a ready-to-show order note. To leave something out, the north says “Đừng cho” and the south “Đừng bỏ”; in the north bỏ means “take out”, so the note follows the region you pick.',
+    swTitle: 'No-cilantro switch', swDesc: 'Switch on what you need and get a ready-to-show order note. “Đừng cho…” (don’t put in) is the clearest way to leave something out; pick the south and the note uses “Đừng bỏ… nha”, which you will often hear there.',
     north: 'North (Hanoi)', south: 'South (HCMC)', regionLabel: 'Regional words',
     showStaff: 'Show this screen to the staff', allOff: 'All switches are off. Turn on what you need.', bigView: 'Full screen',
     menuTitle: 'Menu decoder', menuDesc: 'Know the classics before you order.',
@@ -513,11 +515,11 @@ var T = {
     c_s3T: 'Shoe “repairs” & shoulder-pole touts', c_s3: 'If someone suddenly glues your shoe or puts a shoulder pole on you and then demands money, say a firm "Không!" (No).',
 
     police: 'Police', fire: 'Fire', ambulance: 'Ambulance',
-    localNote: "Local emergency lines only operate in Vietnamese, and ambulances may charge a fee. If you can't communicate, call the Consular Call Center first.",
-    embassyTitle: 'Korean missions & consular help', callDesc: 'Round-the-clock help in Korean for incidents abroad.',
+    localNote: "Local emergency lines mostly answer in Vietnamese, and ambulances may charge a fee. If a life or someone's safety is at risk, call the local emergency number or ask someone nearby to call for you. If you can't make yourself understood, the Consular Call Center can also help with interpreting.",
+    embassyTitle: 'Korean missions & consular help', callDesc: 'Round-the-clock help with incidents and emergency interpreting.',
     main: 'Main', emergency: 'Emergency', phone: 'Phone', call: 'Call',
     embassySource: 'Source: MOFA Safe Travel (checked Oct 2026) ·',
-    emPhrasesTitle: 'Words for an emergency', emPhrasesDesc: 'If words fail, just show the screen.',
+    emPhrasesTitle: 'Words for an emergency', emPhrasesDesc: 'If it is hard to explain, show this screen.',
     notesTitle: 'My travel notes', notesDesc: 'Save your hotel address in Vietnamese to show taxi drivers in large type. Saved only in this browser on this device.',
     hotelName: 'Hotel name', hotelNamePh: 'e.g. Hoa Mai Hotel', hotelAddr: 'Hotel address (in Vietnamese)', hotelAddrPh: 'e.g. 12 Hàng Bạc, Hoàn Kiếm, Hà Nội',
     showDriver: 'Show the driver', needAddr: 'Enter the hotel address first', driverMeaning: 'Please take me to this address',
@@ -550,14 +552,15 @@ var PHRASES = [
   { id: 'hello', cat: 'greet', ko: ['안녕하세요', '안녕'], en: 'Hello', vi: ['Xin chào', 'Chào bạn'], pr: ['씬 짜오', '짜오 반'], k: '인사 hi greeting', note: { ko: '일상에서는 Em chào anh ạ(앰 짜오 아잉 아, 남자에게), Em chào chị ạ(앰 짜오 찌 아, 여자에게)처럼 상대를 넣어 인사해요. 부모님뻘 이상 어른께는 Cháu chào cô ạ(짜우 짜오 꼬 아)처럼 나를 cháu라고 해요.', en: 'In everyday speech people add who they greet: “Em chào anh ạ” (to a man), “Em chào chị ạ” (to a woman). To someone your parents’ age or older, call yourself cháu: “Cháu chào cô ạ”.' } },
   { id: 'thanks', cat: 'greet', ko: ['감사합니다', '고마워'], en: 'Thank you', vi: ['Em cảm ơn', 'Cảm ơn nhé'], pr: ['앰 깜 언', '깜 언 녜'], k: '감사 고마워 thank' },
   { id: 'sorry', cat: 'greet', ko: ['죄송합니다', '미안해'], en: 'Sorry / Excuse me', vi: ['Em xin lỗi', 'Xin lỗi nhé'], pr: ['앰 씬 로이', '씬 로이 녜'], k: '실례 사과 excuse' },
-  { id: 'yes', cat: 'greet', ko: ['네', '응'], en: 'Yes', vi: ['Vâng', 'Ừ'], pr: ['벙', '으'], k: '예 yes ok', note: { ko: '남부에서는 Dạ(야)라고 대답해요', en: 'In the south people answer “Dạ”' } },
+  { id: 'yes', cat: 'greet', ko: ['네', '응'], en: 'Yes', vi: ['Vâng', 'Ừ'], pr: ['벙', '으'], k: '예 yes ok', note: { ko: 'Vâng과 Dạ(야)는 공손하게 대답할 때 쓰는 표현이에요. Dạ는 남부에서 특히 자주 들을 수 있으며, 문장 앞에서 공손함을 나타내기도 해요.', en: 'Vâng and Dạ are both polite ways to say yes. Dạ is especially common in the south and can also open a sentence politely.' } },
   { id: 'no', cat: 'greet', ko: ['아니요, 괜찮아요', '아니, 괜찮아'], en: 'No, thanks', vi: ['Không, em cảm ơn', 'Không cần đâu'], pr: ['콩, 앰 깜 언', '콩 껀 더우'], k: '거절 호객 됐어요 no thanks' },
   { id: 'korean', cat: 'greet', ko: ['저는 한국 사람이에요', '나 한국 사람이야'], en: "I'm Korean", vi: ['Em là người Hàn Quốc', 'Tôi là người Hàn Quốc'], pr: ['앰 라 응으어이 한 꾸옥', '또이 라 응으어이 한 꾸옥'], k: '한국인 korea' },
   { id: 'novi', cat: 'greet', ko: ['베트남어를 못해요', '베트남어 못해'], en: "I don't speak Vietnamese", vi: ['Em không biết tiếng Việt', 'Tôi không biết tiếng Việt'], pr: ['앰 콩 비엣 띠엥 비엣', '또이 콩 비엣 띠엥 비엣'], k: '베트남어 language' },
   { id: 'photo', cat: 'greet', ko: ['사진 좀 찍어 주시겠어요?', '사진 좀 찍어 줄래?'], en: 'Could you take a photo of me?', vi: ['Chụp ảnh giúp em được không?', 'Chụp giúp tôi một tấm nhé?'], pr: ['쭙 아잉 줍 앰 드억 콩?', '쭙 줍 또이 못 떰 녜?'], k: '사진 촬영 camera picture' },
-  { id: 'bye', cat: 'greet', ko: ['안녕히 계세요', '잘 있어'], en: 'Goodbye', vi: ['Em chào anh ạ / Em chào chị ạ', 'Chào nhé!'], pr: ['앰 짜오 아잉 아 / 앰 짜오 찌 아', '짜오 녜!'], k: '작별 헤어질 안녕히 계세요 bye goodbye', note: { ko: '상대가 형·누나뻘이면 anh(아잉)·chị(찌)를 넣어요. 부모님뻘 이상 어른이면 chú(쭈)·cô(꼬)·bác(박)·ông(옹)·bà(바)를 넣고 나를 cháu(짜우)라고 해서 Cháu chào bác ạ(짜우 짜오 박 아)처럼 말해요. 가게를 나설 때는 Em cảm ơn, chào chị ạ(앰 깜 언, 짜오 찌 아)처럼 고맙다는 말과 함께 하면 자연스러워요. Tạm biệt(땀 비엣)은 오래 헤어질 때 쓰는 딱딱한 말이라 평소엔 잘 안 써요.', en: 'Use anh / chị for someone a bit older. For people your parents’ age or older, use chú, cô, bác, ông or bà and call yourself cháu: “Cháu chào bác ạ”. Leaving a shop, “Em cảm ơn, chào chị ạ” (thanks, bye) sounds natural. “Tạm biệt” is a stiff word for long partings and rarely used day to day.' } },
+  { id: 'bye', cat: 'greet', ko: ['안녕히 계세요', '잘 있어'], en: 'Goodbye', vi: ['Em chào anh ạ / Em chào chị ạ', 'Chào nhé!'], pr: ['앰 짜오 아잉 아 / 앰 짜오 찌 아', '짜오 녜!'], k: '작별 헤어질 안녕히 계세요 bye goodbye', note: { ko: '상대가 형·누나뻘이면 anh(아잉)·chị(찌)를 넣어요. 부모님뻘 이상 어른이면 chú(쭈)·cô(꼬)·bác(박)·ông(옹)·bà(바)를 넣고 나를 cháu(짜우)라고 해서 Cháu chào bác ạ(짜우 짜오 박 아)처럼 말해요. 가게를 나설 때는 Em cảm ơn, chào chị ạ(앰 깜 언, 짜오 찌 아)처럼 고맙다는 말과 함께 하면 자연스러워요. Tạm biệt(땀 비엣)도 작별 인사로 쓸 수 있어요. 일상에서는 Chào anh/chị처럼 상대를 부르는 인사를 더 자주 써요.', en: 'Use anh / chị for someone a bit older. For people your parents’ age or older, use chú, cô, bác, ông or bà and call yourself cháu: “Cháu chào bác ạ”. Leaving a shop, “Em cảm ơn, chào chị ạ” (thanks, bye) sounds natural. “Tạm biệt” works as a goodbye too, but day to day a greeting with the person’s title, like “Chào anh / chị”, is more common.' } },
   { id: 'nicetomeet', cat: 'greet', ko: ['만나서 반가워요', '만나서 반가워'], en: 'Nice to meet you', vi: ['Rất vui được làm quen ạ', 'Rất vui được gặp bạn'], pr: ['젓 부이 드억 람 꾸앤 아', '젓 부이 드억 갑 반'], k: '반가워 처음 nice meet' },
-  { id: 'dontknow', cat: 'greet', ko: ['잘 못 알아들었어요', '못 알아들었어'], en: "I don't understand", vi: ['Em không hiểu', 'Tôi không hiểu'], pr: ['앰 콩 히에우', '또이 콩 히에우'], k: '이해 모르겠 understand' },
+  { id: 'dontknow', cat: 'greet', ko: ['무슨 뜻인지 잘 모르겠어요', '무슨 뜻인지 모르겠어'], en: "I don't understand", vi: ['Em không hiểu.', 'Tôi không hiểu.'], pr: ['앰 콩 히에우', '또이 콩 히에우'], k: '이해 모르겠 뜻 못 알아들었어요 understand', note: { ko: '뜻을 모를 때 쓰는 말이에요. 소리를 못 들었으면 아래 "잘 못 들었어요"를 쓰세요.', en: 'For when you don’t get the meaning. If you just didn’t hear it, use “I didn’t catch that” below.' } },
+  { id: 'didnthear', cat: 'greet', ko: ['잘 못 들었어요', '잘 못 들었어'], en: "I didn't catch that", vi: ['Em nghe không rõ.', 'Tôi nghe không rõ.'], pr: ['앰 응애 콩 조', '또이 응애 콩 조'], k: '못 들었 안 들려 소리 hear catch' },
   { id: 'again', cat: 'greet', ko: ['다시 한 번 말해 주세요', '다시 말해 줘'], en: 'Could you say that again?', vi: ['Nói lại giúp em được không?', 'Nói lại giúp tôi nhé'], pr: ['노이 라이 줍 앰 드억 콩?', '노이 라이 줍 또이 녜'], k: '다시 반복 repeat again' },
   { id: 'speakslow', cat: 'greet', ko: ['천천히 말해 주세요', '천천히 말해 줘'], en: 'Please speak slowly', vi: ['Nói chậm giúp em', 'Nói chậm thôi'], pr: ['노이 쩜 줍 앰', '노이 쩜 토이'], k: '천천히 말 slowly speak' },
   { id: 'english', cat: 'greet', ko: ['영어 할 줄 아세요?', '영어 할 줄 알아?'], en: 'Do you speak English?', vi: ['Có nói tiếng Anh được không ạ?', 'Bạn nói tiếng Anh được không?'], pr: ['꼬 노이 띠엥 아잉 드억 콩 아?', '반 노이 띠엥 아잉 드억 콩?'], k: '영어 english' },
@@ -567,10 +570,10 @@ var PHRASES = [
   { id: 'whatisthis', cat: 'greet', ko: ['이게 뭐예요?', '이거 뭐야?'], en: 'What is this?', vi: ['Cho em hỏi, cái này là gì?', 'Cái này là gì?'], pr: ['쪼 앰 호이, 까이 나이 라 지?', '까이 나이 라 지?'], k: '뭐예요 무엇 what' },
 
   { id: 'menu', cat: 'food', ko: ['메뉴판 좀 주세요', '메뉴판 좀 줘'], en: 'Menu, please', vi: ['Cho em xem thực đơn', 'Cho tôi xem thực đơn nhé'], pr: ['쪼 앰 쌤 특 던', '쪼 또이 쌤 특 던 녜'], k: '메뉴 주문 menu order' },
-  { id: 'nocilantro', cat: 'food', ko: ['고수 못 먹어요, 넣지 말아 주세요', '고수 넣지 마'], en: "I can't eat cilantro, please leave it out", vi: ['Em không ăn được rau mùi, đừng cho nhé', 'Đừng cho rau mùi nhé'], pr: ['앰 콩 안 드억 자우 무이, 등 쪼 녜', '등 쪼 자우 무이 녜'], k: '고수 빼 주세요 빼줘 넣지 마 향채 허브 cilantro coriander herb rau mui ngo dung cho', note: { ko: '남부(호치민)에서는 고수를 ngò(응오)라고 하고 Đừng bỏ ngò nha(등 보 응오 냐)라고 해요. bỏ는 남부에선 "넣다"지만 북부에선 "빼다"라서, Không bỏ rau mùi는 하노이에선 "고수 빼지 마세요"로 들릴 수 있어요. cho(넣다)는 어디서나 통해요.', en: 'In the south cilantro is “ngò”: Đừng bỏ ngò nha. “Bỏ” means “put in” in the south but “take out” in the north, so “Không bỏ rau mùi” can sound like “don’t take out the cilantro” in Hanoi. “Cho” (put in) works everywhere.' } },
-  { id: 'noice', cat: 'food', ko: ['얼음 빼 주세요', '얼음 빼 줘'], en: 'No ice, please', vi: ['Đừng cho đá giúp em', 'Đừng cho đá nhé'], pr: ['등 쪼 다 줍 앰', '등 쪼 다 녜'], k: '얼음 ice', note: { ko: '남부(호치민)에서는 Đừng bỏ đá nha(등 보 다 냐)라고 많이 해요. bỏ는 북부에서 "빼다"라는 뜻이라, 하노이에서는 cho(넣다)를 쓰는 게 안전해요. 음료를 시킬 때 Một cà phê sữa, không đá(얼음 없이 연유 커피 하나)처럼 뒤에 붙여도 돼요.', en: 'In the south people often say “Đừng bỏ đá nha”. In the north bỏ means “take out”, so “cho” is the safe choice in Hanoi. You can also tag it onto a drink order: “Một cà phê sữa, không đá”.' } },
+  { id: 'nocilantro', cat: 'food', ko: ['고수를 넣지 말아 주세요', '고수 넣지 마'], en: 'Please leave out the cilantro', vi: ['Đừng cho rau mùi vào món này giúp em nhé.', 'Đừng cho rau mùi nhé.'], pr: ['등 쪼 자우 무이 바오 몬 나이 줍 앰 녜', '등 쪼 자우 무이 녜'], k: '고수 빼 주세요 빼줘 넣지 마 향채 허브 cilantro coriander herb rau mui ngo dung cho', note: { ko: '남부(호치민)에서는 고수를 ngò(응오)라고 해요. bỏ는 문맥과 함께 쓰이는 말에 따라 뜻이 달라질 수 있어서, 재료를 넣지 말아 달라고 할 때는 Đừng cho... 또는 Không cho...를 쓰면 뜻을 분명하게 전할 수 있어요.', en: 'In the south cilantro is “ngò”. The meaning of “bỏ” depends on context, so to ask for an ingredient to be left out, “Đừng cho…” or “Không cho…” is the clearest.' } },
+  { id: 'noice', cat: 'food', ko: ['얼음 빼 주세요', '얼음 빼 줘'], en: 'No ice, please', vi: ['Đừng cho đá giúp em', 'Đừng cho đá nhé'], pr: ['등 쪼 다 줍 앰', '등 쪼 다 녜'], k: '얼음 ice', note: { ko: 'bỏ는 문맥에 따라 뜻이 달라질 수 있어서, 넣지 말아 달라고 할 때는 Đừng cho...가 가장 분명해요. 남부에서는 Đừng bỏ đá nha(등 보 다 냐)라는 말도 자주 들을 수 있어요. 음료를 시킬 때는 Cho em đồ uống không đá nhé(쪼 앰 도 우옹 콩 다 녜, 얼음 없이 주세요)처럼 말해도 돼요.', en: 'Because “bỏ” changes meaning with context, “Đừng cho…” is the clearest way to ask for no ice. In the south you will also hear “Đừng bỏ đá nha”. When ordering a drink you can say “Cho em đồ uống không đá nhé” (no ice, please).' } },
   { id: 'lesssweet', cat: 'food', ko: ['덜 달게 해 주세요', '덜 달게 해 줘'], en: 'Less sugar, please', vi: ['Cho em ít đường', 'Cho tôi ít đường nhé'], pr: ['쪼 앰 잇 드엉', '쪼 또이 잇 드엉 녜'], k: '설탕 단맛 당도 sugar sweet' },
-  { id: 'nospicy', cat: 'food', ko: ['안 맵게 해 주세요', '안 맵게 해 줘'], en: 'Not spicy, please', vi: ['Cho em không cay', 'Cho tôi không cay nhé'], pr: ['쪼 앰 콩 까이', '쪼 또이 콩 까이 녜'], k: '매운 고추 spicy chili' },
+  { id: 'nospicy', cat: 'food', ko: ['이 음식은 맵지 않게 해 주세요', '이거 안 맵게 해 줘'], en: 'Please make this not spicy', vi: ['Làm món này không cay giúp em nhé.', 'Làm món này không cay nhé.'], pr: ['람 몬 나이 콩 까이 줍 앰 녜', '람 몬 나이 콩 까이 녜'], k: '매운 고추 안 맵게 spicy chili', note: { ko: '고추만 빼 달라고 할 때는 Đừng cho ớt(등 쪼 엇)이라고 해요.', en: 'To ask for no chili only: “Đừng cho ớt”.' } },
   { id: 'water', cat: 'food', ko: ['물 한 병 주세요', '물 한 병 줘'], en: 'A bottle of water, please', vi: ['Cho em một chai nước', 'Cho tôi một chai nước nhé'], pr: ['쪼 앰 못 짜이 느억', '쪼 또이 못 짜이 느억 녜'], k: '물 생수 water' },
   { id: 'toilet', cat: 'food', ko: ['화장실이 어디예요?', '화장실 어디야?'], en: 'Where is the restroom?', vi: ['Cho em hỏi, nhà vệ sinh ở đâu?', 'Nhà vệ sinh ở đâu?'], pr: ['쪼 앰 호이, 냐 베 씽 어 더우?', '냐 베 씽 어 더우?'], k: '화장실 toilet restroom wc bathroom' },
   { id: 'takeaway', cat: 'food', ko: ['포장해 주세요', '포장해 줘'], en: 'To go, please', vi: ['Cho em mang về', 'Cho tôi mang về nhé'], pr: ['쪼 앰 망 베', '쪼 또이 망 베 녜'], k: '포장 테이크아웃 take away takeout' },
@@ -581,7 +584,8 @@ var PHRASES = [
   { id: 'thisdish', cat: 'food', ko: ['이거 주세요 (메뉴를 가리키며)', '이거 줘'], en: 'This one, please (pointing at the menu)', vi: ['Cho em món này', 'Cho tôi món này nhé'], pr: ['쪼 앰 몬 나이', '쪼 또이 몬 나이 녜'], k: '주문 이거 order this' },
   { id: 'onemore', cat: 'food', ko: ['하나 더 주세요', '하나 더 줘'], en: 'One more, please', vi: ['Cho em thêm một phần nữa', 'Thêm một phần nữa nhé'], pr: ['쪼 앰 템 못 펀 느어', '템 못 펀 느어 녜'], k: '추가 하나 더 more another', note: { ko: '음식은 phần(펀), 병은 chai(짜이), 캔은 lon(론), 잔은 cốc(꼭, 북부)·ly(리, 남부)로 바꿔 말해요. 예: Cho em thêm một lon nữa(맥주 한 캔 더)', en: 'Swap phần (a dish) for chai (bottle), lon (can) or cốc / ly (glass, north / south): “Cho em thêm một lon nữa” (one more can)' } },
   { id: 'nomsg', cat: 'food', ko: ['MSG 빼 주세요', 'MSG 빼 줘'], en: 'No MSG, please', vi: ['Đừng cho mì chính giúp em', 'Đừng cho mì chính nhé'], pr: ['등 쪼 미 찐 줍 앰', '등 쪼 미 찐 녜'], k: '조미료 msg 미원', note: { ko: '남부(호치민)에서는 MSG를 bột ngọt(봇 응옷)이라고 해요', en: 'In the south MSG is “bột ngọt”' } },
-  { id: 'nopeanut', cat: 'food', ko: ['땅콩 빼 주세요', '땅콩 빼 줘'], en: 'No peanuts, please', vi: ['Đừng cho lạc giúp em', 'Đừng cho lạc nhé'], pr: ['등 쪼 락 줍 앰', '등 쪼 락 녜'], k: '땅콩 견과 알레르기 peanut nut', note: { ko: '남부에서는 땅콩을 đậu phộng(더우 퐁)이라고 해요', en: 'In the south peanuts are “đậu phộng”' } },
+  { id: 'nopeanut', cat: 'food', ko: ['땅콩을 넣지 말아 주세요', '땅콩 넣지 마'], en: 'Please leave out the peanuts', vi: ['Đừng cho lạc vào món này giúp em nhé.', 'Đừng cho lạc nhé.'], pr: ['등 쪼 락 바오 몬 나이 줍 앰 녜', '등 쪼 락 녜'], k: '땅콩 견과 빼 주세요 peanut nut', note: { ko: '남부에서는 땅콩을 đậu phộng(더우 퐁)이라고 해요. 알레르기가 있다면 아래 "땅콩 알레르기가 있어요"를 함께 보여 주세요.', en: 'In the south peanuts are “đậu phộng”. If you are allergic, also show “I am allergic to peanuts” below.' } },
+  { id: 'peanutallergy', cat: 'food', ko: ['저는 땅콩 알레르기가 있어요', '나 땅콩 알레르기 있어'], en: 'I am allergic to peanuts', vi: ['Em bị dị ứng với lạc.', 'Tôi bị dị ứng với lạc.'], pr: ['앰 비 지 응 버이 락', '또이 비 지 응 버이 락'], k: '땅콩 알레르기 견과 allergy allergic peanut nut', note: { ko: '남부에서는 Em bị dị ứng với đậu phộng(앰 비 지 응 버이 더우 퐁)이라고 해요.', en: 'In the south: “Em bị dị ứng với đậu phộng”.' } },
   { id: 'isspicy', cat: 'food', ko: ['이거 매워요?', '이거 매워?'], en: 'Is this spicy?', vi: ['Món này có cay không ạ?', 'Món này cay không?'], pr: ['몬 나이 꼬 까이 콩 아?', '몬 나이 까이 콩?'], k: '매워 매운 spicy' },
   { id: 'vegetarian', cat: 'food', ko: ['채식 메뉴 있어요?', '채식 메뉴 있어?'], en: 'Do you have vegetarian dishes?', vi: ['Ở đây có món chay không ạ?', 'Có món chay không?'], pr: ['어 더이 꼬 몬 짜이 콩 아?', '꼬 몬 짜이 콩?'], k: '채식 비건 고기 vegetarian vegan' },
   { id: 'forhere', cat: 'food', ko: ['먹고 갈게요', '먹고 갈게'], en: 'For here, please', vi: ['Em ăn ở đây', 'Ăn ở đây nhé'], pr: ['앰 안 어 더이', '안 어 더이 녜'], k: '매장 먹고 갈게요 for here eat in' },
@@ -610,7 +614,7 @@ var PHRASES = [
   { id: 'receipt', cat: 'shop', ko: ['영수증 주세요', '영수증 줘'], en: 'A receipt, please', vi: ['Cho em xin hóa đơn', 'Cho tôi hóa đơn nhé'], pr: ['쪼 앰 씬 화 던', '쪼 또이 화 던 녜'], k: '영수증 receipt' },
 
   { id: 'goto', cat: 'move', ko: ['이 주소로 가 주세요', '이 주소로 가 줘'], en: 'Please take me to this address', vi: ['Cho em đến địa chỉ này', 'Chở tôi đến địa chỉ này nhé'], pr: ['쪼 앰 덴 디어 찌 나이', '쩌 또이 덴 디어 찌 나이 녜'], k: '택시 그랩 주소 taxi grab address' },
-  { id: 'stop', cat: 'move', ko: ['여기서 세워 주세요', '여기서 세워 줘'], en: 'Please stop here', vi: ['Cho em xuống ở đây', 'Cho tôi xuống đây nhé'], pr: ['쪼 앰 쑤옹 어 더이', '쪼 또이 쑤옹 더이 녜'], k: '택시 그랩 세워 정차 내려 taxi stop' },
+  { id: 'stop', cat: 'move', ko: ['여기서 내려 주세요', '여기서 내려 줘'], en: 'Let me off here, please', vi: ['Cho em xuống ở đây', 'Cho tôi xuống đây nhé'], pr: ['쪼 앰 쑤옹 어 더이', '쪼 또이 쑤옹 더이 녜'], k: '택시 그랩 세워 정차 내려 하차 taxi stop drop off', note: { ko: '잠깐 세워 달라고 할 때는 Dừng xe ở đây giúp em nhé(증 쌔 어 더이 줍 앰 녜)라고 해요.', en: 'To ask the driver just to pull over here: “Dừng xe ở đây giúp em nhé”.' } },
   { id: 'meter', cat: 'move', ko: ['미터기 켜 주세요', '미터기 켜 줘'], en: 'Please turn on the meter', vi: ['Bật đồng hồ giúp em', 'Bật đồng hồ đi'], pr: ['벗 동 호 줍 앰', '벗 동 호 디'], k: '택시 미터 taxi meter' },
   { id: 'airport', cat: 'move', ko: ['공항까지 얼마예요?', '공항까지 얼마야?'], en: 'How much to the airport?', vi: ['Cho em hỏi, ra sân bay bao nhiêu tiền?', 'Ra sân bay bao nhiêu?'], pr: ['쪼 앰 호이, 자 썬 바이 바오 니에우 띠엔?', '자 썬 바이 바오 니에우?'], k: '공항 택시 airport taxi' },
   { id: 'slowdown', cat: 'move', ko: ['천천히 가 주세요', '천천히 가 줘'], en: 'Please go slowly', vi: ['Đi chậm giúp em', 'Đi chậm thôi!'], pr: ['디 쩜 줍 앰', '디 쩜 토이!'], k: '천천히 오토바이 그랩바이크 slow bike grab' },
@@ -642,25 +646,27 @@ var PHRASES = [
   { id: 'footmassage', cat: 'spa', ko: ['발 마사지 받을게요', '발 마사지 할래'], en: "I'd like a foot massage", vi: ['Em muốn mát-xa chân', 'Cho tôi mát-xa chân nhé'], pr: ['앰 무온 맛 싸 쩐', '쪼 또이 맛 싸 쩐 녜'], k: '발마사지 foot massage' },
   { id: 'harder', cat: 'spa', ko: ['좀 더 세게 해 주세요', '더 세게 해 줘'], en: 'A bit harder, please', vi: ['Mạnh hơn một chút ạ', 'Mạnh hơn chút nhé'], pr: ['마잉 헌 못 쭛 아', '마잉 헌 쭛 녜'], k: '세게 강하게 압 harder stronger' },
   { id: 'softer', cat: 'spa', ko: ['좀 더 약하게 해 주세요', '살살 해 줘'], en: 'A bit softer, please', vi: ['Nhẹ hơn một chút ạ', 'Nhẹ thôi nhé'], pr: ['녜 헌 못 쭛 아', '녜 토이 녜'], k: '약하게 살살 부드럽게 softer gentle' },
-  { id: 'hurts', cat: 'spa', ko: ['아파요', '아파'], en: 'That hurts', vi: ['Đau quá ạ', 'Đau quá!'], pr: ['다우 꽈 아', '다우 꽈!'], k: '아파 통증 hurts pain' },
+  { id: 'hurts', cat: 'spa', ko: ['너무 아파요', '너무 아파'], en: 'That hurts a lot', vi: ['Đau quá ạ', 'Đau quá!'], pr: ['다우 꽈 아', '다우 꽈!'], k: '아파 통증 hurts pain' },
   { id: 'feelsgood', cat: 'spa', ko: ['시원하고 좋아요', '시원하다'], en: 'That feels good', vi: ['Dễ chịu lắm ạ', 'Dễ chịu quá'], pr: ['제 찌우 람 아', '제 찌우 꽈'], k: '시원해 좋아 feels good' },
   { id: 'skiparea', cat: 'spa', ko: ['여기는 하지 말아 주세요', '여긴 하지 마'], en: 'Please skip this area', vi: ['Đừng bóp chỗ này ạ', 'Đừng bóp chỗ này nhé'], pr: ['등 봅 쪼 나이 아', '등 봅 쪼 나이 녜'], k: '하지 마세요 부위 skip area', note: { ko: 'bóp(봅)은 주무르다라는 뜻으로, 마사지할 때 흔히 써요', en: '“Bóp” means to knead and is the everyday word in massage shops' } },
   { id: 'tipincl', cat: 'spa', ko: ['팁 포함이에요?', '팁 포함이야?'], en: 'Is the tip included?', vi: ['Đã bao gồm tiền tip chưa ạ?', 'Đã gồm tip chưa?'], pr: ['다 바오 곰 띠엔 띱 쯔어 아?', '다 곰 띱 쯔어?'], k: '팁 포함 tip included', note: { ko: '영수증이나 가격표에 Tip included라고 적혀 있는지도 확인해 보세요', en: 'Also check whether the menu or receipt says “Tip included”' } },
 
   { id: 'help', cat: 'help', ko: ['도와주세요!', '도와줘!'], en: 'Help!', vi: ['Cứu em với!', 'Cứu tôi với!'], pr: ['끄우 앰 버이!', '끄우 또이 버이!'], k: '도움 살려 help' },
+  { id: 'whereami', cat: 'help', ko: ['지금 ...에 있어요', '나 지금 ...에 있어'], en: 'I am at ... now', vi: ['Em đang ở ...', 'Tôi đang ở ...'], pr: ['앰 당 어 ...', '또이 당 어 ...'], k: '위치 어디 장소 여기 location where', note: { ko: '... 자리에 가게나 호텔 이름, 거리 이름을 넣어 말해요.', en: 'Fill in a shop, hotel or street name.' } },
+  { id: 'myaddress', cat: 'help', ko: ['주소는 ...예요', '주소는 ...야'], en: 'The address is ...', vi: ['Địa chỉ là ...', 'Địa chỉ là ...'], pr: ['디아 찌 라 ...', '디아 찌 라 ...'], k: '주소 숙소 호텔 address hotel', note: { ko: '여행 준비 탭의 "내 여행 노트"에 숙소 주소를 적어 두면 바로 크게 보여 줄 수 있어요.', en: 'Save your hotel address in My trip notes (Trip Prep tab) to show it in large type.' } },
   { id: 'police', cat: 'help', ko: ['경찰 좀 불러 주세요', '경찰 불러 줘'], en: 'Please call the police', vi: ['Làm ơn gọi công an giúp em', 'Gọi công an giúp tôi!'], pr: ['람 언 고이 꽁 안 줍 앰', '고이 꽁 안 줍 또이!'], k: '경찰 도난 신고 police', note: { ko: '베트남에서 경찰은 보통 công an(꽁 안)이라고 불러요', en: 'Police in Vietnam are usually called “công an”' } },
   { id: 'hospital', cat: 'help', ko: ['병원에 데려다 주세요', '병원 데려다 줘'], en: 'Please take me to a hospital', vi: ['Làm ơn đưa em đến bệnh viện', 'Đưa tôi đi bệnh viện!'], pr: ['람 언 드어 앰 덴 베잉 비엔', '드어 또이 디 베잉 비엔!'], k: '병원 아파 hospital doctor' },
-  { id: 'passport', cat: 'help', ko: ['여권을 잃어버렸어요', '여권 잃어버렸어'], en: 'I lost my passport', vi: ['Em bị mất hộ chiếu', 'Tôi bị mất hộ chiếu rồi'], pr: ['앰 비 멋 호 찌에우', '또이 비 멋 호 찌에우 조이'], k: '여권 분실 passport lost' },
+  { id: 'passport', cat: 'help', ko: ['여권을 잃어버렸어요', '여권 잃어버렸어'], en: 'I lost my passport', vi: ['Em bị mất hộ chiếu.', 'Tôi bị mất hộ chiếu rồi.'], pr: ['앰 비 멋 호 찌에우', '또이 비 멋 호 찌에우 조이'], k: '여권 분실 passport lost' },
   { id: 'sick', cat: 'help', ko: ['몸이 안 좋아요', '몸이 안 좋아'], en: "I don't feel well", vi: ['Em thấy không khỏe', 'Tôi bị ốm rồi'], pr: ['앰 터이 콩 퀘', '또이 비 옴 조이'], k: '아파 감기 배탈 sick ill', note: { ko: '아프다는 말은 북부에서 bị ốm(비 옴), 남부에서 bị bệnh(비 베잉)이라고 해요', en: '“Sick” is bị ốm in the north and bị bệnh in the south' } },
   { id: 'allergy', cat: 'help', ko: ['저 알레르기 있어요', '나 알레르기 있어'], en: 'I have an allergy', vi: ['Em bị dị ứng', 'Tôi bị dị ứng'], pr: ['앰 비 지 응', '또이 비 지 응'], k: '알레르기 땅콩 allergy' },
   { id: 'ambulance', cat: 'help', ko: ['구급차 불러 주세요', '구급차 불러 줘'], en: 'Please call an ambulance', vi: ['Làm ơn gọi xe cấp cứu giúp em', 'Gọi cấp cứu đi!'], pr: ['람 언 고이 쌔 껍 끄우 줍 앰', '고이 껍 끄우 디!'], k: '구급차 응급 ambulance emergency', note: { ko: '베트남 구급차 번호는 115예요', en: 'The ambulance number in Vietnam is 115' } },
-  { id: 'pharmacy', cat: 'help', ko: ['약국이 어디예요?', '약국 어디야?'], en: 'Where is a pharmacy?', vi: ['Cho em hỏi, hiệu thuốc ở đâu?', 'Nhà thuốc ở đâu?'], pr: ['쪼 앰 호이, 히에우 투옥 어 더우?', '냐 투옥 어 더우?'], k: '약국 약 pharmacy medicine', note: { ko: '약국 간판에는 보통 Nhà thuốc(냐 투옥)이라고 쓰여 있어요', en: 'Pharmacy signs usually say “Nhà thuốc”' } },
+  { id: 'pharmacy', cat: 'help', ko: ['약국이 어디에 있나요?', '약국 어디 있어?'], en: 'Where is a pharmacy?', vi: ['Cho em hỏi, hiệu thuốc ở đâu?', 'Nhà thuốc ở đâu?'], pr: ['쪼 앰 호이, 히에우 투옥 어 더우?', '냐 투옥 어 더우?'], k: '약국 약 pharmacy medicine', note: { ko: '약국 간판에는 보통 Nhà thuốc(냐 투옥)이라고 쓰여 있어요', en: 'Pharmacy signs usually say “Nhà thuốc”' } },
   { id: 'stomach', cat: 'help', ko: ['배가 아파요', '배 아파'], en: 'I have a stomachache', vi: ['Em bị đau bụng', 'Tôi đau bụng'], pr: ['앰 비 다우 붕', '또이 다우 붕'], k: '복통 배탈 설사 stomach' },
   { id: 'fever', cat: 'help', ko: ['열이 나요', '열 나'], en: 'I have a fever', vi: ['Em bị sốt', 'Tôi bị sốt'], pr: ['앰 비 쏫', '또이 비 쏫'], k: '열 감기 fever' },
   { id: 'hurtshere', cat: 'help', ko: ['여기가 아파요', '여기 아파'], en: 'It hurts here', vi: ['Em đau ở đây', 'Tôi đau chỗ này'], pr: ['앰 다우 어 더이', '또이 다우 쪼 나이'], k: '통증 부위 병원 hurts pain' },
-  { id: 'stolen', cat: 'help', ko: ['가방을 도둑맞았어요', '가방 도둑맞았어'], en: 'My bag was stolen', vi: ['Em bị trộm mất túi rồi', 'Tôi bị trộm mất túi rồi'], pr: ['앰 비 쫌 멋 뚜이 조이', '또이 비 쫌 멋 뚜이 조이'], k: '도난 소매치기 날치기 stolen theft', note: { ko: '오토바이 날치기를 당했으면 bị giật(비 젓)이라고 해요: Em bị giật túi(앰 비 젓 뚜이)', en: 'If it was snatched from a motorbike, say “bị giật”: Em bị giật túi' } },
-  { id: 'lostphone', cat: 'help', ko: ['휴대폰을 잃어버렸어요', '폰 잃어버렸어'], en: 'I lost my phone', vi: ['Em bị mất điện thoại', 'Tôi mất điện thoại rồi'], pr: ['앰 비 멋 디엔 토아이', '또이 멋 디엔 토아이 조이'], k: '휴대폰 핸드폰 분실 phone lost' },
-  { id: 'embassy', cat: 'help', ko: ['한국 대사관에 연락하고 싶어요', '한국 대사관에 연락하고 싶어'], en: 'I want to contact the Korean Embassy', vi: ['Em muốn liên lạc với Đại sứ quán Hàn Quốc', 'Tôi muốn liên lạc với Đại sứ quán Hàn Quốc'], pr: ['앰 무온 리엔 락 버이 다이 쓰 꽌 한 꾸옥', '또이 무온 리엔 락 버이 다이 쓰 꽌 한 꾸옥'], k: '대사관 영사관 embassy consulate' }
+  { id: 'stolen', cat: 'help', ko: ['가방을 도둑맞았어요', '가방 도둑맞았어'], en: 'My bag was stolen', vi: ['Em bị trộm mất túi rồi.', 'Tôi bị trộm mất túi rồi.'], pr: ['앰 비 쫌 멋 뚜이 조이', '또이 비 쫌 멋 뚜이 조이'], k: '도난 소매치기 날치기 stolen theft', note: { ko: '오토바이 날치기를 당했으면 bị giật(비 젓)이라고 해요: Em bị giật túi(앰 비 젓 뚜이)', en: 'If it was snatched from a motorbike, say “bị giật”: Em bị giật túi' } },
+  { id: 'lostphone', cat: 'help', ko: ['휴대폰을 잃어버렸어요', '폰 잃어버렸어'], en: 'I lost my phone', vi: ['Em bị mất điện thoại.', 'Tôi mất điện thoại rồi.'], pr: ['앰 비 멋 디엔 토아이', '또이 멋 디엔 토아이 조이'], k: '휴대폰 핸드폰 분실 phone lost' },
+  { id: 'embassy', cat: 'help', ko: ['한국 대사관이나 총영사관에 연락하고 싶어요', '한국 대사관이나 총영사관에 연락하고 싶어'], en: 'I want to contact the Korean Embassy or Consulate General', vi: ['Em muốn liên lạc với Đại sứ quán hoặc Tổng Lãnh sự quán Hàn Quốc.', 'Tôi muốn liên lạc với Đại sứ quán hoặc Tổng Lãnh sự quán Hàn Quốc.'], pr: ['앰 무온 리엔 락 버이 다이 쓰 꽌 확 똥 라잉 쓰 꽌 한 꾸옥', '또이 무온 리엔 락 버이 다이 쓰 꽌 확 똥 라잉 쓰 꽌 한 꾸옥'], k: '대사관 영사관 embassy consulate' }
 ];
 
 /* who is who: the word for "you" and for "I" by the other person's age (northern standard) */
@@ -711,7 +717,7 @@ var BILLS = [
 var NUMS = [
   { n: '0', vi: 'không', pr: '콩' }, { n: '1', vi: 'một', pr: '못' }, { n: '2', vi: 'hai', pr: '하이' }, { n: '3', vi: 'ba', pr: '바' },
   { n: '4', vi: 'bốn', pr: '본' }, { n: '5', vi: 'năm', pr: '남' }, { n: '6', vi: 'sáu', pr: '싸우' }, { n: '7', vi: 'bảy', pr: '바이' },
-  { n: '8', vi: 'tám', pr: '땀' }, { n: '9', vi: 'chín', pr: '찐' }, { n: '10', vi: 'mười', pr: '므어이' }, { n: '100', vi: 'trăm', pr: '짬' }
+  { n: '8', vi: 'tám', pr: '땀' }, { n: '9', vi: 'chín', pr: '찐' }, { n: '10', vi: 'mười', pr: '므어이' }, { n: '100', vi: 'một trăm', pr: '못 짬' }
 ];
 var BIGNUMS = [
   { n: '1,000', vi: 'một nghìn', pr: '못 응인', alt: 'ngàn (남부)', altEn: 'ngàn (south)' },
@@ -748,37 +754,37 @@ var DISHES = [
   { id: 'phoga', cat: 'noodle', vi: 'Phở gà', ko: '닭고기 쌀국수', en: 'Chicken pho', pr: '퍼 가', herb: 1, k: '쌀국수 닭 pho chicken',
     d: { ko: '담백한 닭 육수에 찢은 닭고기를 올려요. 아침 식사로 특히 인기예요.', en: 'Light chicken broth with shredded chicken, a breakfast favorite.' }, tag: { ko: '아침 식사', en: 'Breakfast' } },
   { id: 'buncha', cat: 'noodle', vi: 'Bún chả', ko: '분짜', en: 'Bún chả', pr: '분 짜', herb: 1, k: '분짜 국수 돼지 숯불 pork grilled',
-    d: { ko: '숯불에 구운 돼지고기를 새콤달콤한 느억맘 소스에 담가 쌀국수와 함께 찍어 먹어요.', en: 'Charcoal-grilled pork in a sweet-sour fish sauce dip, eaten with rice vermicelli.' }, tag: { ko: '하노이 명물', en: 'Hanoi icon' } },
+    d: { ko: '숯불에 구운 돼지고기와 쌀국수, 채소를 새콤달콤한 소스에 곁들여 먹어요.', en: 'Charcoal-grilled pork with rice vermicelli and greens, eaten with a sweet-sour dipping sauce.' }, tag: { ko: '하노이 명물', en: 'Hanoi icon' } },
   { id: 'bunbohue', cat: 'noodle', vi: 'Bún bò Huế', ko: '분보후에', en: 'Huế spicy beef noodles', pr: '분 보 후에', herb: 1, k: '매운 국수 소고기 spicy beef',
     d: { ko: '레몬그라스 향과 고추기름이 도는 얼큰한 국물에 굵은 쌀국수를 말아요.', en: 'Lemongrass and chili-oil broth with thick round rice noodles.' }, tag: { ko: '중부 · 매콤', en: 'Central · spicy' } },
   { id: 'miquang', cat: 'noodle', vi: 'Mì Quảng', ko: '미꽝', en: 'Mì Quảng', pr: '미 꽝', herb: 1, k: '국수 다낭 noodle danang',
-    d: { ko: '강황으로 물들인 넓은 면에 국물을 자작하게 붓고, 쌀 크래커를 부숴 올려 먹어요.', en: 'Turmeric-tinted wide noodles in a shallow broth, topped with crushed rice crackers.' }, tag: { ko: '다낭 · 호이안', en: 'Da Nang · Hội An' } },
+    d: { ko: '넓적한 쌀국수에 국물을 자작하게 붓고, 바삭한 쌀과자를 곁들여 먹어요.', en: 'Flat rice noodles in a shallow broth, served with crunchy rice crackers.' }, tag: { ko: '다낭 · 호이안', en: 'Da Nang · Hội An' } },
   { id: 'caolau', cat: 'noodle', vi: 'Cao lầu', ko: '까오러우', en: 'Cao lầu', pr: '까오 러우', herb: 1, k: '국수 호이안 noodle hoi an',
     d: { ko: '쫄깃하고 두툼한 면에 돼지고기와 허브, 바삭한 튀김을 올린 호이안 대표 국수예요.', en: "Chewy thick noodles with pork, herbs and crispy croutons, Hội An's signature." }, tag: { ko: '호이안', en: 'Hội An' } },
   { id: 'comtam', cat: 'rice', vi: 'Cơm tấm', ko: '껌떰 (숯불갈비 덮밥)', en: 'Broken rice with grilled pork', pr: '껌 떰', k: '밥 갈비 덮밥 pork rice',
-    d: { ko: '부서진 쌀로 지은 밥에 숯불 돼지갈비(sườn)와 계란찜을 곁들이고 느억맘을 뿌려 먹어요.', en: 'Broken rice with a charcoal-grilled pork chop (sườn), egg meatloaf and fish sauce.' }, tag: { ko: '호치민 명물', en: 'Saigon icon' } },
+    d: { ko: '잘게 부서진 쌀로 지은 밥에 구운 돼지고기 등 여러 반찬을 곁들여 먹어요. 반찬 구성은 가게와 메뉴에 따라 달라요.', en: 'Broken rice with grilled pork and other sides; what comes with it varies by shop and menu.' }, tag: { ko: '호치민 명물', en: 'Saigon icon' } },
   { id: 'banhxeo', cat: 'rice', vi: 'Bánh xèo', ko: '반쎄오 (베트남식 부침개)', en: 'Sizzling crêpe', pr: '반 쎄오', herb: 1, k: '부침개 전 pancake crepe',
     d: { ko: '쌀가루 반죽에 새우·돼지고기·숙주를 넣어 바삭하게 부친 뒤 채소와 라이스페이퍼에 싸 먹어요.', en: 'Crispy rice-flour crêpe with shrimp, pork and bean sprouts, wrapped in greens and rice paper.' }, tag: { ko: '쌈 싸 먹기', en: 'Wrap & dip' } },
   { id: 'comga', cat: 'rice', vi: 'Cơm gà', ko: '껌가 (닭고기 덮밥)', en: 'Chicken rice', pr: '껌 가', herb: 1, k: '닭 밥 덮밥 chicken rice',
     d: { ko: '닭고기를 올린 덮밥이에요. 호이안식은 닭 육수로 지은 노란 밥에 찢은 닭고기를, 남부에서는 바삭한 닭다리(cơm gà xối mỡ)를 올려 먹어요.', en: 'Chicken over rice. Hội An style uses golden rice cooked in chicken stock with shredded chicken; in the south it comes with a crispy chicken leg (cơm gà xối mỡ).' }, tag: { ko: '지역마다 달라요', en: 'Varies by region' } },
   { id: 'goicuon', cat: 'snack', vi: 'Gỏi cuốn', ko: '고이꾸온 (월남쌈)', en: 'Fresh spring rolls', pr: '고이 꾸온', herb: 1, k: '월남쌈 스프링롤 spring roll fresh',
-    d: { ko: '새우, 돼지고기, 쌀국수, 채소를 라이스페이퍼로 말아 땅콩 소스에 찍어 먹어요.', en: 'Shrimp, pork, noodles and herbs rolled in rice paper, with peanut dipping sauce.' }, tag: { ko: '땅콩 소스', en: 'Peanut sauce' } },
+    d: { ko: '새우와 돼지고기, 쌀국수, 채소 등을 라이스페이퍼로 말아 소스에 찍어 먹어요. 땅콩 소스 등을 곁들이며 소스는 가게마다 달라요.', en: 'Shrimp, pork, noodles and greens rolled in rice paper and dipped in sauce, often a peanut sauce; it varies by shop.' }, tag: { ko: '땅콩 소스', en: 'Peanut sauce' } },
   { id: 'chagio', cat: 'snack', vi: 'Chả giò · Nem rán', ko: '짜조 · 냄잔 (튀긴 스프링롤)', en: 'Fried spring rolls', pr: '짜 조 · 냄 잔', k: '스프링롤 튀김 spring roll fried',
     d: { ko: '남부에선 chả giò, 북부에선 nem rán이라고 불러요. 상추와 허브에 싸서 소스에 찍어 먹어요.', en: 'Called chả giò in the south and nem rán in the north. Wrap in lettuce and dip.' }, tag: { ko: '남·북 이름이 달라요', en: 'Name differs N/S' } },
   { id: 'banhmi', cat: 'snack', vi: 'Bánh mì', ko: '반미', en: 'Bánh mì sandwich', pr: '반 미', herb: 1, k: '반미 샌드위치 빵 sandwich bread',
-    d: { ko: "파테, 햄, 구운 고기, 절인 채소를 넣은 바게트 샌드위치. 고수를 빼려면 'không ngò'라고 말하세요.", en: "Baguette with pâté, cold cuts, grilled meat and pickles. Say 'không ngò' to skip the cilantro." }, tag: { ko: '길거리 간식', en: 'Street food' } },
+    d: { ko: "바삭한 바게트에 고기와 파테, 채소 등을 넣은 샌드위치예요. 고수를 빼고 싶다면 'Không ngò nhé.'라고 말할 수 있어요.", en: "A crisp baguette sandwich with meat, pâté and vegetables. Say 'Không ngò nhé.' to skip the cilantro." }, tag: { ko: '길거리 간식', en: 'Street food' } },
   { id: 'caphesuada', cat: 'drink', vi: 'Cà phê sữa đá', ko: '연유 아이스커피', en: 'Iced coffee with condensed milk', pr: '까 페 쓰어 다', k: '커피 연유 아이스 coffee iced',
-    d: { ko: "진하게 내린 베트남 커피에 연유를 넣고 얼음을 부어요. 얼음을 빼려면 'không đá'.", en: "Strong drip coffee over condensed milk and ice. Say 'không đá' for no ice." }, tag: { ko: '국민 커피', en: 'National drink' } },
+    d: { ko: "진하게 내린 커피에 연유와 얼음을 넣어요. 얼음을 넣지 말아 달라고 할 때는 'Không đá nhé.'라고 말할 수 있어요.", en: "Strong coffee with condensed milk and ice. For no ice, say 'Không đá nhé.'" }, tag: { ko: '국민 커피', en: 'National drink' } },
   { id: 'caphetrung', cat: 'drink', vi: 'Cà phê trứng', ko: '에그 커피', en: 'Egg coffee', pr: '까 페 쯩', k: '커피 에그 달걀 coffee egg',
     d: { ko: '달걀노른자와 연유를 거품 내 커피 위에 올린 하노이 명물이에요. 티라미수 같은 맛이에요.', en: 'Whipped egg yolk and condensed milk over coffee, a Hanoi specialty that tastes like tiramisu.' }, tag: { ko: '하노이', en: 'Hanoi' } },
   { id: 'caphemuoi', cat: 'drink', vi: 'Cà phê muối', ko: '소금 커피', en: 'Salt coffee', pr: '까 페 무오이', k: '커피 소금 coffee salt',
-    d: { ko: '살짝 짭짤한 크림을 올린 후에(Huế)식 커피. 단짠 조합이 중독성 있어요.', en: 'Coffee topped with lightly salted cream, from Huế. Sweet and salty.' }, tag: { ko: '후에', en: 'Huế' } },
+    d: { ko: '살짝 짭짤한 크림을 올린 후에(Huế)식 커피예요. 달콤함과 짭짤함이 어우러져요.', en: 'Coffee topped with lightly salted cream, from Huế. Sweet and salty.' }, tag: { ko: '후에', en: 'Huế' } },
   { id: 'sinhtobo', cat: 'drink', vi: 'Sinh tố bơ', ko: '아보카도 스무디', en: 'Avocado smoothie', pr: '씬 또 버', k: '스무디 아보카도 smoothie avocado',
     d: { ko: '아보카도에 연유와 얼음을 넣고 갈아요. 망고(xoài), 수박(dưa hấu) 스무디도 인기예요.', en: 'Avocado blended with condensed milk and ice. Mango (xoài) and watermelon (dưa hấu) are popular too.' }, tag: { ko: '디저트 음료', en: 'Dessert drink' } },
   { id: 'nuocmia', cat: 'drink', vi: 'Nước mía', ko: '사탕수수 주스', en: 'Sugarcane juice', pr: '느억 미어', k: '주스 사탕수수 juice sugarcane',
     d: { ko: '길거리에서 바로 짜 주는 사탕수수 주스예요. 금귤(tắc)을 살짝 넣어 마시기도 해요.', en: 'Freshly pressed at street stalls, often with a squeeze of kumquat (tắc).' }, tag: { ko: '길거리', en: 'Street stall' } },
   { id: 'bia', cat: 'drink', vi: 'Bia', ko: '맥주', en: 'Beer', pr: '비어', k: '맥주 건배 beer cheers',
-    d: { ko: "얼음을 넣어 마시는 게 보통이에요. 건배는 'Một, hai, ba, dô!'(못, 하이, 바, 요!)", en: "Usually served over ice. Toast with 'Một, hai, ba, dô!' (one, two, three, cheers!)" }, tag: { ko: '건배', en: 'Cheers' } }
+    d: { ko: "얼음을 넣어 마시기도 해요. 건배할 때는 'Một, hai, ba, dô!'라고 외쳐요.", en: "Often drunk over ice. To toast, shout 'Một, hai, ba, dô!' (one, two, three, cheers!)" }, tag: { ko: '건배', en: 'Cheers' } }
 ];
 
 /* dishes with a photo in img/food/<id>.webp (made by tools/make_food_photos.py) */
@@ -816,14 +822,14 @@ var WORDS = [
 ];
 
 var MISSIONS = [
-  { emoji: '🏛️', name: { ko: '주베트남 대사관 (하노이)', en: 'Embassy of Korea, Hanoi' },
+  { emoji: '🏛️', name: { ko: '주베트남 대사관(하노이)', en: 'Embassy of Korea, Hanoi' },
     lines: [{ l: 'main', num: '+84-24-3771-0404' }, { l: 'emergency', num: '+84-90-402-6126' }],
     addr: 'SQ4, Do Nhuan, Khu Ngoai Giao Doan, Xuan Tao, Bac Tu Liem, Ha Noi' },
   { emoji: '🏙️', name: { ko: '주호치민 총영사관', en: 'Consulate General, Ho Chi Minh City' },
     lines: [{ l: 'main', num: '+84-28-3822-5757' }, { l: 'emergency', num: '+84-93-850-0238' }],
     addr: '107 Nguyen Du St., District 1, Ho Chi Minh City' },
   { emoji: '🌉', name: { ko: '주다낭 총영사관', en: 'Consulate General, Da Nang' },
-    lines: [{ l: 'main', num: '+84-236-356-6100' }, { l: 'emergency', num: '+82-2-3210-0404' }],
+    lines: [{ l: 'main', num: '+84-236-356-6100' }, { l: 'afterHours', num: '+82-2-3210-0404' }],
     addr: 'Tang 3-4, Lo A1-2 Chuong Duong, P. Khue My, Q. Ngu Hanh Son, Da Nang' }
 ];
 var CALL_CENTER = '+82-2-3210-0404';
@@ -845,13 +851,13 @@ var CITIES = [
       { k: 'move', ko: 'Grab이나 Xanh SM(전기 택시) 앱으로 부르면 요금이 미리 정해져 편해요. 다낭에서 호이안까지는 약 30km, 차로 40~50분이고, 호이안 올드타운 안은 걷거나 자전거로 다니기 좋아요.', en: 'Grab or Xanh SM (electric taxis) show the fare up front. Da Nang to Hội An is about 30 km, 40–50 min by car; Hội An Old Town is best on foot or by bike.' }
     ],
     eats: [
-      { vi: 'Mì Quảng', ko: '미꽝', d: { ko: '강황으로 물들인 넓은 쌀국수에 국물을 자작하게 붓고 새우·돼지고기·땅콩을 얹어 비벼 먹어요', en: 'Turmeric-tinted wide rice noodles in a little broth, topped with shrimp, pork and peanuts' }, dish: 'miquang' },
-      { vi: 'Bánh tráng cuốn thịt heo', ko: '반짱꾸온 (돼지고기 쌈)', d: { ko: '삶은 돼지고기와 채소를 라이스페이퍼에 싸서 멸치 젓갈 소스(맘넴)에 찍어 먹는 다낭 명물', en: 'Boiled pork and fresh herbs rolled in rice paper and dipped in fermented anchovy sauce (mắm nêm), a Da Nang classic' }, dish: '' },
-      { vi: 'Cao lầu', ko: '까오러우', d: { ko: '쫄깃하고 두툼한 면에 돼지고기·채소·바삭한 튀김을 얹은 호이안 국수', en: "Hội An's chewy thick noodles with pork, greens and crispy crackers" }, dish: 'caolau' },
-      { vi: 'Bánh mì Hội An', ko: '호이안 반미', d: { ko: '바삭한 바게트에 고기·파테·채소와 소스를 듬뿍 넣어요. 호이안은 반미 맛집이 많기로 유명해요', en: 'A crisp baguette packed with meats, pâté, greens and sauce; Hội An is known for its bánh mì shops' }, dish: 'banhmi' } ],
+      { vi: 'Mì Quảng', ko: '미꽝', d: { ko: '강황으로 물들인 넓적한 쌀국수에 국물을 자작하게 붓고, 새우·돼지고기 등 다양한 고명과 땅콩을 곁들여 먹어요.', en: 'Turmeric-tinted flat rice noodles in a little broth, with shrimp, pork and other toppings plus peanuts.' }, dish: 'miquang' },
+      { vi: 'Bánh tráng cuốn thịt heo', ko: '돼지고기 라이스페이퍼 쌈', d: { ko: '삶은 돼지고기와 채소를 라이스페이퍼에 싸서, 발효 생선 소스인 맘넴(mắm nêm)에 찍어 먹는 다낭의 대표 음식이에요.', en: 'Boiled pork and fresh greens rolled in rice paper and dipped in mắm nêm, a fermented fish sauce. A Da Nang favourite.' }, dish: '' },
+      { vi: 'Cao lầu', ko: '까오러우', d: { ko: '쫄깃하고 두툼한 면에 돼지고기와 채소, 바삭한 고명을 얹어 먹는 호이안의 대표 국수예요.', en: "Hội An's signature noodles: chewy, thick noodles topped with pork, greens and crispy bits." }, dish: 'caolau' },
+      { vi: 'Bánh mì Hội An', ko: '호이안 반미', d: { ko: '바삭한 바게트에 고기와 파테, 채소, 소스를 넣어 먹어요. 호이안에는 반미로 이름난 가게가 많아요.', en: 'A crisp baguette filled with meat, pâté, greens and sauce. Hội An has many well-known bánh mì shops.' }, dish: 'banhmi' } ],
     tips: [
-      { ko: '2025년 7월 꽝남성이 다낭시에 합쳐지면서 호이안도 행정상 다낭시에 속하게 됐어요. 지도나 예약 사이트에 옛 주소(Quảng Nam)와 새 주소(Đà Nẵng)가 섞여 보여도 같은 곳이에요.', en: 'Since July 2025 Quảng Nam province has been part of Da Nang, so Hội An is now officially in Da Nang. Maps and booking sites may show either the old (Quảng Nam) or the new (Đà Nẵng) address for the same place.' },
-      { ko: '호이안은 등불이 켜지는 저녁이 가장 예뻐요. 다낭에 묵는다면 오후 늦게 가서 야경까지 보고 돌아오는 일정이 좋아요.', en: 'Hội An is prettiest in the evening when the lanterns come on. If you stay in Da Nang, go in the late afternoon and stay for the night views.' } ] },
+      { ko: '2025년 7월 1일 꽝남성(Quảng Nam)과 다낭시(Đà Nẵng)가 통합되면서, 호이안 지역도 새 다낭시의 행정구역에 포함됐어요. 지도나 예약 사이트에 예전 지명인 \'Quảng Nam\'이 남아 있을 수 있으니, 숙소·관광지 이름과 지도 위치를 함께 확인해 주세요.', en: 'On 1 July 2025 Quảng Nam province and Da Nang merged, so Hội An is now part of the new Da Nang. Maps and booking sites may still show the old name Quảng Nam, so check the place name and its map location together.' },
+      { ko: '호이안은 저녁이면 등불이 켜져 낮과는 다른 분위기를 느낄 수 있어요. 다낭에 머문다면 늦은 오후에 방문해 야경까지 즐기는 일정도 좋아요.', en: 'In the evening the lanterns come on and Hội An feels quite different from daytime. If you stay in Da Nang, a late-afternoon visit that runs into the night views works well.' } ] },
   { id: 'nhatrang', emoji: '🏝️', aka: '나트랑 냐짱 나짱 nha trang nhatrang', k: '나트랑 냐짱 나짱 깜라인 캄란 nha trang nhatrang cam ranh',
     name: { ko: '나트랑', en: 'Nha Trang' }, vi: 'Nha Trang',
     tagline: { ko: '긴 해변과 섬 투어, 머드 온천을 즐기는 바닷가 휴양 도시', en: 'A seaside resort city of long beaches, island trips and mud baths' },
@@ -956,7 +962,7 @@ var EXPERIENCES = [
     name: { ko: '호이안 소원배 & 소원등 띄우기', en: 'Wish boat & floating lanterns' },
     vi: 'Đi thuyền thả đèn hoa đăng',
     dur: { ko: '배 약 20분', en: 'About 20 min by boat' },
-    desc: { ko: '해가 지면 올드타운을 흐르는 투본강(호아이강) 위로 형형색색 등불이 켜져요. 작은 나룻배를 타고 강을 돌며 소원을 담은 등을 물 위에 띄우는, 호이안에서 가장 유명한 밤 체험이에요.', en: "As the sun sets, colorful lanterns light up the river through the Old Town. Ride a small boat and set a wish lantern afloat, Hội An's best-known evening experience." },
+    desc: { ko: '해가 지면 투본강의 지류인 호아이강을 따라 등불이 켜져요. 작은 나룻배를 타고 강변 풍경을 감상하며 소원을 담은 등을 띄워 보는 체험이에요.', en: 'At sunset, lanterns light up along the Hoài River, a branch of the Thu Bồn. Take a small boat past the riverside and set a wish lantern afloat.' },
     where: { ko: '호이안 올드타운 강변 (박당 거리, 안호이 다리 근처 매표소)', en: 'Hội An Old Town riverside (ticket booths on Bạch Đằng St. and near An Hội Bridge)' },
     when: { ko: '해 질 무렵 오후 5시~6시 30분이 가장 예뻐요', en: 'Best around sunset, 5–6:30 PM' },
     price: { ko: '배 1척 15만 동(1~3명, 약 {krw:150000}) · 20만 동(4~5명, 약 {krw:200000}), 소원등 1개 약 1만 동', en: 'VND 150,000 per boat for 1–3 people (about {krw:150000}) or VND 200,000 for 4–5 (about {krw:200000}); lanterns about VND 10,000 each' },
@@ -978,8 +984,8 @@ var EXPERIENCES = [
     price: { ko: '케이블카 왕복 포함 입장권 성인(키 1.4m 이상) 100만 동(약 {krw:1000000}) · 어린이(키 1m~1.4m) 80만 동(약 {krw:800000}) · 키 1m 미만 무료 (2026년 기준). 점심 뷔페가 포함된 상품도 있어요', en: 'Ticket incl. round-trip cable car: VND 1,000,000 for adults 1.4 m and taller ({krw:1000000}), VND 800,000 for children 1–1.4 m ({krw:800000}); under 1 m free (2026 prices). Combos with a lunch buffet are also sold' },
     how: { ko: 'Sun World 공식 홈페이지·앱이나 클룩·KKday 같은 예약 앱에서 미리 사면 매표소 줄을 피할 수 있고, 할인이 붙을 때도 있어요. 가는 길은 Grab(편도 약 35만~45만 동)이나 픽업 포함 투어를 이용해요.', en: 'Buy ahead on the Sun World website or app, or on Klook or KKday, to skip the ticket queue, sometimes at a discount. Get there by Grab (about VND 350,000–450,000 one way) or on a tour with pickup.' },
     tips: [
-      { ko: '산 위는 시내보다 5~7도쯤 서늘하고 안개가 자주 껴요. 얇은 겉옷을 챙기고, 날씨가 걱정되면 무료 취소가 되는 표로 예약하세요.', en: 'Up top it is about 5–7 °C cooler than the city and often foggy. Bring a light jacket, and if the weather worries you, book a ticket with free cancellation.' },
-      { ko: '단체 관광객이 몰리기 전에 문 여는 시간에 맞춰 올라가 골든브리지부터 보세요. 오전 9시 30분 전이 비교적 한산해요.', en: 'Go up at opening time and see the Golden Bridge first, before tour groups arrive; it is quieter before 9:30 AM.' } ],
+      { ko: '산 위는 시내보다 서늘하고 날씨가 달라질 수 있어요. 얇은 겉옷을 챙기고, 예약 전에 취소·환불 조건을 확인해 주세요.', en: 'It is cooler up the mountain and the weather can change. Bring a light jacket and check the cancellation and refund terms before you book.' },
+      { ko: '이른 시간에 방문하면 여유롭게 둘러보는 데 도움이 될 수 있어요.', en: 'Going early helps you look around at a more relaxed pace.' } ],
     phrases: [
       { ko: ['어른 표 두 장, 어린이 표 한 장 주세요', '어른 두 장, 어린이 한 장 줘'], en: 'Two adult tickets and one child ticket, please', vi: ['Cho em hai vé người lớn, một vé trẻ em.', 'Cho tôi hai vé người lớn, một vé trẻ em nhé.'], pr: ['쪼 앰 하이 배 응으어이 런, 못 배 째 앰', '쪼 또이 하이 배 응으어이 런, 못 배 째 앰 녜'] },
       { ko: ['골든브리지는 어느 쪽으로 가요?', '골든브리지 어느 쪽이야?'], en: 'Which way to the Golden Bridge?', vi: ['Cho em hỏi, đi Cầu Vàng đường nào?', 'Cầu Vàng đi đường nào?'], pr: ['쪼 앰 호이, 디 꺼우 방 드엉 나오?', '꺼우 방 디 드엉 나오?'] } ],
@@ -988,17 +994,18 @@ var EXPERIENCES = [
     name: { ko: '껌탄 코코넛 숲 바구니배', en: 'Basket boats in the coconut forest' },
     vi: 'Thuyền thúng rừng dừa Bảy Mẫu',
     dur: { ko: '약 1시간', en: 'About 1 hour' },
-    desc: { ko: '대나무로 엮은 동그란 바구니배를 타고 코코넛 숲 사이 물길을 지나가요. 사공이 배를 빙글빙글 돌리는 묘기와 게 잡기 같은 놀이가 이어지는 신나는 체험이에요.', en: 'Glide through coconut-palm waterways in a round woven bamboo boat while boatmen spin the boats and show off tricks like crab catching.' },
+    desc: { ko: '대나무로 엮은 둥근 바구니배를 타고 니파야자가 우거진 물길을 둘러봐요. 흔히 "코코넛 숲"으로 알려진 곳으로, 상품에 따라 회전 묘기나 게 잡기 체험을 함께 즐길 수 있어요.', en: 'Paddle through waterways thick with nipa palms in a round woven bamboo boat. The area is widely known as the "coconut forest"; depending on the tour, boat spinning or crab catching may be included.' },
     where: { ko: '껌탄 코코넛 숲 (Rừng dừa Bảy Mẫu), 호이안 올드타운에서 차로 15분 정도', en: 'Bảy Mẫu coconut forest in Cẩm Thanh, about 15 minutes by car from Hội An Old Town' },
     when: { ko: '덜 더운 오전이나 늦은 오후', en: 'Morning or late afternoon, when it is cooler' },
     price: { ko: '1인 약 10만 동 (약 {krw:100000})', en: 'About VND 100,000 per person ({krw:100000})' },
     how: { ko: '현장에서 표를 사거나, 픽업이 포함된 투어로 예약해요.', en: 'Buy tickets on site or book a tour with pickup.' },
     tips: [
       { ko: '노 젓는 분이 팁을 달라고 할 수 있어요. 팁은 선택이고, 주고 싶다면 5만~10만 동 정도예요.', en: 'Boatmen may ask for a tip. It is optional; VND 50,000–100,000 if you want to give one.' },
-      { ko: '물이 튈 수 있으니 휴대폰은 방수팩에 넣으세요. 배를 돌리는 게 무서우면 미리 말하세요.', en: 'You may get splashed, so bag your phone. Tell the boatman beforehand if spinning scares you.' } ],
+      { ko: '물이 튈 수 있으니 휴대폰은 방수팩에 넣으세요. 회전 체험을 원하지 않으면 타기 전에 미리 말씀하세요.', en: 'You may get splashed, so bag your phone. If you do not want the boat spun, say so before you board.' } ],
     phrases: [
       { ko: ['한 사람에 얼마예요?', '한 사람에 얼마야?'], en: 'How much per person?', vi: ['Cho em hỏi, một người bao nhiêu tiền?', 'Một người bao nhiêu?'], pr: ['쪼 앰 호이, 못 응으어이 바오 니에우 띠엔?', '못 응으어이 바오 니에우?'] },
-      { ko: ['천천히 해 주세요, 무서워요!', '천천히 해, 무서워!'], en: 'Slow down, I am scared!', vi: ['Chậm thôi, em sợ lắm!', 'Chậm thôi, tôi sợ lắm!'], pr: ['쩜 토이, 앰 써 람!', '쩜 토이, 또이 써 람!'] } ],
+      { ko: ['천천히 해 주세요, 무서워요!', '천천히 해, 무서워!'], en: 'Slow down, I am scared!', vi: ['Chậm thôi, em sợ lắm!', 'Chậm thôi, tôi sợ lắm!'], pr: ['쩜 토이, 앰 써 람!', '쩜 토이, 또이 써 람!'] },
+      { ko: ['배를 돌리지 말아 주세요', '배 돌리지 마'], en: 'Please do not spin the boat', vi: ['Đừng xoay thuyền giúp em nhé.', 'Đừng xoay thuyền nhé.'], pr: ['등 쏘아이 투이엔 줍 앰 녜', '등 쏘아이 투이엔 녜'] } ],
     map: 'Rung dua Bay Mau, Cam Thanh, Hoi An', k: '바구니배 코코넛 숲 껌탄 배 basket boat coconut cam thanh' },
   { id: 'dn_dragonbridge', city: 'danang', time: 'night', emoji: '🐉', area: { ko: '다낭 시내', en: 'Da Nang city' },
     name: { ko: '용다리 불쇼 & 물쇼', en: 'Dragon Bridge fire & water show' },
@@ -1006,12 +1013,12 @@ var EXPERIENCES = [
     dur: { ko: '약 15분', en: 'About 15 min' },
     desc: { ko: '한강(Sông Hàn) 위 길이 666m의 용 모양 다리가 금·토·일요일 밤 9시에 입으로 불을 뿜고, 이어서 물을 뿜어요. 표 없이 강변에서 무료로 보는 다낭의 대표 야경이에요.', en: "On Friday to Sunday nights at 9 PM the 666 m dragon-shaped bridge over the Hàn River breathes fire, then sprays water. It is free to watch from the riverside, Da Nang's signature night sight." },
     where: { ko: '용머리가 있는 다리 동쪽 끝, 쩐흥다오(Trần Hưng Đạo) 거리 강변과 사랑의 다리(Cầu Tình Yêu) 근처', en: "The east end of the bridge by the dragon's head: the Trần Hưng Đạo riverside near the Love Lock Bridge (Cầu Tình Yêu)" },
-    when: { ko: '매주 금·토·일요일과 큰 공휴일 밤 9시', en: 'Fridays, Saturdays, Sundays and major holidays at 9 PM' },
+    when: { ko: '금·토·일요일 밤 9시 (공휴일이나 특별 행사 일정은 방문 전에 확인해 주세요)', en: 'Fridays, Saturdays and Sundays at 9 PM (check holiday and special-event schedules before you go)' },
     price: { ko: '무료', en: 'Free' },
     how: { ko: '예약 없이 시간 맞춰 강변으로 가면 돼요. 쇼가 열리는 동안에는 다리 위 차량 통행이 막혀요.', en: 'No booking needed; just be at the riverside on time. Traffic on the bridge is stopped during the show.' },
     tips: [
       { ko: '용머리 바로 앞 난간 쪽은 물을 흠뻑 맞을 수 있어요. 젖기 싫으면 조금 떨어져서 보고, 휴대폰은 방수팩에 넣으세요.', en: "Right by the dragon's head you can get soaked by the water spray. Stand back a little and keep your phone in a waterproof pouch." },
-      { ko: '좋은 자리는 일찍 차니 밤 8시 30분까지 가세요. 쇼가 끝난 직후에는 Grab이 잘 안 잡히고 요금도 올라요.', en: 'Good spots fill early, so arrive by 8:30 PM. Right after the show, Grab rides are hard to get and fares go up.' } ],
+      { ko: '시작 30분 전쯤 도착하면 자리를 둘러볼 여유가 있어요. 공연 직후에는 주변이 붐벼 차량 호출과 이동에 시간이 걸릴 수 있어요.', en: 'Arriving about 30 minutes early gives you time to find a spot. Right after the show the area is crowded, so ride-hailing and getting away can take a while.' } ],
     phrases: [
       { ko: ['오늘 밤에 용다리 불쇼 해요?', '오늘 밤에 용다리 불쇼 해?'], en: 'Is the Dragon Bridge show on tonight?', vi: ['Cho em hỏi, tối nay cầu Rồng có phun lửa không?', 'Tối nay cầu Rồng có phun lửa không?'], pr: ['쪼 앰 호이, 또이 나이 꺼우 종 꺼 푼 르어 콩?', '또이 나이 꺼우 종 꺼 푼 르어 콩?'] },
       { ko: ['여기 서 있으면 물에 젖어요?', '여기 서 있으면 물에 젖어?'], en: 'Will I get wet standing here?', vi: ['Cho em hỏi, đứng đây có bị ướt không?', 'Đứng đây có bị ướt không?'], pr: ['쪼 앰 호이, 등 더이 꺼 비 으엇 콩?', '등 더이 꺼 비 으엇 콩?'] } ],
@@ -1022,7 +1029,7 @@ var EXPERIENCES = [
     dur: { ko: '2~3시간', en: '2–3 hours' },
     desc: { ko: '베트남 전통 의상 아오자이를 빌려 입고 유네스코 세계유산인 호이안 올드타운을 걸어요. 노란 벽과 등불 거리가 배경이라 사진이 정말 잘 나와요.', en: "Rent Vietnam's traditional áo dài and stroll Hội An's UNESCO-listed Old Town, whose yellow walls and lantern-lined streets make great photos." },
     where: { ko: '호이안 올드타운', en: 'Hội An Old Town' },
-    when: { ko: '오후 3시~밤 9시 30분에는 차가 다니지 않아 걷기 좋아요', en: 'Cars are kept out from 3 PM to 9:30 PM, the best time to walk' },
+    when: { ko: '보행자 거리 운영 시간에 산책하기 좋아요. 운영 시간은 계절과 구간에 따라 달라지니 방문 전에 확인해 주세요', en: 'Best during the pedestrian-street hours, which vary by season and street; check before you go' },
     price: { ko: '아오자이 대여 1인 약 7천~1만 원(가게마다 달라요) · 통합 입장권 12만 동(약 {krw:120000})', en: 'Áo dài rental about ₩7,000–10,000 per person (varies by shop); combined ticket VND 120,000 ({krw:120000})' },
     how: { ko: '올드타운 근처 대여점에서 빌려요. 통합 입장권은 올드타운 매표소에서 사요.', en: 'Rent from shops near the Old Town and buy the combined ticket at Old Town ticket booths.' },
     tips: [
@@ -1058,11 +1065,11 @@ var EXPERIENCES = [
     price: { ko: '반나절(시장 투어·배 포함) $26~49 정도, 짧은 클래스는 더 저렴해요', en: 'About $26–49 for a half day with market tour and boat ride; shorter classes cost less' },
     how: { ko: '예약 앱이나 업체 사이트에서 미리 예약해요. 호텔 픽업 포함 여부를 확인하세요.', en: 'Book ahead online and check whether hotel pickup is included.' },
     tips: [
-      { ko: '고수처럼 못 먹는 재료나 알레르기는 시작 전에 말하세요.', en: 'Mention allergies or ingredients you avoid, like cilantro, before you start.' },
-      { ko: '만든 요리를 다 먹게 되니 배를 비우고 가세요.', en: 'You eat everything you cook, so come hungry.' } ],
+      { ko: '먹지 못하는 재료나 알레르기가 있다면 예약할 때 미리 알려 주세요.', en: 'Tell the class about allergies or ingredients you cannot eat when you book.' },
+      { ko: '직접 만든 요리를 맛보는 시간도 있으니 식사 일정을 고려하면 좋아요.', en: 'You get to eat what you cook, so plan your meals around it.' } ],
     phrases: [
       { ko: ['이건 뭐예요?', '이거 뭐야?'], en: 'What is this?', vi: ['Cho em hỏi, cái này là gì?', 'Cái này là gì?'], pr: ['쪼 앰 호이, 까이 나이 라 지?', '까이 나이 라 지?'] },
-      { ko: ['땅콩 알레르기가 있어요', '나 땅콩 알레르기 있어'], en: 'I am allergic to peanuts', vi: ['Em bị dị ứng đậu phộng.', 'Tôi bị dị ứng đậu phộng.'], pr: ['앰 비 지 응 더우 퐁', '또이 비 지 응 더우 퐁'] } ],
+      { ko: ['땅콩 알레르기가 있어요', '나 땅콩 알레르기 있어'], en: 'I am allergic to peanuts', vi: ['Em bị dị ứng với đậu phộng.', 'Tôi bị dị ứng với đậu phộng.'], pr: ['앰 비 지 응 버이 더우 퐁', '또이 비 지 응 버이 더우 퐁'] } ],
     link: 'food', map: 'cooking class Hoi An', k: '쿠킹 요리 클래스 요리교실 시장 반쎄오 짜께 cooking class market tra que' },
   { id: 'lanternmaking', city: 'danang', time: 'day', emoji: '🎨', area: { ko: '호이안', en: 'Hội An' },
     name: { ko: '호이안 등불(랜턴) 만들기', en: 'Lantern-making workshop' },
@@ -1070,14 +1077,14 @@ var EXPERIENCES = [
     dur: { ko: '1~2시간', en: '1–2 hours' },
     desc: { ko: '대나무 뼈대에 비단 천을 붙여 호이안 전통 등불을 직접 만들어요. 색과 무늬를 골라 나만의 등을 완성할 수 있어요.', en: 'Make a traditional Hội An lantern by stretching silk over a bamboo frame, choosing your own colors and patterns.' },
     where: { ko: '올드타운 주변 공방 여러 곳', en: 'Workshops around the Old Town' },
-    when: { ko: '낮 시간 (공방은 보통 오전 9시~오후 5시)', en: 'Daytime (workshops usually open 9 AM–5 PM)' },
-    price: { ko: '1시간 클래스 약 1만 원부터 (온라인 예약가)', en: 'From about ₩10,000 for a one-hour class (online price)' },
+    when: { ko: '낮 시간 (공방마다 수업 시간이 달라요)', en: 'Daytime (class times vary by workshop)' },
+    price: { ko: '공방마다 달라요. 예약할 때 체험 시간, 포함 재료, 완성품을 가져갈 수 있는지 확인해 주세요', en: 'Varies by workshop. When booking, check how long the class runs, what materials are included and whether you can take the lantern home' },
     how: { ko: '예약 앱(클룩·마이리얼트립 등)이나 공방에 직접 예약해요.', en: 'Book through an app such as Klook or directly with a workshop.' },
     tips: [
       { ko: '완성한 등은 접어서 캐리어에 넣어 갈 수 있게 만들어 주는 곳이 많아요.', en: 'Many workshops make foldable lanterns that fit in a suitcase.' },
-      { ko: '아이와 함께하기 좋고, 더운 한낮을 실내에서 보내기에도 좋아요.', en: 'Great with kids, and a good way to escape the midday heat.' } ],
+      { ko: '아이와 함께라면 참여 가능 연령과 보호자 동반 조건을 미리 살펴보세요. 더운 한낮을 실내에서 보내기에도 좋아요.', en: 'With children, check the minimum age and whether an adult must join. It is also a good way to escape the midday heat.' } ],
     phrases: [
-      { ko: ['얼마나 걸려요?', '얼마나 걸려?'], en: 'How long does it take?', vi: ['Cho em hỏi, làm mất bao lâu?', 'Làm mất bao lâu?'], pr: ['쪼 앰 호이, 람 멋 바오 러우?', '람 멋 바오 러우?'] },
+      { ko: ['이 등을 만드는 데 얼마나 걸려요?', '이 등 만드는 데 얼마나 걸려?'], en: 'How long does it take to make this lantern?', vi: ['Làm chiếc đèn này mất bao lâu ạ?', 'Làm cái đèn này mất bao lâu?'], pr: ['람 찌엑 댄 나이 멋 바오 러우 아?', '람 까이 댄 나이 멋 바오 러우?'] },
       { ko: ['이 색으로 할게요', '이 색으로 할게'], en: 'I will take this color', vi: ['Em chọn màu này.', 'Tôi chọn màu này.'], pr: ['앰 쫀 마우 나이', '또이 쫀 마우 나이'] } ],
     map: 'lantern making workshop Hoi An', k: '등불 랜턴 만들기 공방 공예 lantern making workshop craft' },
   { id: 'pottery', city: 'danang', time: 'day', emoji: '🏺', area: { ko: '호이안 근교', en: 'Near Hội An' },
@@ -1114,7 +1121,7 @@ var EXPERIENCES = [
       { ko: ['공연은 몇 시에 해요?', '공연 몇 시에 해?'], en: 'What time is the show?', vi: ['Cho em hỏi, mấy giờ có biểu diễn?', 'Mấy giờ có biểu diễn?'], pr: ['쪼 앰 호이, 머이 저 꺼 비에우 지엔?', '머이 저 꺼 비에우 지엔?'] } ],
     link: 'culture', map: 'Po Nagar Cham Towers, Nha Trang', k: '포나가르 사원 포나가르 탑 참탑 참파 참족 탑바 힌두 사원 유적 전통춤 po nagar ponagar cham towers thap ba temple dance' },
   { id: 'nt_mudbath', city: 'nhatrang', time: 'day', emoji: '♨️', area: { ko: '시내 외곽', en: 'Edge of town' },
-    name: { ko: '머드 온천 (아이리조트)', en: 'Mud bath & hot springs (I-Resort)' },
+    name: { ko: '머드 온천(아이리조트)', en: 'Mud bath & hot springs (I-Resort)' },
     vi: 'Tắm bùn khoáng nóng',
     dur: { ko: '2~3시간 (머드는 약 20분)', en: '2–3 hours (about 20 min in the mud)' },
     desc: { ko: '따뜻한 광천 진흙탕에 20분쯤 몸을 담근 뒤, 온천 풀과 폭포, 미끄럼틀이 있는 워터파크에서 쉬어요. 나트랑에서 빠지지 않는 휴식 코스예요.', en: 'Soak in warm mineral mud for about 20 minutes, then relax in hot-spring pools, waterfalls and a water park with slides. A Nha Trang classic for unwinding.' },
@@ -1309,7 +1316,7 @@ var EXPERIENCES = [
       { ko: ['너무 좁아요, 나가고 싶어요', '너무 좁아, 나갈래'], en: 'It is too narrow, I want to get out', vi: ['Hẹp quá, em muốn ra ngoài.', 'Hẹp quá, tôi muốn ra.'], pr: ['햅 꽈, 앰 무온 자 응오아이', '햅 꽈, 또이 무온 자'] } ],
     map: 'Cu Chi Tunnels Ben Dinh', k: '구찌터널 꾸찌터널 구찌 꾸찌 땅굴 터널 베트남전쟁 벤딘 벤즈억 사격장 반나절 투어 cu chi tunnels ben dinh ben duoc vietnam war half day tour' },
   { id: 'sg_mekong', city: 'hcmc', time: 'day', emoji: '🥥', area: { ko: '근교 (메콩 델타)', en: 'Day trip (Mekong Delta)' },
-    name: { ko: '메콩강 일일 투어 (미토·벤째)', en: 'Mekong Delta day tour' },
+    name: { ko: '메콩강 일일 투어(미토·벤째)', en: 'Mekong Delta day tour' },
     vi: 'Du lịch sông nước miền Tây (Mỹ Tho – Bến Tre)',
     dur: { ko: '하루 (약 10시간)', en: 'Full day (about 10 hours)' },
     desc: { ko: '모터보트로 메콩강의 섬들을 건너고, 야자수 사이 좁은 물길은 노 젓는 쪽배를 타고 지나가요. 코코넛 캔디 공방과 꿀차 농장, 과일 시식, 남부 전통 음악 공연이 이어지는 호치민 대표 근교 투어예요.', en: 'Cross the Mekong to its river islands by motorboat, then glide down palm-lined canals in a rowed sampan. Stops usually include a coconut-candy workshop, a honey-tea farm, tropical fruit and southern folk music.' },
@@ -1325,7 +1332,7 @@ var EXPERIENCES = [
       { ko: ['코코넛 캔디 한 봉지에 얼마예요?', '코코넛 캔디 한 봉지 얼마야?'], en: 'How much is a bag of coconut candy?', vi: ['Cho em hỏi, một gói kẹo dừa bao nhiêu tiền?', 'Một gói kẹo dừa bao nhiêu?'], pr: ['쪼 앰 호이, 못 고이 깨오 즈어 바오 니에우 띠엔?', '못 고이 깨오 즈어 바오 니에우?'] } ],
     map: 'Thoi Son Island, My Tho', k: '메콩강 메콩델타 메콩 미토 벤째 일일투어 코코넛 캔디 쪽배 꿀차 섬 mekong delta river my tho ben tre coconut sampan day tour' },
   { id: 'sg_warmuseum', city: 'hcmc', time: 'day', emoji: '🏛️', area: { ko: '시내 (3군)', en: 'City (District 3)' },
-    name: { ko: '전쟁 박물관 (전쟁증적박물관)', en: 'War Remnants Museum' },
+    name: { ko: '전쟁 박물관(전쟁증적박물관)', en: 'War Remnants Museum' },
     vi: 'Bảo tàng Chứng tích Chiến tranh',
     dur: { ko: '1시간 30분~2시간', en: '1.5–2 hours' },
     desc: { ko: '베트남 전쟁의 기록을 사진과 무기, 마당에 전시된 탱크·비행기 같은 실물로 보여 주는 박물관이에요. 고엽제 피해처럼 마음이 무거운 전시도 있지만, 베트남 현대사를 이해하는 데 큰 도움이 돼요.', en: 'Photos, weapons and the tanks and aircraft in the courtyard tell the story of the Vietnam War. Some exhibits, such as those on Agent Orange, are hard to look at, but the museum helps you understand modern Vietnam.' },
@@ -1341,7 +1348,7 @@ var EXPERIENCES = [
       { ko: ['여기서 사진 찍어도 돼요?', '여기서 사진 찍어도 돼?'], en: 'Can I take photos here?', vi: ['Cho em hỏi, ở đây chụp ảnh được không?', 'Ở đây chụp ảnh được không?'], pr: ['쪼 앰 호이, 어 더이 쭙 아잉 드억 콩?', '어 더이 쭙 아잉 드억 콩?'] } ],
     map: 'War Remnants Museum, Ho Chi Minh City', k: '전쟁박물관 전쟁 박물관 전쟁증적박물관 베트남전쟁 고엽제 역사 독립궁 통일궁 war remnants museum vietnam war history agent orange' },
   { id: 'sg_aoshow', city: 'hcmc', time: 'night', emoji: '🎪', area: { ko: '시내 (1군)', en: 'City (District 1)' },
-    name: { ko: '오페라하우스 아오 쇼 (A O Show)', en: 'A O Show at the Saigon Opera House' },
+    name: { ko: '오페라하우스 아오 쇼(A O Show)', en: 'A O Show at the Saigon Opera House' },
     vi: 'À Ố Show – Nhà hát Thành phố',
     dur: { ko: '공연 약 1시간', en: 'About 1 hour' },
     desc: { ko: '대나무 장대와 바구니배를 소품으로 쓰는 베트남식 대나무 서커스예요. 남부 시골 마을과 도시의 모습을 곡예와 전통 악기 라이브 연주로 보여 줘서, 말을 몰라도 즐길 수 있어요.', en: 'A Vietnamese bamboo circus that uses bamboo poles and basket boats as props. Acrobatics and live traditional music portray village and city life in the south, so no language is needed.' },
@@ -1430,22 +1437,22 @@ var SPOTS = [
   /* ---- danang ---- */
   { id: 'dn_mykhe', city: 'danang', emoji: '🏖️',
     name: { ko: '미케 비치', en: 'Mỹ Khê Beach' }, vi: 'Bãi biển Mỹ Khê',
-    d: { ko: '다낭 시내 동쪽으로 길게 이어지는 고운 모래 해변이에요. 해변 도로를 따라 호텔·카페·해산물 식당이 늘어서 있고, 아침 일찍이나 해 질 무렵 걷기 좋아요.', en: "A long stretch of fine sand on Da Nang's east side, with hotels, cafés and seafood restaurants along the beach road. Early morning and sunset are good times for a walk." },
+    d: { ko: '다낭 시내 동쪽에 길게 펼쳐진 고운 모래사장이에요. 해변을 따라 호텔과 카페, 해산물 식당이 늘어서 있어요. 이른 아침이나 해 질 무렵 산책하기 좋아요.', en: "A long stretch of fine sand on Da Nang's east side, with hotels, cafés and seafood restaurants along the beach road. Early morning and sunset are good times for a walk." },
     addr: 'Võ Nguyên Giáp, Đà Nẵng',
     info: { ko: '입장 무료', en: 'Free' },
     map: 'My Khe Beach, Da Nang',
     k: '미케 비치 미케비치 미케 해변 다낭 해변 바다 해수욕 my khe beach bai bien my khe da nang beach' },
   { id: 'dn_linhung', city: 'danang', emoji: '🙏',
-    name: { ko: '린응사 (선짜 반도)', en: 'Linh Ứng Pagoda (Sơn Trà)' }, vi: 'Chùa Linh Ứng Bãi Bụt',
-    d: { ko: '선짜 반도 산자락의 절로, 바다를 내려다보는 높이 67m의 하얀 해수관음상으로 유명해요. 반바지·민소매처럼 짧은 옷은 피해 주세요.', en: 'A pagoda on the slopes of the Sơn Trà peninsula, known for its 67 m white Lady Buddha statue looking out to sea. Avoid shorts and sleeveless tops.' },
+    name: { ko: '린응사(선짜반도)', en: 'Linh Ứng Pagoda (Sơn Trà)' }, vi: 'Chùa Linh Ứng Bãi Bụt',
+    d: { ko: '선짜반도에 자리한 사찰로, 바다를 바라보는 높이 67m의 하얀 관음상으로 유명해요. 방문할 때는 어깨와 무릎을 가리는 단정한 옷차림을 준비해 주세요.', en: 'A pagoda on the Sơn Trà peninsula, known for its 67 m white statue of Quan Âm (Guanyin) looking out to sea. Wear clothes that cover your shoulders and knees.' },
     addr: 'Hoàng Sa, Sơn Trà, Đà Nẵng',
     info: { ko: '매일 오전 6시~오후 9시 · 입장 무료', en: 'Daily 6 AM–9 PM · free' },
     link: 'culture',
     map: 'Chua Linh Ung Bai But, Son Tra, Da Nang',
     k: '린응사 린응 사원 영응사 해수관음상 관음상 레이디 부처 레이디붓다 선짜 반도 선짜반도 손짜 반도 절 사찰 linh ung pagoda chua linh ung bai but son tra lady buddha' },
   { id: 'dn_cathedral', city: 'danang', emoji: '⛪',
-    name: { ko: '다낭 대성당 (핑크 성당)', en: 'Da Nang Cathedral (Pink Church)' }, vi: 'Nhà thờ Chính tòa Đà Nẵng (Nhà thờ Con Gà)',
-    d: { ko: '분홍색 외관 때문에 핑크 성당으로 불리는 프랑스 시대 성당이에요. 첨탑 위 수탉 풍향계 덕분에 현지에선 닭 성당이라고도 하고, 지금도 매일 미사를 드리니 조용히 둘러봐 주세요.', en: 'A French-era church nicknamed the Pink Church for its colour; locals also call it the Rooster Church after the weathervane on its spire. Mass is still held daily, so keep quiet when you visit.' },
+    name: { ko: '다낭 대성당(핑크 성당)', en: 'Da Nang Cathedral (Pink Church)' }, vi: 'Nhà thờ Chính tòa Đà Nẵng (Nhà thờ Con Gà)',
+    d: { ko: '분홍빛 외관이 눈길을 끄는 다낭 대성당이에요. 첨탑 위의 수탉 모양 풍향계 때문에 \'닭 성당(Nhà thờ Con Gà)\'이라는 별명도 있어요. 지금도 미사가 열리는 예배 공간이니 단정한 옷차림으로 조용히 둘러봐 주세요.', en: 'Da Nang Cathedral, hard to miss with its pink walls. The rooster weathervane on its spire earned it the nickname Rooster Church (Nhà thờ Con Gà). Mass is still held here, so dress modestly and keep quiet.' },
     addr: '156 Trần Phú, Hải Châu, Đà Nẵng',
     info: { ko: '입장 무료', en: 'Free' },
     link: 'culture',
@@ -1453,14 +1460,14 @@ var SPOTS = [
     k: '다낭 대성당 핑크 성당 핑크성당 분홍 성당 닭 성당 수탉 성당 다낭 성당 da nang cathedral pink church rooster church nha tho con ga chinh toa' },
   { id: 'dn_hanmarket', city: 'danang', emoji: '🛍️',
     name: { ko: '한시장', en: 'Hàn Market' }, vi: 'Chợ Hàn',
-    d: { ko: '한강 변의 오래된 재래시장. 1층은 건어물·커피·기념품, 2층은 옷과 아오자이 맞춤집이 모여 있어요.', en: 'An old covered market by the Hàn River: dried seafood, coffee and souvenirs downstairs, clothes and áo dài tailors upstairs.' },
+    d: { ko: '한강 가까이에 있는 오래된 재래시장이에요. 1층에서는 건어물과 커피, 기념품을, 2층에서는 의류와 아오자이 맞춤 가게를 주로 둘러볼 수 있어요.', en: 'An old market near the Hàn River: dried seafood, coffee and souvenirs on the ground floor, clothes and áo dài tailors upstairs.' },
     addr: '119 Trần Phú, Hải Châu, Đà Nẵng',
     info: { ko: '매일 오전 6시~오후 7시 · 입장 무료', en: 'Daily 6 AM–7 PM · free' },
     map: 'Han Market, Da Nang',
     k: '한시장 한 시장 재래시장 기념품 건어물 커피 아오자이 han market cho han souvenir' },
   { id: 'dn_chuacau', city: 'danang', emoji: '🌉',
-    name: { ko: '내원교 (일본 다리)', en: 'Japanese Covered Bridge' }, vi: 'Chùa Cầu',
-    d: { ko: '호이안 구시가를 상징하는 지붕 덮인 다리로, 안쪽에 작은 사당이 있어요. 약 2년간의 복원을 마치고 2024년 8월 다시 열었고, 다리를 건너려면 구시가 입장권이 필요해요.', en: "The roofed bridge that symbolises Hội An's Old Town, with a small shrine inside. It reopened in August 2024 after about two years of restoration; crossing it requires the Old Town ticket." },
+    name: { ko: '내원교(일본 다리)', en: 'Japanese Covered Bridge' }, vi: 'Chùa Cầu',
+    d: { ko: '호이안 구시가를 대표하는 지붕 있는 다리예요. 다리 한쪽에는 작은 사당이 있으며, 약 2년에 걸친 보수 작업을 마치고 2024년 8월 다시 공개됐어요. 다리를 건너려면 구시가 입장권이 필요해요.', en: "The roofed bridge that represents Hội An's Old Town, with a small shrine on one side. It reopened in August 2024 after about two years of repairs; crossing it requires the Old Town ticket." },
     addr: 'Nguyễn Thị Minh Khai, Hội An, Đà Nẵng',
     info: { ko: '매일 오전 7시 30분~오후 9시 30분 · 구시가 입장권 외국인 12만 동(약 {krw:120000})', en: 'Daily 7:30 AM–9:30 PM · Old Town ticket VND 120,000 for foreigners ({krw:120000})' },
     link: 'culture',
@@ -1468,7 +1475,7 @@ var SPOTS = [
     k: '내원교 일본교 일본 다리 일본인 다리 호이안 다리 호이안 구시가 올드타운 구시가지 입장권 chua cau japanese covered bridge hoi an old town' },
   { id: 'dn_anbang', city: 'danang', emoji: '🌴',
     name: { ko: '안방 비치', en: 'An Bàng Beach' }, vi: 'Biển An Bàng',
-    d: { ko: '호이안 구시가에서 3~5km 떨어진 한적한 해변이에요. 바닷가를 따라 카페와 해산물 식당이 있어 구시가 구경과 묶어 반나절 쉬어 가기 좋아요.', en: 'A laid-back beach 3–5 km from Hội An Old Town, with cafés and seafood restaurants along the sand. Easy to pair with the Old Town for a relaxed half day.' },
+    d: { ko: '호이안 구시가와 함께 둘러보기 좋은 해변이에요. 바닷가에 카페와 해산물 식당이 있어, 구시가를 구경한 뒤 여유롭게 쉬어 가기 좋아요.', en: 'A beach that pairs well with Hội An Old Town, with cafés and seafood restaurants on the sand for a relaxed break after sightseeing.' },
     addr: 'Hai Bà Trưng, Hội An Tây, Đà Nẵng',
     info: { ko: '', en: '' },
     map: 'An Bang Beach, Hoi An',
@@ -1489,7 +1496,7 @@ var SPOTS = [
     map: 'Cho Dam, Nha Trang',
     k: '담 시장 담시장 쩌담 쩌 담 재래시장 건어물 제비집 기념품 시장 cho dam dam market nha trang' },
   { id: 'nt_cathedral', city: 'nhatrang', emoji: '⛪',
-    name: { ko: '나트랑 대성당 (돌 성당)', en: 'Nha Trang Cathedral (Stone Church)' }, vi: 'Nhà thờ Núi (Nhà thờ Chánh tòa Kitô Vua)',
+    name: { ko: '나트랑 대성당(돌 성당)', en: 'Nha Trang Cathedral (Stone Church)' }, vi: 'Nhà thờ Núi (Nhà thờ Chánh tòa Kitô Vua)',
     d: { ko: '시내 언덕 위에 회색 돌로 지은 고딕 양식 성당으로, 현지에선 산 성당·돌 성당이라고 불러요. 지금도 미사를 드리는 성당이니 단정한 옷차림으로 조용히 둘러봐 주세요.', en: 'A grey-stone Gothic cathedral on a small hill in town, known locally as the Mountain Church or Stone Church. It is still a working church, so dress modestly and keep quiet.' },
     addr: 'Thái Nguyên, Nha Trang, Khánh Hòa',
     info: { ko: '입장 무료', en: 'Free' },
@@ -1714,7 +1721,7 @@ var EATS = [
   /* ---- danang (+ Hội An) ---- */
   { id: 'eat_dn_baduong', city: 'danang', emoji: '🥞', mich: 'sel', dish: 'banhxeo',
     name: { ko: '반쎄오 바즈엉', en: 'Bánh Xèo Bà Dưỡng' }, vi: 'Bánh xèo Bà Dưỡng',
-    d: { ko: '골목 끝에서 30년 넘게 반쎄오를 부쳐 온 집이에요. 바삭한 반쎄오와 돼지고기 꼬치 넴루이를 채소와 함께 라이스페이퍼에 싸서, 간 고기를 넣은 땅콩 소스에 찍어 먹어요.', en: 'A no-frills shop at the end of an alley that has been frying bánh xèo for over 30 years. Wrap the crispy pancakes and nem lụi pork skewers in rice paper with greens, then dip them in the peanut sauce with minced pork.' },
+    d: { ko: '골목 끝에서 30년 넘게 반쎄오를 부쳐 온 집이에요. 바삭한 반쎄오와 돼지고기 꼬치인 넴루이(nem lụi)를 채소와 함께 라이스페이퍼에 싸서, 다진 돼지고기를 넣은 땅콩 소스에 찍어 먹어요.', en: 'A no-frills shop at the end of an alley that has been frying bánh xèo for over 30 years. Wrap the crispy pancakes and nem lụi pork skewers in rice paper with greens, then dip them in the peanut sauce with minced pork.' },
     order: { ko: '반쎄오 + 넴루이(돼지고기 꼬치)', en: 'Bánh xèo + nem lụi (pork skewers)' },
     hours: { ko: '매일 오전 9시 30분~오후 9시 30분', en: 'Daily 9:30 AM–9:30 PM' },
     price: { ko: '반쎄오 2장 + 넴루이 2개에 5만 동 정도(약 {krw:50000})', en: 'About VND 50,000 for two pancakes and two skewers ({krw:50000})' },
@@ -1734,8 +1741,8 @@ var EATS = [
     k: '분짜까 분차까 분짜 까 어묵 쌀국수 어묵국수 생선 국수 bun cha ca 109 fish cake noodle soup' },
   { id: 'eat_dn_1a', city: 'danang', emoji: '🍜', mich: 'sel', dish: 'miquang',
     name: { ko: '미꽝 1A', en: 'Mì Quảng 1A' }, vi: 'Mì Quảng 1A',
-    d: { ko: '다낭식 넓적 쌀국수 미꽝만 파는 소박한 집이에요. 강황과 피시소스로 맛을 낸 국물을 자작하게 붓고 땅콩·숙주를 얹어, 상추·바나나꽃과 함께 비벼 먹어요.', en: 'A simple shop that serves only mì quảng: wide rice noodles in a little turmeric and fish-sauce broth, topped with peanuts and bean sprouts and tossed with lettuce and banana flower.' },
-    order: { ko: '미꽝 đặc biệt(특) — 돼지고기·새우와 닭이 다 들어가요', en: 'Mì quảng đặc biệt (special) to get pork, shrimp and chicken' },
+    d: { ko: '넓적한 쌀국수 요리인 미꽝을 전문으로 하는 소박한 식당이에요. 강황과 피시소스로 맛을 낸 국물에 땅콩과 숙주를 얹고, 상추와 바나나꽃을 곁들여 먹어요.', en: 'A simple shop that specialises in mì quảng: flat rice noodles in a turmeric and fish-sauce broth, topped with peanuts and bean sprouts and served with lettuce and banana flower.' },
+    order: { ko: 'Mì Quảng đặc biệt(모둠 미꽝) — 돼지고기·새우·닭고기를 함께 맛볼 수 있어요', en: 'Mì Quảng đặc biệt (the mixed bowl) with pork, shrimp and chicken together' },
     hours: { ko: '매일 오전 6시~오후 9시', en: 'Daily 6 AM–9 PM' },
     price: { ko: '한 그릇 2만 5천~4만 동 정도(약 {krw:25000}~{krw:40000})', en: 'About VND 25,000–40,000 a bowl ({krw:25000}–{krw:40000})' },
     tip: { ko: '현금만 받아요.', en: 'Cash only.' },
@@ -1744,17 +1751,17 @@ var EATS = [
     k: '미꽝 미광 미 꽝 1a 다낭 국수 mi quang 1a my quang noodle' },
   { id: 'eat_ha_babuoi', city: 'danang', area: { ko: '호이안', en: 'Hội An' }, emoji: '🍗', dish: 'comga',
     name: { ko: '껌가 바부오이', en: 'Cơm Gà Bà Buội' }, vi: 'Cơm gà Bà Buội',
-    d: { ko: '호이안 구시가에서 오래 장사해 온 닭고기 덮밥(껌가) 집이에요. 노랗게 지은 밥에 잘게 찢은 닭고기와 양파·허브를 얹어 줘요.', en: "A long-running chicken-rice shop in Hội An's Old Town: yellow rice topped with shredded chicken, onion and herbs." },
-    order: { ko: '껌가 쎄(찢은 닭고기 덮밥)', en: 'Cơm gà xé (shredded chicken rice)' },
+    d: { ko: '호이안 구시가에서 오랫동안 닭고기밥을 만들어 온 식당이에요. 노란 밥에 잘게 찢은 닭고기와 양파, 허브를 곁들여 내요.', en: "A long-running chicken-rice shop in Hội An's Old Town: yellow rice topped with shredded chicken, onion and herbs." },
+    order: { ko: 'Cơm gà xé(찢은 닭고기를 곁들인 밥)', en: 'Cơm gà xé (shredded chicken rice)' },
     hours: { ko: '매일 오전 9시~오후 9시 30분', en: 'Daily 9 AM–9:30 PM' },
-    price: { ko: '닭고기 덮밥 한 접시 5만 5천 동(약 {krw:55000})', en: 'VND 55,000 a plate ({krw:55000})' },
+    price: { ko: '닭고기밥 한 접시 5만 5천 동(약 {krw:55000})', en: 'VND 55,000 a plate ({krw:55000})' },
     tip: { ko: '점심때는 자리가 금방 차요. 점심 피크를 조금 피해 가면 수월해요.', en: 'It fills up at lunchtime, so go a little before or after the rush.' },
     addr: '22 Phan Châu Trinh, Hội An, Đà Nẵng',
     map: 'Com Ga Ba Buoi, 22 Phan Chau Trinh, Hoi An',
     k: '껌가 컴가 바부오이 바 부오이 닭밥 치킨라이스 닭고기 덮밥 호이안 com ga ba buoi chicken rice hoi an' },
   { id: 'eat_ha_thanh', city: 'danang', area: { ko: '호이안', en: 'Hội An' }, emoji: '🍝', dish: 'caolau',
     name: { ko: '까오러우 타잉', en: 'Cao Lầu Thanh' }, vi: 'Cao lầu Thanh',
-    d: { ko: '호이안에서만 맛볼 수 있는 쫄깃한 국수 까오러우를 파는 작은 가게예요. 국물 없이 자작한 양념에 돼지고기, 바삭한 튀김 과자, 허브를 얹어 비벼 먹어요.', en: 'A small shop for cao lầu, the chewy noodle dish found only in Hội An, served with just a splash of sauce, sliced pork, crunchy crackers and herbs to toss together.' },
+    d: { ko: '호이안의 대표 국수인 까오러우를 파는 작은 가게예요. 쫄깃한 면에 돼지고기와 허브, 바삭한 고명을 얹고 소량의 진한 양념 국물에 비벼 먹어요.', en: "A small shop for cao lầu, Hội An's signature noodles: chewy noodles with pork, herbs and crispy bits, tossed in a little rich sauce." },
     order: { ko: '까오러우', en: 'Cao lầu' },
     hours: { ko: '매일 오전 7시~오후 7시', en: 'Daily 7 AM–7 PM' },
     price: { ko: '한 그릇 3만 5천~5만 동(약 {krw:35000}~{krw:50000})', en: 'VND 35,000–50,000 a bowl ({krw:35000}–{krw:50000})' },
@@ -1812,7 +1819,7 @@ var EATS = [
     map: 'Bun Ken Ut Luom, 42 Duong 30 Thang 4, Phu Quoc',
     k: '분깬 분껜 분 깬 웃르엄 웃 르엄 푸꾸옥 아침 국수 코코넛 bun ken ut luom phu quoc breakfast' },
   { id: 'eat_pq_rakhoi', city: 'phuquoc', emoji: '🐠',
-    name: { ko: '라커이 (고이까찌)', en: 'Ra Khơi (herring salad)' }, vi: 'Nhà hàng Ra Khơi',
+    name: { ko: '라커이(고이까찌)', en: 'Ra Khơi (herring salad)' }, vi: 'Nhà hàng Ra Khơi',
     d: { ko: '푸꾸옥 명물 고이까찌(청어 회무침)를 먹으러 가는 해산물 식당이에요. 라임에 살짝 절인 청어를 코코넛 채·허브와 함께 얇은 라이스페이퍼에 싸서 땅콩 피시소스에 찍어 먹어요.', en: "A seafood restaurant for gỏi cá trích, Phú Quốc's herring salad: lime-cured herring wrapped in thin rice paper with grated coconut and herbs, dipped in peanut fish sauce." },
     order: { ko: '고이까찌(gỏi cá trích)', en: 'Gỏi cá trích (herring salad)' },
     price: { ko: '고이까찌 한 접시 15만 동부터(약 {krw:150000}~)', en: 'Herring salad from VND 150,000 ({krw:150000})' },
@@ -1822,7 +1829,7 @@ var EATS = [
     k: '라커이 라 커이 고이까찌 고이 까 찌 청어 회 샐러드 해산물 푸꾸옥 ra khoi goi ca trich herring salad seafood phu quoc' },
   /* ---- hanoi ---- */
   { id: 'eat_hn_batdan', city: 'hanoi', emoji: '🍜', mich: 'bib', dish: 'phobo',
-    name: { ko: '퍼 바단 (퍼 지아쭈옌)', en: 'Phở Bát Đàn (Phở Gia Truyền)' }, vi: 'Phở Gia Truyền Bát Đàn',
+    name: { ko: '퍼 바단(퍼 지아쭈옌)', en: 'Phở Bát Đàn (Phở Gia Truyền)' }, vi: 'Phở Gia Truyền Bát Đàn',
     d: { ko: '하노이에서 가장 유명한 소고기 쌀국수 집 중 하나예요. 고기는 살짝 익힌 것(tái)부터 푹 익힌 양지(chín)까지 고를 수 있고, 꽈이(튀긴 빵)나 달걀노른자를 추가할 수 있어요.', en: "One of Hanoi's most iconic phở shops. Choose your beef from rare (tái) to well-done brisket (chín), and add quẩy (fried dough) or an egg yolk." },
     order: { ko: '퍼 따이(tái, 살짝 익힌 소고기)', en: 'Phở tái (rare beef)' },
     hours: { ko: '매일 오전 6시~11시, 오후 5시~9시 30분', en: 'Daily 6–11 AM and 5–9:30 PM' },
@@ -1841,7 +1848,7 @@ var EATS = [
     map: 'Pho Ga Nguyet, 5B Phu Doan, Hanoi',
     k: '퍼가 퍼 가 닭 쌀국수 닭고기 쌀국수 응우옛 하노이 pho ga nguyet chicken pho hanoi' },
   { id: 'eat_hn_huonglien', city: 'hanoi', emoji: '🥢', mich: 'sel', dish: 'buncha',
-    name: { ko: '분짜 흐엉리엔 (오바마 분짜)', en: 'Bún Chả Hương Liên (the “Obama” bún chả)' }, vi: 'Bún chả Hương Liên',
+    name: { ko: '분짜 흐엉리엔(오바마 분짜)', en: 'Bún Chả Hương Liên (the “Obama” bún chả)' }, vi: 'Bún chả Hương Liên',
     d: { ko: '2016년 오바마 전 미국 대통령과 셰프 앤서니 보데인이 함께 먹어 유명해진 분짜집이에요. 숯불 돼지고기와 완자를 새콤달콤한 국물에 적셔 쌀국수·채소와 먹어요.', en: 'The bún chả shop made famous when US President Barack Obama ate here with chef Anthony Bourdain in 2016: smoky grilled pork and patties in a sweet-sour broth with noodles and herbs.' },
     order: { ko: '콤보 오바마(분짜 + 해산물 넴 + 하노이 맥주)', en: 'Combo Obama (bún chả + seafood spring roll + Hanoi beer)' },
     hours: { ko: '매일 오전 8시~오후 8시', en: 'Daily 8 AM–8 PM' },
@@ -1892,7 +1899,7 @@ var EATS = [
     map: 'Banh Xeo 46A, 46A Dinh Cong Trang, Ho Chi Minh City',
     k: '반쎄오 반세오 46a 딘꽁짱 딘 꽁 짱 호치민 부침개 banh xeo 46a dinh cong trang saigon pancake' },
   { id: 'eat_sg_ocoanh', city: 'hcmc', emoji: '🐚', mich: 'sel',
-    name: { ko: '옥 오아잉 (빈카잉 먹자거리)', en: 'Ốc Oanh (Vĩnh Khánh food street)' }, vi: 'Ốc Oanh',
+    name: { ko: '옥 오아잉(빈카잉 먹자거리)', en: 'Ốc Oanh (Vĩnh Khánh food street)' }, vi: 'Ốc Oanh',
     d: { ko: '밤늦게까지 조개·해산물 가게가 이어지는 빈카잉 먹자거리의 대표 가게예요. 고둥·새우·문어·게 같은 해산물을 볶거나 구워 주고, 에어컨 없는 길거리 분위기가 매력이에요.', en: 'The best-known stop on Vĩnh Khánh food street, where shellfish joints stay open late: whelks, prawns, octopus and crab, stir-fried or grilled, with an open-air street vibe and no air-con.' },
     order: { ko: '고둥·새우·문어 요리 몇 접시 나눠 먹기', en: 'A few plates to share: whelks, prawns, octopus' },
     hours: { ko: '매일 오후 1시~자정 넘어서까지', en: 'Daily from 1 PM until after midnight' },
@@ -1948,7 +1955,7 @@ var MARKET_PHRASES = [
    quarantine-agency news (checked Oct 2026) */
 var GIFTS = [
   { id: 'coffee', cat: 'coffee', emoji: '☕',
-    name: { ko: '베트남 커피 (G7·원두)', en: 'Vietnamese coffee (G7 & ground beans)' }, vi: 'Cà phê Việt Nam',
+    name: { ko: '베트남 커피(G7·원두)', en: 'Vietnamese coffee (G7 & ground beans)' }, vi: 'Cà phê Việt Nam',
     d: { ko: '진하고 쌉쌀한 로부스타 커피예요. 가볍고 값이 싸서 선물로 가장 많이 사요.', en: 'Strong, bitter robusta coffee. Light and cheap, it is the most popular gift to take home.' },
     price: { ko: 'G7 3in1(16g×21봉지) 약 7만 동(약 {krw:70000}) · 50봉지 약 16만 9천 동 · 쭝응우옌 상따오1 원두가루 500g 약 11만 동 · 알루미늄 핀(공식몰) 약 10만 동', en: 'G7 3in1 (21 × 16 g) about VND 70,000 ({krw:70000}) · 50 sachets about VND 169,000 · Trung Nguyên Sáng tạo 1 ground, 500 g, about VND 110,000 · aluminium phin (official store) about VND 100,000' },
     where: { ko: '롯데마트·윈마트·박화싼 같은 마트, 쭝응우옌 레전드 매장', en: 'Supermarkets (Lotte Mart, WinMart, Bách Hóa Xanh) and Trung Nguyên Legend shops' },
@@ -1957,7 +1964,7 @@ var GIFTS = [
     k: '커피 g7 원두 핀 쭝응우옌 믹스커피 coffee ca phe g7 trung nguyen sang tao phin filter instant' },
 
   { id: 'weasel', cat: 'coffee', emoji: '🫘',
-    name: { ko: '루왁 커피 (족제비 커피, 주의)', en: 'Civet coffee / kopi luwak (buyer beware)' }, vi: 'Cà phê chồn',
+    name: { ko: '루왁 커피(족제비 커피, 주의)', en: 'Civet coffee / kopi luwak (buyer beware)' }, vi: 'Cà phê chồn',
     d: { ko: '사향고양이가 먹고 배설한 원두로 만든다는 커피로, 인도네시아의 루왁 커피와 같은 거예요. 베트남 이름 cà phê chồn의 chồn을 영어로 weasel(족제비)이라고 옮기면서 한국에선 족제비 커피로도 알려졌지만, 실제 동물은 족제비가 아니라 사향고양이예요. 관광지에서 파는 것은 대부분 진짜가 아니고, 진짜는 좁은 우리에 가둔 사향고양이에게서 나오는 경우가 많아 동물 학대 논란이 있어요.', en: 'Beans said to have passed through a civet, the same idea as Indonesian kopi luwak. The Vietnamese name, cà phê chồn, was loosely translated as “weasel coffee,” but the animal is the Asian palm civet, not a weasel. Most of what tourists are offered is not genuine, and the real thing usually comes from civets kept in small cages, which raises welfare concerns.' },
     price: { ko: '', en: '' },
     where: { ko: '관광지 기념품점, 시장, 달랏 커피 농장', en: 'Souvenir shops, markets and Đà Lạt coffee farms' },
@@ -1993,7 +2000,7 @@ var GIFTS = [
     k: '코코넛캔디 코코넛 사탕 벤째 coconut candy keo dua ben tre' },
 
   { id: 'driedfruit', cat: 'food', emoji: '🥭',
-    name: { ko: '말린 과일 (망고·잭프루트)', en: 'Dried fruit (mango, jackfruit)' }, vi: 'Trái cây sấy (xoài sấy, mít sấy)',
+    name: { ko: '말린 과일(망고·잭프루트)', en: 'Dried fruit (mango, jackfruit)' }, vi: 'Trái cây sấy (xoài sấy, mít sấy)',
     d: { ko: '말린 망고와 바삭한 잭프루트 칩이 대표 제품이에요. 생과일은 한국에 가져갈 수 없어서 대신 많이 사요.', en: 'Dried mango and crunchy jackfruit chips are the classics. Fresh fruit cannot go to Korea, so this is the usual substitute.' },
     price: { ko: '비나밋 말린 망고 100g 약 6만 1천 동(약 {krw:61000}) · 250g 약 14만 3천 동 · 잭프루트 칩 100g 약 4만~4만 6천 동', en: 'Vinamit dried mango 100 g about VND 61,000 ({krw:61000}) · 250 g about VND 143,000 · jackfruit chips 100 g about VND 40,000–46,000' },
     where: { ko: '롯데마트·박화싼 같은 대형 마트', en: 'Supermarkets such as Lotte Mart and Bách Hóa Xanh' },
@@ -2056,7 +2063,7 @@ var GIFTS = [
     k: '등 랜턴 등불 호이안 lantern den long hoi an' },
 
   { id: 'nonla', cat: 'craft', emoji: '👒',
-    name: { ko: '논라 (베트남 삿갓)', en: 'Nón lá (conical hat)' }, vi: 'Nón lá',
+    name: { ko: '논라(베트남 삿갓)', en: 'Nón lá (conical hat)' }, vi: 'Nón lá',
     d: { ko: '야자잎을 엮어 만든 베트남 전통 삿갓이에요. 여행 중 사진 소품으로 쓰고 집에서는 장식으로 걸어 둬요.', en: 'The traditional Vietnamese palm-leaf conical hat. Fun for photos on the trip and as wall decor at home.' },
     price: { ko: '약 4만~15만 동(약 {krw:40000}~{krw:150000})', en: 'About VND 40,000–150,000 ({krw:40000}–{krw:150000})' },
     where: { ko: '시장, 관광지 기념품 가게', en: 'Markets and souvenir shops' },
@@ -2099,21 +2106,21 @@ var giftById = function (id) { for (var i = 0; i < GIFTS.length; i++) if (GIFTS[
 /* ================= trip prep (facts checked Oct 2026) ================= */
 var PREP_ENTRY = [
   { ic: 'ri-passport-line', t: { ko: '무비자 45일', en: '45 days visa-free' },
-    d: { ko: '한국 일반 여권은 비자 없이 45일까지 머물 수 있어요. 더 오래 있으려면 출발 전에 전자비자(e-visa, 최대 90일)를 받아야 해요.', en: 'South Korean passport holders can stay up to 45 days without a visa. For longer stays, get an e-visa (up to 90 days) before you leave.' } },
+    d: { ko: '한국 일반 여권은 비자 없이 45일까지 머물 수 있어요. 45일을 넘겨 체류할 계획이라면 출발 전에 체류 목적과 기간에 맞는 비자를 준비하세요. 전자비자(e-visa)는 최대 90일까지 발급될 수 있어요.', en: 'South Korean passport holders can stay up to 45 days without a visa. If you plan to stay longer, get a visa that fits your purpose and length of stay before you leave; an e-visa can be issued for up to 90 days.' } },
   { ic: 'ri-calendar-check-line', t: { ko: '여권 유효기간 6개월 이상', en: 'Passport valid 6+ months' },
     d: { ko: '입국하는 날 기준으로 여권 유효기간이 6개월 이상 남아 있어야 해요.', en: 'Your passport must be valid for at least 6 months from the day you arrive.' } },
-  { ic: 'ri-flight-takeoff-line', t: { ko: '베트남에서 나가는 항공권', en: 'Onward flight ticket' },
-    d: { ko: '관광으로 무비자 입국할 때는 베트남을 떠나는 항공권 예약이 있어야 해요. 입국 심사나 탑승 수속 때 보여 달라고 할 수 있어요.', en: 'Visa-free tourists need a booked flight out of Vietnam. Immigration or the airline may ask to see it.' } },
+  { ic: 'ri-flight-takeoff-line', t: { ko: '귀국 또는 다음 여행지 이동 예약', en: 'Return or onward travel booking' },
+    d: { ko: '관광으로 무비자 입국한다면 귀국 항공권 또는 제3국으로 이동할 일정의 증빙을 준비하세요. 입국 심사나 탑승 수속 때 보여 달라고 할 수 있어요.', en: 'If you enter visa-free as a tourist, have proof of your return flight or onward travel to another country. Immigration or the airline may ask to see it.' } },
   { ic: 'ri-parent-line', t: { ko: '만 14세 미만 아이와 함께라면', en: 'Traveling with children under 14' },
-    d: { ko: '부모와 함께 가도 영문 가족관계증명서를 챙기세요. 부모 없이 다른 보호자와 가면 부모 동의서(영문 번역·공증)도 필요해요.', en: 'Bring an English family relationship certificate even when traveling with parents. Children traveling without their parents also need a notarized parental consent letter in English.' } },
+    d: { ko: '부모가 동행하면 관계 확인에 대비해 자녀 기준의 영문 가족관계증명서를 준비해 두면 좋아요. 부모 없이 다른 보호자와 입국한다면 위임장과 가족관계증명서 등 필요한 서류를 확인하세요. 번역·공증·인증 요건은 최신 공관 및 항공사 안내를 확인해 주세요.', en: 'Even with parents, it helps to carry an English family relationship certificate issued for the child, in case you are asked to prove the relationship. If a child enters with another guardian, check which documents are needed, such as a letter of authorisation and the family certificate. For translation, notarisation and legalisation, follow the latest embassy and airline guidance.' } },
   { ic: 'ri-money-dollar-circle-line', t: { ko: '현금 세관 신고', en: 'Declaring cash' },
-    d: { ko: '외화 5,000달러 또는 1,500만 동이 넘는 현금을 가지고 들어가면 세관에 신고해야 해요.', en: 'Declare cash above USD 5,000 (or equivalent) or VND 15,000,000 at customs.' } }
+    d: { ko: '달러·원화 등 외화 현금의 총가치가 미화 5,000달러를 넘거나, 베트남 동 현금이 1,500만 동을 넘으면 세관에 신고해야 해요.', en: 'Declare at customs if your foreign cash (dollars, won and so on) is worth more than USD 5,000 in total, or if you carry more than VND 15,000,000 in dong.' } }
 ];
 var PREP_BAN = [
   { ic: 'ri-forbid-2-line', t: { ko: '전자담배·가열담배 금지', en: 'No e-cigarettes or heated tobacco' }, fine: [3000000, 5000000],
     d: { ko: '2025년부터 전자담배와 가열담배(아이코스 등)의 사용·판매·수입이 모두 금지됐어요. 가져가지 마세요.', en: 'Since 2025 Vietnam has banned the use, sale and import of e-cigarettes and heated tobacco such as IQOS. Leave them at home.' } },
   { ic: 'ri-battery-charge-line', t: { ko: '보조배터리는 기내에만', en: 'Power banks in carry-on only' },
-    d: { ko: '보조배터리는 부치는 짐에 넣으면 안 되고, 기내에 들고 타야 해요.', en: 'Power banks must go in your carry-on, never in checked luggage.' } },
+    d: { ko: '보조배터리는 위탁 수하물에 넣지 말고 기내로 가져가세요. 허용 용량·개수·보관 방법과 기내 사용 제한은 이용 항공사 안내를 확인하세요.', en: 'Keep power banks out of checked luggage and take them on board. Check your airline for capacity and quantity limits, how to pack them and whether you may use them in flight.' } },
   { ic: 'ri-goblet-line', t: { ko: '면세 한도 (술·담배)', en: 'Duty-free allowance' },
     d: { ko: '22도가 넘는 술은 1.5L(22도 미만은 2L, 맥주는 3L), 담배는 200개비까지 면세로 가지고 들어갈 수 있어요.', en: '1.5 L of liquor over 22% (or 2 L under 22%, or 3 L of beer) and 200 cigarettes are duty-free.' } }
 ];
@@ -2125,24 +2132,24 @@ var PREP_LIFE = [
   { ic: 'ri-drop-line', t: { ko: '물은 생수로', en: 'Drink bottled water' },
     d: { ko: '수돗물은 마시지 말고 생수를 사 드세요. 양치할 때도 생수를 쓰면 더 안전해요.', en: 'Do not drink tap water. Using bottled water to brush your teeth is safer too.' } },
   { ic: 'ri-sim-card-2-line', t: { ko: '유심 · eSIM', en: 'SIM or eSIM' },
-    d: { ko: 'eSIM을 미리 사 두거나 공항에서 유심을 사면 돼요. Viettel·Vinaphone·Mobifone이 대표 통신사예요.', en: 'Buy an eSIM in advance or a SIM card at the airport. Viettel, Vinaphone and Mobifone are the main carriers.' } },
+    d: { ko: '휴대전화의 eSIM 지원 여부와 사용할 요금제를 확인하세요. eSIM을 미리 준비하거나 현지에서 유심을 구입할 수 있어요. Viettel·Vinaphone·Mobifone이 대표 통신사예요.', en: 'Check whether your phone supports eSIM and which plan you need. You can set up an eSIM in advance or buy a SIM card locally. Viettel, Vinaphone and Mobifone are the main carriers.' } },
   { ic: 'ri-taxi-line', t: { ko: '이동은 Grab으로', en: 'Get around with Grab' },
     d: { ko: 'Grab 앱으로 부르면 요금이 미리 정해져 흥정할 필요가 없어요. 길에서 탈 때는 마이린·비나선 같은 정식 택시를 타세요.', en: 'Grab shows the fare up front, so there is no haggling. If you hail a cab, use licensed companies like Mai Linh or Vinasun.' } },
   { ic: 'ri-smartphone-line', t: { ko: '미리 깔아 둘 앱', en: 'Apps to install' },
     d: { ko: 'Grab(택시·오토바이·배달), Xanh SM(전기 택시), 구글 지도, 번역 앱(파파고 등)을 출발 전에 깔아 두세요.', en: 'Install Grab (rides and delivery), Xanh SM (electric taxis), Google Maps and a translator app before you go.' } }
 ];
 var PREP_MONEY = [
-  { ic: 'ri-exchange-dollar-line', ko: '달러는 빳빳한 100달러 신권으로 준비하세요. 작은 단위나 낡은 지폐는 환율을 덜 쳐 주거나 받지 않기도 해요. 환전소마다 환율이 다르니 두세 곳을 비교해 보세요.', en: 'Bring crisp, new USD 100 notes. Small or worn notes may get a lower rate or be refused. Rates differ between counters, so compare two or three.' },
+  { ic: 'ri-exchange-dollar-line', ko: '달러 현금을 가져간다면 훼손이나 낙서가 없는 지폐로 준비하세요. 환전처마다 권종과 지폐 상태에 따른 조건이 다를 수 있으니, 적용 환율을 확인하고 두세 곳을 비교해 보세요.', en: 'If you bring US dollars, make sure the notes are undamaged and unmarked. Exchange counters may set different terms by note size and condition, so check the rate you will get and compare two or three.' },
   { ic: 'ri-bank-card-line', ko: '트래블카드로 현지 ATM에서 동을 뽑으면 카드사 수수료가 면제돼요. 조건은 카드마다 달라요. 트래블로그는 월 인출 한도(1만 달러) 안에서 모두 면제, 트래블월렛은 한 달 500달러(약 1,300만 동)까지 면제되고 넘는 금액엔 2%가 붙어요.', en: 'Korean travel cards waive their own ATM fees, but terms differ. Travellog waives them on everything within its USD 10,000 monthly limit; Travel Wallet waives them on the first USD 500 a month (about VND 13 million) and charges 2% above that.' },
-  { ic: 'ri-bank-line', ko: 'ATM을 운영하는 현지 은행이 받는 수수료는 트래블카드도 면제해 주지 않아요. VPBank ATM은 수수료가 없는 경우가 많고, TPBank는 2025년 6월부터 수수료를 받아요. 뽑기 전에 화면에 뜨는 수수료를 확인하세요.', en: 'Travel cards do not cover the fee the local ATM bank adds. VPBank ATMs often charge nothing, while TPBank has charged a fee since June 2025. Check the fee shown on screen before you confirm.' },
-  { ic: 'ri-error-warning-line', ko: 'ATM 화면에서 원화로 환산해 주는 옵션(With conversion)을 고르면 환전 수수료가 두 번 붙어요. 동으로 바로 받는 옵션(Without conversion)을 고르세요.', en: 'If the ATM offers to convert to won (“With conversion”), decline. Choosing “Without conversion” avoids paying for the exchange twice.' },
+  { ic: 'ri-bank-line', ko: 'ATM을 운영하는 현지 은행이 받는 수수료는 트래블카드도 면제해 주지 않아요. 은행·기기·카드에 따라 ATM 이용 수수료가 달라질 수 있어요. 출금 확정 전에 화면에 표시되는 수수료를 확인하세요.', en: 'Travel cards do not cover the fee the local ATM bank adds. ATM fees vary by bank, machine and card, so check the fee shown on screen before you confirm the withdrawal.' },
+  { ic: 'ri-error-warning-line', ko: 'ATM에서 통화 환산을 제안하면 적용 환율과 추가 비용을 확인하세요. 베트남 동(VND) 기준으로 진행하려면 Without conversion 또는 Decline conversion을 선택하세요. 화면 표현은 기기마다 다를 수 있어요.', en: 'If the ATM offers to convert the amount for you, check the rate and any extra cost. To be charged in Vietnamese dong (VND), choose “Without conversion” or “Decline conversion”; the wording varies by machine.' },
   { ic: 'ri-store-2-line', ko: '호텔·큰 식당·마트는 카드가 되지만, 시장·노점·작은 가게는 현금만 받는 곳이 많아요.', en: 'Hotels, larger restaurants and supermarkets take cards, but markets, street stalls and small shops are often cash only.' }
 ];
 var PREP_WEATHER = [
   { r: 'north', city: { ko: '하노이 · 하롱베이 · 사파', en: 'Hanoi · Ha Long Bay · Sa Pa' }, rows: [
     { k: 'rain', ko: '5~9월: 덥고 습하며 비가 자주 와요', en: 'May–Sep: hot, humid and rainy' },
     { k: 'sun', ko: '10~11월, 3~4월: 선선해서 여행하기 좋아요', en: 'Oct–Nov, Mar–Apr: mild and pleasant' },
-    { k: 'cold', ko: '12~2월: 10도대로 쌀쌀해요. 겉옷이 꼭 필요해요', en: 'Dec–Feb: chilly, around 10–19 °C. Bring a jacket' } ] },
+    { k: 'cold', ko: '12~2월: 지역에 따라 추위 차이가 커요. 하노이·하롱베이는 따뜻한 겉옷을, 사파 등 산간 지역은 충분한 방한용품을 준비하세요', en: 'Dec–Feb: how cold it gets varies a lot. Bring a warm jacket for Hanoi and Hạ Long Bay, and proper winter gear for mountain areas like Sa Pa' } ] },
   { r: 'central', city: { ko: '다낭 · 호이안 · 후에', en: 'Da Nang · Hội An · Huế' }, rows: [
     { k: 'sun', ko: '2~8월: 건기라 맑고 더워요', en: 'Feb–Aug: dry season, sunny and hot' },
     { k: 'rain', ko: '9~12월: 우기예요. 특히 10~11월엔 폭우와 태풍이 잦아요', en: 'Sep–Dec: rainy season, with heavy rain and typhoons mostly in Oct–Nov' } ] },
@@ -2153,12 +2160,12 @@ var PREP_WEATHER = [
 var PREP_CHECK = [
   { g: 'docs', items: [
     { id: 'passport', ko: '여권 (유효기간 6개월 이상)', en: 'Passport (valid 6+ months)' },
-    { id: 'flight', ko: '왕복 항공권 예약 확인', en: 'Return flight booking' },
+    { id: 'flight', ko: '귀국·다음 여행지 이동 예약 확인', en: 'Return or onward travel booking' },
     { id: 'hotel', ko: '숙소 예약 확인서', en: 'Hotel booking confirmation' },
     { id: 'insurance', ko: '여행자보험', en: 'Travel insurance' },
-    { id: 'kids', ko: '아이 동반 시 영문 가족관계증명서', en: 'Kids: English family certificate' } ] },
+    { id: 'kids', cond: 1, ko: '영문 가족관계증명서 (아이 동반 시)', en: 'English family certificate (with children)' } ] },
   { g: 'money', items: [
-    { id: 'card', ko: '해외 결제 카드 (2장 이상)', en: 'Cards for overseas use (2+)' },
+    { id: 'card', ko: '해외 결제 가능 카드 (예비 카드도 준비하면 좋아요)', en: 'Cards that work abroad (a spare helps)' },
     { id: 'cash', ko: '현금 (달러 또는 동)', en: 'Cash (USD or VND)' } ] },
   { g: 'tech', items: [
     { id: 'esim', ko: 'eSIM 또는 유심', en: 'eSIM or SIM card' },
@@ -2170,9 +2177,10 @@ var PREP_CHECK = [
     { id: 'mosquito', ko: '모기 기피제', en: 'Mosquito repellent' },
     { id: 'sun', ko: '선크림 · 모자 · 선글라스', en: 'Sunscreen, hat, sunglasses' } ] },
   { g: 'clothes', items: [
-    { id: 'layer', ko: '얇은 겉옷 (에어컨 · 북부 겨울)', en: 'Light jacket (A/C, northern winter)' },
+    { id: 'layer', ko: '얇은 겉옷 (냉방 대비)', en: 'Light jacket (for air conditioning)' },
+    { id: 'winter', cond: 1, ko: '방한복 (북부 겨울·산간 지역 방문 시)', en: 'Warm clothes (northern winter, mountain areas)' },
     { id: 'temple', ko: '사원 방문용 긴 바지 · 스카프', en: 'Long pants and a scarf for temples' },
-    { id: 'rain', ko: '우산 · 우비 (우기)', en: 'Umbrella or poncho (rainy season)' },
+    { id: 'rain', cond: 1, ko: '우산 · 우비 (우기 여행 시)', en: 'Umbrella or poncho (rainy season)' },
     { id: 'sandals', ko: '슬리퍼 · 샌들', en: 'Sandals' } ] },
   { g: 'etc', items: [
     { id: 'tissue', ko: '물티슈 · 휴지', en: 'Wet wipes and tissues' },
@@ -2702,7 +2710,7 @@ function viewFood() {
     '<div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-2 content-start">' + sws + '</div>' +
     '<div class="lg:col-span-2 p-4 rounded-2xl bg-gradient-to-br from-accent-500/15 to-primary-500/10 border border-accent-500/30 space-y-2 min-w-0">' +
     '<p class="text-[11px] font-bold text-accent-400 flex items-center gap-1.5"><i class="ri-eye-line"></i>' + esc(t('showStaff')) + '</p>' + order +
-    '<div class="pt-2 mt-1 border-t border-accent-500/20">' + toneSeg() + '</div></div>' +
+    '<div class="pt-2 mt-1 border-t border-accent-500/20 space-y-1.5">' + toneSeg() + '<p class="text-[11px] text-foreground-500">' + esc(t('vtHint')) + '</p></div></div>' +
     '</div></div>' +
     '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
     cardHead('🍜', 'primary', t('menuTitle'), t('menuDesc')) +
@@ -2991,14 +2999,20 @@ function viewExp() {
     '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('exp_note')) + '</p>' +
     '</section>';
 }
+/* a checklist row; items marked cond ("if needed") can also be set to "not needed" ('na'), which leaves them out of the count */
 function prepItem(it) {
-  var on = !!state.prep.checks[it.id];
-  return '<button type="button" data-action="prep-check" data-value="' + it.id + '" role="checkbox" aria-checked="' + on + '" class="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left text-sm cursor-pointer transition-colors ' +
-    (on ? 'bg-secondary-500/10 border-secondary-500/40 text-foreground-500' : 'bg-background-50 border-background-200 text-foreground-900 hover:border-background-400') + '">' +
-    '<i class="' + (on ? 'ri-checkbox-fill text-secondary-400' : 'ri-checkbox-blank-line text-foreground-400') + ' text-xl"></i><span class="min-w-0' + (on ? ' line-through decoration-foreground-400/60' : '') + '">' + esc(L(it)) + '</span></button>';
+  var v = state.prep.checks[it.id], on = v === true, na = v === 'na';
+  var main = '<button type="button" data-action="prep-check" data-value="' + it.id + '" role="checkbox" aria-checked="' + on + '" class="flex-1 min-w-0 flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left text-sm cursor-pointer transition-colors ' +
+    (on ? 'bg-secondary-500/10 border-secondary-500/40 text-foreground-500' : na ? 'bg-background-50 border-background-200 text-foreground-400' : 'bg-background-50 border-background-200 text-foreground-900 hover:border-background-400') + '">' +
+    '<i class="' + (on ? 'ri-checkbox-fill text-secondary-400' : na ? 'ri-subtract-line text-foreground-400' : 'ri-checkbox-blank-line text-foreground-400') + ' text-xl"></i><span class="min-w-0' + (on || na ? ' line-through decoration-foreground-400/60' : '') + '">' + esc(L(it)) + '</span>' +
+    (it.cond ? '<span class="ml-auto flex-shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-accent-500/30 text-accent-400">' + esc(t(na ? 'prep_na' : 'prep_cond')) + '</span>' : '') + '</button>';
+  var naBtn = it.cond ? '<button type="button" data-action="prep-na" data-value="' + it.id + '" aria-pressed="' + na + '" class="flex-shrink-0 px-2.5 rounded-xl border text-[11px] font-semibold cursor-pointer transition-colors ' +
+    (na ? 'bg-accent-500/15 border-accent-500/40 text-accent-400' : 'bg-background-50 border-background-200 text-foreground-500 hover:text-foreground-900') + '">' + esc(t(na ? 'prep_naUndo' : 'prep_na')) + '</button>' : '';
+  return '<div class="prep-row flex items-stretch gap-1.5">' + main + naBtn + '</div>';
 }
 function prepProgressHtml() {
-  var total = PREP_ITEMS.length, n = PREP_ITEMS.filter(function (id) { return state.prep.checks[id]; }).length;
+  var live = PREP_ITEMS.filter(function (id) { return state.prep.checks[id] !== 'na'; });
+  var total = live.length, n = live.filter(function (id) { return state.prep.checks[id] === true; }).length;
   var done = n === total, pct = Math.round(n / total * 100);
   return '<div class="flex items-center justify-between gap-3 text-xs tabular"><span class="font-bold ' + (done ? 'text-secondary-400' : 'text-foreground-900') + '">' + (done ? '🎉 ' + esc(t('prep_done')) : esc(tf('prep_progress', { n: n, total: total }))) + '</span>' +
     (n ? '<button type="button" data-action="prep-reset" class="text-[11px] font-semibold cursor-pointer underline-offset-2 hover:underline ' + (state.prep.resetArmed ? 'text-primary-300' : 'text-foreground-400 hover:text-foreground-900') + '">' + esc(t(state.prep.resetArmed ? 'prep_resetConfirm' : 'prep_reset')) + '</button>' : '') + '</div>' +
@@ -3086,7 +3100,7 @@ function viewEmergency() {
     '<p class="text-xs text-foreground-500 flex items-start gap-1.5"><i class="ri-information-line text-primary-400 mt-px"></i><span>' + esc(t('localNote')) + '</span></p></div>' +
     '<div class="bg-background-100 p-5 sm:p-6 rounded-2xl border border-background-200 space-y-4">' +
     '<h3 class="font-heading font-bold text-base text-foreground-950 flex items-center gap-2"><i class="ri-shield-star-line text-primary-500"></i> ' + esc(t('embassyTitle')) + '</h3>' +
-    '<div class="p-4 rounded-xl bg-accent-500/10 border border-accent-500/30 flex flex-col sm:flex-row sm:items-center gap-3 text-xs"><div class="flex-1 min-w-0"><p class="font-bold text-accent-400">☎️ ' + esc(state.lang === 'en' ? 'Consular Call Center (24h)' : '영사콜센터 (24시간)') + '</p><p class="text-foreground-500 mt-0.5">' + esc(t('callDesc')) + '</p></div>' +
+    '<div class="p-4 rounded-xl bg-accent-500/10 border border-accent-500/30 flex flex-col sm:flex-row sm:items-center gap-3 text-xs"><div class="flex-1 min-w-0"><p class="font-bold text-accent-400">☎️ ' + esc(state.lang === 'en' ? 'Consular Call Center (24h)' : '영사안전콜센터 (24시간)') + '</p><p class="text-foreground-500 mt-0.5">' + esc(t('callDesc')) + '</p></div>' +
     '<div class="flex items-center gap-2"><a href="tel:' + CALL_CENTER.replace(/-/g, '') + '" class="text-lg font-extrabold text-foreground-950 tabular select-all hover:text-accent-400 transition-colors">' + CALL_CENTER + '</a>' +
     '<button type="button" data-action="copy" data-text="' + CALL_CENTER + '" aria-label="' + esc(t('copy')) + '" class="p-1.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors"><i class="ri-file-copy-line"></i></button></div></div>' +
     '<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">' + missions + '</div>' +
@@ -3567,14 +3581,17 @@ document.addEventListener('click', function (e) {
     case 'deck-hide': state.deck.hideKnown = !state.deck.hideKnown; store.set('deckHideKnown', state.deck.hideKnown); state.deck.resetArmed = false; renderModal(); break;
     case 'deck-reset': deckReset(); break;
     case 'prep-check':
-      state.prep.checks[v] = !state.prep.checks[v];
-      if (!state.prep.checks[v]) delete state.prep.checks[v];
+    case 'prep-na':
+      if (a === 'prep-na') { if (state.prep.checks[v] === 'na') delete state.prep.checks[v]; else state.prep.checks[v] = 'na'; }
+      else if (state.prep.checks[v] === true) delete state.prep.checks[v];
+      else state.prep.checks[v] = true;
       state.prep.resetArmed = false; store.set('prepChecks', state.prep.checks);
       var it = null; PREP_CHECK.forEach(function (g) { g.items.forEach(function (x) { if (x.id === v) it = x; }); });
-      if (it) {
+      var row = el.closest('.prep-row');
+      if (it && row) {
         var wrap = document.createElement('div'); wrap.innerHTML = prepItem(it); hydrate(wrap);
         var nb = wrap.firstChild, wasFocused = document.activeElement === el;
-        el.parentNode.replaceChild(nb, el); if (wasFocused) nb.focus({ preventScroll: true });
+        row.parentNode.replaceChild(nb, row); if (wasFocused) { var f = nb.querySelector('[data-action="' + a + '"]'); if (f) f.focus({ preventScroll: true }); }
       }
       var pp = $('#prep-progress'); if (pp) { pp.innerHTML = prepProgressHtml(); hydrate(pp); }
       break;
