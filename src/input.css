@@ -251,3 +251,36 @@ details.fold > summary:hover h3, details.fold > summary:hover h4 { color: rgb(va
 .vmap-go { width: 100%; display: flex; align-items: center; justify-content: center; gap: 4px; padding: .55rem; border-radius: 3px; cursor: pointer;
   background: rgb(var(--sign-red)); color: rgb(var(--sign-yellow)); font-size: .8rem; font-weight: 800; }
 .vmap-go:hover { filter: brightness(1.08); }
+
+/* Travel card comparison table: the label column stays put while the cards scroll sideways. */
+.cmp-scroll { overflow-x: auto; margin: 0 -1.25rem; padding: 0 0 4px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.cmp-scroll:focus-visible { outline: 2px solid rgb(var(--se-400)); outline-offset: 2px; border-radius: 6px; }
+.cmp { min-width: 960px; width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12px; line-height: 1.45; }
+.cmp th, .cmp td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid rgb(var(--bg-200)); transition: opacity .2s, background-color .2s; }
+.cmp thead th { border-bottom: 2px solid rgb(var(--bg-300)); width: 12.5%; }
+.cmp tbody tr:last-child > * { border-bottom: 0; }
+.cmp tr > :last-child { padding-right: 1.25rem; }
+.cmp tbody th, .cmp .cmp-corner { position: sticky; left: 0; z-index: 2; width: 8.25rem; min-width: 8.25rem; padding-left: 1.25rem; background: rgb(var(--bg-100));
+  box-shadow: 1px 0 0 rgb(var(--bg-200)); font-weight: 700; color: rgb(var(--fg-700)); }
+.cmp .cmp-corner { font-size: 11px; color: rgb(var(--fg-400)); vertical-align: bottom; }
+.cmp tr.is-vnd > * { background: rgb(var(--ac-500) / .08); }
+.cmp tr.is-vnd > th { background: linear-gradient(rgb(var(--ac-500) / .08), rgb(var(--ac-500) / .08)), rgb(var(--bg-100)); color: rgb(var(--ac-300)); }
+.cmp-brand { display: inline-block; margin-top: 6px; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; letter-spacing: .02em;
+  color: rgb(var(--fg-500)); border: 1px solid rgb(var(--bg-300)); }
+.cmp-v { display: inline-flex; align-items: flex-start; gap: 5px; color: rgb(var(--fg-800)); }
+.cmp-v i { font-size: 14px; line-height: 1.2; flex-shrink: 0; }
+.cmp-v.tone-good i { color: rgb(var(--se-400)); }
+.cmp-v.tone-mid i { color: rgb(var(--ac-400)); }
+.cmp-v.tone-ask i, .cmp-v.tone-ask { color: rgb(var(--fg-400)); }
+.cmp-none { color: rgb(var(--fg-300)); }
+.cmp.has-pick td:not(.is-pick), .cmp.has-pick thead th:not(.is-pick):not(.cmp-corner) { opacity: .45; }
+.cmp td.is-pick, .cmp thead th.is-pick { background: rgb(var(--se-500) / .1); }
+.cmp td.is-hit { background: rgb(var(--se-500) / .22); box-shadow: inset 0 0 0 2px rgb(var(--se-400)); }
+.cmp td.is-hit .cmp-v { font-weight: 700; color: rgb(var(--fg-950)); }
+.cmp tr.is-row > th { color: rgb(var(--se-300)); }
+.cmp-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer;
+  color: rgb(var(--fg-700)); background: rgb(var(--bg-50)); border: 1px solid rgb(var(--bg-300)); transition: background-color .15s, border-color .15s, color .15s; }
+.cmp-chip:hover { border-color: rgb(var(--se-400)); }
+.cmp-chip.is-on { color: rgb(var(--se-300)); background: rgb(var(--se-500) / .14); border-color: rgb(var(--se-400)); }
+.cmp-chip:focus-visible { outline: 2px solid rgb(var(--se-400)); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .cmp th, .cmp td, .cmp-chip { transition: none; } }
