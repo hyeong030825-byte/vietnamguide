@@ -160,7 +160,9 @@ var T = {
     siteLang: '사이트 언어', themeToLight: '밝은 화면으로 보기', themeToDark: '어두운 화면으로 보기', toastLight: '밝은 화면으로 바꿨어요', toastDark: '어두운 화면으로 바꿨어요', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_exp: '문화체험', mtab_exp: '문화체험', tab_reviews: '여행 후기', mtab_reviews: '후기',
-    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 가는 법, 여행하기 좋은 때, 숙소 지역, 유명 관광지 주소, 꼭 먹어 볼 음식과 현지인 맛집, 대표 체험을 볼 수 있어요.',
+    ev_city: '도시별 여행', city_title: '도시별 여행 정보', city_desc: '도시를 고르면 여행 정보를 한눈에 보고, 관광지·맛집·체험으로 바로 넘어갈 수 있어요.',
+    q_fly: '인천 직항', q_airport: '공항 → 시내', q_best: '여행하기 좋은 때', q_rain: '우기', q_days: '추천 일정', q_stay: '숙소 추천 지역',
+    ci_more: '가는 법·날씨·숙소·이동·알아 둘 점 자세히 보기', jump_spots: '관광지', jump_eats: '현지인 맛집', jump_exp: '대표 체험', jump_food: '꼭 먹어 볼 음식', card_more: '자세히', card_less: '접기',
     ci_fly: '가는 법', ci_airport: '공항에서 시내로', ci_season: '여행하기 좋은 때', ci_days: '추천 일정', ci_stay: '숙소 잡기 좋은 곳', ci_move: '시내 이동',
     ci_eats: '꼭 먹어 볼 음식', ci_dish: '메뉴판에서 보기', ci_count: '명소 {s} · 체험 {n}', exp_list: '{city} 대표 체험', cityGo: '여행 정보',
     exp_day: '낮 체험', exp_night: '밤 체험', exp_where: '위치', exp_when: '추천 시간', exp_price: '가격', exp_how: '예약 방법',
@@ -352,7 +354,9 @@ var T = {
     siteLang: 'Site language', themeToLight: 'Switch to light mode', themeToDark: 'Switch to dark mode', toastLight: 'Light mode on', toastDark: 'Dark mode on', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_exp: 'Culture & Experiences', mtab_exp: 'Explore', tab_reviews: 'Trip Reviews', mtab_reviews: 'Reviews',
-    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city to see how to get there, when to go, where to stay, famous sights with addresses, what to eat and where locals eat it, and the top things to do.',
+    ev_city: 'City guides', city_title: 'City travel guides', city_desc: 'Pick a city for the essentials at a glance, then jump to its sights, local eats and things to do.',
+    q_fly: 'Nonstop from Seoul', q_airport: 'Airport → town', q_best: 'Best time', q_rain: 'Rainy season', q_days: 'Typical trip', q_stay: 'Where to stay',
+    ci_more: 'More: getting there, weather, stays, getting around and tips', jump_spots: 'Sights', jump_eats: 'Local eats', jump_exp: 'Things to do', jump_food: 'Must-try food', card_more: 'More', card_less: 'Less',
     ci_fly: 'Getting there', ci_airport: 'Airport to town', ci_season: 'When to go', ci_days: 'How long to stay', ci_stay: 'Where to stay', ci_move: 'Getting around',
     ci_eats: 'Must-try food', ci_dish: 'See menu card', ci_count: '{s} sights · {n} to do', exp_list: 'Top things to do in {city}', cityGo: 'city guide',
     exp_day: 'Daytime', exp_night: 'Evening', exp_where: 'Where', exp_when: 'Best time', exp_price: 'Price', exp_how: 'Booking',
@@ -842,6 +846,7 @@ var CITIES = [
   { id: 'danang', emoji: '🏖️', aka: '다낭 danang da nang', k: '다낭 호이안 미케 한강 바나힐 danang da nang hoi an',
     name: { ko: '다낭 · 호이안', en: 'Da Nang · Hội An' }, vi: 'Đà Nẵng · Hội An',
     tagline: { ko: '바다와 도시 야경의 다낭, 등불이 켜지는 옛 항구 마을 호이안을 함께 즐기는 곳', en: 'Beaches and city lights in Da Nang, with the lantern-lit old port town of Hội An next door' },
+    quick: { fly: { ko: '약 4시간 40분', en: 'About 4 h 40 min' }, airport: { ko: '10~20분', en: '10–20 min' }, best: { ko: '2~8월 (3~5월이 가장 쾌적)', en: 'Feb–Aug (Mar–May nicest)' }, rain: { ko: '9~12월 (10~11월 폭우)', en: 'Sep–Dec (heaviest Oct–Nov)' }, days: { ko: '3박 4일~3박 5일', en: '4–5 days' }, stay: { ko: '미케 비치 · 한강 주변', en: 'Mỹ Khê Beach · Hàn River' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 4시간 40분~5시간, 다낭 국제공항(DAD) 도착. 부산(김해)에서도 매일 직항이 있어요.', en: 'About 4 h 40 min to 5 h nonstop from Incheon to Da Nang International Airport (DAD). There are daily nonstop flights from Busan (Gimhae) too.' },
       { k: 'airport', ko: '공항이 시내와 가까워 한강 주변이나 미케 비치까지 차로 10~20분, Grab 약 6만~10만 동(약 {krw:60000}~{krw:100000})이에요. 호이안까지는 약 30km, 35~50분 걸리고 Grab 약 25만~40만 동(약 {krw:250000}~{krw:400000})이에요.', en: 'The airport is close to town: 10–20 min to the Hàn River area or Mỹ Khê Beach, about VND 60,000–100,000 by Grab ({krw:60000}–{krw:100000}). Hội An is about 30 km away, 35–50 min, about VND 250,000–400,000 by Grab ({krw:250000}–{krw:400000}).' },
@@ -861,6 +866,7 @@ var CITIES = [
   { id: 'nhatrang', emoji: '🏝️', aka: '나트랑 냐짱 나짱 nha trang nhatrang', k: '나트랑 냐짱 나짱 깜라인 캄란 nha trang nhatrang cam ranh',
     name: { ko: '나트랑', en: 'Nha Trang' }, vi: 'Nha Trang',
     tagline: { ko: '긴 해변과 섬 투어, 머드 온천을 즐기는 바닷가 휴양 도시', en: 'A seaside resort city of long beaches, island trips and mud baths' },
+    quick: { fly: { ko: '약 5시간', en: 'About 5 h' }, airport: { ko: '40~50분', en: '40–50 min' }, best: { ko: '1~8월 (2~4월이 쾌적)', en: 'Jan–Aug (Feb–Apr nicest)' }, rain: { ko: '9~12월', en: 'Sep–Dec' }, days: { ko: '3박 5일~4박 6일', en: '5–6 days' }, stay: { ko: '쩐푸 해변 도로 주변', en: 'Trần Phú beach road' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 5시간, 깜라인 국제공항(CXR) 도착. 부산 등 지방 공항에서도 직항이 있고, 밤늦게 도착하는 편이 많아요.', en: 'About 5 hours nonstop from Incheon to Cam Ranh International Airport (CXR). Direct flights also leave from Busan and other regional airports, and many land late at night.' },
       { k: 'airport', ko: '공항에서 시내까지 약 35km, 차로 40~50분. Grab은 약 25만~35만 동(약 {krw:250000}~{krw:350000}), 18번 공항버스는 약 6만 5천 동(약 {krw:65000})이에요.', en: 'The airport is about 35 km from downtown, 40–50 minutes by car. Grab costs about VND 250,000–350,000 ({krw:250000}–{krw:350000}); airport bus 18 is about VND 65,000 ({krw:65000}).' },
@@ -880,6 +886,7 @@ var CITIES = [
   { id: 'phuquoc', emoji: '🌅', aka: '푸꾸옥 푸국 phu quoc phuquoc', k: '푸꾸옥 푸국 즈엉동 선셋타운 phu quoc phuquoc',
     name: { ko: '푸꾸옥', en: 'Phú Quốc' }, vi: 'Phú Quốc',
     tagline: { ko: '베트남에서 가장 큰 섬, 노을 지는 바다와 리조트·테마파크를 함께 즐기는 휴양지', en: "Vietnam's largest island, a resort getaway of sunset beaches and theme parks" },
+    quick: { fly: { ko: '약 6시간', en: 'About 6 h' }, airport: { ko: '15~25분', en: '15–25 min' }, best: { ko: '11~4월', en: 'Nov–Apr' }, rain: { ko: '5~10월', en: 'May–Oct' }, days: { ko: '3박 5일~4박 6일', en: '5–6 days' }, stay: { ko: '즈엉동 · 롱비치', en: 'Dương Đông · Long Beach' } },
     info: [
       { k: 'fly', ko: '인천에서 직항으로 약 6시간, 푸꾸옥 국제공항(PQC)에 도착해요. 부산(김해) 출발 직항도 있어요(약 5시간 30분).', en: 'About 6 hours nonstop from Incheon to Phú Quốc International Airport (PQC). There are also nonstop flights from Busan (about 5.5 hours).' },
       { k: 'airport', ko: '즈엉동 시내·롱비치까지 약 10km 안팎(차로 15~25분), Grab 약 10만~20만 동(약 {krw:100000}~{krw:200000})이에요. 남부 선셋타운까지는 약 20km(25~30분)로 Grab 약 25만 동(약 {krw:250000}) 정도예요.', en: 'Dương Đông town and Long Beach are roughly 10 km away (15–25 minutes by car); Grab costs about VND 100,000–200,000 ({krw:100000}–{krw:200000}). Sunset Town in the south is about 20 km (25–30 minutes), roughly VND 250,000 ({krw:250000}) by Grab.' },
@@ -899,6 +906,7 @@ var CITIES = [
   { id: 'hanoi', emoji: '🍜', aka: '하노이 hanoi ha noi', k: '하노이 하롱베이 하롱 구시가지 hanoi ha noi ha long halong',
     name: { ko: '하노이 · 하롱베이', en: 'Hanoi · Ha Long Bay' }, vi: 'Hà Nội · Vịnh Hạ Long',
     tagline: { ko: '천 년 고도의 골목과 바다 위 석회암 섬들을 함께 만나는 베트남 북부 여행', en: 'Old lanes of a thousand-year-old capital, paired with limestone islands rising from the sea' },
+    quick: { fly: { ko: '약 5시간', en: 'About 5 h' }, airport: { ko: '40분~1시간', en: '40–60 min' }, best: { ko: '10~11월 · 3~4월', en: 'Oct–Nov · Mar–Apr' }, rain: { ko: '5~9월 (7~9월 태풍)', en: 'May–Sep (typhoons Jul–Sep)' }, days: { ko: '3박 4일~3박 5일', en: '4–5 days' }, stay: { ko: '구시가지(호안끼엠)', en: 'Old Quarter (Hoàn Kiếm)' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 5시간, 노이바이 국제공항(HAN) 도착. 부산(김해) 출발 직항도 매일 있어요.', en: 'About 5 hours nonstop from Incheon to Nội Bài International Airport (HAN). There are daily nonstop flights from Busan (Gimhae) too.' },
       { k: 'airport', ko: '공항에서 구시가지(호안끼엠)까지 약 30km, 차로 40분~1시간. Grab·Xanh SM은 약 30만~40만 동(약 {krw:300000}~{krw:400000}), 86번 공항버스는 4만 5천 동(약 {krw:45000})이에요.', en: 'The Old Quarter (Hoàn Kiếm) is about 30 km away, 40 minutes to an hour by car. Grab or Xanh SM costs about VND 300,000–400,000 ({krw:300000}–{krw:400000}); airport bus 86 is VND 45,000 ({krw:45000}).' },
@@ -920,6 +928,7 @@ var CITIES = [
   { id: 'hcmc', emoji: '🛵', aka: '호치민 호찌민 사이공 hcmc ho chi minh saigon sai gon', k: '호치민 호찌민 사이공 hcmc ho chi minh saigon',
     name: { ko: '호치민', en: 'Ho Chi Minh City' }, vi: 'TP. Hồ Chí Minh (Sài Gòn)',
     tagline: { ko: '오토바이 물결 속에 프랑스풍 건물과 고층 빌딩이 어우러진 베트남 최대 도시', en: "Vietnam's largest city, where French colonial buildings and skyscrapers rise above a sea of motorbikes" },
+    quick: { fly: { ko: '약 5시간 30분', en: 'About 5 h 30 min' }, airport: { ko: '25~45분', en: '25–45 min' }, best: { ko: '12~4월', en: 'Dec–Apr' }, rain: { ko: '5~11월 (오후 스콜)', en: 'May–Nov (afternoon storms)' }, days: { ko: '2~3일 (근교까지 4박 5일)', en: '2–3 days (4–5 with day trips)' }, stay: { ko: '1군', en: 'District 1' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 5시간 30분, 떤선녓 국제공항(SGN)에 도착해요. 부산 출발 직항도 있고, 2026년 12월 개항 예정인 롱탄 신공항으로 국제선이 차례로 옮겨 갈 예정이라 항공권의 도착 공항을 꼭 확인하세요.', en: 'About 5.5 hours nonstop from Incheon to Tân Sơn Nhất International Airport (SGN), with direct flights from Busan too. The new Long Thành airport is due to open in December 2026 and international flights will move there in phases, so check which airport your ticket uses.' },
       { k: 'airport', ko: '공항에서 1군 벤탄 시장까지 약 7~8km, 차로 25~45분이에요(출퇴근 시간엔 더 걸려요). Grab은 약 12만~25만 동(약 {krw:120000}~{krw:250000})으로 시간대에 따라 달라지고, 109번 버스(1만 5천~2만 동)는 2025년부터 국제선 T2가 아닌 국내선 T3 쪽에서 타요.', en: 'Bến Thành Market in District 1 is about 7–8 km away, 25–45 minutes by car (longer at rush hour). Grab costs about VND 120,000–250,000 ({krw:120000}–{krw:250000}) depending on the time; bus 109 (VND 15,000–20,000) now leaves from the domestic Terminal 3 side, not the international terminal (T2).' },
@@ -939,6 +948,7 @@ var CITIES = [
   { id: 'dalat', emoji: '🌲', aka: '달랏 다랏 dalat da lat', k: '달랏 다랏 dalat da lat',
     name: { ko: '달랏', en: 'Đà Lạt' }, vi: 'Đà Lạt',
     tagline: { ko: '소나무 숲과 호수에 둘러싸인, 1년 내내 선선한 해발 1,500m 고원 도시', en: 'A cool highland town of pine forests and lakes, about 1,500 m above sea level' },
+    quick: { fly: { ko: '2026년 12월 재개 예정 (약 5시간)', en: 'Resuming Dec 2026 (about 5 h)' }, airport: { ko: '30~40분', en: '30–40 min' }, best: { ko: '11~4월', en: 'Nov–Apr' }, rain: { ko: '5~10월 (오후 소나기)', en: 'May–Oct (afternoon showers)' }, days: { ko: '3박 4일', en: '4 days' }, stay: { ko: '쑤언흐엉 호수 주변', en: 'Around Xuân Hương Lake' } },
     info: [
       { k: 'fly', ko: '인천 직항(약 5시간)은 리엔크엉 공항(DLI) 공사로 멈췄다가 2026년 12월부터 주 4회 재개될 예정이에요. 직항이 없을 땐 나트랑 깜라인 공항(CXR)에서 차로 3~4시간, 또는 호치민에서 국내선(약 1시간)으로 가요.', en: "Direct flights from Incheon (about 5 hours) to Liên Khương Airport (DLI) were halted by runway works and are due to resume in December 2026, about four a week. Otherwise fly to Nha Trang's Cam Ranh Airport (CXR) and drive 3–4 hours, or connect in Ho Chi Minh City (about 1 hour)." },
       { k: 'airport', ko: '공항에서 시내까지 약 30km, 차로 30~40분이에요. Grab·택시는 약 25만~35만 동(약 {krw:250000}~{krw:350000}), 공항버스는 약 4만~6만 동이에요.', en: 'The airport is about 30 km from town, 30–40 minutes by car. Grab or a taxi costs about VND 250,000–350,000 ({krw:250000}–{krw:350000}); the airport bus is about VND 40,000–60,000.' },
@@ -2206,6 +2216,7 @@ var EXP_VIEWS = { culture: 1, gift: 1 };  /* views of the 문화체험 tab that 
 var initTab = TABS.indexOf(hashTab) >= 0 || EXP_VIEWS[hashTab] ? hashTab : savedTab;
 var savedCity = store.get('city', 'danang');
 var state = {
+  openCards: {}, /* folded city cards the reader opened, by data-card id */
   tab: EXP_VIEWS[initTab] ? 'exp' : (TABS.indexOf(initTab) >= 0 ? initTab : 'exp'),
   expView: EXP_VIEWS[initTab] ? initTab : (EXP_VIEWS[store.get('expView', 'city')] ? store.get('expView', 'city') : 'city'),
   giftCat: 'all',
@@ -2783,82 +2794,98 @@ function miniPhrase(p, bg) {
     '<p class="text-[11px] text-foreground-500">' + esc(pMeaning(p)) + (state.lang === 'ko' ? ' · [' + esc(p.pr[ti()]) + ']' + esc(casualFeel(p)) : '') + '</p></div>' +
     '<button type="button" data-action="speak" data-text="' + esc(vi) + '" aria-label="' + esc(t('listen')) + '" class="p-2 rounded-full bg-primary-500/15 hover:bg-primary-500/25 text-primary-300 border border-primary-500/30 cursor-pointer transition-colors flex-shrink-0"><i class="ri-volume-up-line"></i></button></div>';
 }
+/* Cards on the city page fold: the summary shows the name and one line, the rest opens on tap.
+   Open cards are remembered by id so a re-render (tone switch, bookmark) keeps them open. */
+function splitFirst(text) {
+  var m = String(text || '').match(/^([\s\S]+?[.!?])\s+([\s\S]+)$/);
+  return m ? [m[1], m[2]] : [String(text || ''), ''];
+}
+function foldOpen(key) { return state.openCards && state.openCards[key] ? ' open' : ''; }
+function foldHint() {
+  return '<span class="flex items-center gap-0.5 text-[11px] font-bold text-accent-400 whitespace-nowrap flex-shrink-0"><span class="group-open:hidden">' + esc(t('card_more')) + '</span><span class="hidden group-open:inline">' + esc(t('card_less')) + '</span><i class="ri-arrow-down-s-line text-base transition-transform group-open:rotate-180"></i></span>';
+}
+var CARD_BTN = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
+function mapLink(q) {
+  return '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(q) + '" target="_blank" rel="noopener noreferrer" class="' + CARD_BTN + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-[11px] opacity-60"></i></a>';
+}
+function addrRow(addr) {
+  return '<div class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-background-100 border border-background-200"><i class="ri-map-pin-line text-accent-400"></i>' +
+    '<span class="vi text-xs font-semibold text-foreground-900 leading-relaxed select-all break-words min-w-0 flex-1">' + esc(addr) + '</span>' +
+    '<button type="button" data-action="copy" data-text="' + esc(addr) + '" aria-label="' + esc(t('copyAddr')) + '" title="' + esc(t('copyAddr')) + '" class="p-1 -m-0.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors flex-shrink-0"><i class="ri-file-copy-line"></i></button></div>';
+}
 function expCard(x, showCity) {
-  var night = x.time === 'night';
+  var night = x.time === 'night', key = 'e:' + x.id;
   var chipCls = night ? 'bg-primary-500/10 text-primary-300 border-primary-500/30' : 'bg-accent-500/10 text-accent-300 border-accent-500/30';
   var info = function (ic, label, html) {
     return '<div class="flex items-start gap-2.5"><i class="' + ic + ' text-base text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>';
   };
   var photo = EXP_PHOTOS[x.id] ? '<div class="aspect-[16/9] bg-background-200 overflow-hidden"><img src="img/exp/' + x.id + '.webp" alt="' + esc(L(x.name)) + '" width="960" height="540" loading="lazy" decoding="async" class="w-full h-full object-cover"></div>' : '';
   var phrases = x.phrases.map(function (p) { return miniPhrase(p); }).join('');
-  var place = expPlace(x, showCity);
-  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
-  return '<article class="bg-background-100 rounded-2xl border border-background-200 overflow-hidden flex flex-col">' + photo +
-    '<div class="p-5 space-y-4 flex-1 flex flex-col">' +
-    '<div class="flex items-start gap-3"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + x.emoji + '</div>' +
+  var place = expPlace(x, showCity), desc = splitFirst(L(x.desc));
+  return '<article class="relative bg-background-100 rounded-2xl border border-background-200 overflow-hidden flex flex-col">' + photo +
+    '<details class="group fold" data-card="' + key + '"' + foldOpen(key) + '><summary class="list-none cursor-pointer p-5 pb-3 space-y-2 [&::-webkit-details-marker]:hidden">' +
+    '<div class="flex items-start gap-3 pr-8"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + x.emoji + '</div>' +
     '<div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-1.5 mb-1"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ' + chipCls + '">' + esc(t(night ? 'exp_night' : 'exp_day')) + '</span>' +
     (place ? '<span class="' + EXP_TAG + '"><i class="ri-map-pin-2-line"></i>' + esc(place) + '</span>' : '') +
     '<span class="' + EXP_TAG + '"><i class="ri-time-line"></i>' + esc(L(x.dur)) + '</span></div>' +
-    '<h3 class="font-heading font-bold text-foreground-950 text-base leading-snug">' + esc(L(x.name)) + '</h3><p class="vi text-sm text-accent-400">' + esc(x.vi) + '</p></div>' + bmBtn('e:' + x.id) + '</div>' +
-    '<p class="text-sm text-foreground-500 leading-relaxed">' + esc(L(x.desc)) + '</p>' +
+    '<h3 class="font-heading font-bold text-foreground-950 text-base leading-snug">' + esc(L(x.name)) + '</h3><p class="vi text-sm text-accent-400">' + esc(x.vi) + '</p></div></div>' +
+    '<div class="flex items-end gap-3"><p class="fold-line text-sm text-foreground-500 leading-relaxed flex-1 min-w-0">' + esc(desc[0]) + '</p>' + foldHint() + '</div></summary>' +
+    '<div class="px-5 pb-3 space-y-4">' + (desc[1] ? '<p class="text-sm text-foreground-500 leading-relaxed -mt-1">' + esc(desc[1]) + '</p>' : '') +
     '<dl class="grid grid-cols-1 gap-2.5 p-3 rounded-xl bg-background-50 border border-background-200">' +
     info('ri-map-pin-line', t('exp_where'), krwTpl(L(x.where))) + info(night ? 'ri-moon-line' : 'ri-sun-line', t('exp_when'), krwTpl(L(x.when))) +
     info('ri-coins-line', t('exp_price'), krwTpl(L(x.price))) + info('ri-ticket-2-line', t('exp_how'), krwTpl(L(x.how))) + '</dl>' +
     '<div class="space-y-1.5"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_tips')) + '</p><ul class="space-y-1.5">' + x.tips.map(function (tp) {
       return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(L(tp)) + '</span></li>';
     }).join('') + '</ul></div>' +
-    '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_phrases')) + '</p>' + phrases + '</div>' +
-    '<div class="flex flex-wrap gap-2 pt-1 mt-auto">' +
-    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(x.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-50 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
-    reviewBtn('e:' + x.id, L(x.name), btn + ' bg-background-50 hover:bg-background-200 border-background-200 text-foreground-900') +
-    (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400">' + esc(t('tab_' + x.link)) + ' ' + esc(t('exp_related')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
-    '</div></div></article>';
+    '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_phrases')) + '</p>' + phrases + '</div></div></details>' +
+    '<div class="flex flex-wrap gap-2 px-5 pb-5 pt-1 mt-auto">' + mapLink(x.map) +
+    reviewBtn('e:' + x.id, L(x.name), CARD_BTN + ' bg-background-50 hover:bg-background-200 border-background-200 text-foreground-900') +
+    (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="' + CARD_BTN + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400">' + esc(t('tab_' + x.link)) + ' ' + esc(t('exp_related')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+    '</div><div class="absolute ' + (photo ? 'top-3 right-3 p-1 rounded-full bg-background-50/80' : 'top-5 right-5') + '">' + bmBtn('e:' + x.id) + '</div></article>';
 }
-/* a famous sight: address with copy / show-the-driver / map */
+/* a famous sight: one line folded; the full text, address and more buttons open on tap. Show-the-driver and map stay visible. */
 function spotCard(sp, showCity) {
-  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
-  var info = L(sp.info);
-  return '<article class="p-4 bg-background-50 rounded-xl border border-background-200 flex flex-col gap-2.5 min-w-0">' +
-    '<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + sp.emoji + '</div>' +
+  var info = L(sp.info), key = 's:' + sp.id, d = splitFirst(L(sp.d));
+  return '<article class="relative bg-background-50 rounded-xl border border-background-200 flex flex-col min-w-0">' +
+    '<details class="group fold" data-card="' + key + '"' + foldOpen(key) + '><summary class="list-none cursor-pointer p-4 pb-2.5 space-y-2 [&::-webkit-details-marker]:hidden">' +
+    '<div class="flex items-start gap-3 pr-7"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + sp.emoji + '</div>' +
     '<div class="min-w-0 flex-1">' + (showCity ? '<span class="' + EXP_TAG + ' w-fit mb-1"><i class="ri-map-pin-2-line"></i>' + esc(L(cityById(sp.city).name)) + '</span>' : '') +
-    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(sp.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(sp.vi) + '</p></div>' + bmBtn('s:' + sp.id) + '</div>' +
-    '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(sp.d)) + '</p>' +
+    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(sp.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(sp.vi) + '</p></div></div>' +
+    '<div class="flex items-end gap-3"><p class="fold-line text-xs text-foreground-500 leading-relaxed flex-1 min-w-0">' + esc(d[0]) + '</p>' + foldHint() + '</div></summary>' +
+    '<div class="px-4 pb-2.5 space-y-2.5">' + (d[1] ? '<p class="text-xs text-foreground-500 leading-relaxed -mt-0.5">' + esc(d[1]) + '</p>' : '') +
     (info ? '<p class="flex items-start gap-1.5 text-[11px] text-foreground-600 leading-relaxed"><i class="ri-information-line text-foreground-400 mt-px"></i><span>' + krwTpl(info) + '</span></p>' : '') +
-    '<div class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-background-100 border border-background-200"><i class="ri-map-pin-line text-accent-400"></i>' +
-    '<span class="vi text-xs font-semibold text-foreground-900 leading-relaxed select-all break-words min-w-0 flex-1">' + esc(sp.addr) + '</span>' +
-    '<button type="button" data-action="copy" data-text="' + esc(sp.addr) + '" aria-label="' + esc(t('copyAddr')) + '" title="' + esc(t('copyAddr')) + '" class="p-1 -m-0.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors flex-shrink-0"><i class="ri-file-copy-line"></i></button></div>' +
-    '<div class="flex flex-wrap gap-2 mt-auto">' +
-    '<button type="button" data-action="spot-driver" data-value="' + sp.id + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' +
-    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(sp.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
-    reviewBtn('s:' + sp.id, L(sp.name), btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900') +
-    (sp.link ? '<button type="button" data-action="goto-tab" data-value="' + sp.link + '" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-shirt-line"></i>' + esc(t('spot_dress')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
-    '</div></article>';
+    addrRow(sp.addr) +
+    '<div class="flex flex-wrap gap-2">' + reviewBtn('s:' + sp.id, L(sp.name), CARD_BTN + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900') +
+    (sp.link ? '<button type="button" data-action="goto-tab" data-value="' + sp.link + '" class="' + CARD_BTN + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-600"><i class="ri-shirt-line"></i>' + esc(t('spot_dress')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+    '</div></div></details>' +
+    '<div class="flex flex-wrap gap-2 px-4 pb-4 pt-1 mt-auto">' +
+    '<button type="button" data-action="spot-driver" data-value="' + sp.id + '" class="' + CARD_BTN + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' + mapLink(sp.map) +
+    '</div><div class="absolute top-4 right-4">' + bmBtn('s:' + sp.id) + '</div></article>';
 }
-/* a local eatery: what to order, hours, price, address with copy / show-the-driver / map */
+/* a local eatery: what to order folded; story, hours, price, tip and address open on tap */
 function eatCard(e, showCity) {
-  var btn = 'flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border cursor-pointer transition-colors';
   var row = function (ic, label, html) {
     return html ? '<div class="flex items-start gap-2"><i class="' + ic + ' text-sm text-foreground-400 mt-0.5"></i><div class="min-w-0"><dt class="text-[11px] font-bold text-foreground-400">' + esc(label) + '</dt><dd class="text-xs text-foreground-900 leading-relaxed">' + html + '</dd></div></div>' : '';
   };
-  var place = expPlace(e, showCity), tip = L(e.tip);
+  var place = expPlace(e, showCity), tip = L(e.tip), key = 'r:' + e.id;
   var tags = (e.mich ? '<span class="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-300 border border-primary-500/30"><i class="ri-award-line"></i>' + esc(t('eat_' + e.mich)) + '</span>' : '') +
     (place ? '<span class="' + EXP_TAG + '"><i class="ri-map-pin-2-line"></i>' + esc(place) + '</span>' : '');
-  return '<article class="p-4 bg-background-50 rounded-xl border border-background-200 flex flex-col gap-2.5 min-w-0">' +
-    '<div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + e.emoji + '</div>' +
+  return '<article class="relative bg-background-50 rounded-xl border border-background-200 flex flex-col min-w-0">' +
+    '<details class="group fold" data-card="' + key + '"' + foldOpen(key) + '><summary class="list-none cursor-pointer p-4 pb-2.5 space-y-2 [&::-webkit-details-marker]:hidden">' +
+    '<div class="flex items-start gap-3 pr-7"><div class="w-10 h-10 rounded-lg bg-background-100 border border-background-200 text-xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + e.emoji + '</div>' +
     '<div class="min-w-0 flex-1">' + (tags ? '<div class="flex flex-wrap items-center gap-1.5 mb-1">' + tags + '</div>' : '') +
-    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(e.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(e.vi) + '</p></div>' + bmBtn('r:' + e.id) + '</div>' +
-    '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(e.d)) + '</p>' +
+    '<h4 class="font-heading font-bold text-foreground-950 text-sm leading-snug">' + esc(L(e.name)) + '</h4><p class="vi text-xs text-accent-400 break-words">' + esc(e.vi) + '</p></div></div>' +
+    '<div class="flex items-end gap-3"><p class="fold-line text-xs text-foreground-900 leading-relaxed flex-1 min-w-0"><span class="font-bold text-foreground-400">' + esc(t('eat_order')) + '</span> ' + esc(L(e.order)) + '</p>' + foldHint() + '</div></summary>' +
+    '<div class="px-4 pb-2.5 space-y-2.5"><p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(e.d)) + '</p>' +
     '<dl class="grid grid-cols-1 gap-2 p-2.5 rounded-lg bg-background-100 border border-background-200">' +
-    row('ri-restaurant-2-line', t('eat_order'), esc(L(e.order)) + (e.dish && dishById(e.dish) ? ' <button type="button" data-action="dish-open" data-value="' + e.dish + '" class="inline-flex items-center gap-0.5 ml-0.5 text-[11px] font-bold text-accent-400 hover:underline cursor-pointer whitespace-nowrap">' + esc(t('ci_dish')) + '<i class="ri-arrow-right-line"></i></button>' : '')) + row('ri-time-line', t('eat_hours'), esc(L(e.hours))) + row('ri-coins-line', t('exp_price'), krwTpl(L(e.price))) + '</dl>' +
+    row('ri-time-line', t('eat_hours'), krwTpl(L(e.hours))) + row('ri-coins-line', t('exp_price'), krwTpl(L(e.price))) + '</dl>' +
+    (e.dish && dishById(e.dish) ? '<button type="button" data-action="dish-open" data-value="' + e.dish + '" class="flex items-center gap-1 text-[11px] font-bold text-accent-400 hover:underline cursor-pointer"><i class="ri-restaurant-2-line"></i>' + esc(t('ci_dish')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
     (tip ? '<p class="flex items-start gap-1.5 text-[11px] text-foreground-600 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(tip) + '</span></p>' : '') +
-    '<div class="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-background-100 border border-background-200 mt-auto"><i class="ri-map-pin-line text-accent-400"></i>' +
-    '<span class="vi text-xs font-semibold text-foreground-900 leading-relaxed select-all break-words min-w-0 flex-1">' + esc(e.addr) + '</span>' +
-    '<button type="button" data-action="copy" data-text="' + esc(e.addr) + '" aria-label="' + esc(t('copyAddr')) + '" title="' + esc(t('copyAddr')) + '" class="p-1 -m-0.5 rounded-md text-foreground-400 hover:text-foreground-950 hover:bg-background-200 cursor-pointer transition-colors flex-shrink-0"><i class="ri-file-copy-line"></i></button></div>' +
-    '<div class="flex flex-wrap gap-2">' +
-    '<button type="button" data-action="spot-driver" data-value="' + e.id + '" class="' + btn + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' +
-    '<a href="https://www.google.com/maps/search/?api=1&amp;query=' + encodeURIComponent(e.map) + '" target="_blank" rel="noopener noreferrer" class="' + btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900"><i class="ri-map-pin-line"></i>' + esc(t('exp_map')) + '<i class="ri-external-link-line text-foreground-400"></i></a>' +
-    reviewBtn('r:' + e.id, L(e.name), btn + ' bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900') +
-    '</div></article>';
+    addrRow(e.addr) + reviewBtn('r:' + e.id, L(e.name), CARD_BTN + ' w-fit bg-background-100 hover:bg-background-200 border-background-200 text-foreground-900') +
+    '</div></details>' +
+    '<div class="flex flex-wrap gap-2 px-4 pb-4 pt-1 mt-auto">' +
+    '<button type="button" data-action="spot-driver" data-value="' + e.id + '" class="' + CARD_BTN + ' bg-accent-500/10 hover:bg-accent-500/20 border-accent-500/30 text-accent-400"><i class="ri-taxi-line"></i>' + esc(t('showDriver')) + '</button>' + mapLink(e.map) +
+    '</div><div class="absolute top-4 right-4">' + bmBtn('r:' + e.id) + '</div></article>';
 }
 /* 문화체험 tab: 도시별 여행 | 문화 & 에티켓 */
 function expViewSeg() {
@@ -2934,11 +2961,33 @@ function cityGuide(c) {
       '<span class="text-xl leading-none" aria-hidden="true">' + o.emoji + '</span><span class="text-[11px] font-bold leading-tight mt-1">' + esc(L(o.name)) + '</span>' +
       '<span class="text-[10px] font-semibold opacity-70 tabular">' + esc(tf('ci_count', { n: n, s: ns })) + '</span></button>';
   }).join('');
+  /* the city at a glance: short label + one line each; the full notes fold below */
+  var q = c.quick || {};
+  var fact = function (ic, label, val, sub, wide) {
+    return val ? '<div class="p-3 bg-background-50 rounded-xl border border-background-200 min-w-0' + (wide ? ' col-span-2 md:col-span-1' : '') + '"><p class="flex items-center gap-1.5 text-[11px] font-bold text-foreground-400"><i class="' + ic + ' text-accent-400 text-sm"></i>' + esc(label) + '</p>' +
+      '<p class="text-sm font-bold text-foreground-950 leading-snug mt-1">' + esc(val) + '</p>' + (sub ? '<p class="text-[11px] text-foreground-500 mt-0.5">' + esc(sub) + '</p>' : '') + '</div>' : '';
+  };
+  var facts = fact('ri-flight-takeoff-line', t('q_fly'), L(q.fly)) + fact('ri-taxi-line', t('q_airport'), L(q.airport)) +
+    fact('ri-sun-line', t('q_best'), L(q.best), q.rain ? t('q_rain') + ' ' + L(q.rain) : '') + fact('ri-calendar-2-line', t('q_days'), L(q.days)) + fact('ri-hotel-bed-line', t('q_stay'), L(q.stay), '', true);
   var info = c.info.map(function (r) {
     return '<div class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200 min-w-0">' +
       '<span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-accent-500/10 text-accent-400"><i class="' + CITY_INFO_ICON[r.k] + ' text-lg"></i></span>' +
       '<div class="min-w-0"><p class="text-[11px] font-bold text-foreground-400">' + esc(t('ci_' + r.k)) + '</p><p class="text-xs text-foreground-900 leading-relaxed mt-0.5">' + krwTpl(L(r)) + '</p></div></div>';
   }).join('');
+  var tips = c.tips.map(function (tp) {
+    return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(L(tp)) + '</span></li>';
+  }).join('');
+  var more = '<details class="group rounded-xl border border-background-200 bg-background-50/60" data-card="ci:' + c.id + '"' + foldOpen('ci:' + c.id) + '>' +
+    '<summary class="flex items-center justify-between gap-2 px-3 py-2.5 cursor-pointer text-xs font-bold text-foreground-900 list-none [&::-webkit-details-marker]:hidden"><span class="flex items-center gap-1.5"><i class="ri-file-list-3-line text-accent-400 text-sm"></i>' + esc(t('ci_more')) + '</span><i class="ri-arrow-down-s-line text-lg text-foreground-400 transition-transform group-open:rotate-180"></i></summary>' +
+    '<div class="px-3 pb-3 space-y-3"><div class="grid grid-cols-1 md:grid-cols-2 gap-2">' + info + '</div>' +
+    (tips ? '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_tips')) + '</p><ul class="space-y-2">' + tips + '</ul></div>' : '') + '</div></details>';
+  var count = function (arr) { return arr.filter(function (x) { return x.city === c.id; }).length; };
+  var jump = function (id, emoji, label, n) {
+    return '<button type="button" data-action="jump" data-value="' + id + '" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background-50 hover:bg-background-200 border border-background-200 text-xs font-bold text-foreground-900 cursor-pointer transition-colors whitespace-nowrap"><span aria-hidden="true">' + emoji + '</span>' + esc(label) +
+      (n ? '<span class="text-foreground-400 tabular">' + n + '</span>' : '') + '<i class="ri-arrow-down-line text-foreground-400"></i></button>';
+  };
+  var jumps = '<div class="flex gap-2 overflow-x-auto custom-scrollbar pb-1 -mx-1 px-1">' + jump('spot-list', '📍', t('jump_spots'), count(SPOTS)) + jump('eat-list', '🍲', t('jump_eats'), count(EATS)) +
+    jump('exp-list', c.emoji, t('jump_exp'), count(EXPERIENCES)) + jump('city-eats', '🍜', t('jump_food'), c.eats.length) + '</div>';
   var eats = c.eats.map(function (e) {
     var body = '<span class="flex flex-wrap items-baseline gap-x-1.5"><span class="vi text-sm font-bold text-accent-400">' + esc(e.vi) + '</span>' +
       (state.lang === 'ko' ? '<span class="text-xs font-semibold text-foreground-900">' + esc(e.ko) + '</span>' : '') + '</span>' +
@@ -2948,20 +2997,15 @@ function cityGuide(c) {
         '<span class="mt-1.5 flex items-center gap-1 text-[11px] font-bold text-accent-400"><i class="ri-restaurant-2-line"></i>' + esc(t('ci_dish')) + '<i class="ri-arrow-right-line"></i></span></button></li>'
       : '<li class="p-3 bg-background-50 rounded-xl border border-background-200">' + body + '</li>';
   }).join('');
-  var tips = c.tips.map(function (tp) {
-    return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="ri-lightbulb-flash-line text-accent-400 mt-px"></i><span>' + krwTpl(L(tp)) + '</span></li>';
-  }).join('');
   return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
     cardHead('🗺️', 'accent', t('city_title'), t('city_desc')) +
     '<div class="grid grid-cols-3 md:grid-cols-6 gap-2">' + picker + '</div>' +
     '<div class="flex items-start gap-3 pt-1"><div class="w-12 h-12 rounded-xl bg-background-50 border border-background-200 text-2xl flex items-center justify-center flex-shrink-0" aria-hidden="true">' + c.emoji + '</div>' +
-    '<div class="min-w-0"><h3 class="font-heading font-bold text-foreground-950 text-lg leading-snug">' + esc(L(c.name)) +
-    (state.lang === 'ko' ? ' <span class="vi text-sm font-semibold text-accent-400">' + esc(c.vi) + '</span>' : '') + '</h3>' +
+    '<div class="min-w-0"><h3 class="font-sign text-foreground-950 text-xl leading-snug">' + esc(L(c.name)) +
+    (state.lang === 'ko' ? ' <span class="vi font-sans text-sm font-semibold text-accent-400">' + esc(c.vi) + '</span>' : '') + '</h3>' +
     '<p class="text-xs text-foreground-500 leading-relaxed mt-0.5">' + esc(L(c.tagline)) + '</p></div></div>' +
-    '<div class="grid grid-cols-1 md:grid-cols-2 gap-2">' + info + '</div>' +
-    '<div class="grid grid-cols-1 lg:grid-cols-5 gap-4">' +
-    '<div class="lg:col-span-3 space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('ci_eats')) + '</p><ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + eats + '</ul></div>' +
-    '<div class="lg:col-span-2 space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('exp_tips')) + '</p><ul class="space-y-2">' + tips + '</ul></div></div>' +
+    '<div class="grid grid-cols-2 md:grid-cols-5 gap-2">' + facts + '</div>' + jumps + more +
+    '<div id="city-eats" class="space-y-2 scroll-mt-32"><p class="text-xs font-bold text-foreground-400">' + esc(t('ci_eats')) + '</p><ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">' + eats + '</ul></div>' +
     '</div>';
 }
 function viewExp() {
@@ -2978,7 +3022,7 @@ function viewExp() {
     (counts.day ? chip('exp-time', 'day', t('exp_day'), time === 'day', counts.day) : '') +
     (counts.night ? chip('exp-time', 'night', t('exp_night'), time === 'night', counts.night) : '');
   var spots = SPOTS.filter(function (x) { return x.city === c.id; });
-  var spotBox = spots.length ? '<div id="spot-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+  var spotBox = spots.length ? '<div id="spot-list" class="scroll-mt-32 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">📍</span>' + esc(tf('spot_list', { city: L(c.name) })) + ' <span class="text-xs text-foreground-400 tabular">' + spots.length + '</span></h3>' +
     '<p class="text-xs text-foreground-500">' + esc(t('spot_desc')) + '</p>' +
     '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + spots.map(function (x) { return spotCard(x); }).join('') + '</div>' +
@@ -2986,13 +3030,13 @@ function viewExp() {
   var eats = EATS.filter(function (x) { return x.city === c.id; });
   /* "하노이 · 하롱베이" → "하노이" unless an eatery is in the second place (호이안) */
   var eatCity = eats.some(function (x) { return x.area; }) ? L(c.name) : L(c.name).split(' · ')[0];
-  var eatBox = eats.length ? '<div id="eat-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+  var eatBox = eats.length ? '<div id="eat-list" class="scroll-mt-32 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">🍲</span>' + esc(tf('eat_list', { city: eatCity })) + ' <span class="text-xs text-foreground-400 tabular">' + eats.length + '</span></h3>' +
     '<p class="text-xs text-foreground-500">' + esc(t('eat_desc')) + '</p>' +
     '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' + eats.map(function (x) { return eatCard(x); }).join('') + '</div>' +
     '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('eat_note')) + '</p></div>' : '';
   return '<section class="space-y-6">' + head + cityGuide(c) + spotBox + eatBox +
-    '<div id="exp-list" class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+    '<div id="exp-list" class="scroll-mt-32 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
     '<h3 class="font-heading font-bold text-foreground-950 text-base flex items-center gap-2"><span aria-hidden="true">' + c.emoji + '</span>' + esc(tf('exp_list', { city: L(c.name) })) + ' <span class="text-xs text-foreground-400 tabular">' + mine.length + '</span></h3>' +
     '<div class="flex flex-wrap items-center justify-between gap-3"><div class="flex flex-wrap gap-2">' + chips + '</div>' + toneSeg() + '</div></div>' +
     '<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">' + list.map(function (x) { return expCard(x); }).join('') + '</div>' +
@@ -3537,6 +3581,7 @@ document.addEventListener('click', function (e) {
     case 'exp-time': state.expTime = v; renderMain(); break;
     case 'exp-view': state.expView = v; store.set('expView', v); renderMain(); break;
     case 'gift-cat': state.giftCat = v; renderMain(); break;
+    case 'jump': var jt = document.getElementById(v); if (jt) jt.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }); break;
     case 'exp-city': state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); break;
     case 'exp-city-go': state.city = v; store.set('city', v); state.expTime = 'all'; state.expView = 'city'; store.set('expView', 'city'); setTab('exp'); break;
     case 'spot-driver':
@@ -3630,6 +3675,10 @@ document.addEventListener('input', function (e) {
     noteTimer = setTimeout(function () { var s = $('#note-status span'); if (s) s.textContent = store.ok ? t('savedNow') : t('savedOff'); }, 250);
   }
 });
+document.addEventListener('toggle', function (e) {
+  var d = e.target;
+  if (d && d.hasAttribute && d.hasAttribute('data-card')) state.openCards[d.getAttribute('data-card')] = d.open;
+}, true);
 document.addEventListener('change', function (e) {
   var fid = e.target.id, pre = fid === 'st-files' && modal && modal.type === 'story-edit' ? 'st' : fid === 'rv-files' && modal && modal.type === 'reviews' ? 'rv' : '';
   if (pre) { addPhotos(modal.data, pre, Array.prototype.slice.call(e.target.files || [])); e.target.value = ''; }

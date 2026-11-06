@@ -218,3 +218,7 @@ html[lang="en"] .banner { font-family: Anton, "Be Vietnam Pro", sans-serif; lett
 .tab-m { position: relative; }
 .tab-m.is-on { color: rgb(var(--st)); font-weight: 700; }
 .tab-m.is-on::before { content: ""; position: absolute; top: -7px; left: 22%; right: 22%; height: 3px; border-radius: 0 0 2px 2px; background: rgb(var(--sb)); }
+
+/* folded city cards: the summary line is clamped to two lines until the card opens */
+details.fold:not([open]) .fold-line { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+details.fold > summary:hover h3, details.fold > summary:hover h4 { color: rgb(var(--ac-400)); }
