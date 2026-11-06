@@ -197,7 +197,7 @@ export async function readJson(request, maxBytes = 65536) {
   try { return JSON.parse(text || '{}'); } catch (e) { throw new HttpError(400, 'bad_json'); }
 }
 /* cities a 여행기 can be about (same ids as CITIES on the page) */
-export const CITY_IDS = ['danang', 'hoian', 'nhatrang', 'phuquoc', 'hanoi', 'halong', 'hcmc', 'dalat', 'other'];
+export const CITY_IDS = ['danang', 'hoian', 'hue', 'nhatrang', 'phuquoc', 'hanoi', 'halong', 'hcmc', 'dalat', 'other'];
 
 export class HttpError extends Error {
   constructor(status, code) { super(code); this.status = status; this.code = code; }
