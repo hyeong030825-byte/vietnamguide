@@ -232,16 +232,20 @@ details.fold > summary:hover h3, details.fold > summary:hover h4 { color: rgb(va
 :root[data-theme="light"] .vmap-sea { fill: rgb(207 228 238); }
 :root[data-theme="light"] .vmap-nb { fill: rgb(240 235 226); stroke: rgb(196 186 172); }
 :root[data-theme="light"] .vmap-vn { fill: rgb(250 222 140); stroke: rgb(170 120 20); }
-.vmap-pin { position: absolute; display: flex; align-items: center; gap: 5px; transform: translate(-8px, -50%); padding: 3px 8px 3px 4px;
-  border-radius: 3px; background: rgb(var(--bg-50) / .94); border: 1.5px solid rgb(var(--sign-red) / .75); color: rgb(var(--fg-950));
-  font-size: 12px; font-weight: 800; line-height: 1.2; white-space: nowrap; cursor: pointer; box-shadow: 0 4px 10px -4px rgb(0 0 0 / .55); }
-.vmap-pin.to-l { flex-direction: row-reverse; transform: translate(calc(-100% + 8px), -50%); padding: 3px 4px 3px 8px; }
-.vmap-dot { width: 8px; height: 8px; border-radius: 999px; background: rgb(var(--sign-red)); box-shadow: 0 0 0 2px rgb(var(--bg-50)); flex: none; }
-.vmap-pin:hover { border-color: rgb(var(--sign-red)); z-index: 3; }
-.vmap-pin.is-on { background: rgb(var(--sign-red)); border-color: rgb(var(--sign-red)); color: rgb(var(--sign-yellow)); z-index: 2; }
+.vmap-pin { position: absolute; width: 0; height: 0; padding: 0; border: 0; background: none; cursor: pointer; }
+.vmap-pin:focus-visible { outline: none; }
+.vmap-dot { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 999px; background: rgb(var(--sign-red)); box-shadow: 0 0 0 2px rgb(var(--bg-50)); }
+.vmap-label { position: absolute; top: 0; left: 8px; transform: translateY(calc(-50% + var(--dy, 0px))); padding: 3px 8px; border-radius: 3px;
+  background: rgb(var(--bg-50) / .94); border: 1.5px solid rgb(var(--sign-red) / .75); color: rgb(var(--fg-950));
+  font-size: 12px; font-weight: 800; line-height: 1.2; white-space: nowrap; box-shadow: 0 4px 10px -4px rgb(0 0 0 / .55); }
+.vmap-pin.to-l .vmap-label { left: auto; right: 8px; }
+@media (max-width: 1023px) { .vmap-pin.to-l-sm .vmap-label { left: auto; right: 8px; transform: translateY(calc(-50% + var(--dy-sm, 0px))); } }
+.vmap-pin:hover { z-index: 3; }
+.vmap-pin:hover .vmap-label { border-color: rgb(var(--sign-red)); }
+.vmap-pin:focus-visible .vmap-label { outline: 2px solid rgb(var(--ac-400)); outline-offset: 2px; }
+.vmap-pin.is-on { z-index: 2; }
+.vmap-pin.is-on .vmap-label { background: rgb(var(--sign-red)); border-color: rgb(var(--sign-red)); color: rgb(var(--sign-yellow)); }
 .vmap-pin.is-on .vmap-dot { background: rgb(var(--sign-yellow)); box-shadow: 0 0 0 2px rgb(var(--sign-red)); }
-.vmap-pin.is-sub { font-size: 11px; font-weight: 700; padding-top: 2px; padding-bottom: 2px; border-color: rgb(var(--bg-300)); color: rgb(var(--fg-600)); }
-.vmap-pin.is-sub .vmap-dot { width: 6px; height: 6px; background: rgb(var(--fg-500)); }
 .vmap-pop { position: absolute; z-index: 5; width: 250px; padding: 12px 14px 14px; border-radius: 6px; background: rgb(var(--bg-50));
   border: 1px solid rgb(var(--bg-300)); box-shadow: 0 18px 40px -16px rgb(0 0 0 / .7); }
 .vmap-go { width: 100%; display: flex; align-items: center; justify-content: center; gap: 4px; padding: .55rem; border-radius: 3px; cursor: pointer;
