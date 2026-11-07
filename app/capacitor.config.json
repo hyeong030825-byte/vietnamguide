@@ -1,0 +1,22 @@
+{
+  "appId": "io.github.hyeong030825.vietnamguide",
+  "appName": "베트남 가이드",
+  "webDir": "www",
+  "backgroundColor": "#100D0C",
+  "loggingBehavior": "none",
+  "android": {
+    "backgroundColor": "#100D0C"
+  },
+  "ios": {
+    "backgroundColor": "#100D0C",
+    "contentInset": "never",
+    "scrollEnabled": true
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover",
+      "style": "DARK"
+    }
+  }
+}

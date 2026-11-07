@@ -1,0 +1,61 @@
+# Builds the iOS app from app/www on a Mac in the cloud.
+# Without the App Store Connect secrets it only checks that the app compiles (simulator build).
+# With ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 and APPLE_TEAM_ID set it signs the app and uploads it to TestFlight.
+name: App (iOS)
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', '.github/workflows/app-ios.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: app-ios
+  cancel-in-progress: true
+jobs:
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install
+        run: npm install --no-audit --no-fund
+      - name: Make the iOS project
+        run: bash scripts/prepare-ios.sh
+      - name: Secrets present?
+        id: s
+        env:
+          A: ${{ secrets.ASC_KEY_ID }}
+          B: ${{ secrets.ASC_ISSUER_ID }}
+          C: ${{ secrets.ASC_KEY_P8 }}
+          D: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          xcodebuild -version
+          if [ -n "$A" ] && [ -n "$B" ] && [ -n "$C" ] && [ -n "$D" ]; then echo "upload=true" >> "$GITHUB_OUTPUT"
+          else echo "::notice::App Store Connect secrets not set yet: building for the simulator only."; fi
+      - name: Simulator build (checks the app compiles)
+        if: steps.s.outputs.upload != 'true'
+        run: |
+          set -o pipefail
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -n 40
+      - name: Archive, sign and upload to TestFlight
+        if: steps.s.outputs.upload == 'true'
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: |
+          set -o pipefail
+          bash scripts/ios-upload.sh

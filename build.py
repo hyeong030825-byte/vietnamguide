@@ -5,6 +5,7 @@
 
   site/index.html          Cloudflare Pages가 공개하는 파일 (저장소에 포함, 첫 화면은 미리 그려 둠)
   build/claude-page.html   Claude 페이지(아티팩트)용 사본 (저장소에는 올리지 않음)
+  app/www/                 스토어 앱(Capacitor)에 들어가는 파일 (저장소에 포함, GitHub Actions가 앱으로 빌드)
 
 src/page.html   화면 구조·문구·데이터·스크립트. 수정은 대부분 여기서 합니다.
 src/input.css   색상 토큰과 공통 스타일
@@ -12,6 +13,7 @@ src/icons.json  페이지에 쓰인 아이콘 SVG 캐시 (빌드할 때 자동 �
 """
 import datetime
 import json
+import shutil
 import pathlib
 import re
 import subprocess
@@ -31,6 +33,7 @@ TW_URL = "https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/
 RI_JS = pathlib.Path("/opt/npm-tools/node_modules/react-icons/ri/index.js")
 FA_DIR = pathlib.Path("/opt/npm-tools/node_modules/@fortawesome/fontawesome-free/svgs/solid")
 SITE = ROOT / "site"
+APP_WWW = ROOT / "app" / "www"
 BUILD = ROOT / "build"
 
 # ---- Switches for things that change the privacy policy ----
@@ -294,11 +297,54 @@ def build_pages(css, for_site, today):
     return out
 
 
-def link_footer(page, for_site):
+def link_footer(page, for_site, absolute=False):
     links = page_links(for_site)
+    if absolute:  # the app: about / privacy / contact open on the website
+        links = {k: SITE_URL + v for k, v in page_links(True).items()}
     for slug, *_ in PAGES:
         page = page.replace(f"__LINK_{slug}__", links[slug])
     return page
+
+
+APP_HEAD = """<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#100D0C">
+<meta name="format-detection" content="telephone=no">
+"""
+APP_FONTS = [  # (family, weight, file in app/www/fonts) — SIL Open Font License, see fonts/OFL-*.txt
+    ("Be Vietnam Pro", 400, "BeVietnamPro-Regular.ttf"), ("Be Vietnam Pro", 500, "BeVietnamPro-Medium.ttf"),
+    ("Be Vietnam Pro", 600, "BeVietnamPro-SemiBold.ttf"), ("Be Vietnam Pro", 700, "BeVietnamPro-Bold.ttf"),
+    ("Be Vietnam Pro", 800, "BeVietnamPro-ExtraBold.ttf"), ("Be Vietnam Pro", 900, "BeVietnamPro-Black.ttf"),
+    ("Anton", 400, "Anton-Regular.ttf"), ("Black Han Sans", 400, "BlackHanSans-Regular.ttf"),
+]
+
+
+def build_app(page):
+    """app/www: the same page for the store app. Fonts and images are local so it works offline; Korean text
+    uses the phone's own Korean font. No analytics, ads, login or reviews (APP = true in the script)."""
+    fonts = APP_WWW / "fonts"
+    missing = [f for *_, f in APP_FONTS if not (fonts / f).exists()]
+    if missing:
+        print(f"app build skipped: missing fonts in app/www/fonts: {missing}")
+        return
+    (fonts / "fonts.css").write_text("".join(
+        f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{w};font-display:swap;src:url('{f}') format('truetype')}}\n"
+        for fam, w, f in APP_FONTS), encoding="utf-8")
+    page = link_footer(page, True, absolute=True).replace("/*__APP__*/false", "true")
+    page = re.sub(r'<link rel="preconnect" href="https://fonts\.googleapis\.com">\n'
+                  r'<link rel="preconnect" href="https://fonts\.gstatic\.com" crossorigin>\n'
+                  r'<link rel="stylesheet" href="https://fonts\.googleapis\.com/[^"]*">\n',
+                  '<link rel="stylesheet" href="fonts/fonts.css">\n', page)
+    if "fonts.googleapis.com" in page:
+        raise SystemExit("app build: the Google Fonts link in src/page.html changed; update build_app()")
+    cut = page.index('<div id="root">')
+    html = ('<!DOCTYPE html>\n<html lang="ko" class="is-app">\n<head>\n' + APP_HEAD + page[:cut] +
+            '</head>\n<body>\n<div class="app-sbar" aria-hidden="true"></div>\n' + page[cut:] + "\n</body>\n</html>\n")
+    (APP_WWW / "index.html").write_text(html, encoding="utf-8")
+    shutil.copytree(SITE / "img", APP_WWW / "img", dirs_exist_ok=True)
+    for name in ("favicon.svg", "favicon-32.png", "icon-192.png"):
+        if (SITE / name).exists():
+            shutil.copy2(SITE / name, APP_WWW / name)
 
 
 def main():
@@ -329,6 +375,8 @@ def main():
     head = re.sub(r'<i class="([^"]*)"></i>', fill, head)
     page = (head + "<script>" + script).replace("/*__TAILWIND__*/", css).replace(
         "/*__ICONS__*/{}", json.dumps(icons, ensure_ascii=False, separators=(",", ":")))
+
+    build_app(page)
 
     # Claude page (artifact): body content only; the host adds doctype/head.
     (BUILD / "claude-page.html").write_text(link_footer(page, False), encoding="utf-8")

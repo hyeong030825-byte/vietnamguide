@@ -1,0 +1,21 @@
+{
+  "name": "vietnamguide-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "베트남 여행 스마트 가이드: store app (Capacitor) around app/www, built by GitHub Actions",
+  "scripts": {
+    "prepare:android": "bash scripts/prepare-android.sh",
+    "prepare:ios": "bash scripts/prepare-ios.sh"
+  },
+  "dependencies": {
+    "@capacitor-community/text-to-speech": "^8.0.2",
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/browser": "^8.0.5",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/ios": "^8.6.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.6.0"
+  }
+}

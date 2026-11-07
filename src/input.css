@@ -284,3 +284,11 @@ details.fold > summary:hover h3, details.fold > summary:hover h4 { color: rgb(va
 .cmp-chip.is-on { color: rgb(var(--se-300)); background: rgb(var(--se-500) / .14); border-color: rgb(var(--se-400)); }
 .cmp-chip:focus-visible { outline: 2px solid rgb(var(--se-400)); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .cmp th, .cmp td, .cmp-chip { transition: none; } }
+
+/* Store app (app/www, html.is-app): the page starts below the status bar, and a solid strip covers the status
+   bar so content scrolling under it stays out of the way. Android's WebView does the same when it pads itself. */
+.app-sbar { display: none; }
+html.is-app body { padding-top: env(safe-area-inset-top, 0px); }
+html.is-app .app-sbar { display: block; position: fixed; top: 0; left: 0; right: 0; height: env(safe-area-inset-top, 0px);
+  z-index: 70; background: rgb(var(--bg-50)); pointer-events: none; }
+html.is-app #modal-root > .fixed { padding-top: env(safe-area-inset-top, 0px); }
