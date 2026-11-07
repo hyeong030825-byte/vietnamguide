@@ -118,6 +118,10 @@
 
 /* ================= icons (filled at build time) ================= */
 var ICONS = /*__ICONS__*/{};
+/* APP: true in the store app build (app/www, wrapped by Capacitor). The app has no login, reviews or analytics,
+   opens outside links in the in-app browser and reads Vietnamese aloud with the phone's own voice. */
+var APP = /*__APP__*/false;
+var appPlugin = function (name) { return APP && window.Capacitor && window.Capacitor.Plugins ? window.Capacitor.Plugins[name] : null; };
 
 /* ================= helpers ================= */
 var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -861,7 +865,7 @@ var CITIES = [
     quick: { fly: { ko: '약 4시간 40분', en: 'About 4 h 40 min' }, airport: { ko: '10~20분', en: '10–20 min' }, best: { ko: '2~8월 (3~5월이 가장 쾌적)', en: 'Feb–Aug (Mar–May nicest)' }, rain: { ko: '9~12월 (10~11월 폭우)', en: 'Sep–Dec (heaviest Oct–Nov)' }, days: { ko: '3박 4일~3박 5일 (호이안 포함)', en: '4–5 days (with Hội An)' }, stay: { ko: '미케 비치 · 한강 주변', en: 'Mỹ Khê Beach · Hàn River' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 4시간 40분~5시간, 다낭 국제공항(DAD) 도착. 부산(김해)에서도 매일 직항이 있어요.', en: 'About 4 h 40 min to 5 h nonstop from Incheon to Da Nang International Airport (DAD). There are daily nonstop flights from Busan (Gimhae) too.' },
-      { k: 'airport', ko: '공항이 시내와 가까워 한강 주변이나 미케 비치까지 차로 10~20분, Grab 약 6만~10만 동(약 {krw:60000}~{krw:100000})이에요.', en: 'The airport is close to town: 10–20 minutes by car to the Hàn River area or Mỹ Khê Beach, about VND 60,000–100,000 by Grab ({krw:60000}–{krw:100000}).' },
+      { k: 'airport', ko: '공항이 시내와 가까워 한강 주변이나 미케 비치까지 차로 10~20분, Grab 약 6만~10만 동(약 {krw:60000}~{krw:100000})이에요. Grab 차는 도착 홀 앞에 서지 않아요. 앱에 뜨는 픽업 구역(국제선은 고가도로 아래 6·7번)으로 걸어가서 타요.', en: 'The airport is close to town: 10–20 minutes by car to the Hàn River area or Mỹ Khê Beach, about VND 60,000–100,000 by Grab ({krw:60000}–{krw:100000}). Grab cars do not stop at the arrivals hall: walk to the pickup zone shown in the app (spots 6–7 under the overpass at the international terminal).' },
       { k: 'season', ko: '2~8월 건기가 여행하기 좋아요(3~5월이 가장 쾌적하고 6~8월은 무척 더워요). 9~12월은 우기로, 특히 10~11월엔 폭우와 태풍이 잦아요.', en: 'February–August is the dry season (March–May is the most pleasant; June–August is very hot). September–December is the rainy season, with frequent downpours and typhoons in October–November.' },
       { k: 'days', ko: '3박 4일이나 3박 5일 일정이 많아요. 다낭 시내·해변과 오행산에 하루, 바나힐에 하루, 호이안에 반나절~하루를 쓰면 알맞아요.', en: "Most trips are 3 nights (4–5 days): a day for Da Nang's beach, city and Marble Mountains, a day at Bà Nà Hills, and half to a full day in Hội An." },
       { k: 'stay', ko: '미케 비치(바다 앞 호텔·식당이 많아 처음 가기 좋아요)나 한강 주변 시내(야경·시장이 가까워요)가 무난해요.', en: 'Mỹ Khê Beach (beachfront hotels and restaurants, easy for a first visit) or the city by the Hàn River (close to night views and markets) both work well.' },
@@ -883,7 +887,7 @@ var CITIES = [
     quick: { fly: { ko: '다낭 공항까지 약 4시간 40분', en: 'About 4 h 40 min to Da Nang' }, airport: { ko: '다낭 공항에서 35~50분', en: '35–50 min from Da Nang airport' }, best: { ko: '2~8월 (3~5월이 가장 쾌적)', en: 'Feb–Aug (Mar–May nicest)' }, rain: { ko: '9~12월 (10~11월 침수 주의)', en: 'Sep–Dec (floods Oct–Nov)' }, days: { ko: '반나절~1박 2일', en: 'Half a day to 2 days' }, stay: { ko: '올드타운 근처 · 안방 비치', en: 'Near the Old Town · An Bàng' } },
     info: [
       { k: 'fly', ko: '호이안에는 공항이 없어서 다낭 국제공항(DAD)으로 가요. 인천에서 직항 약 4시간 40분~5시간, 부산(김해)에서도 매일 직항이 있어요.', en: 'Hội An has no airport, so fly into Da Nang International Airport (DAD): about 4 h 40 min to 5 h nonstop from Incheon, with daily flights from Busan (Gimhae) too.' },
-      { k: 'airport', ko: '다낭 공항에서 호이안까지 약 30km, 차로 35~50분이고 Grab 약 25만~40만 동(약 {krw:250000}~{krw:400000})이에요.', en: 'Hội An is about 30 km from Da Nang airport, 35–50 minutes by car, about VND 250,000–400,000 by Grab ({krw:250000}–{krw:400000}).' },
+      { k: 'airport', ko: '다낭 공항에서 호이안까지 약 30km, 차로 35~50분이고 Grab 약 25만~40만 동(약 {krw:250000}~{krw:400000})이에요. Grab 차는 도착 홀 앞이 아니라 앱에 뜨는 픽업 구역에서 타요.', en: 'Hội An is about 30 km from Da Nang airport, 35–50 minutes by car, about VND 250,000–400,000 by Grab ({krw:250000}–{krw:400000}). Meet Grab at the pickup zone shown in the app, not at the arrivals hall.' },
       { k: 'season', ko: '2~8월 건기가 좋아요(3~5월이 가장 쾌적해요). 9~12월은 우기로, 특히 10~11월엔 폭우로 올드타운 강변이 물에 잠기기도 해요.', en: 'February–August is the dry season (March–May is the most pleasant). September–December is rainy, and heavy rain in October–November can flood the Old Town riverside.' },
       { k: 'days', ko: '다낭 일정 중 반나절~하루를 쓰는 경우가 많아요. 하룻밤 묵으면 밤 등불 거리와 이른 아침의 조용한 골목을 모두 볼 수 있어요.', en: 'Most visitors spend half a day to a day here on a Da Nang trip. Stay a night to see both the lantern-lit evening and the quiet early-morning lanes.' },
       { k: 'stay', ko: '올드타운 근처에 묵으면 밤 등불 거리를 걸어서 즐길 수 있어요. 조용히 쉬고 싶다면 바닷가 마을 안방 비치도 좋아요.', en: 'Stay near the Old Town to walk the lantern-lit streets at night, or at the beach village of An Bàng for a quieter break.' },
@@ -966,7 +970,7 @@ var CITIES = [
     quick: { fly: { ko: '약 5시간', en: 'About 5 h' }, airport: { ko: '40분~1시간', en: '40–60 min' }, best: { ko: '10~11월 · 3~4월', en: 'Oct–Nov · Mar–Apr' }, rain: { ko: '5~9월 (7~9월 태풍)', en: 'May–Sep (typhoons Jul–Sep)' }, days: { ko: '2박 3일~3박 4일 (하롱베이 포함 3박 5일)', en: '3–4 days (5 with Hạ Long Bay)' }, stay: { ko: '구시가지(호안끼엠)', en: 'Old Quarter (Hoàn Kiếm)' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 5시간, 노이바이 국제공항(HAN) 도착. 부산(김해) 출발 직항도 매일 있어요.', en: 'About 5 hours nonstop from Incheon to Nội Bài International Airport (HAN). There are daily nonstop flights from Busan (Gimhae) too.' },
-      { k: 'airport', ko: '공항에서 구시가지(호안끼엠)까지 약 30km, 차로 40분~1시간. Grab·Xanh SM은 약 30만~40만 동(약 {krw:300000}~{krw:400000}), 86번 공항버스는 4만 5천 동(약 {krw:45000})이에요.', en: 'The Old Quarter (Hoàn Kiếm) is about 30 km away, 40 minutes to an hour by car. Grab or Xanh SM costs about VND 300,000–400,000 ({krw:300000}–{krw:400000}); airport bus 86 is VND 45,000 ({krw:45000}).' },
+      { k: 'airport', ko: '공항에서 구시가지(호안끼엠)까지 약 30km, 차로 40분~1시간. Grab·Xanh SM은 약 30만~40만 동(약 {krw:300000}~{krw:400000}), 86번 공항버스는 4만 5천 동(약 {krw:45000})이에요. 2026년 8월부터 Grab·Xanh SM 같은 앱 차량은 터미널 앞 도로에서 손님을 태우지 않아요. 국제선(T2)은 P1 주차장(붐비면 P7)으로 걸어가서 타고, 공항 출입료가 요금에 더해져요.', en: 'The Old Quarter (Hoàn Kiếm) is about 30 km away, 40 minutes to an hour by car. Grab or Xanh SM costs about VND 300,000–400,000 ({krw:300000}–{krw:400000}); airport bus 86 is VND 45,000 ({krw:45000}). Since August 2026, ride-hailing cars no longer pick up on the road in front of the terminals: at the international terminal (T2), walk to car park P1 (or P7 when it is busy), and the airport entry fee is added to the fare.' },
       { k: 'season', ko: '10~11월과 3~4월이 선선해서 가장 좋아요. 5~9월은 덥고 비가 잦으며 7~9월엔 태풍이 오기도 하고, 12~2월은 쌀쌀해 겉옷이 필요해요.', en: 'October–November and March–April are the most pleasant. May–September is hot and rainy with typhoons possible in July–September; December–February is chilly, so bring a jacket.' },
       { k: 'days', ko: '시내만 보면 2~3일이면 충분해요. 하롱베이 당일 투어나 1박 크루즈를 더하면 3박 5일 정도가 좋아요(하롱베이 가이드를 함께 보세요).', en: 'Two or three days cover the city. Add a Hạ Long Bay day trip or overnight cruise and plan on about 5 days (see the Hạ Long Bay guide).' },
       { k: 'stay', ko: '구시가지(호안끼엠)는 걸어 다니기 좋지만 밤늦게까지 시끄러운 편이에요. 호수 남동쪽 프렌치 쿼터는 조용한 고급 호텔가, 서호(떠이호)는 호숫가 카페가 많은 한적한 동네예요(구시가지까지 차로 15~25분).', en: 'The walkable Old Quarter (Hoàn Kiếm) can be noisy late at night. The French Quarter southeast of the lake is quieter with upscale hotels, and West Lake (Tây Hồ) is a relaxed lakeside area full of cafés, 15–25 minutes from the Old Quarter by car.' },
@@ -1009,7 +1013,7 @@ var CITIES = [
     quick: { fly: { ko: '약 5시간 30분', en: 'About 5 h 30 min' }, airport: { ko: '25~45분', en: '25–45 min' }, best: { ko: '12~4월', en: 'Dec–Apr' }, rain: { ko: '5~11월 (오후 스콜)', en: 'May–Nov (afternoon storms)' }, days: { ko: '2~3일 (근교까지 4박 5일)', en: '2–3 days (4–5 with day trips)' }, stay: { ko: '1군', en: 'District 1' } },
     info: [
       { k: 'fly', ko: '인천에서 직항 약 5시간 30분, 떤선녓 국제공항(SGN)에 도착해요. 부산 출발 직항도 있고, 2026년 12월 개항 예정인 롱탄 신공항으로 국제선이 차례로 옮겨 갈 예정이라 항공권의 도착 공항을 꼭 확인하세요.', en: 'About 5.5 hours nonstop from Incheon to Tân Sơn Nhất International Airport (SGN), with direct flights from Busan too. The new Long Thành airport is due to open in December 2026 and international flights will move there in phases, so check which airport your ticket uses.' },
-      { k: 'airport', ko: '공항에서 1군 벤탄 시장까지 약 7~8km, 차로 25~45분이에요(출퇴근 시간엔 더 걸려요). Grab은 약 12만~25만 동(약 {krw:120000}~{krw:250000})으로 시간대에 따라 달라지고, 109번 버스(1만 5천~2만 동)는 2025년부터 국제선 T2가 아닌 국내선 T3 쪽에서 타요.', en: 'Bến Thành Market in District 1 is about 7–8 km away, 25–45 minutes by car (longer at rush hour). Grab costs about VND 120,000–250,000 ({krw:120000}–{krw:250000}) depending on the time; bus 109 (VND 15,000–20,000) now leaves from the domestic Terminal 3 side, not the international terminal (T2).' },
+      { k: 'airport', ko: '공항에서 1군 벤탄 시장까지 약 7~8km, 차로 25~45분이에요(출퇴근 시간엔 더 걸려요). Grab은 약 12만~25만 동(약 {krw:120000}~{krw:250000})으로 시간대에 따라 달라지고, 109번 버스(1만 5천~2만 동)는 2025년부터 국제선 T2가 아닌 국내선 T3 쪽에서 타요. Grab 차는 도착층 출입문 앞이 아니라 앱에 뜨는 지정 주차장에서 태워요.', en: 'Bến Thành Market in District 1 is about 7–8 km away, 25–45 minutes by car (longer at rush hour). Grab costs about VND 120,000–250,000 ({krw:120000}–{krw:250000}) depending on the time; bus 109 (VND 15,000–20,000) now leaves from the domestic Terminal 3 side, not the international terminal (T2). Grab cars pick up in the designated car park shown in the app, not at the arrivals doors.' },
       { k: 'season', ko: '건기인 12~4월이 여행하기 좋고, 그중 12~2월이 덜 더워요. 5~11월 우기에는 오후에 짧고 굵은 스콜이 자주 오고, 4월은 한낮 34도를 넘을 만큼 더워요.', en: 'The dry season, December to April, is the best time to go, and December to February is the least hot. May to November is the rainy season, with short, heavy afternoon downpours; April is the hottest month, often above 34°C at midday.' },
       { k: 'days', ko: '시내만 보면 2~3일이면 충분해요. 구찌 터널·메콩강 같은 근교 투어까지 하려면 4박 5일 정도가 좋아요.', en: 'Two or three days cover the city. Allow about 4 nights and 5 days if you add day trips such as the Củ Chi Tunnels and the Mekong Delta.' },
       { k: 'stay', ko: '처음이면 벤탄 시장·응우옌후에 거리 주변의 1군이 걸어 다니기 좋아요. 부이비엔 거리 근처는 밤늦게까지 시끄럽고, 조용한 곳을 원하면 카페가 많은 3군이나 강 건너 타오디엔(옛 2군)이 좋아요.', en: 'First-timers do best in District 1 around Bến Thành Market and Nguyễn Huệ Street, where the sights are walkable. Streets near Bùi Viện are loud late into the night; for somewhere calmer, try café-filled District 3 or Thảo Điền across the river (former District 2).' },
@@ -2367,7 +2371,7 @@ var PREP_LIFE = [
   { ic: 'ri-sim-card-2-line', t: { ko: '유심 · eSIM', en: 'SIM or eSIM' },
     d: { ko: '휴대전화의 eSIM 지원 여부와 사용할 요금제를 확인하세요. eSIM을 미리 준비하거나 현지에서 유심을 구입할 수 있어요. Viettel·Vinaphone·Mobifone이 대표 통신사예요.', en: 'Check whether your phone supports eSIM and which plan you need. You can set up an eSIM in advance or buy a SIM card locally. Viettel, Vinaphone and Mobifone are the main carriers.' } },
   { ic: 'ri-taxi-line', t: { ko: '이동은 Grab으로', en: 'Get around with Grab' },
-    d: { ko: 'Grab 앱으로 부르면 요금이 미리 정해져 흥정할 필요가 없어요. 길에서 탈 때는 마이린·비나선 같은 정식 택시를 타세요.', en: 'Grab shows the fare up front, so there is no haggling. If you hail a cab, use licensed companies like Mai Linh or Vinasun.' } },
+    d: { ko: 'Grab 앱으로 부르면 요금이 미리 정해져 흥정할 필요가 없어요. 공항에서는 Grab 차가 터미널 출입문 앞에 서지 못하는 곳이 많아서, 앱에 뜨는 픽업 장소(주차장 등)까지 걸어가서 타요. 길에서 탈 때는 마이린·비나선 같은 정식 택시를 타세요.', en: 'Grab shows the fare up front, so there is no haggling. At many airports Grab cars cannot stop at the terminal doors, so walk to the pickup spot shown in the app (often a car park). If you hail a cab, use licensed companies like Mai Linh or Vinasun.' } },
   { ic: 'ri-smartphone-line', t: { ko: '미리 깔아 둘 앱', en: 'Apps to install' },
     d: { ko: 'Grab(택시·오토바이·배달), Xanh SM(전기 택시), 구글 지도, 번역 앱(파파고 등)을 출발 전에 깔아 두세요.', en: 'Install Grab (rides and delivery), Xanh SM (electric taxis), Google Maps and a translator app before you go.' } }
 ];
@@ -3734,6 +3738,7 @@ function applyTheme() {
   var light = state.theme === 'light', root = document.documentElement;
   if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
   var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', light ? '#FFFFFF' : '#100D0C');
+  var bars = appPlugin('SystemBars'); if (bars && bars.setStyle) bars.setStyle({ style: light ? 'LIGHT' : 'DARK' }).catch(function () {});
   var b = $('#theme-btn'); if (!b) return;
   var label = t(light ? 'themeToDark' : 'themeToLight');
   b.setAttribute('aria-label', label); b.title = label; b.setAttribute('aria-pressed', light);
@@ -3815,7 +3820,21 @@ function pickVoice() {
   try { var vs = window.speechSynthesis.getVoices(); viVoice = null; for (var i = 0; i < vs.length; i++) { if (/^vi([-_]|$)/i.test(vs[i].lang)) { viVoice = vs[i]; break; } } } catch (e) { viVoice = null; }
 }
 if ('speechSynthesis' in window) { pickVoice(); try { window.speechSynthesis.onvoiceschanged = pickVoice; } catch (e) { /* ignore */ } }
+var nativeViOk = null;
+function speakNative(tts, text, btn) {
+  var done = function () { if (btn) btn.classList.remove('speaking'); };
+  if (btn) { $$('.speaking').forEach(function (b) { b.classList.remove('speaking'); }); btn.classList.add('speaking'); }
+  var check = nativeViOk === null && tts.isLanguageSupported ? tts.isLanguageSupported({ lang: 'vi-VN' }).then(function (r) { nativeViOk = !!(r && r.supported); }, function () { nativeViOk = true; }) : Promise.resolve();
+  check.then(function () {
+    if (nativeViOk === false && !warnedVoice) { warnedVoice = true; toast(t('noViVoice'), 'ri-information-line'); }
+    return tts.stop().catch(function () {}).then(function () {
+      return tts.speak({ text: text, lang: 'vi-VN', rate: state.slow ? 0.6 : 0.9, pitch: 1.0, volume: 1.0, category: 'playback' });
+    });
+  }).then(done, function () { done(); toast(t('noTts'), 'ri-error-warning-line'); });
+}
 function speak(text, btn) {
+  var tts = appPlugin('TextToSpeech');
+  if (tts) { speakNative(tts, text, btn); return; }
   if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance !== 'function') { toast(t('noTts'), 'ri-error-warning-line'); return; }
   try {
     window.speechSynthesis.cancel();
@@ -4036,6 +4055,13 @@ function deckFlip() {
 }
 
 /* ================= events ================= */
+if (APP) document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var href = a.getAttribute('href') || '';
+  if (!/^https?:/i.test(href) || a.host === location.host) return;
+  var br = appPlugin('Browser');
+  if (br && br.open) { e.preventDefault(); br.open({ url: a.href }).catch(function () { window.open(a.href, '_blank'); }); }
+}, true);
 document.addEventListener('click', function (e) {
   var el = e.target.closest('[data-action]'); if (!el) return;
   var a = el.getAttribute('data-action'), v = el.getAttribute('data-value');
@@ -4495,6 +4521,7 @@ function renderAcctStatus() {
   el.textContent = auth.syncing ? t('acct_syncing') : auth.lastSync ? t('acct_synced') : '';
 }
 function authInit() {
+  if (APP) { reviewTabs(); return; }
   var q = new URLSearchParams(location.search), lp = q.get('login');
   if (lp) { q.delete('login'); try { history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q.toString() : '') + location.hash); } catch (e) { /* ignore */ } }
   if (!/^https?:$/.test(location.protocol)) { reviewTabs(); return; }  /* opened as a file: no server */
