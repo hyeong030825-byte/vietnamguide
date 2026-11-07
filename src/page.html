@@ -201,6 +201,7 @@ var T = {
     prep_source: '출처: 외교부 해외안전여행, 베트남 대사관·중앙은행 안내 등 (2026년 10월 확인). 규정은 바뀔 수 있으니 출발 전에 한 번 더 확인하세요.',
     prep_banTitle: '반입 금지 품목·수하물 규정·면세 한도', prep_banDesc: '반입 금지 품목과 면세 한도를 미리 확인하세요.',
     prep_fine: '개인이 사용하다 걸리면 벌금 300만~500만 동(약 {a}~{b})이에요.',
+    prep_views: '여행 준비 항목', prep_next: '다음',
     prep_lifeTitle: '현지 생활 기본 정보', prep_lifeDesc: '도착하자마자 필요한 것들이에요.', prep_open: '탭 열기',
     prep_weatherTitle: '지역별 날씨 & 옷차림', prep_weatherDesc: '베트남은 남북으로 길어서 지역마다 날씨가 달라요.',
     prep_weatherNote: '날씨는 해마다 조금씩 달라요. 출발 전에 일기예보를 꼭 확인하세요.', region_central: '중부',
@@ -400,6 +401,7 @@ var T = {
     prep_source: 'Sources: Korean MOFA Safe Travel, Vietnamese embassy and central bank guidance (checked Oct 2026). Rules can change, so check again before you leave.',
     prep_banTitle: 'Banned items, baggage rules & duty-free limits', prep_banDesc: 'Check banned items and duty-free limits before you pack.',
     prep_fine: 'Individuals caught using them face fines of VND 3–5 million (about {a}–{b}).',
+    prep_views: 'Travel prep sections', prep_next: 'Next',
     prep_lifeTitle: 'Everyday basics', prep_lifeDesc: 'What you need the moment you land.', prep_open: 'Open tab',
     prep_weatherTitle: 'Weather & what to wear by region', prep_weatherDesc: 'Vietnam is long from north to south, so the weather differs a lot by region.',
     prep_weatherNote: 'Weather varies from year to year. Check the forecast before you go.', region_central: 'Central',
@@ -2500,7 +2502,13 @@ var TAB_KEYS = {
   culture: '팁 매너 에티켓 사원 사찰 복장 사기 날치기 소매치기 호객 마사지 전통시장 재래시장 흥정 바가지 저울 거스름돈 tip etiquette manners temple dress scam massage haggle bargain overcharge',
   emergency: '긴급 대사관 영사 영사관 경찰 병원 구급 구급차 화재 신고 embassy consulate police hospital ambulance emergency',
   exp: '문화체험 체험 투어 도시 여행정보 관광지 명소 맛집 노점 길거리 호이안 다낭 나트랑 푸꾸옥 하노이 하롱베이 호치민 사이공 달랏 소원배 등불 바구니배 쿠킹 아오자이 올드타운 도자기 experience tour city guide sights hoi an da nang nha trang phu quoc hanoi ha long ho chi minh saigon da lat',
-  prep: '여행 준비 노트 메모 숙소 주소 호텔 note memo hotel address 준비물 체크리스트 ATM 트래블카드 트래블로그 트래블월렛 수수료 카드 결제 달러 환전소 VPBank TPBank 비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 환전 유심 이심 시차 전압 플러그 어댑터 날씨 우기 건기 옷차림 visa passport entry customs checklist packing esim sim vape e-cigarette power bank adapter weather'
+  prep: '여행 준비 hành trang',
+  'prep-entry': '비자 무비자 전자비자 여권 입국 출국 항공권 아이 자녀 가족관계증명서 세관 현금 신고 전자담배 아이코스 보조배터리 면세 반입 금지 수하물 visa passport entry customs vape e-cigarette power bank duty-free baggage',
+  'prep-life': '유심 이심 시차 전압 플러그 어댑터 콘센트 통신사 esim sim adapter plug voltage time zone',
+  'prep-money': 'ATM 트래블카드 트래블로그 트래블월렛 쏠트래블 SOL트래블 토스뱅크 트래블러스 위비트래블 트래블리 라운지 수수료 카드 결제 달러 환전소 환전 재환전 VPBank TPBank travel card travlog lounge',
+  'prep-weather': '날씨 우기 건기 옷차림 태풍 weather rainy season typhoon',
+  'prep-check': '준비물 체크리스트 짐 싸기 checklist packing',
+  'prep-notes': '노트 메모 숙소 주소 호텔 note memo hotel address'
 };
 
 /* ================= state ================= */
@@ -2509,12 +2517,25 @@ var TABS = ['exp', 'phrases', 'calc', 'food', 'emergency', 'prep', 'reviews'];
 var hashTab = (location.hash || '').replace('#', '');
 var savedTab = store.get('tab', 'exp');
 var EXP_VIEWS = { culture: 1, gift: 1 };  /* views of the 문화체험 tab that also work as #hash / tab names */
-var initTab = TABS.indexOf(hashTab) >= 0 || EXP_VIEWS[hashTab] ? hashTab : savedTab;
+/* 여행 준비 tab: one section at a time, picked from a row of buttons (also #prep-entry … #prep-notes) */
+var PREP_VIEWS = [
+  { v: 'entry', ic: 'ri-passport-line', ko: '입국·세관', en: 'Entry & customs' },
+  { v: 'life', ic: 'ri-compass-3-line', ko: '현지 생활', en: 'Everyday' },
+  { v: 'money', ic: 'ri-exchange-dollar-line', ko: '환전·카드', en: 'Money & cards' },
+  { v: 'weather', ic: 'ri-sun-cloudy-line', ko: '날씨·옷차림', en: 'Weather' },
+  { v: 'check', ic: 'ri-checkbox-multiple-line', ko: '체크리스트', en: 'Checklist' },
+  { v: 'notes', ic: 'ri-sticky-note-line', ko: '내 노트', en: 'My notes' }
+];
+var prepViewBy = function (v) { var r = null; PREP_VIEWS.forEach(function (x) { if (x.v === v) r = x; }); return r; };
+var prepTabView = function (k) { return /^prep-/.test(k) && prepViewBy(k.slice(5)) ? k.slice(5) : null; };
+var hashPrep = prepTabView(hashTab);
+var initTab = hashPrep ? 'prep' : (TABS.indexOf(hashTab) >= 0 || EXP_VIEWS[hashTab] ? hashTab : savedTab);
 var savedCity = store.get('city', 'danang');
 var state = {
   openCards: {}, /* folded city cards the reader opened, by data-card id */
   mapPop: null, /* city whose popup is open on the city map */
   cardPick: null, /* travel card table: which "what matters" chip is on */
+  prepView: hashPrep || (prepViewBy(store.get('prepView', 'entry')) ? store.get('prepView', 'entry') : 'entry'),
   tab: EXP_VIEWS[initTab] ? 'exp' : (TABS.indexOf(initTab) >= 0 ? initTab : 'exp'),
   expView: EXP_VIEWS[initTab] ? initTab : (EXP_VIEWS[store.get('expView', 'city')] ? store.get('expView', 'city') : 'city'),
   giftCat: 'all',
@@ -3491,6 +3512,26 @@ function prepProgressHtml() {
     (n ? '<button type="button" data-action="prep-reset" class="text-[11px] font-semibold cursor-pointer underline-offset-2 hover:underline ' + (state.prep.resetArmed ? 'text-primary-300' : 'text-foreground-400 hover:text-foreground-900') + '">' + esc(t(state.prep.resetArmed ? 'prep_resetConfirm' : 'prep_reset')) + '</button>' : '') + '</div>' +
     '<div class="h-1.5 mt-1.5 rounded-full bg-background-200 overflow-hidden"><div class="h-full bg-secondary-500 rounded-full transition-all" style="width:' + pct + '%"></div></div>';
 }
+function prepCountText() {
+  var live = PREP_ITEMS.filter(function (id) { return state.prep.checks[id] !== 'na'; });
+  return live.filter(function (id) { return state.prep.checks[id] === true; }).length + '/' + live.length;
+}
+function prepSeg() {
+  return '<div data-prep-seg class="scroll-mt-32 grid grid-cols-3 md:grid-cols-6 gap-1 p-1 rounded-2xl bg-background-100 border border-background-200" role="group" aria-label="' + esc(t('prep_views')) + '">' +
+    PREP_VIEWS.map(function (it) {
+      var on = state.prepView === it.v;
+      var badge = it.v === 'check' ? ' <span id="prep-seg-count" class="tabular text-[10px] font-semibold px-1.5 py-px rounded-full ' + (on ? 'bg-accent-500/20' : 'bg-background-200 text-foreground-500') + '">' + prepCountText() + '</span>' : '';
+      return '<button type="button" data-action="prep-view" data-value="' + it.v + '" aria-pressed="' + on + '" class="flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-2 px-1.5 lg:px-3 py-2 lg:py-2.5 rounded-xl text-xs lg:text-sm font-bold text-center leading-tight cursor-pointer transition-colors border ' +
+        (on ? 'bg-accent-500/15 text-accent-400 border-accent-500/40' : 'text-foreground-500 hover:text-foreground-900 border-transparent') + '"><i class="' + it.ic + ' text-base"></i><span class="flex flex-wrap items-center justify-center gap-1">' + esc(L(it)) + badge + '</span></button>';
+    }).join('') + '</div>';
+}
+function prepNext() {
+  var i = -1; PREP_VIEWS.forEach(function (x, k) { if (x.v === state.prepView) i = k; });
+  var nx = PREP_VIEWS[i + 1];
+  if (!nx) return '';
+  return '<div class="flex justify-end"><button type="button" data-action="prep-view" data-value="' + nx.v + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-background-100 hover:bg-background-200 border border-background-200 text-sm font-bold text-foreground-900 cursor-pointer transition-colors">' +
+    '<span class="text-xs font-semibold text-foreground-500">' + esc(t('prep_next')) + '</span><i class="' + nx.ic + ' text-base text-accent-400"></i>' + esc(L(nx)) + '<i class="ri-arrow-right-line"></i></button></div>';
+}
 function viewPrep() {
   var krw = function (v) { return '<span data-krw="' + v + '" class="tabular">' + fmt(v * effRate() / 1000) + t('unitK') + '</span>'; };
   var row = function (x, tone) {
@@ -3500,56 +3541,65 @@ function viewPrep() {
       '<span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ' + tone + '"><i class="' + x.ic + ' text-lg"></i></span>' +
       '<div class="min-w-0"><p class="text-sm font-bold text-foreground-950">' + esc(L(x.t)) + '</p><p class="text-xs text-foreground-500 leading-relaxed mt-0.5">' + desc + '</p></div></li>';
   };
-  var life = PREP_LIFE.map(function (x) {
-    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-1.5 min-w-0">' +
-      '<p class="flex items-center gap-2 text-sm font-bold text-foreground-950"><i class="' + x.ic + ' text-lg text-secondary-400"></i>' + esc(L(x.t)) + '</p>' +
-      '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(x.d)) + '</p>' +
-      (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="flex items-center gap-1 text-[11px] font-bold text-accent-400 hover:text-accent-300 cursor-pointer">' + esc(t('tab_' + x.link)) + ' ' + esc(t('prep_open')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
-      '</div>';
-  }).join('');
-  var wIcon = { rain: 'ri-showers-line text-secondary-400', sun: 'ri-sun-line text-accent-400', cold: 'ri-temp-cold-line text-primary-300' };
-  var weather = PREP_WEATHER.map(function (w) {
-    return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-2 min-w-0">' +
-      '<p class="flex flex-wrap items-center gap-2"><span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ' + REGION_CLS[w.r] + '">' + esc(t('region_' + w.r)) + '</span>' +
-      '<span class="text-xs font-semibold text-foreground-900">' + esc(L(w.city)) + '</span></p>' +
-      '<ul class="space-y-1.5">' + w.rows.map(function (r) {
-        return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="' + wIcon[r.k] + ' text-base mt-px"></i><span>' + esc(L(r)) + '</span></li>';
-      }).join('') + '</ul></div>';
-  }).join('');
-  var groups = PREP_CHECK.map(function (g) {
-    return '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('pg_' + g.g)) + '</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + g.items.map(prepItem).join('') + '</div></div>';
-  }).join('');
-
-  return '<section class="space-y-6">' +
-    '<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">' +
-    '<div class="lg:col-span-3 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
-    cardHead('🛂', 'accent', t('prep_entryTitle'), t('prep_entryDesc')) +
-    '<ul class="space-y-2">' + PREP_ENTRY.map(function (x) { return row(x, 'bg-accent-500/10 text-accent-400'); }).join('') + '</ul>' +
-    '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('prep_source')) + '</p></div>' +
-    '<div class="lg:col-span-2 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
-    cardHead('🚭', 'primary', t('prep_banTitle'), t('prep_banDesc')) +
-    '<ul class="space-y-2">' + PREP_BAN.map(function (x) { return row(x, 'bg-primary-500/10 text-primary-400'); }).join('') + '</ul></div>' +
-    '</div>' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
-    cardHead('🧭', 'secondary', t('prep_lifeTitle'), t('prep_lifeDesc')) +
-    '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">' + life + '</div></div>' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
-    cardHead('💱', 'primary', t('money_title'), t('money_desc')) +
-    '<ul class="grid grid-cols-1 md:grid-cols-2 gap-2">' + PREP_MONEY.map(function (m) {
-      return '<li class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-primary-500/10 text-primary-300"><i class="' + m.ic + ' text-lg"></i></span><p class="text-xs text-foreground-500 leading-relaxed min-w-0">' + esc(L(m)) + '</p></li>';
-    }).join('') +
-    '<li class="flex items-center gap-3 p-3 rounded-xl bg-accent-500/10 border border-accent-500/30"><span class="text-xl" aria-hidden="true">💴</span><button type="button" data-action="goto-tab" data-value="calc" class="flex items-center gap-1 text-xs font-bold text-accent-400 hover:text-accent-300 cursor-pointer text-left">' + esc(t('money_bills')) + '<i class="ri-arrow-right-line"></i></button></li></ul>' +
-    '<p class="text-[11px] text-foreground-400">' + esc(t('money_note')) + '</p></div>' +
-    cardCmp() +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
-    cardHead('🌦️', 'accent', t('prep_weatherTitle'), t('prep_weatherDesc')) +
-    '<div class="grid grid-cols-1 md:grid-cols-3 gap-2">' + weather + '</div>' +
-    '<p class="text-[11px] text-foreground-400">' + esc(t('prep_weatherNote')) + '</p></div>' +
-    '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
-    cardHead('✅', 'secondary', t('prep_checkTitle'), t('prep_checkDesc')) +
-    '<div id="prep-progress">' + prepProgressHtml() + '</div>' +
-    groups +
-    '</div>' + notesCard() + '</section>';
+  var views = {
+    entry: function () {
+      return '<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:items-start">' +
+        '<div class="lg:col-span-3 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
+        cardHead('🛂', 'accent', t('prep_entryTitle'), t('prep_entryDesc')) +
+        '<ul class="space-y-2">' + PREP_ENTRY.map(function (x) { return row(x, 'bg-accent-500/10 text-accent-400'); }).join('') + '</ul>' +
+        '<p class="text-[11px] text-foreground-400 leading-relaxed">' + esc(t('prep_source')) + '</p></div>' +
+        '<div class="lg:col-span-2 bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3 min-w-0">' +
+        cardHead('🚭', 'primary', t('prep_banTitle'), t('prep_banDesc')) +
+        '<ul class="space-y-2">' + PREP_BAN.map(function (x) { return row(x, 'bg-primary-500/10 text-primary-400'); }).join('') + '</ul></div>' +
+        '</div>';
+    },
+    life: function () {
+      return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+        cardHead('🧭', 'secondary', t('prep_lifeTitle'), t('prep_lifeDesc')) +
+        '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">' + PREP_LIFE.map(function (x) {
+          return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-1.5 min-w-0">' +
+            '<p class="flex items-center gap-2 text-sm font-bold text-foreground-950"><i class="' + x.ic + ' text-lg text-secondary-400"></i>' + esc(L(x.t)) + '</p>' +
+            '<p class="text-xs text-foreground-500 leading-relaxed">' + esc(L(x.d)) + '</p>' +
+            (x.link ? '<button type="button" data-action="goto-tab" data-value="' + x.link + '" class="flex items-center gap-1 text-[11px] font-bold text-accent-400 hover:text-accent-300 cursor-pointer">' + esc(t('tab_' + x.link)) + ' ' + esc(t('prep_open')) + '<i class="ri-arrow-right-line"></i></button>' : '') +
+            '</div>';
+        }).join('') + '</div></div>';
+    },
+    money: function () {
+      return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+        cardHead('💱', 'primary', t('money_title'), t('money_desc')) +
+        '<ul class="grid grid-cols-1 md:grid-cols-2 gap-2">' + PREP_MONEY.map(function (m) {
+          return '<li class="flex items-start gap-3 p-3 bg-background-50 rounded-xl border border-background-200"><span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-primary-500/10 text-primary-300"><i class="' + m.ic + ' text-lg"></i></span><p class="text-xs text-foreground-500 leading-relaxed min-w-0">' + esc(L(m)) + '</p></li>';
+        }).join('') +
+        '<li class="flex items-center gap-3 p-3 rounded-xl bg-accent-500/10 border border-accent-500/30"><span class="text-xl" aria-hidden="true">💴</span><button type="button" data-action="goto-tab" data-value="calc" class="flex items-center gap-1 text-xs font-bold text-accent-400 hover:text-accent-300 cursor-pointer text-left">' + esc(t('money_bills')) + '<i class="ri-arrow-right-line"></i></button></li></ul>' +
+        '<p class="text-[11px] text-foreground-400">' + esc(t('money_note')) + '</p></div>' +
+        cardCmp();
+    },
+    weather: function () {
+      var wIcon = { rain: 'ri-showers-line text-secondary-400', sun: 'ri-sun-line text-accent-400', cold: 'ri-temp-cold-line text-primary-300' };
+      return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-3">' +
+        cardHead('🌦️', 'accent', t('prep_weatherTitle'), t('prep_weatherDesc')) +
+        '<div class="grid grid-cols-1 md:grid-cols-3 gap-2">' + PREP_WEATHER.map(function (w) {
+          return '<div class="p-3 bg-background-50 rounded-xl border border-background-200 space-y-2 min-w-0">' +
+            '<p class="flex flex-wrap items-center gap-2"><span class="text-[11px] font-bold px-2 py-0.5 rounded-full border ' + REGION_CLS[w.r] + '">' + esc(t('region_' + w.r)) + '</span>' +
+            '<span class="text-xs font-semibold text-foreground-900">' + esc(L(w.city)) + '</span></p>' +
+            '<ul class="space-y-1.5">' + w.rows.map(function (r) {
+              return '<li class="flex items-start gap-2 text-xs text-foreground-500 leading-relaxed"><i class="' + wIcon[r.k] + ' text-base mt-px"></i><span>' + esc(L(r)) + '</span></li>';
+            }).join('') + '</ul></div>';
+        }).join('') + '</div>' +
+        '<p class="text-[11px] text-foreground-400">' + esc(t('prep_weatherNote')) + '</p></div>';
+    },
+    check: function () {
+      return '<div class="bg-background-100 p-5 rounded-2xl border border-background-200 space-y-4">' +
+        cardHead('✅', 'secondary', t('prep_checkTitle'), t('prep_checkDesc')) +
+        '<div id="prep-progress">' + prepProgressHtml() + '</div>' +
+        PREP_CHECK.map(function (g) {
+          return '<div class="space-y-2"><p class="text-xs font-bold text-foreground-400">' + esc(t('pg_' + g.g)) + '</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-2">' + g.items.map(prepItem).join('') + '</div></div>';
+        }).join('') + '</div>';
+    },
+    notes: function () { return notesCard(); }
+  };
+  var view = views[state.prepView] ? state.prepView : 'entry';
+  return '<section class="space-y-6">' + prepSeg() + views[view]() + prepNext() + '</section>';
 }
 function viewEmergency() {
   var tiles = [{ n: '113', e: '🚓', k: 'police' }, { n: '114', e: '🚒', k: 'fire' }, { n: '115', e: '🚑', k: 'ambulance' }].map(function (x) {
@@ -3633,6 +3683,7 @@ function searchView(q) {
     });
   });
   if (cs.length) tabs = tabs.filter(function (k) { return k !== 'exp'; });
+  if (tabs.some(prepTabView)) tabs = tabs.filter(function (k) { return k !== 'prep'; });
   if (!GIFTS.length) tabs = tabs.filter(function (k) { return k !== 'gift'; });
   var total = es.length + ss.length + rs.length + gs.length + ph.length + ds.length + ws.length + us.length;
   var box = function (emoji, title, n, inner) {
@@ -3645,7 +3696,8 @@ function searchView(q) {
     html += '<div class="flex flex-wrap gap-2">' + cs.map(function (c) {
       return '<button type="button" data-action="exp-city-go" data-value="' + c.id + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><span aria-hidden="true">' + c.emoji + '</span>' + esc(L(c.name)) + ' <span class="text-xs font-semibold text-foreground-500">' + esc(t('cityGo')) + '</span><i class="ri-arrow-right-line"></i></button>';
     }).join('') + tabs.map(function (k) {
-      return '<button type="button" data-action="goto-tab" data-value="' + k + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><i class="' + tabIcon[k] + ' text-base"></i>' + esc(t('tab_' + k)) + ' <span class="text-xs font-semibold text-foreground-500">' + esc(t('goTab')) + '</span><i class="ri-arrow-right-line"></i></button>';
+      var pv = prepViewBy(prepTabView(k) || ''), label = pv ? t('tab_prep') + ' · ' + L(pv) : t('tab_' + k);
+      return '<button type="button" data-action="goto-tab" data-value="' + k + '" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/10 hover:bg-accent-500/20 border border-accent-500/30 text-accent-400 text-sm font-bold cursor-pointer transition-colors"><i class="' + (pv ? pv.ic : tabIcon[k]) + ' text-base"></i>' + esc(label) + ' <span class="text-xs font-semibold text-foreground-500">' + esc(t('goTab')) + '</span><i class="ri-arrow-right-line"></i></button>';
     }).join('') + '</div>';
   }
   var sec = {
@@ -3720,6 +3772,8 @@ function renderMain() {
   if (auth.providers.length) loadReviewCounts();
 }
 function setTab(tab) {
+  var pv = prepTabView(tab);
+  if (pv) { state.prepView = pv; store.set('prepView', pv); tab = 'prep'; }
   if (EXP_VIEWS[tab]) { state.expView = tab; store.set('expView', tab); tab = 'exp'; }
   if (TABS.indexOf(tab) < 0) return;
   var wasSearching = !!state.query;
@@ -4018,6 +4072,17 @@ document.addEventListener('click', function (e) {
       if (state.city !== v) { state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); } else refreshMap();
       var ch = document.getElementById('city-head'); if (ch) ch.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
       break;
+    case 'prep-view':
+      if (!prepViewBy(v)) break;
+      var fromSeg = !!el.closest('[data-prep-seg]');
+      state.prepView = v; store.set('prepView', v); renderMain();
+      var pseg = $('[data-prep-seg]');
+      if (pseg) {
+        var phd = $('.sticky'), ptop = pseg.getBoundingClientRect().top + window.pageYOffset - (phd ? phd.offsetHeight : 0) - 8;
+        if (!fromSeg || window.pageYOffset > ptop) window.scrollTo({ top: Math.max(0, ptop), behavior: reduceMotion() ? 'auto' : 'smooth' });
+        var pb = pseg.querySelector('[data-value="' + v + '"]'); if (pb) pb.focus({ preventScroll: true });
+      }
+      break;
     case 'card-pick': state.cardPick = state.cardPick === v ? null : v; refreshCards(v); break;
     case 'jump': var jt = document.getElementById(v); if (jt) jt.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' }); break;
     case 'exp-city': state.city = v; store.set('city', v); state.expTime = 'all'; renderMain(); break;
@@ -4077,6 +4142,7 @@ document.addEventListener('click', function (e) {
         row.parentNode.replaceChild(nb, row); if (wasFocused) { var f = nb.querySelector('[data-action="' + a + '"]'); if (f) f.focus({ preventScroll: true }); }
       }
       var pp = $('#prep-progress'); if (pp) { pp.innerHTML = prepProgressHtml(); hydrate(pp); }
+      var psc = $('#prep-seg-count'); if (psc) psc.textContent = prepCountText();
       break;
     case 'prep-reset':
       if (!state.prep.resetArmed) { state.prep.resetArmed = true; var pp2 = $('#prep-progress'); if (pp2) pp2.innerHTML = prepProgressHtml(); break; }

@@ -115,3 +115,4 @@ Claude와의 대화에서 이 저장소 주소와 함께 바꾸고 싶은 내용
 - 제한: 여행기 하루 5개, 사진 하루 40장, 여행기 하나에 사진 6장·장소 후기 하나에 4장, 사진 1장 1.2MB. 신고 3번이면 숨김. 관리자(`ADMIN_USER_IDS`)는 남의 여행기도 지울 수 있어요.
 - 로컬 테스트: `node tools/dev_server.mjs 8788` → http://localhost:8788 (D1 대신 node:sqlite, 가짜 구글·카카오·네이버. 코드 값이 그대로 사용자 id가 돼요)
 - Travel card table (Nov 2026): 여행 준비 → 트래블카드 비교 (`TRAVEL_CARDS`, `CARD_PICKS`, `CARD_SOURCES`, `cardCmp()`). Seven cards, checked 2026-11-06 (`CARD_CHECKED`). Card terms change often: re-check every cell against the sources and bump the date when editing. Woori's VND support was not confirmed, so that cell says to check the app. No affiliate links.
+- 여행 준비 sections (Nov 2026): the tab shows one section at a time, picked from `PREP_VIEWS` (입국·세관, 현지 생활, 환전·카드, 날씨·옷차림, 체크리스트, 내 노트) with a 다음 button at the bottom. The choice is remembered (`prepView`), `#prep-money` style hashes open a section, and search keywords in `TAB_KEYS['prep-…']` open the matching section.
