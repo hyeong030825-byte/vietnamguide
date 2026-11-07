@@ -14,9 +14,10 @@
     <div class="w-full px-4 md:px-8 py-3 flex items-center justify-between gap-3">
       <button type="button" data-action="home" class="flex items-center gap-3 cursor-pointer text-left min-w-0">
         <span class="theme-dark w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-accent-400 font-black text-xl border border-accent-500/40 flex-shrink-0">★</span>
-        <span class="min-w-0 max-[399px]:hidden">
+        <span class="min-w-0 max-[459px]:hidden">
           <span class="flex items-center gap-2">
-            <span class="font-sign text-lg md:text-2xl leading-none text-foreground-950 truncate" data-i18n="brand">베트남 여행 스마트 가이드</span>
+            <span class="font-sign text-lg md:text-2xl leading-none text-foreground-950 truncate hidden sm:inline" data-i18n="brand">베트남 여행 스마트 가이드</span>
+            <span class="font-sign text-lg leading-none text-foreground-950 truncate sm:hidden" data-i18n="brandShort">베트남 가이드</span>
           </span>
           <span class="hidden md:block text-xs text-foreground-400 mt-0.5" data-i18n="brandSub">실전 회화 · 환율 계산 · 메뉴판 · 매너</span>
         </span>
@@ -160,7 +161,7 @@ function hydrate(root) {
 /* ================= copy text (ko / en) ================= */
 var T = {
   ko: {
-    brand: '베트남 여행 스마트 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
+    brand: '베트남 여행 스마트 가이드', brandShort: '베트남 가이드', brandSub: '실전 회화 · 환율 계산 · 메뉴판 · 매너',
     siteLang: '사이트 언어', themeToLight: '밝은 화면으로 보기', themeToDark: '어두운 화면으로 보기', toastLight: '밝은 화면으로 바꿨어요', toastDark: '어두운 화면으로 바꿨어요', polite: '존댓말', casual: '반말',
     deck: '단어장 카드', bookmarksTitle: '북마크 모아보기',
     tab_exp: '문화체험', mtab_exp: '문화체험', tab_reviews: '여행 후기', mtab_reviews: '후기',
@@ -360,7 +361,7 @@ var T = {
     keysHint: '키보드: ← → 이동 · 스페이스 뒤집기 · 1 다시 볼래요 · 2 외웠어요'
   },
   en: {
-    brand: 'Vietnam Smart Travel Guide', brandSub: 'Phrases · Currency · Menus · Manners',
+    brand: 'Vietnam Smart Travel Guide', brandShort: 'Vietnam Guide', brandSub: 'Phrases · Currency · Menus · Manners',
     siteLang: 'Site language', themeToLight: 'Switch to light mode', themeToDark: 'Switch to dark mode', toastLight: 'Light mode on', toastDark: 'Dark mode on', polite: 'Formal', casual: 'Casual',
     deck: 'Flashcards', bookmarksTitle: 'Bookmarks',
     tab_exp: 'Culture & Experiences', mtab_exp: 'Explore', tab_reviews: 'Trip Reviews', mtab_reviews: 'Reviews',
