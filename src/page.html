@@ -4267,7 +4267,148 @@ function lantern(g, x, y, s, col, day) {
 }
 /* The hero painting: a lantern street at night (dark theme) or the same street by day (light theme).
    Both use the same seed, so houses and lanterns stay in the same places when the theme changes. */
-var DAY_WALLS = ['#e9b949', '#f0c868', '#e2a83e', '#eccf7a', '#dba04a', '#f2d48c'];
+/* Daytime street: a row of two-storey Hội An shophouses (yellow walls, tiled roofs and awnings, louvred shutters,
+   balconies, bougainvillea, open shopfronts with lanterns), trees behind, then a stone pavement and cobbles. */
+var DAY_HOUSES = [ /* wall, shutters, woodwork */
+  ['#f1bf4b', '#2e7d74', '#6b3d22'], ['#f4cd6a', '#7a4527', '#5c341d'], ['#e7aa43', '#2f6f69', '#6b3d22'],
+  ['#f5dc98', '#3f7f52', '#5c341d'], ['#a8cfcb', '#7a4527', '#5c341d'], ['#f0bf86', '#2e7d74', '#6b3d22']];
+function tiles(g, x0, y0, x1, y1, step, col) {
+  g.strokeStyle = col; g.lineWidth = 1; g.beginPath();
+  for (var tx = x0 + step / 2; tx < x1; tx += step) { g.moveTo(tx, y0); g.lineTo(tx, y1); }
+  g.stroke();
+}
+function dayHouse(g, x, bw, base, h, pal, hr) {
+  var wall = pal[0], shut = pal[1], wood = pal[2];
+  var gh = h * (0.1 + hr() * 0.02), uh = h * (0.085 + hr() * 0.035), two = hr() > 0.18;
+  var top = base - gh - (two ? uh : h * 0.02), rh = h * (0.045 + hr() * 0.025), ey = base - gh;
+  var out = { top: top, roof: top - rh - 3, wall: wall };
+  /* walls: lit from above, a shadow on the party wall, a few weathered patches */
+  var wg = g.createLinearGradient(0, top, 0, base); wg.addColorStop(0, shade(wall, 0.14)); wg.addColorStop(1, shade(wall, -0.1));
+  g.fillStyle = wg; g.fillRect(x, top, bw, base - top);
+  g.fillStyle = 'rgba(150,95,30,0.1)';
+  for (var p = 0; p < 3; p++) { g.beginPath(); g.ellipse(x + hr() * bw, top + (0.3 + hr() * 0.6) * (base - top), 6 + hr() * 12, 4 + hr() * 7, 0, 0, Math.PI * 2); g.fill(); }
+  g.fillStyle = 'rgba(80,40,10,0.2)'; g.fillRect(x + bw - 3, top, 3, base - top);
+  /* tiled roof seen from the street: ridge, tile rows, a lighter lip */
+  var ov = 2, inset = 1;
+  g.save(); g.beginPath(); g.moveTo(x - ov, top + 3); g.lineTo(x + inset, top - rh); g.lineTo(x + bw - inset, top - rh); g.lineTo(x + bw + ov, top + 3); g.closePath();
+  var rg = g.createLinearGradient(0, top - rh, 0, top); rg.addColorStop(0, '#8e3a26'); rg.addColorStop(1, '#b4523a');
+  g.fillStyle = rg; g.fill(); g.clip(); tiles(g, x - ov, top - rh, x + bw + ov, top + 3, 4.5, 'rgba(70,20,8,0.35)'); g.restore();
+  g.fillStyle = '#6f2a1b'; g.fillRect(x + inset, top - rh - 3, bw - 2 * inset, 4);
+  g.fillStyle = '#d27a55'; g.fillRect(x - ov, top + 2, bw + 2 * ov, 2);
+  g.fillStyle = 'rgba(70,30,10,0.25)'; g.fillRect(x, top + 4, bw, 4);
+  /* upstairs: louvred shutters in a frame, sometimes behind a wooden balcony */
+  if (two) {
+    var n = bw > 104 ? 3 : 2, slot = (bw - 14) / n, balcony = hr() < 0.45;
+    for (var k = 0; k < n; k++) {
+      var ww = Math.min(17, slot * 0.6), wh = uh * 0.56, wx = x + 7 + slot * k + (slot - ww) / 2, wy = top + uh * 0.2;
+      g.fillStyle = shade(wall, -0.3); g.fillRect(wx - 2, wy - 2, ww + 4, wh + 4);
+      g.fillStyle = shut; g.fillRect(wx, wy, ww, wh);
+      g.strokeStyle = 'rgba(0,0,0,0.2)'; g.lineWidth = 1; g.beginPath();
+      for (var ly = wy + 2.5; ly < wy + wh; ly += 3) { g.moveTo(wx + 1, ly); g.lineTo(wx + ww - 1, ly); }
+      g.stroke();
+      g.fillStyle = 'rgba(255,240,210,0.45)'; g.fillRect(wx + ww / 2 - 0.5, wy, 1, wh);
+    }
+    if (balcony) {
+      var ry = top + uh * 0.62, rb = ey - 4;
+      g.fillStyle = 'rgba(60,30,10,0.25)'; g.fillRect(x + 4, rb, bw - 8, 3);
+      g.fillStyle = wood; g.fillRect(x + 4, ry, bw - 8, 2.2); g.fillRect(x + 4, rb - 2, bw - 8, 2);
+      for (var bx = x + 7; bx < x + bw - 6; bx += 4.5) g.fillRect(bx, ry, 1.4, rb - ry);
+    }
+  }
+  /* tiled awning over the shopfront, with its shadow */
+  g.fillStyle = 'rgba(60,25,5,0.3)'; g.fillRect(x, ey + 6, bw, 6);
+  g.save(); g.beginPath(); g.moveTo(x - 4, ey + 7); g.lineTo(x - 1, ey - 3); g.lineTo(x + bw + 1, ey - 3); g.lineTo(x + bw + 4, ey + 7); g.closePath();
+  g.fillStyle = '#b8563c'; g.fill(); g.clip(); tiles(g, x - 4, ey - 3, x + bw + 4, ey + 7, 4, 'rgba(80,25,10,0.35)'); g.restore();
+  g.fillStyle = '#d98663'; g.fillRect(x - 4, ey + 6, bw + 8, 1.6);
+  /* shopfront: wooden folding doors, or open with shelves of goods */
+  var fx = x + bw * 0.07, fw = bw * 0.86, fy = ey + 10, fh = base - fy - 2;
+  g.fillStyle = shade(wood, -0.35); g.fillRect(fx - 2, fy - 2, fw + 4, fh + 4);
+  if (hr() < 0.45) {
+    var np = Math.max(4, Math.round(fw / 8)), pw = fw / np;
+    for (var q = 0; q < np; q++) {
+      g.fillStyle = q % 2 ? wood : shade(wood, 0.12); g.fillRect(fx + q * pw, fy, pw - 0.8, fh);
+      g.fillStyle = 'rgba(0,0,0,0.18)'; g.fillRect(fx + q * pw + 1.5, fy + fh * 0.12, pw - 3.5, fh * 0.3); g.fillRect(fx + q * pw + 1.5, fy + fh * 0.55, pw - 3.5, fh * 0.32);
+    }
+  } else {
+    g.fillStyle = '#3c2516'; g.fillRect(fx, fy, fw, fh);
+    for (var sy = fy + fh * 0.3; sy < fy + fh - 2; sy += fh * 0.24) {
+      g.fillStyle = '#6a4329'; g.fillRect(fx + 2, sy, fw - 4, 1.6);
+      for (var gx = fx + 4; gx < fx + fw - 4; gx += 5 + hr() * 3) { g.fillStyle = LANTERN_COLORS[Math.floor(hr() * LANTERN_COLORS.length)]; g.fillRect(gx, sy - 3.4, 3, 3.4); }
+    }
+    g.fillStyle = shade(wood, 0.1); g.fillRect(fx, fy + fh * 0.72, fw, fh * 0.28);
+  }
+  g.fillStyle = shade(wall, -0.4); g.fillRect(x, base - 2.5, bw, 2.5);
+  /* lanterns under the awning */
+  if (hr() < 0.7) {
+    var ls = Math.max(3.4, h * 0.012);
+    lantern(g, x + bw * 0.22, ey + 12 + ls, ls, LANTERN_COLORS[Math.floor(hr() * LANTERN_COLORS.length)], true);
+    if (bw > 90) lantern(g, x + bw * 0.78, ey + 12 + ls, ls, LANTERN_COLORS[Math.floor(hr() * LANTERN_COLORS.length)], true);
+  }
+  /* bougainvillea spilling over the awning from one side */
+  if (hr() < 0.4) {
+    var side = hr() < 0.5 ? x + 2 : x + bw * 0.62, span = bw * 0.36;
+    for (var b = 0; b < 26; b++) {
+      var bxp = side + hr() * span, byp = ey - 6 + Math.pow(hr(), 1.6) * (gh * 0.55), br = 1.8 + hr() * 2.6;
+      g.fillStyle = hr() < 0.3 ? '#5f9447' : (hr() < 0.5 ? '#e0447f' : '#c42a6b');
+      g.beginPath(); g.arc(bxp, byp, br, 0, Math.PI * 2); g.fill();
+    }
+  }
+  return out;
+}
+function dayStreet(g, w, h, base) {
+  var hr = mulberry(31);
+  /* trees and far roofs behind the row, pale with distance */
+  for (var t = 0; t < Math.round(w / 70); t++) {
+    var tx = hr() * w, ty = base - h * (0.27 + hr() * 0.07), tr = h * (0.04 + hr() * 0.04);
+    g.fillStyle = 'rgba(112,158,120,0.5)';
+    for (var c = 0; c < 4; c++) { g.beginPath(); g.arc(tx + (c - 1.5) * tr * 0.55, ty + (c % 2) * tr * 0.3, tr * 0.7, 0, Math.PI * 2); g.fill(); }
+  }
+  var hx = -20, pi = Math.floor(hr() * DAY_HOUSES.length), fronts = [];
+  while (hx < w + 20) {
+    var bw = h * (0.22 + hr() * 0.17);
+    pi = (pi + 1 + Math.floor(hr() * (DAY_HOUSES.length - 1))) % DAY_HOUSES.length;
+    var dh = dayHouse(g, hx, bw, base, h, DAY_HOUSES.at(pi), hr);
+    fronts.push([hx, bw, dh]);
+    hx += bw;
+  }
+  /* plastered firewalls between neighbours, a little above the higher roof, capped with tiles */
+  for (var fi = 1; fi < fronts.length; fi++) {
+    var fa = fronts.at(fi - 1).at(2), fb = fronts.at(fi).at(2), fxw = fronts.at(fi).at(0);
+    var fwT = Math.min(fa.roof, fb.roof) - 6, fwB = Math.max(fa.top, fb.top) + 4;
+    g.fillStyle = shade(fb.wall, 0.08); g.fillRect(fxw - 4, fwT, 8, fwB - fwT);
+    g.fillStyle = 'rgba(80,40,10,0.22)'; g.fillRect(fxw + 2, fwT, 2, fwB - fwT);
+    g.fillStyle = '#7a2f1f'; g.fillRect(fxw - 6, fwT - 3, 12, 4);
+  }
+  /* stone pavement with potted plants, a curb, then cobbles */
+  var sd = (h - base) * 0.34, curb = base + sd;
+  var pv = g.createLinearGradient(0, base, 0, curb);
+  pv.addColorStop(0, '#e4cfa9'); pv.addColorStop(1, '#efe0c3');
+  g.fillStyle = pv; g.fillRect(0, base, w, sd);
+  var sh = g.createLinearGradient(0, base, 0, base + 7);
+  sh.addColorStop(0, 'rgba(110,70,30,0.28)'); sh.addColorStop(1, 'rgba(110,70,30,0)');
+  g.fillStyle = sh; g.fillRect(0, base, w, 7);
+  g.strokeStyle = 'rgba(150,110,70,0.2)'; g.lineWidth = 1;
+  g.beginPath(); g.moveTo(0, base + sd / 2); g.lineTo(w, base + sd / 2);
+  for (var tx2 = 14; tx2 < w; tx2 += 30) { g.moveTo(tx2, base + 2); g.lineTo(tx2, base + sd / 2); g.moveTo(tx2 + 15, base + sd / 2); g.lineTo(tx2 + 15, curb); }
+  g.stroke();
+  fronts.forEach(function (m) {
+    if (hr() > 0.45) return;
+    var px0 = m[0] + (hr() < 0.5 ? 6 : m[1] - 18), py0 = base + sd * 0.42, ps = Math.max(7, sd * 0.32);
+    g.fillStyle = '#4f8d47'; [[-0.35, -0.9], [0.35, -0.95], [0, -1.35]].forEach(function (o) { g.beginPath(); g.arc(px0 + ps * 0.5 + o[0] * ps, py0 + o[1] * ps * 0.6, ps * 0.42, 0, Math.PI * 2); g.fill(); });
+    g.fillStyle = '#b5623a'; g.beginPath(); g.moveTo(px0, py0 - ps * 0.35); g.lineTo(px0 + ps, py0 - ps * 0.35); g.lineTo(px0 + ps * 0.82, py0 + ps * 0.5); g.lineTo(px0 + ps * 0.18, py0 + ps * 0.5); g.closePath(); g.fill();
+  });
+  g.fillStyle = '#c9a97e'; g.fillRect(0, curb, w, 3);
+  g.fillStyle = 'rgba(120,85,45,0.25)'; g.fillRect(0, curb + 3, w, 2);
+  var rd = g.createLinearGradient(0, curb + 5, 0, h);
+  rd.addColorStop(0, '#d9c6a2'); rd.addColorStop(1, '#efe5d2');
+  g.fillStyle = rd; g.fillRect(0, curb + 5, w, h - curb - 5);
+  g.strokeStyle = 'rgba(130,95,60,0.16)'; g.lineWidth = 1;
+  for (var cy0 = curb + 9, cr0 = 0; cy0 < h; cy0 += 11, cr0++) {
+    g.beginPath();
+    for (var cx1 = (cr0 % 2) * 13 - 13; cx1 < w; cx1 += 26) { g.moveTo(cx1, cy0); g.lineTo(cx1, cy0 + 9); }
+    g.moveTo(0, cy0 + 10); g.lineTo(w, cy0 + 10); g.stroke();
+  }
+}
 function drawHero() {
   var c = document.getElementById('hero-canvas'); if (!c || !c.getContext) return;
   var day = state.theme === 'light';
@@ -4311,31 +4452,25 @@ function drawHero() {
     g.fillStyle = 'rgba(29,16,48,0.9)'; g.beginPath(); g.arc(mx + mr * 0.42, my - mr * 0.12, mr * 0.92, 0, Math.PI * 2); g.fill();
   }
 
-  var base = h * 0.74, x = -30, wins = [], walls = [], wr = mulberry(31); /* own seed for wall colours keeps the night layout unchanged */
-  if (day) { /* shaded alleys between the houses, lower than the lowest wall */
-    var al = g.createLinearGradient(0, base - h * 0.07, 0, base); al.addColorStop(0, '#c99a62'); al.addColorStop(1, '#a8794a');
-    g.fillStyle = al; g.fillRect(0, base - h * 0.07, w, h * 0.07);
-  }
+  var base = h * 0.74, x = -30, wins = [];
+  /* The night skyline. By day the same random numbers are drawn, so the lanterns keep their places,
+     but the street is painted as Hội An shophouses instead (dayStreet). */
   while (x < w + 30) {
     var bw = 54 + r() * 96, wallH = h * (0.08 + r() * 0.09), roofH = h * (0.045 + r() * 0.04), top = base - wallH;
-    var wall = DAY_WALLS[Math.floor(wr() * DAY_WALLS.length)];
-    g.fillStyle = day ? wall : '#1b0f13'; g.fillRect(x, top, bw, (day ? base : h) - top);
-    if (day) walls.push([x, bw, wall, top, wallH]);
-    g.fillStyle = day ? '#94442b' : '#120a0d';
-    g.beginPath(); g.moveTo(x - 10, top + 5); g.quadraticCurveTo(x - 2, top + 1, x + bw * 0.16, top - roofH);
-    g.lineTo(x + bw * 0.84, top - roofH); g.quadraticCurveTo(x + bw + 2, top + 1, x + bw + 10, top + 5); g.closePath(); g.fill();
-    g.fillStyle = day ? 'rgba(255,222,180,0.45)' : 'rgba(244,190,62,0.18)'; g.fillRect(x + bw * 0.16, top - roofH, bw * 0.68, 1.2);
+    if (!day) {
+      g.fillStyle = '#1b0f13'; g.fillRect(x, top, bw, h - top);
+      g.fillStyle = '#120a0d';
+      g.beginPath(); g.moveTo(x - 10, top + 5); g.quadraticCurveTo(x - 2, top + 1, x + bw * 0.16, top - roofH);
+      g.lineTo(x + bw * 0.84, top - roofH); g.quadraticCurveTo(x + bw + 2, top + 1, x + bw + 10, top + 5); g.closePath(); g.fill();
+      g.fillStyle = 'rgba(244,190,62,0.18)'; g.fillRect(x + bw * 0.16, top - roofH, bw * 0.68, 1.2);
+    }
     var cols = Math.max(1, Math.floor(bw / 30));
     for (var k = 0; k < cols; k++) {
       if (r() < 0.6) {
-        var rwy = r(), wx = x + 8 + k * ((bw - 16) / cols) + 3, wy = top + wallH * (day ? 0.12 + rwy * 0.08 : 0.25 + rwy * 0.2), ww = Math.min(12, (bw - 16) / cols - 6), wh = Math.min(day ? 12 : 16, wallH * (day ? 0.28 : 0.35));
+        var wx = x + 8 + k * ((bw - 16) / cols) + 3, wy = top + wallH * (0.25 + r() * 0.2), ww = Math.min(12, (bw - 16) / cols - 6), wh = Math.min(16, wallH * 0.35);
         wins.push([wx + ww / 2, wy + wh / 2]);
         var lit = r() < 0.5;
-        if (day) {
-          /* wooden shutters, teal or brown */
-          g.fillStyle = lit ? '#2f7c75' : '#7a4a2a'; g.fillRect(wx, wy, ww, wh);
-          g.fillStyle = 'rgba(255,255,255,0.25)'; g.fillRect(wx + ww / 2 - 0.5, wy, 1, wh);
-        } else {
+        if (!day) {
           var wg = g.createRadialGradient(wx + ww / 2, wy + wh / 2, 1, wx + ww / 2, wy + wh / 2, 22);
           wg.addColorStop(0, 'rgba(255,170,80,0.35)'); wg.addColorStop(1, 'rgba(255,170,80,0)');
           g.fillStyle = wg; g.fillRect(wx - 20, wy - 20, ww + 40, wh + 40);
@@ -4346,50 +4481,8 @@ function drawHero() {
     x += bw + 2 + r() * 8;
   }
 
-  if (day) {
-    /* a pedestrian old-town street: doors and a plinth on each house, a stone pavement with potted plants,
-       a curb, then cobbles. Its own random numbers, so the lanterns stay where they are at night. */
-    var dr = mulberry(53), sd = (h - base) * 0.34, curb = base + sd;
-    walls.forEach(function (m) {
-      var mx0 = m[0], mw = m[1], mt = m[3], mh = m[4];
-      g.fillStyle = shade(m[2], -0.28); g.fillRect(mx0, base - 4, mw, 4);
-      var doors = mw > 110 ? 2 : 1;
-      for (var d = 0; d < doors; d++) {
-        var dw = Math.max(11, Math.min(19, mw * 0.18)), dh = Math.max(14, Math.min(32, mh * 0.42));
-        var dx = mx0 + (doors === 1 ? mw * (0.25 + dr() * 0.4) : mw * (d ? 0.62 : 0.14) + dr() * 6), dy = base - 4 - dh;
-        g.fillStyle = dr() < 0.55 ? '#6e3d22' : '#2f6f69'; g.fillRect(dx, dy, dw, dh);
-        g.fillStyle = 'rgba(255,235,200,0.35)'; g.fillRect(dx + dw / 2 - 0.5, dy + 2, 1, dh - 2);
-        g.fillStyle = shade(m[2], -0.35); g.fillRect(dx - 2, dy - 3, dw + 4, 3);
-      }
-    });
-    var pv = g.createLinearGradient(0, base, 0, curb);
-    pv.addColorStop(0, '#e4cfa9'); pv.addColorStop(1, '#efe0c3');
-    g.fillStyle = pv; g.fillRect(0, base, w, sd);
-    var sh = g.createLinearGradient(0, base, 0, base + 7);
-    sh.addColorStop(0, 'rgba(110,70,30,0.28)'); sh.addColorStop(1, 'rgba(110,70,30,0)');
-    g.fillStyle = sh; g.fillRect(0, base, w, 7);
-    g.strokeStyle = 'rgba(150,110,70,0.2)'; g.lineWidth = 1;
-    g.beginPath(); g.moveTo(0, base + sd / 2); g.lineTo(w, base + sd / 2);
-    for (var tx = 14; tx < w; tx += 30) { g.moveTo(tx, base + 2); g.lineTo(tx, base + sd / 2); g.moveTo(tx + 15, base + sd / 2); g.lineTo(tx + 15, curb); }
-    g.stroke();
-    walls.forEach(function (m) {
-      if (dr() > 0.45) return;
-      var px0 = m[0] + (dr() < 0.5 ? 6 : m[1] - 18), py0 = base + sd * 0.42, ps = Math.max(7, sd * 0.32);
-      g.fillStyle = '#4f8d47'; [[-0.35, -0.9], [0.35, -0.95], [0, -1.35]].forEach(function (o) { g.beginPath(); g.arc(px0 + ps * 0.5 + o[0] * ps, py0 + o[1] * ps * 0.6, ps * 0.42, 0, Math.PI * 2); g.fill(); });
-      g.fillStyle = '#b5623a'; g.beginPath(); g.moveTo(px0, py0 - ps * 0.35); g.lineTo(px0 + ps, py0 - ps * 0.35); g.lineTo(px0 + ps * 0.82, py0 + ps * 0.5); g.lineTo(px0 + ps * 0.18, py0 + ps * 0.5); g.closePath(); g.fill();
-    });
-    g.fillStyle = '#c9a97e'; g.fillRect(0, curb, w, 3);
-    g.fillStyle = 'rgba(120,85,45,0.25)'; g.fillRect(0, curb + 3, w, 2);
-    var rd = g.createLinearGradient(0, curb + 5, 0, h);
-    rd.addColorStop(0, '#d9c6a2'); rd.addColorStop(1, '#efe5d2');
-    g.fillStyle = rd; g.fillRect(0, curb + 5, w, h - curb - 5);
-    g.strokeStyle = 'rgba(130,95,60,0.16)'; g.lineWidth = 1;
-    for (var cy0 = curb + 9, cr0 = 0; cy0 < h; cy0 += 11, cr0++) {
-      g.beginPath();
-      for (var cx1 = (cr0 % 2) * 13 - 13; cx1 < w; cx1 += 26) { g.moveTo(cx1, cy0); g.lineTo(cx1, cy0 + 9); }
-      g.moveTo(0, cy0 + 10); g.lineTo(w, cy0 + 10); g.stroke();
-    }
-  } else {
+  if (day) dayStreet(g, w, h, base);
+  else {
     var rv = g.createLinearGradient(0, base, 0, h);
     rv.addColorStop(0, '#1b1020'); rv.addColorStop(1, '#07060b');
     g.fillStyle = rv; g.fillRect(0, base, w, h - base);
