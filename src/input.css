@@ -175,7 +175,9 @@ i > svg.ico.fa { width: auto; }
 
 /* hero: the painting (night lanterns in dark, a day street in light) under a veil that fades into the page */
 .hero-veil { background: linear-gradient(to bottom, rgb(5 4 3 / .62), rgb(5 4 3 / .5) 55%, rgb(var(--bg-50))); }
-:root[data-theme="light"] .hero-veil { background: linear-gradient(to bottom, rgb(255 255 255 / .16), rgb(255 252 245 / .34) 55%, rgb(var(--bg-50))); }
+:root[data-theme="light"] .hero-veil { background: linear-gradient(to bottom, rgb(255 255 255 / .14), rgb(255 252 245 / .22) 55%, rgb(255 252 245 / .3) 82%, rgb(var(--bg-50))); }
+/* the floating lotus and lantern belong on the night river; by day the street has no water */
+:root[data-theme="light"] .hero-float { display: none !important; }
 .hero-desc { text-shadow: 0 1px 10px rgb(0 0 0 / .9); }
 :root[data-theme="light"] .hero-desc { text-shadow: 0 0 10px rgb(255 255 255), 0 0 3px rgb(255 255 255); }
 

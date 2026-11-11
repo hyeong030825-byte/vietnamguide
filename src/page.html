@@ -54,7 +54,7 @@
     <div class="hero-veil absolute inset-0"></div>
   </div>
   <svg id="hero-ropes" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></svg>
-  <div class="absolute right-8 bottom-6 opacity-50 pointer-events-none hidden md:block animate-bob" aria-hidden="true">
+  <div class="hero-float absolute right-8 bottom-6 opacity-50 pointer-events-none hidden md:block animate-bob" aria-hidden="true">
     <svg viewBox="0 0 100 84" class="w-28 h-24 text-accent-400" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
       <defs><linearGradient id="lotus-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:rgb(var(--pr-400));stop-opacity:.55"/><stop offset="1" style="stop-color:rgb(var(--ac-400));stop-opacity:.15"/></linearGradient></defs>
       <g fill="url(#lotus-fill)">
@@ -65,7 +65,7 @@
       <path d="M14 72Q32 67 50 72T86 72" opacity=".7"/><path d="M28 79Q41 75 54 79T78 79" opacity=".45"/>
     </svg>
   </div>
-  <div class="absolute left-6 bottom-8 text-accent-400/20 text-5xl pointer-events-none hidden md:block animate-float" aria-hidden="true">🏮</div>
+  <div class="hero-float absolute left-6 bottom-8 text-accent-400/20 text-5xl pointer-events-none hidden md:block animate-float" aria-hidden="true">🏮</div>
   <div class="relative z-10 w-full max-w-5xl mx-auto text-center px-4 py-12 md:py-16">
     <div class="banner-wrap"><h1 class="banner"><span class="ht" data-i18n="heroS1">말은 통하게,</span> <span class="ht" data-i18n="heroS2">계산은 신속하게,</span> <span class="ht" data-i18n="heroS3">여행은 안전하게!</span></h1></div>
     <p class="hero-desc text-sm md:text-base text-foreground-600 mb-7 max-w-xl mx-auto" data-i18n="heroDesc">베트남어 발음 듣기부터 간편 환율 계산, '고수 빼기' 기능까지 한곳에서 이용해 보세요.</p>
@@ -4312,11 +4312,15 @@ function drawHero() {
   }
 
   var base = h * 0.74, x = -30, wins = [], walls = [], wr = mulberry(31); /* own seed for wall colours keeps the night layout unchanged */
+  if (day) { /* shaded alleys between the houses, lower than the lowest wall */
+    var al = g.createLinearGradient(0, base - h * 0.07, 0, base); al.addColorStop(0, '#c99a62'); al.addColorStop(1, '#a8794a');
+    g.fillStyle = al; g.fillRect(0, base - h * 0.07, w, h * 0.07);
+  }
   while (x < w + 30) {
     var bw = 54 + r() * 96, wallH = h * (0.08 + r() * 0.09), roofH = h * (0.045 + r() * 0.04), top = base - wallH;
     var wall = DAY_WALLS[Math.floor(wr() * DAY_WALLS.length)];
-    g.fillStyle = day ? wall : '#1b0f13'; g.fillRect(x, top, bw, h - top);
-    if (day) walls.push([x, bw, wall]);
+    g.fillStyle = day ? wall : '#1b0f13'; g.fillRect(x, top, bw, (day ? base : h) - top);
+    if (day) walls.push([x, bw, wall, top, wallH]);
     g.fillStyle = day ? '#94442b' : '#120a0d';
     g.beginPath(); g.moveTo(x - 10, top + 5); g.quadraticCurveTo(x - 2, top + 1, x + bw * 0.16, top - roofH);
     g.lineTo(x + bw * 0.84, top - roofH); g.quadraticCurveTo(x + bw + 2, top + 1, x + bw + 10, top + 5); g.closePath(); g.fill();
@@ -4324,7 +4328,7 @@ function drawHero() {
     var cols = Math.max(1, Math.floor(bw / 30));
     for (var k = 0; k < cols; k++) {
       if (r() < 0.6) {
-        var wx = x + 8 + k * ((bw - 16) / cols) + 3, wy = top + wallH * (0.25 + r() * 0.2), ww = Math.min(12, (bw - 16) / cols - 6), wh = Math.min(16, wallH * 0.35);
+        var rwy = r(), wx = x + 8 + k * ((bw - 16) / cols) + 3, wy = top + wallH * (day ? 0.12 + rwy * 0.08 : 0.25 + rwy * 0.2), ww = Math.min(12, (bw - 16) / cols - 6), wh = Math.min(day ? 12 : 16, wallH * (day ? 0.28 : 0.35));
         wins.push([wx + ww / 2, wy + wh / 2]);
         var lit = r() < 0.5;
         if (day) {
@@ -4342,19 +4346,53 @@ function drawHero() {
     x += bw + 2 + r() * 8;
   }
 
-  var rv = g.createLinearGradient(0, base, 0, h);
-  if (day) { rv.addColorStop(0, '#7fbfc6'); rv.addColorStop(1, '#d6ecea'); } else { rv.addColorStop(0, '#1b1020'); rv.addColorStop(1, '#07060b'); }
-  g.fillStyle = rv; g.fillRect(0, base, w, h - base);
   if (day) {
-    /* the walls mirrored in the river, broken by ripples */
+    /* a pedestrian old-town street: doors and a plinth on each house, a stone pavement with potted plants,
+       a curb, then cobbles. Its own random numbers, so the lanterns stay where they are at night. */
+    var dr = mulberry(53), sd = (h - base) * 0.34, curb = base + sd;
     walls.forEach(function (m) {
-      var rg = g.createLinearGradient(0, base, 0, base + (h - base) * 0.7);
-      rg.addColorStop(0, rgba(m[2], 0.45)); rg.addColorStop(1, rgba(m[2], 0));
-      g.fillStyle = rg; g.fillRect(m[0], base + 1, m[1], (h - base) * 0.7);
+      var mx0 = m[0], mw = m[1], mt = m[3], mh = m[4];
+      g.fillStyle = shade(m[2], -0.28); g.fillRect(mx0, base - 4, mw, 4);
+      var doors = mw > 110 ? 2 : 1;
+      for (var d = 0; d < doors; d++) {
+        var dw = Math.max(11, Math.min(19, mw * 0.18)), dh = Math.max(14, Math.min(32, mh * 0.42));
+        var dx = mx0 + (doors === 1 ? mw * (0.25 + dr() * 0.4) : mw * (d ? 0.62 : 0.14) + dr() * 6), dy = base - 4 - dh;
+        g.fillStyle = dr() < 0.55 ? '#6e3d22' : '#2f6f69'; g.fillRect(dx, dy, dw, dh);
+        g.fillStyle = 'rgba(255,235,200,0.35)'; g.fillRect(dx + dw / 2 - 0.5, dy + 2, 1, dh - 2);
+        g.fillStyle = shade(m[2], -0.35); g.fillRect(dx - 2, dy - 3, dw + 4, 3);
+      }
     });
-    g.fillStyle = 'rgba(255,255,255,0.55)';
-    for (var rp = 0; rp < Math.round(w / 40); rp++) g.fillRect(r() * w, base + 6 + r() * (h - base) * 0.8, 10 + r() * 26, 1.2);
+    var pv = g.createLinearGradient(0, base, 0, curb);
+    pv.addColorStop(0, '#e4cfa9'); pv.addColorStop(1, '#efe0c3');
+    g.fillStyle = pv; g.fillRect(0, base, w, sd);
+    var sh = g.createLinearGradient(0, base, 0, base + 7);
+    sh.addColorStop(0, 'rgba(110,70,30,0.28)'); sh.addColorStop(1, 'rgba(110,70,30,0)');
+    g.fillStyle = sh; g.fillRect(0, base, w, 7);
+    g.strokeStyle = 'rgba(150,110,70,0.2)'; g.lineWidth = 1;
+    g.beginPath(); g.moveTo(0, base + sd / 2); g.lineTo(w, base + sd / 2);
+    for (var tx = 14; tx < w; tx += 30) { g.moveTo(tx, base + 2); g.lineTo(tx, base + sd / 2); g.moveTo(tx + 15, base + sd / 2); g.lineTo(tx + 15, curb); }
+    g.stroke();
+    walls.forEach(function (m) {
+      if (dr() > 0.45) return;
+      var px0 = m[0] + (dr() < 0.5 ? 6 : m[1] - 18), py0 = base + sd * 0.42, ps = Math.max(7, sd * 0.32);
+      g.fillStyle = '#4f8d47'; [[-0.35, -0.9], [0.35, -0.95], [0, -1.35]].forEach(function (o) { g.beginPath(); g.arc(px0 + ps * 0.5 + o[0] * ps, py0 + o[1] * ps * 0.6, ps * 0.42, 0, Math.PI * 2); g.fill(); });
+      g.fillStyle = '#b5623a'; g.beginPath(); g.moveTo(px0, py0 - ps * 0.35); g.lineTo(px0 + ps, py0 - ps * 0.35); g.lineTo(px0 + ps * 0.82, py0 + ps * 0.5); g.lineTo(px0 + ps * 0.18, py0 + ps * 0.5); g.closePath(); g.fill();
+    });
+    g.fillStyle = '#c9a97e'; g.fillRect(0, curb, w, 3);
+    g.fillStyle = 'rgba(120,85,45,0.25)'; g.fillRect(0, curb + 3, w, 2);
+    var rd = g.createLinearGradient(0, curb + 5, 0, h);
+    rd.addColorStop(0, '#d9c6a2'); rd.addColorStop(1, '#efe5d2');
+    g.fillStyle = rd; g.fillRect(0, curb + 5, w, h - curb - 5);
+    g.strokeStyle = 'rgba(130,95,60,0.16)'; g.lineWidth = 1;
+    for (var cy0 = curb + 9, cr0 = 0; cy0 < h; cy0 += 11, cr0++) {
+      g.beginPath();
+      for (var cx1 = (cr0 % 2) * 13 - 13; cx1 < w; cx1 += 26) { g.moveTo(cx1, cy0); g.lineTo(cx1, cy0 + 9); }
+      g.moveTo(0, cy0 + 10); g.lineTo(w, cy0 + 10); g.stroke();
+    }
   } else {
+    var rv = g.createLinearGradient(0, base, 0, h);
+    rv.addColorStop(0, '#1b1020'); rv.addColorStop(1, '#07060b');
+    g.fillStyle = rv; g.fillRect(0, base, w, h - base);
     wins.forEach(function (p) {
       var rg = g.createLinearGradient(0, base, 0, base + (h - base) * 0.8);
       rg.addColorStop(0, 'rgba(255,180,90,0.22)'); rg.addColorStop(1, 'rgba(255,180,90,0)');
@@ -4411,7 +4449,7 @@ function drawRopes() {
   };
   var out = '';
   if (posts) {
-    var top = Math.max(6, t - 48), foot = H * 0.72; /* down to the street, where the painting's houses stand */
+    var top = Math.max(6, t - 48), foot = H * (state.theme === 'light' ? 0.82 : 0.72); /* down to the riverside at night, the pavement's edge by day */
     [L, R].forEach(function (x) {
       out += '<rect class="post" x="' + f(x - 3.5) + '" y="' + f(top) + '" width="7" height="' + f(foot - top) + '" rx="2"/>' +
         '<rect class="post" x="' + f(x - 17) + '" y="' + f(top + 12) + '" width="34" height="4" rx="1"/>' +
