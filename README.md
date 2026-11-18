@@ -2,6 +2,8 @@
 
 실전 회화, 0 떼고 2 나누기 환율 계산기, 고수 빼기 스위치, 문화·에티켓, 긴급 연락처를 담은 한 페이지짜리 여행 가이드 사이트입니다.
 
+> 새 Claude 계정에서 이어서 작업한다면 [HANDOFF.md](HANDOFF.md)를 먼저 읽어 주세요. 앱 출시 순서는 [docs/app-store-guide.md](docs/app-store-guide.md)에 있어요.
+
 ## 폴더 구성
 
 | 경로 | 내용 |
